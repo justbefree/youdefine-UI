@@ -1,0 +1,26 @@
+<template>
+  <div class="spin">
+    <div>
+      <h4>trip-bounce</h4>
+      <yn-spin type="triple-bounce"></yn-spin>
+    </div>
+    <div>
+      <h4>snake</h4>
+      <yn-spin type="snake"></yn-spin>
+    </div>
+    <div>
+      <h4>fading-circle</h4>
+      <yn-spin type="fading-circle"></yn-spin>
+    </div>
+    <div>
+      <h4>double-bounce</h4>
+      <yn-spin type="double-bounce"></yn-spin>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "YnSpinPage"
+};
+</script>

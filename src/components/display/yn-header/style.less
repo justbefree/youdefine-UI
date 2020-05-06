@@ -1,0 +1,53 @@
+@import "../../theme/variable.less";
+.yn-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.yn-hide {
+  display: none;
+}
+.yn-dynamic-header {
+  width: 100%;
+  height: 44px;
+  background: @theme-color;
+  display: flex;
+  justify-content: space-around;
+  .icon-back-box,
+  .options-button-box {
+    width: 44px;
+    cursor: pointer;
+    line-height: 44px;
+  }
+  .header-title-box {
+    width: 80%;
+    line-height: 44px;
+    > .title {
+      user-select: none;
+      font-size: 18px;
+      color: #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: inherit;
+      font-weight: 400;
+      flex: 1;
+    }
+  }
+  z-index: 1000;
+}
+.yn-dynamic-header.yn-transparent {
+  background: rgba(255, 255, 255, 0);
+}
+.slide-fade-top-enter-active {
+  transition: all 0.2s ease;
+}
+.slide-fade-top-leave-active {
+  transition: all 0.5s ease-out;
+}
+.slide-fade-top-enter, .slide-fade-top-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(-55px);
+  opacity: 0;
+}

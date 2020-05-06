@@ -1,4 +1,4 @@
-# hello-world
+# YN-COMPONENTS
 
 ## Project setup
 ```

@@ -1,0 +1,107 @@
+@import "../../theme/variable.less";
+.yn-calendar {
+  .yn-calendar-content {
+    height: 100%;
+    .yn-calendar-header {
+      user-select: none;
+      .yn-calendar-close {
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+      .yn-calendar-header-title {
+        height: 44px;
+        text-align: center;
+        line-height: 44px;
+        color: @text-color;
+        font-size: 16px;
+      }
+      box-shadow: 0 2px 10px rgba(125, 126, 128, 0.16);
+      .yn-calendar-week-bar {
+        height: 44px;
+        line-height: 44px;
+        color: @text-color;
+      }
+    }
+    .yn-calendar-body {
+      height: 100%;
+      overflow: auto; /* winphone8和android4+ */
+      -webkit-overflow-scrolling: touch; /* ios5+ */
+      .yn-calendar-month {
+        .yn-calendar-month-title {
+          text-align: center;
+          height: 44px;
+          line-height: 44px;
+          font-weight: 400;
+          color: @text-color;
+          margin: 0 5px;
+        }
+        .yn-calendar-date {
+          width: calc(100% / 7);
+          text-align: center;
+          height: 64px;
+          color: @text-color;
+          .yn-calendar-date-festival {
+            height: 18px;
+            font-size: 10px;
+            line-height: 18px;
+          }
+          .yn-calendar-date-text {
+            height: 28px;
+            line-height: 28px;
+          }
+          .yn-calendar-date-mark {
+            font-size: 10px;
+            height: 18px;
+            line-height: 18px;
+          }
+        }
+        .yn-calendar-date.disable {
+          color: @disable-color;
+          cursor: default;
+        }
+        .yn-calendar-date.clickable {
+          cursor: pointer;
+        }
+        .yn-calendar-date.active {
+          background: @theme-color;
+          color: @white;
+        }
+        .yn-calendar-date.active.single-mode {
+          border-radius: 10%;
+        }
+        .yn-calendar-date.start {
+          border-bottom-left-radius: 10%;
+          border-top-left-radius: 10%;
+        }
+        .yn-calendar-date.end {
+          border-bottom-right-radius: 10%;
+          border-top-right-radius: 10%;
+        }
+        .yn-calendar-date.during-active {
+          background: @theme-color;
+          color: @white;
+        }
+      }
+    }
+    .yn-calendar-footer {
+      height: 50px;
+      .yn-calendar-confirm-button {
+        width: 90%;
+        margin: 0 auto;
+        height: 36px;
+        border-radius: 18px;
+        line-height: 36px;
+        text-align: center;
+        color: @white;
+      }
+      .yn-calendar-confirm-button.active {
+        background: @theme-color;
+      }
+      .yn-calendar-confirm-button.disable {
+        background: @disable-color;
+      }
+    }
+  }
+}
