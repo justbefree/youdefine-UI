@@ -1,4 +1,4 @@
-# YN-COMPONENTS
+# youdefine-UI
 
 ## Project setup
 ```
