@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-05-06 14:45:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-05-06 16:04:05
+* @Last Modified time: 2020-05-06 17:17:59
 * @E-mail: justbefree@126.com
 */
 module.exports = {
@@ -27,10 +27,10 @@ module.exports = {
   },
   pages: {
     examples: {
-      entry: "src/examples/main.js",
-      template: "src/examples/example.html",
+      entry: "examples/main.js",
+      template: "examples/example.html",
       filename: "example.html",
-      title: "Examples for YN components"
+      title: "Examples for YD components"
     }
   }
 };
