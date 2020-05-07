@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-19 16:53:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-04-28 10:02:17
+ * @Last Modified time: 2020-05-07 15:54:10
  * @E-mail: justbefree@126.com
  */
 import "./style.less";
@@ -24,6 +24,10 @@ export default {
     },
     container: {
       default: null
+    },
+    sticky: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -81,7 +85,7 @@ export default {
       "div",
       {
         style: { top: `${this.offsetTop}px`, zIndex: this.zIndex },
-        class: ["yn-sticky", this.fixed ? "yn-sticky-fixed" : ""]
+        class: ["yn-sticky", this.sticky && this.fixed ? "yn-sticky-fixed" : ""]
       },
       [this.slots()]
     );
