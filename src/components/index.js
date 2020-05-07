@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-03 16:34:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-06 15:40:38
+ * @Last Modified time: 2020-05-07 12:17:34
  */
 import YnButton from "./display/yn-button";
 import { YnFlex, YnFlexItem } from "./layout/yn-flex";
@@ -40,9 +40,9 @@ const components = [
   YnFlexItem,
   YnHeader,
   YnIconfont,
-  YnToast,
+  // YnToast,
   YnSpin,
-  YnIndicator,
+  // YnIndicator,
   YnCheckbox,
   YnRadiobox,
   YnCalendar,
@@ -74,13 +74,15 @@ const install = (Vue) => {
   components.map(component => {
     Vue.component(component.name, component);
   });
+  Vue.prototype.Toast = YnToast;
+  Vue.prototype.Dialog = YnDialog;
+  Vue.prototype.Indicator = YnIndicator;
 };
 if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
-export default { install };
 export {
-  // install,
+  install,
   YnButton,
   YnFlex,
   YnFlexItem,
@@ -114,4 +116,7 @@ export {
   YnSubmitActionValue,
   YnPullRefresh,
   YnDatePicker
+};
+export default {
+  install
 };

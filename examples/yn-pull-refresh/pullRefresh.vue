@@ -3,7 +3,7 @@
     <h2>yn-pull-refresh</h2>
     <yn-pull-refresh @pullRefresh="handlePullRefresh" :loading="isLoading">
       <ul>
-        <li v-for="i in list">{{ i }}</li>
+        <li v-for="i in list" :key="i">{{ i }}</li>
       </ul>
     </yn-pull-refresh>
   </div>

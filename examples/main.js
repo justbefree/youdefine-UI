@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 17:15:01
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-06 17:37:10
+ * @Last Modified time: 2020-05-07 09:51:20
  * @E-mail: justbefree@126.com
  */
 
@@ -10,6 +10,9 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router";
 import "./less/style.less";
+// import YnComponent from "@/components/index";
+// console.log("全量引入是什么概念", YnComponent);
+// Vue.use(YnComponent);
 import {
   YnToast,
   YnSpin,
@@ -43,7 +46,7 @@ import {
   YnSubmitActionValue,
   YnPullRefresh,
   YnDatePicker
-} from "@/components";
+} from "@/components/index";
 Vue.component(YnSpin.name, YnSpin);
 Vue.component(YnIconfont.name, YnIconfont);
 Vue.component(YnCheckbox.name, YnCheckbox);

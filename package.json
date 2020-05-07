@@ -1,8 +1,11 @@
 {
   "name": "yn-components",
-  "version": "0.1.1",
+  "version": "0.1.9",
   "private": false,
-  "keywords": ["vue component", "yn-components"],
+  "keywords": [
+    "vue component",
+    "yn-components"
+  ],
   "description": "A vue components lib spically for business-travel",
   "main": "lib/yn-components.umd.min.js",
   "author": "just be free <justbefree@126.com>",
@@ -27,6 +30,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.11.1",
     "less-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
