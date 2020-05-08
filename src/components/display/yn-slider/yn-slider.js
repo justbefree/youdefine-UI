@@ -2,13 +2,14 @@
  * @Author: Just be free
  * @Date:   2020-04-22 11:10:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-06 16:17:30
+ * @Last Modified time: 2020-05-08 12:23:20
  * @E-mail: justbefree@126.com
  */
 import "./style.less";
 import { touchMixins } from "../../mixins/touch";
 import { getOffset } from "@/modules/dom";
 import { isObject, charLength, hasOwnProperty } from "@/modules/utils";
+// import { preventDefault } from "@/modules/event";
 export default {
   name: "YnSlider",
   mixins: [touchMixins],
@@ -94,13 +95,19 @@ export default {
           if (event.e && event.e.changedTouches && event.e.changedTouches[0]) {
             const disX =
               event.e.changedTouches[0].clientX - getOffset(event.target).left;
-            const real = Math.round(disX / that.disStep) * that.disStep;
+            let real = Math.round(disX / that.disStep) * that.disStep;
+            // 防止滑块超出范围
+            if (real >= that.width) {
+              real = that.width;
+            } else if (real <= 0) {
+              real = 0;
+            }
             const value = that.transformDistanceToValue(real);
             if (isObject(that.value)) {
-              if (value > that.endValue) {
+              if (value >= that.endValue) {
                 that.endValue = value;
                 that.endLeft = real;
-              } else if (value < that.startValue) {
+              } else if (value <= that.startValue) {
                 that.startValue = value;
                 that.startLeft = real;
               } else if (value > that.startValue && value < that.endValue) {

@@ -120,7 +120,7 @@ export default {
   }
 };
 </script>
-<style type="text/css">
+<style type="text/css" scoped="scoped">
 .box {
   background-color: #f7f8fa;
   height: 100%;
