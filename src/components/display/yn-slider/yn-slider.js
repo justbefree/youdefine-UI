@@ -2,12 +2,12 @@
  * @Author: Just be free
  * @Date:   2020-04-22 11:10:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-08 14:36:59
+ * @Last Modified time: 2020-05-08 14:42:45
  * @E-mail: justbefree@126.com
  */
 import "./style.less";
 import { touchMixins } from "../../mixins/touch";
-import { getOffset, getElementsTranslate } from "@/modules/dom";
+import { getOffset } from "@/modules/dom";
 import { isObject, charLength, hasOwnProperty } from "@/modules/utils";
 import { preventDefault } from "@/modules/event";
 export default {
