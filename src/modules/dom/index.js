@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-25 14:34:04
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-04-28 10:02:42
+ * @Last Modified time: 2020-05-08 14:35:54
  */
 const hasClass = (dom, className) => {
   return dom.className.match(new RegExp("(\\s|^)" + className + "(\\s|$)"));
@@ -39,13 +39,13 @@ export const getScrollTop = element => {
 export const getOffset = element => {
   let top = element.offsetTop;
   let left = element.offsetLeft;
-  while (element.offsetParent) {
-    element = element.offsetParent;
-    top += element.offsetTop;
-    left += element.offsetLeft;
+  let current = element.offsetParent;
+  while (current !== null) {
+    let translate = getElementsTranslate(current);
+    top += (current.offsetTop + translate.y);
+    left += (current.offsetLeft + translate.x);
+    current = current.offsetParent;
   }
-  left = left + getElementsTranslate(element).x;
-  top = top + getElementsTranslate(element).y;
   return { top, left };
 };
 // 获取translateY的值

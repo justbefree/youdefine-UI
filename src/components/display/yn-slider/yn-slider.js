@@ -2,14 +2,14 @@
  * @Author: Just be free
  * @Date:   2020-04-22 11:10:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-08 12:23:20
+ * @Last Modified time: 2020-05-08 14:36:59
  * @E-mail: justbefree@126.com
  */
 import "./style.less";
 import { touchMixins } from "../../mixins/touch";
-import { getOffset } from "@/modules/dom";
+import { getOffset, getElementsTranslate } from "@/modules/dom";
 import { isObject, charLength, hasOwnProperty } from "@/modules/utils";
-// import { preventDefault } from "@/modules/event";
+import { preventDefault } from "@/modules/event";
 export default {
   name: "YnSlider",
   mixins: [touchMixins],
@@ -92,6 +92,7 @@ export default {
       const that = this;
       this.bindEvent(this.$el, {
         stop(event) {
+          preventDefault(event.e, true);
           if (event.e && event.e.changedTouches && event.e.changedTouches[0]) {
             const disX =
               event.e.changedTouches[0].clientX - getOffset(event.target).left;
@@ -162,10 +163,12 @@ export default {
       this.width = width;
       this[`${type}Left`] = this.transformValueToDistance(iValue);
       this.bindEvent(el, {
-        start() {
+        start(event) {
+          preventDefault(event.e, true);
           barWidth = that.$refs[`${type}SliderBar`].offsetWidth;
         },
-        dragging() {
+        dragging(event) {
+          preventDefault(event.e, true);
           that.dragging = true;
           that[`${type}Left`] =
             Math.round((barWidth + that.deltaX) / that.disStep) * that.disStep;
@@ -189,7 +192,8 @@ export default {
           that[`${type}Value`] = that[`${type}RoundValue`];
           that.emit();
         },
-        stop() {
+        stop(event) {
+          preventDefault(event.e, true);
           that.dragging = false;
           that.emit();
         }

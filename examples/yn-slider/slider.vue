@@ -26,12 +26,38 @@
       <span @click="update" class="update">更新</span>
       <span @click="set" class="update">自定义</span>
       <span class="display"></span>
-      <yn-slider ref="slider4" v-model="value4" tip></yn-slider>
+      <yn-slider ref="slider4" v-model="value4" :parse="doubleValue" tip></yn-slider>
+    </div>
+    <div class="box">
+      <yn-dropdown-menu>
+        <yn-dropdown-menu-item
+          v-model="value6"
+          :options="setOtions()"
+          defaultSelectedIndex="2"
+        ></yn-dropdown-menu-item>
+        <yn-dropdown-menu-item
+          v-model="value7"
+          :mapStatus="mapStatus"
+          :titleChangealbe="true"
+          :fixed="true"
+          ref="mapStatus"
+        ></yn-dropdown-menu-item>
+        <yn-dropdown-menu-item
+          v-model="value8"
+          ref="closeAble"
+          @afterEnter="handleBeforeEnter"
+        >
+          <div style="height: 100px;width: 90%;margin: 0 auto;">
+            <yn-slider class="dropdown-slider" v-if="visiable1" v-model="value5" :parse="doubleValue" tip></yn-slider>
+          </div>
+        </yn-dropdown-menu-item>
+      </yn-dropdown-menu>
     </div>
     <span @click="handlePopup">弹框案例</span>
     <yn-popup v-model="visiable">
       <div class="box">
-        <yn-slider v-if="visiable" v-model="value5" tip></yn-slider>
+        <span>自定义内容</span>
+        <yn-slider v-if="visiable" v-model="value5" :parse="doubleValue" tip></yn-slider>
       </div>
     </yn-popup>
   </div>
@@ -43,6 +69,7 @@ export default {
   data() {
     return {
       visiable: false,
+      visiable1: false,
       value: 10,
       value2: 50,
       value3: 0,
@@ -54,10 +81,50 @@ export default {
         start: 0,
         end: 100
       },
-      dragIcon
+      value6: "dddd",
+      value7: "dddd",
+      value8: "dddd",
+      dragIcon,
+      mapStatus: {
+        checked: {
+          value: 1,
+          label: "选中文案"
+        },
+        unchecked: {
+          value: 2,
+          label: "未选中文案"
+        }
+      }
     };
   },
   methods: {
+    handleBeforeEnter() {
+      this.visiable1 = !this.visiable1;
+    },
+    getOptions() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const options = [
+            { text: "Option1", value: 0 },
+            { text: "Option2", value: 1 },
+            { text: "Option3", value: 2 }
+          ];
+          resolve(options);
+        }, 3000);
+      });
+    },
+    setOtions() {
+      return {
+        action: this.getOptions,
+        params: { a: 1, b: 2 },
+        parse: res => {
+          return res;
+        }
+      };
+    },
+    doubleValue(e) {
+      return e * 10;
+    },
     handlePopup() {
       this.visiable = !this.visiable;
     },
@@ -90,5 +157,8 @@ export default {
 .update {
   display: inline-block;
   margin: 20px 10px;
+}
+.dropdown-slider{
+  margin-top: 40px;
 }
 </style>
