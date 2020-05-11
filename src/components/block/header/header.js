@@ -2,12 +2,12 @@
  * @Author: Just be free
  * @Date:   2020-03-30 09:47:03
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-04-13 14:13:53
+ * @Last Modified time: 2020-05-11 18:25:32
  * @E-mail: justbefree@126.com
  */
 import "./style.less";
-import YnIconfont from "../../display/yn-icon";
-import { YnFlex, YnFlexItem } from "../../layout/yn-flex";
+import YnIconfont from "../../yn-icon";
+import { YnFlex, YnFlexItem } from "../../yn-flex";
 import { slotsMixins } from "../../mixins/slots";
 export default {
   name: "YnBlockHeader",

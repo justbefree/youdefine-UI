@@ -2,38 +2,38 @@
  * @Author: Just be free
  * @Date:   2020-01-03 16:34:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-07 12:17:34
+ * @Last Modified time: 2020-05-11 18:14:29
  */
-import YnButton from "./display/yn-button";
-import { YnFlex, YnFlexItem } from "./layout/yn-flex";
-import YnHeader from "./display/yn-header";
-import YnIconfont from "./display/yn-icon";
-import YnToast from "./display/yn-toast";
-import YnSpin from "./display/yn-spin";
-import YnIndicator from "./display/yn-indicator";
-import YnCheckbox from "./interactive/yn-checkbox";
-import YnRadiobox from "./interactive/yn-radiobox";
-import YnCalendar from "./display/yn-calendar";
-import YnPopup from "./display/yn-popup";
-import YnActionSheet from "./display/yn-action-sheet";
-import { YnField, YnFieldGroup } from "./interactive/yn-field";
-import YnLayout from "./layout/yn-layout";
-import YnCityPicker from "./display/yn-city-picker";
-import YnSticky from "./display/yn-sticky";
-import YnDialog from "./display/yn-dialog";
-import YnPickyStepper from "./interactive/yn-picky-stepper";
-import { YnDropdownMenu, YnDropdownMenuItem } from "./display/yn-dropdown-menu";
-import YnPicker from "./display/yn-picker";
-import { YnSwipe, YnSwipeItem } from "./display/yn-swipe";
-import { YnTabs, YnTabItem } from "./display/yn-tabs";
-import YnSlider from "./display/yn-slider";
-import YnPullRefresh from "./display/yn-pull-refresh";
-import YnDatePicker from "./display/yn-date-picker";
+import YnButton from "./yn-button";
+import { YnFlex, YnFlexItem } from "./yn-flex";
+import YnHeader from "./yn-header";
+import YnIconfont from "./yn-icon";
+import YnToast from "./yn-toast";
+import YnSpin from "./yn-spin";
+import YnIndicator from "./yn-indicator";
+import YnCheckbox from "./yn-checkbox";
+import YnRadiobox from "./yn-radiobox";
+import YnCalendar from "./yn-calendar";
+import YnPopup from "./yn-popup";
+import YnActionSheet from "./yn-action-sheet";
+import { YnField, YnFieldGroup } from "./yn-field";
+import YnLayout from "./yn-layout";
+import YnCityPicker from "./yn-city-picker";
+import YnSticky from "./yn-sticky";
+import YnDialog from "./yn-dialog";
+import YnPickyStepper from "./yn-picky-stepper";
+import { YnDropdownMenu, YnDropdownMenuItem } from "./yn-dropdown-menu";
+import YnPicker from "./yn-picker";
+import { YnSwipe, YnSwipeItem } from "./yn-swipe";
+import { YnTabs, YnTabItem } from "./yn-tabs";
+import YnSlider from "./yn-slider";
+import YnPullRefresh from "./yn-pull-refresh";
+import YnDatePicker from "./yn-date-picker";
 import {
   YnSubmitAction,
   YnSubmitActionPopupContent,
   YnSubmitActionValue
-} from "./display/yn-submit-action";
+} from "./yn-submit-action";
 const components = [
   YnButton,
   YnFlex,
