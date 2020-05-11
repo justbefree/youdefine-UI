@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-04-29 11:56:27
+ * @Last Modified time: 2020-05-11 09:47:08
  */
 import { drop, push } from "@/modules/utils";
 import { YnDate } from "@/modules/date";
@@ -332,10 +332,10 @@ export default {
     },
     handleBeforeEnter() {
       this.$emit("beforeEnter");
-      this.setPosition();
     },
     handleAfterEnter() {
       this.$emit("afterEnter");
+      this.setPosition();
     },
     handleBeforeLeave() {
       this.$emit("beforeLeave");
