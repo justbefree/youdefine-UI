@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 16:43:52
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 17:18:19
+ * @Last Modified time: 2020-05-12 17:30:01
  * @E-mail: justbefree@126.com
  */
 import "./style.less";
@@ -47,7 +47,8 @@ export default {
     singleton: {
       type: Boolean,
       default: false
-    }
+    },
+    fixed: Boolean
   },
   data() {
     return {
@@ -153,7 +154,7 @@ export default {
     createCloseIcon(h) {
       if (this.showCloseIcon) {
         return [
-          h("div", { class: ["yn-popup-closeicon"] }, [
+          h("div", { class: ["yn-popup-closeicon", this.fixed ? "fixed" : ""] }, [
             h(
               "yn-iconfont",
               {
