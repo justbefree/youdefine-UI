@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 16:43:52
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 16:17:12
+ * @Last Modified time: 2020-05-12 17:18:19
  * @E-mail: justbefree@126.com
  */
 import "./style.less";
@@ -157,7 +157,7 @@ export default {
             h(
               "yn-iconfont",
               {
-                props: { name: "iconcancel", size: "18" },
+                props: { name: "iconcancle_circle", size: "24" },
                 nativeOn: { click: this.close }
               },
               []
