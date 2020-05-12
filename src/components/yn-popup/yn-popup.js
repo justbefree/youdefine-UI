@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 16:43:52
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-11 18:20:41
+ * @Last Modified time: 2020-05-12 16:17:12
  * @E-mail: justbefree@126.com
  */
 import "./style.less";
@@ -10,7 +10,7 @@ import PopupManager from "@/modules/popup/popup-manager";
 import { addClass } from "@/modules/dom";
 const VALIDATE_POSITION_VALUE = ["left", "right", "top", "bottom", "middle"];
 import { warn } from "@/modules/error";
-import YnIconfont from "../yn-icon";
+import YnIconfont from "../yn-iconfont";
 import { slotsMixins } from "../mixins/slots";
 let idSeed = 1;
 export default {

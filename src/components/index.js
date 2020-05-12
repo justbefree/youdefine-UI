@@ -2,12 +2,12 @@
  * @Author: Just be free
  * @Date:   2020-01-03 16:34:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-11 18:14:29
+ * @Last Modified time: 2020-05-12 16:17:37
  */
 import YnButton from "./yn-button";
 import { YnFlex, YnFlexItem } from "./yn-flex";
 import YnHeader from "./yn-header";
-import YnIconfont from "./yn-icon";
+import YnIconfont from "./yn-iconfont";
 import YnToast from "./yn-toast";
 import YnSpin from "./yn-spin";
 import YnIndicator from "./yn-indicator";

@@ -2,13 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-01-16 15:50:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-11 18:23:49
+ * @Last Modified time: 2020-05-12 16:17:16
  */
 
 import "./style.less";
 import { encrypt } from "@/modules/utils";
 import { YnFlex, YnFlexItem } from "../yn-flex";
-import YnIconfont from "../yn-icon";
+import YnIconfont from "../yn-iconfont";
 const VALID_TYPE = ["number", "textarea", "password", "text", "email"];
 export default {
   name: "YnField",

@@ -2,9 +2,9 @@
  * @Author: Just be free
  * @Date:   2020-01-16 12:51:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-11 18:24:03
+ * @Last Modified time: 2020-05-12 16:17:10
  */
-import YnIconfont from "../yn-icon";
+import YnIconfont from "../yn-iconfont";
 export default {
   name: "YnRadiobox",
   props: {

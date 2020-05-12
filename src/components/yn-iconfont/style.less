@@ -2,18 +2,18 @@
 i.yn-iconfont-wrap {
   display: inline-block;
 }
-.yn-icon {
+.yn-iconfont {
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
   each(range(100), {
-    &.yn-icon-size-@{value} {
+    &.yn-iconfont-size-@{value} {
       font-size: calc(@value * 1px);
     }
   });
 }
-.font-size-0 {
+.yn-iconfont-size-0 {
   font-size: 0;
 }

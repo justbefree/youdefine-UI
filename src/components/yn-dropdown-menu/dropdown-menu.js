@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:11:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-11 18:26:23
+ * @Last Modified time: 2020-05-12 16:17:18
  * @E-mail: justbefree@126.com
  */
 
@@ -11,7 +11,7 @@ import { provideMixins } from "../mixins/provide";
 const VALID_CHILD_COMPONENT = "yn-dropdown-menu-item";
 import { YnFlex, YnFlexItem } from "../yn-flex";
 import { slotsMixins } from "../mixins/slots";
-import YnIconfont from "../yn-icon";
+import YnIconfont from "../yn-iconfont";
 export default {
   name: "YnDropdownMenu",
   mixins: [slotsMixins, provideMixins()],

@@ -2,11 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:20:36
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-03-25 12:33:13
+ * @Last Modified time: 2020-05-12 16:23:06
  */
 import "./style.less";
 import "./iconfont";
-// import { warn } from "@/modules/error";
 export default {
   name: "YnIconfont",
   props: {
@@ -52,7 +51,7 @@ export default {
       {
         class: [
           "yn-iconfont-wrap",
-          String(this.size) === "0" ? "font-size-0" : ""
+          String(this.size) === "0" ? "yn-iconfont-size-0" : ""
         ],
         on: { click: this.handleClick }
       },
@@ -61,7 +60,7 @@ export default {
           "svg",
           {
             attrs: { "aria-hidden": "true" },
-            class: ["yn-icon", `yn-icon-size-${this.size}`]
+            class: ["yn-iconfont", `yn-iconfont-size-${this.size}`]
           },
           [h("use", { attrs: { "xlink:href": `#${this.name}` } }, [])]
         )

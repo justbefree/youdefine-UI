@@ -2,11 +2,11 @@
  * @Author: Just be free
  * @Date:   2020-03-09 12:18:33
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-11 18:24:30
+ * @Last Modified time: 2020-05-12 16:17:27
  */
 import "./style.less";
 import YnPopup from "../yn-popup";
-import YnIconfont from "../yn-icon";
+import YnIconfont from "../yn-iconfont";
 import { YnFlex, YnFlexItem } from "../yn-flex";
 import YnSpin from "../yn-spin";
 export default {

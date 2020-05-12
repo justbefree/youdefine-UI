@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-11 18:27:00
+ * @Last Modified time: 2020-05-12 16:17:05
  * @E-mail: justbefree@126.com
  */
 import "./style.less";
@@ -10,7 +10,7 @@ import { slotsMixins } from "../mixins/slots";
 import { YnFlex, YnFlexItem } from "../yn-flex";
 import YnButton from "../yn-button";
 import YnPopup from "../yn-popup";
-import YnIconfont from "../yn-icon";
+import YnIconfont from "../yn-iconfont";
 const VALIDE_POPUP_CONTENT_COMPONENT = "yn-submit-action-popup-content";
 const VALIDE_VALUE_COMPONENT = "yn-submit-action-value";
 export default {
