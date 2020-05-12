@@ -23,7 +23,7 @@
       <div class="popup-content">
         底部出现遮罩
         <template v-for="item in 10">
-          <h3>我是{{ item }}</h3>
+          <h3 :key="item">我是{{ item }}</h3>
         </template>
       </div>
     </yn-popup>
@@ -44,7 +44,7 @@
         </yn-popup>
       </div>
     </yn-popup>
-    <yn-popup v-model="popup6" position="middle" :showCloseIcon="true">
+    <yn-popup v-model="popup6" position="middle" :showCloseIcon="true" fixed>
       <div class="popup-content">中间fade</div>
     </yn-popup>
   </div>
