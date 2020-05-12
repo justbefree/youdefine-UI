@@ -1,0 +1,58 @@
+@import "../../theme/variable.less";
+.yn-picky-stepper {
+  .yn-picky-stepper-header {
+    text-align: center;
+    .yn-picky-stepper-title {
+      display: inline-block;
+      height: 100%;
+      line-height: 44px;
+    }
+    height: 44px;
+    position: relative;
+    .yn-picky-stepper-back {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+    }
+    .yn-picky-stepper-close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
+  .yn-picky-stepper-content {
+    ul {
+      width: 90%;
+      list-style-type: none;
+      padding: 0;
+      margin: 0 auto;
+      li {
+        line-height: 40px;
+        border-bottom: 1px solid #e4e4e4;
+        &:last-child {
+          border-bottom: none;
+        }
+        .text {
+          margin-left: 5px;
+          font-size: 15px;
+        }
+        .input {
+          border-radius: 5px;
+          border: 1px solid #e2e2e2;
+          outline: none;
+          margin-left: 5px;
+          width: 96%;
+          font-size: 14px;
+          height: 30px;
+          background: rgba(238, 238, 238, 1);
+        }
+      }
+    }
+  }
+  .yn-picky-stepper-footer {
+    .step-confirm {
+      margin: 10px auto;
+      width: 90%;
+    }
+  }
+}

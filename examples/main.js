@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 17:15:01
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-11 18:02:58
+ * @Last Modified time: 2020-05-12 17:50:32
  * @E-mail: justbefree@126.com
  */
 
@@ -11,7 +11,7 @@ import App from "./App";
 import router from "./router";
 import "./less/style.less";
 
-import YnComponent from "@/components/index";
+import YnComponent from "@/index";
 Vue.use(YnComponent);
 
 // import {

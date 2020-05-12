@@ -1,5 +1,0 @@
-{
-  "plugins": [
-    ["import", { "libraryName": "yn-components", "style": true }]
-  ]
-}
