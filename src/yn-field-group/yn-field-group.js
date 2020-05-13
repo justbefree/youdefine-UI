@@ -2,12 +2,11 @@
  * @Author: Just be free
  * @Date:   2020-03-11 14:17:51
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 19:06:53
+ * @Last Modified time: 2020-05-13 17:13:53
  * @E-mail: justbefree@126.com
  */
 import { renderedMixins } from "../mixins/rendered";
 import { slotsMixins } from "../mixins/slots";
-import "./group-style.less";
 const VALID_CHILD_COMPONENT = "yn-field";
 import { addClass, removeClass } from "../modules/dom";
 export default {
