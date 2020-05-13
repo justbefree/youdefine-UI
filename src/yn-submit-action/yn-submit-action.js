@@ -2,12 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:50:26
+ * @Last Modified time: 2020-05-13 09:57:33
  * @E-mail: justbefree@126.com
  */
-import "./style/index.less";
+
 import { slotsMixins } from "../mixins/slots";
-import { YnFlex, YnFlexItem } from "../yn-flex";
+import YnFlex from "../yn-flex";
+import YnFlexItem from "../yn-flex-item";
 import YnButton from "../yn-button";
 import YnPopup from "../yn-popup";
 import YnIconfont from "../yn-iconfont";

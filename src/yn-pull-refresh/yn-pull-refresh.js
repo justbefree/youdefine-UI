@@ -2,11 +2,11 @@
  * @Author: Just be free
  * @Date:   2020-04-28 15:42:16
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:53:34
+ * @Last Modified time: 2020-05-13 09:41:46
  * @E-mail: justbefree@126.com
  */
 
-import "./style/index.less";
+
 import { slotsMixins } from "../mixins/slots";
 import { touchMixins } from "../mixins/touch";
 import YnSpin from "../yn-spin";

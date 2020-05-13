@@ -2,12 +2,12 @@
  * @Author: Just be free
  * @Date:   2020-03-19 16:53:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:48:18
+ * @Last Modified time: 2020-05-13 09:41:43
  * @E-mail: justbefree@126.com
  */
-import "./style/index.less";
-import { getScroller } from "@/modules/dom/scroll";
-import { getOffset, getScrollTop } from "@/modules/dom";
+
+import { getScroller } from "../modules/dom/scroll";
+import { getOffset, getScrollTop } from "../modules/dom";
 import { slotsMixins } from "../mixins/slots";
 const fixedStyle = /fixed/i;
 export default {

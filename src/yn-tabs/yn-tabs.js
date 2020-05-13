@@ -2,14 +2,15 @@
  * @Author: Just be free
  * @Date:   2020-04-21 14:19:49
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:51:41
+ * @Last Modified time: 2020-05-13 09:57:20
  * @E-mail: justbefree@126.com
  */
 const VALID_TAG = "yn-tab-item";
-import "./style/index.less";
+
 import { slotsMixins } from "../mixins/slots";
 import { provideMixins } from "../mixins/provide";
-import { YnFlex, YnFlexItem } from "../yn-flex";
+import YnFlex from "../yn-flex";
+import YnFlexItem from "../yn-flex-item";
 export default {
   name: "YnTabs",
   components: { YnFlex, YnFlexItem },

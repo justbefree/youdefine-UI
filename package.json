@@ -1,6 +1,7 @@
 {
   "name": "yn-components",
-  "version": "0.1.14",
+  "0.1.x-version": "0.1.14",
+  "version": "0.2.03",
   "private": false,
   "keywords": [
     "vue component",
@@ -10,7 +11,7 @@
   "main": "lib/yn-components.umd.min.js",
   "author": "just be free <justbefree@126.com>",
   "scripts": {
-    "lib": "vue-cli-service build --target lib --name yn-components --dest lib src/components/index.js",
+    "lib": "vue-cli-service build --target lib --name yn-components --dest lib src/index.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"

@@ -2,13 +2,14 @@
  * @Author: Just be free
  * @Date:   2020-03-27 11:10:13
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:08:31
+ * @Last Modified time: 2020-05-13 09:57:42
  * @E-mail: justbefree@126.com
  */
-import "./style/index.less";
+
 import YnPopup from "../yn-popup";
 import YnBlockHeader from "../block/header";
-import { YnFlex, YnFlexItem } from "../yn-flex";
+import YnFlex from "../yn-flex";
+import YnFlexItem from "../yn-flex-item";
 import YnPickerColumn from "./pickerColumn";
 export default {
   name: "YnPicker",

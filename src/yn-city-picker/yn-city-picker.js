@@ -2,15 +2,16 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 17:59:58
+ * @Last Modified time: 2020-05-13 09:57:46
  */
-import "./style/index.less";
+
 import { renderedMixins } from "../mixins/rendered";
-import { isPromise, throttle, isChineseCharacters } from "@/modules/utils";
-import { error } from "@/modules/error";
+import { isPromise, throttle, isChineseCharacters } from "../modules/utils";
+import { error } from "../modules/error";
 import YnPopup from "../yn-popup";
 import YnIconfont from "../yn-iconfont";
-import { YnFlex, YnFlexItem } from "../yn-flex";
+import YnFlex from "../yn-flex";
+import YnFlexItem from "../yn-flex-item";
 import YnSpin from "../yn-spin";
 const CACHED_ALPHA_BETA = {};
 export default {

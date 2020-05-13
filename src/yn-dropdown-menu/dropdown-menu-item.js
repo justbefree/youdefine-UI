@@ -2,18 +2,19 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:47:54
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:02:13
+ * @Last Modified time: 2020-05-13 09:57:49
  * @E-mail: justbefree@126.com
  */
 
-import "./style/index.less";
+
 import { injectMixins } from "../mixins/inject";
-import { error } from "@/modules/error";
-import { isPromise, isObject } from "@/modules/utils";
-import { deepClone } from "@/modules/utils/deepClone";
+import { error } from "../modules/error";
+import { isPromise, isObject } from "../modules/utils";
+import { deepClone } from "../modules/utils/deepClone";
 import { slotsMixins } from "../mixins/slots";
 import YnPopup from "../yn-popup";
-import { YnFlex, YnFlexItem } from "../yn-flex";
+import YnFlex from "../yn-flex";
+import YnFlexItem from "../yn-flex-item";
 import YnIconfont from "../yn-iconfont";
 export default {
   name: "YnDropdownMenuItem",

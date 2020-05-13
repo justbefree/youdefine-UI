@@ -2,13 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-04-09 09:25:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:51:11
+ * @Last Modified time: 2020-05-13 09:41:39
  * @E-mail: justbefree@126.com
  */
 import { slotsMixins } from "../mixins/slots";
 import { injectMixins } from "../mixins/inject";
-import { loadImageAsync } from "@/modules/utils/lazyLoad";
-import "./style/index.less";
+import { loadImageAsync } from "../modules/utils/lazyLoad";
+
 export default {
   name: "YnSwipeItem",
   mixins: [slotsMixins, injectMixins("parent", { indexKey: "indexKey" })],

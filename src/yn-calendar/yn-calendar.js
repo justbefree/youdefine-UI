@@ -2,16 +2,17 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 17:57:51
+ * @Last Modified time: 2020-05-13 09:57:45
  */
-import { drop, push } from "@/modules/utils";
-import { YnDate } from "@/modules/date";
-import "./style/index.less";
+import { drop, push } from "../modules/utils";
+import { YnDate } from "../modules/date";
+
 import YnPopup from "../yn-popup";
 import YnIconfont from "../yn-iconfont";
-import { YnFlex, YnFlexItem } from "../yn-flex";
+import YnFlex from "../yn-flex";
+import YnFlexItem from "../yn-flex-item";
 import { renderedMixins } from "../mixins/rendered";
-import { getOffset } from "@/modules/dom";
+import { getOffset } from "../modules/dom";
 export default {
   name: "YnCalendar",
   mixins: [renderedMixins],

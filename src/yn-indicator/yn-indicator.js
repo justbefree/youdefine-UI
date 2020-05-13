@@ -2,9 +2,9 @@
  * @Author: Just be free
  * @Date:   2020-02-18 10:24:33
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:07:29
+ * @Last Modified time: 2020-05-13 09:41:50
  */
-import "./style/index.less";
+
 import { renderedMixins } from "../mixins/rendered";
 import YnSpin from "../yn-spin";
 export default {

@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-01-15 14:51:42
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:06:34
+ * @Last Modified time: 2020-05-13 09:41:52
  * @E-mail: justbefree@126.com
  */
-import "./style/index.less";
+
 export default {
   name: "YnDynamicHeader",
   props: {

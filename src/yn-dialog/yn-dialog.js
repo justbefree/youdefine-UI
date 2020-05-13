@@ -2,14 +2,14 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:35:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:01:28
+ * @Last Modified time: 2020-05-13 09:41:56
  * @E-mail: justbefree@126.com
  */
-import "./style/index.less";
+
 import { renderedMixins } from "../mixins/rendered";
 import { slotsMixins } from "../mixins/slots";
-import { addClass } from "@/modules/dom";
-import { isPromise } from "@/modules/utils";
+import { addClass } from "../modules/dom";
+import { isPromise } from "../modules/utils";
 import YnButton from "../yn-button";
 export default {
   name: "YnDialog",

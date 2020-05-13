@@ -2,12 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-03-09 12:18:33
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 17:56:18
+ * @Last Modified time: 2020-05-13 09:56:05
  */
-import "./style/index.less";
+
 import YnPopup from "../yn-popup";
 import YnIconfont from "../yn-iconfont";
-import { YnFlex, YnFlexItem } from "../yn-flex";
+import YnFlex from "../yn-flex";
+import YnFlexItem from "../yn-flex-item";
 import YnSpin from "../yn-spin";
 export default {
   name: "YnActionSheet",

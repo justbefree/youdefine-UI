@@ -2,11 +2,11 @@
  * @Author: Just be free
  * @Date:   2020-01-02 11:01:34
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:06:02
+ * @Last Modified time: 2020-05-13 09:41:53
  * @E-mail: justbefree@126.com
  */
-import "./style/index.less";
-import { capitalize, camelize, isString } from "@/modules/utils";
+
+import { capitalize, camelize, isString } from "../modules/utils";
 import { slotsMixins } from "../mixins/slots";
 const VALID_CHILD_COMPONENT = "yn-flex-item";
 export default {

@@ -2,12 +2,12 @@
  * @Author: Just be free
  * @Date:   2020-04-29 10:58:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:00:48
+ * @Last Modified time: 2020-05-13 09:41:57
  * @E-mail: justbefree@126.com
  */
-import "./style/index.less";
+
 import YnPicker from "../yn-picker";
-import { YnDate, validateFormatedDate } from "@/modules/date";
+import { YnDate, validateFormatedDate } from "../modules/date";
 const now = YnDate().getToday();
 const year = now.getFullYear();
 const m = now.getMonth();

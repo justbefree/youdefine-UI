@@ -2,9 +2,9 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:15:58
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 17:57:12
+ * @Last Modified time: 2020-05-13 09:42:01
  */
-import "./style/index.less";
+
 import YnSpin from "../yn-spin";
 import YnIconfont from "../yn-iconfont";
 import { slotsMixins } from "../mixins/slots";

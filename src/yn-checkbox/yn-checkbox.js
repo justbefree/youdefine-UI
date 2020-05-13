@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-01-16 12:49:59
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 17:59:10
+ * @Last Modified time: 2020-05-13 09:41:59
  */
 import YnIconfont from "../yn-iconfont";
-import "./style/index.less";
+
 export default {
   name: "YnCheckbox",
   components: { YnIconfont },

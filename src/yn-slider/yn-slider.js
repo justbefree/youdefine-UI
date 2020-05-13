@@ -2,14 +2,14 @@
  * @Author: Just be free
  * @Date:   2020-04-22 11:10:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:53:47
+ * @Last Modified time: 2020-05-13 09:41:44
  * @E-mail: justbefree@126.com
  */
-import "./style/index.less";
+
 import { touchMixins } from "../mixins/touch";
-import { getOffset } from "@/modules/dom";
-import { isObject, charLength, hasOwnProperty } from "@/modules/utils";
-import { preventDefault } from "@/modules/event";
+import { getOffset } from "../modules/dom";
+import { isObject, charLength, hasOwnProperty } from "../modules/utils";
+import { preventDefault } from "../modules/event";
 export default {
   name: "YnSlider",
   mixins: [touchMixins],

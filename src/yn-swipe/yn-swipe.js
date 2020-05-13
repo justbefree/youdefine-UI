@@ -2,18 +2,18 @@
  * @Author: Just be free
  * @Date:   2020-04-09 09:20:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:51:03
+ * @Last Modified time: 2020-05-13 09:41:38
  * @E-mail: justbefree@126.com
  */
-import "./style/index.less";
+
 import { slotsMixins } from "../mixins/slots";
 import { renderedMixins } from "../mixins/rendered";
 import { provideMixins } from "../mixins/provide";
 const VALID_CHILD_COMPONENT = "yn-swipe-item";
-import { on } from "@/modules/event";
-import { Remainder } from "@/modules/number/remainder";
+import { on } from "../modules/event";
+import { Remainder } from "../modules/number/remainder";
 import { touchMixins } from "../mixins/touch";
-import { move } from "@/modules/dom/animate/move";
+import { move } from "../modules/dom/animate/move";
 import YnPopup from "../yn-popup";
 export default {
   name: "YnSwipe",
