@@ -2,12 +2,12 @@
  * @Author: Just be free
  * @Date:   2020-01-16 12:49:59
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:41:59
+ * @Last Modified time: 2020-05-13 18:33:06
  */
 import YnIconfont from "../yn-iconfont";
-
-export default {
-  name: "YnCheckbox",
+import { defineComponent } from "../modules/component";
+export default defineComponent({
+  name: "Checkbox",
   components: { YnIconfont },
   props: {
     checked: {
@@ -45,4 +45,4 @@ export default {
       ]
     );
   }
-};
+});

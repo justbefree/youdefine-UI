@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:57:33
+ * @Last Modified time: 2020-05-14 18:46:56
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import { slotsMixins } from "../mixins/slots";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
@@ -14,8 +14,8 @@ import YnPopup from "../yn-popup";
 import YnIconfont from "../yn-iconfont";
 const VALIDE_POPUP_CONTENT_COMPONENT = "yn-submit-action-popup-content";
 const VALIDE_VALUE_COMPONENT = "yn-submit-action-value";
-export default {
-  name: "YnSubmitAction",
+export default defineComponent({
+  name: "SubmitAction",
   mixins: [slotsMixins],
   components: { YnFlex, YnFlexItem, YnPopup, YnButton, YnIconfont },
   props: {
@@ -194,4 +194,4 @@ export default {
       ]
     );
   }
-};
+});

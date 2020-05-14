@@ -2,12 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-02-14 16:38:25
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 19:06:40
+ * @Last Modified time: 2020-05-14 18:45:06
  */
+import { defineComponent } from "../modules/component";
 import { camelize, capitalize } from "../modules/utils";
 import { warn } from "../modules/error";
-export default {
-  name: "YnSpin",
+export default defineComponent({
+  name: "Spin",
   props: {
     type: {
       type: String,
@@ -52,4 +53,4 @@ export default {
   render(h) {
     return h("span", {}, [this.createSpinner(h)]);
   }
-};
+});

@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:47:54
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 17:21:27
+ * @Last Modified time: 2020-05-13 18:39:47
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import { injectMixins } from "../mixins/inject";
 import { error } from "../modules/error";
 import { isPromise, isObject } from "../modules/utils";
@@ -15,8 +15,8 @@ import YnPopup from "../yn-popup";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
 import YnIconfont from "../yn-iconfont";
-export default {
-  name: "YnDropdownMenuItem",
+export default defineComponent({
+  name: "DropdownMenuItem",
   mixins: [slotsMixins, injectMixins("parent", { indexKey: "indexKey" })],
   components: { YnPopup, YnFlexItem, YnFlex, YnIconfont },
   props: {
@@ -331,4 +331,4 @@ export default {
       );
     }
   }
-};
+});

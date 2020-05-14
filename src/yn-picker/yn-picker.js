@@ -2,17 +2,17 @@
  * @Author: Just be free
  * @Date:   2020-03-27 11:10:13
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:57:42
+ * @Last Modified time: 2020-05-14 18:09:23
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import YnPopup from "../yn-popup";
 import YnBlockHeader from "../block/header";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
 import YnPickerColumn from "./pickerColumn";
-export default {
-  name: "YnPicker",
+export default defineComponent({
+  name: "Picker",
   components: { YnPopup, YnBlockHeader, YnFlex, YnFlexItem, YnPickerColumn },
   props: {
     value: Boolean,
@@ -165,4 +165,4 @@ export default {
       )
     ]);
   }
-};
+});

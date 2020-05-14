@@ -2,16 +2,16 @@
  * @Author: Just be free
  * @Date:   2020-04-22 11:10:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:41:44
+ * @Last Modified time: 2020-05-14 18:44:27
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import { touchMixins } from "../mixins/touch";
 import { getOffset } from "../modules/dom";
 import { isObject, charLength, hasOwnProperty } from "../modules/utils";
 import { preventDefault } from "../modules/event";
-export default {
-  name: "YnSlider",
+export default defineComponent({
+  name: "Slider",
   mixins: [touchMixins],
   props: {
     value: [Number, Object],
@@ -266,4 +266,4 @@ export default {
       this.genSider(h, "end")
     ]);
   }
-};
+});

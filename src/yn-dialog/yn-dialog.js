@@ -2,17 +2,17 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:35:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:41:56
+ * @Last Modified time: 2020-05-13 18:36:22
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
 import { slotsMixins } from "../mixins/slots";
 import { addClass } from "../modules/dom";
 import { isPromise } from "../modules/utils";
 import YnButton from "../yn-button";
-export default {
-  name: "YnDialog",
+export default defineComponent({
+  name: "Dialog",
   mixins: [renderedMixins, slotsMixins],
   components: { YnButton },
   props: {
@@ -241,4 +241,4 @@ export default {
       ]
     );
   }
-};
+});

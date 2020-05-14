@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-04-29 10:58:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:41:57
+ * @Last Modified time: 2020-05-13 18:34:32
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import YnPicker from "../yn-picker";
 import { YnDate, validateFormatedDate } from "../modules/date";
 const now = YnDate().getToday();
@@ -14,8 +14,8 @@ const m = now.getMonth();
 const month = m < 10 ? `0${m}` : m;
 const d = now.getDate();
 const date = d < 10 ? `0${d}` : d;
-export default {
-  name: "YnDatePicker",
+export default defineComponent({
+  name: "DatePicker",
   components: { YnPicker },
   props: {
     value: Boolean,
@@ -185,4 +185,4 @@ export default {
       )
     ]);
   }
-};
+});

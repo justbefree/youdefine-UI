@@ -2,16 +2,16 @@
  * @Author: Just be free
  * @Date:   2020-03-09 12:18:33
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:56:05
+ * @Last Modified time: 2020-05-13 18:21:22
  */
-
+import { defineComponent } from "../modules/component";
 import YnPopup from "../yn-popup";
 import YnIconfont from "../yn-iconfont";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
 import YnSpin from "../yn-spin";
-export default {
-  name: "YnActionSheet",
+export default defineComponent({
+  name: "actionSheet",
   components: { YnPopup, YnIconfont, YnFlex, YnFlexItem, YnSpin },
   props: {
     value: {
@@ -153,4 +153,4 @@ export default {
       )
     ]);
   }
-};
+});

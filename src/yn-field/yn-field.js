@@ -2,17 +2,17 @@
  * @Author: Just be free
  * @Date:   2020-01-16 15:50:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:57:53
+ * @Last Modified time: 2020-05-13 18:40:20
  */
 
-
+import { defineComponent } from "../modules/component";
 import { encrypt } from "../modules/utils";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
 import YnIconfont from "../yn-iconfont";
 const VALID_TYPE = ["number", "textarea", "password", "text", "email"];
-export default {
-  name: "YnField",
+export default defineComponent({
+  name: "Field",
   components: { YnFlex, YnFlexItem, YnIconfont },
   props: {
     value: {
@@ -217,4 +217,4 @@ export default {
       ])
     ]);
   }
-};
+});

@@ -2,15 +2,16 @@
  * @Author: Just be free
  * @Date:   2020-03-11 14:17:51
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 17:13:53
+ * @Last Modified time: 2020-05-13 18:41:06
  * @E-mail: justbefree@126.com
  */
+ import { defineComponent } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
 import { slotsMixins } from "../mixins/slots";
 const VALID_CHILD_COMPONENT = "yn-field";
 import { addClass, removeClass } from "../modules/dom";
-export default {
-  name: "YnFieldGroup",
+export default defineComponent({
+  name: "FieldGroup",
   mixins: [renderedMixins, slotsMixins],
   data() {
     return {
@@ -48,4 +49,4 @@ export default {
     }
     return h("div", { class: ["yn-field-group", ...className] }, [slots]);
   }
-};
+});

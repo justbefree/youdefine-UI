@@ -2,12 +2,12 @@
  * @Author: Just be free
  * @Date:   2020-01-15 14:51:42
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:41:52
+ * @Last Modified time: 2020-05-13 18:43:29
  * @E-mail: justbefree@126.com
  */
-
-export default {
-  name: "YnDynamicHeader",
+import { defineComponent } from "../modules/component";
+export default defineComponent({
+  name: "DynamicHeader",
   props: {
     fixed: {
       type: Boolean,
@@ -123,4 +123,4 @@ export default {
       ]
     );
   }
-};
+});

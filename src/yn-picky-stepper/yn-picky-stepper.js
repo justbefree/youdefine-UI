@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:57:39
+ * @Last Modified time: 2020-05-14 18:10:01
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import YnPopup from "../yn-popup";
 import YnButton from "../yn-button";
 import YnIconfont from "../yn-iconfont";
@@ -14,8 +14,8 @@ import YnCheckbox from "../yn-checkbox";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
 import { isPromise } from "../modules/utils";
-export default {
-  name: "YnPickyStepper",
+export default defineComponent({
+  name: "PickyStepper",
   components: {
     YnPopup,
     YnIconfont,
@@ -370,4 +370,4 @@ export default {
       )
     ]);
   }
-};
+});

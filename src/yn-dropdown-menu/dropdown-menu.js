@@ -2,19 +2,19 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:11:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:57:51
+ * @Last Modified time: 2020-05-13 18:38:59
  * @E-mail: justbefree@126.com
  */
 
-
+import { defineComponent } from "../modules/component";
 import { provideMixins } from "../mixins/provide";
 const VALID_CHILD_COMPONENT = "yn-dropdown-menu-item";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
 import { slotsMixins } from "../mixins/slots";
 import YnIconfont from "../yn-iconfont";
-export default {
-  name: "YnDropdownMenu",
+export default defineComponent({
+  name: "DropdownMenu",
   mixins: [slotsMixins, provideMixins()],
   components: { YnFlex, YnFlexItem, YnIconfont },
   props: {
@@ -173,4 +173,4 @@ export default {
       slots
     ]);
   }
-};
+});

@@ -2,12 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-01-02 11:01:42
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:50:14
+ * @Last Modified time: 2020-05-13 18:42:50
  */
+ import { defineComponent } from "../modules/component";
 import { capitalize, camelize } from "../modules/utils";
 import { slotsMixins } from "../mixins/slots";
-export default {
-  name: "YnFlexItem",
+export default defineComponent({
+  name: "FlexItem",
   mixins: [slotsMixins],
   props: {
     flex: {
@@ -53,4 +54,4 @@ export default {
       this.slots()
     );
   }
-};
+});

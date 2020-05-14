@@ -2,9 +2,9 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:57:46
+ * @Last Modified time: 2020-05-13 18:33:54
  */
-
+import { defineComponent } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
 import { isPromise, throttle, isChineseCharacters } from "../modules/utils";
 import { error } from "../modules/error";
@@ -14,8 +14,8 @@ import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
 import YnSpin from "../yn-spin";
 const CACHED_ALPHA_BETA = {};
-export default {
-  name: "YnCityPicker",
+export default defineComponent({
+  name: "CityPicker",
   mixins: [renderedMixins],
   components: { YnFlex, YnFlexItem, YnPopup, YnIconfont, YnSpin },
   props: {
@@ -667,4 +667,4 @@ export default {
       )
     ]);
   }
-};
+});

@@ -2,17 +2,17 @@
  * @Author: Just be free
  * @Date:   2020-04-21 14:19:49
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:57:20
+ * @Last Modified time: 2020-05-14 18:50:22
  * @E-mail: justbefree@126.com
  */
+import { defineComponent } from "../modules/component";
 const VALID_TAG = "yn-tab-item";
-
 import { slotsMixins } from "../mixins/slots";
 import { provideMixins } from "../mixins/provide";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
-export default {
-  name: "YnTabs",
+export default defineComponent({
+  name: "Tabs",
   components: { YnFlex, YnFlexItem },
   mixins: [slotsMixins, provideMixins()],
   props: {
@@ -84,4 +84,4 @@ export default {
       h("div", { class: ["yn-tabs-content"] }, slots)
     ]);
   }
-};
+});

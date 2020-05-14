@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-01-20 16:43:52
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:41:46
+ * @Last Modified time: 2020-05-14 18:41:51
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import PopupManager from "../modules/popup/popup-manager";
 import { addClass } from "../modules/dom";
 const VALIDATE_POSITION_VALUE = ["left", "right", "top", "bottom", "middle"];
@@ -13,8 +13,8 @@ import { warn } from "../modules/error";
 import YnIconfont from "../yn-iconfont";
 import { slotsMixins } from "../mixins/slots";
 let idSeed = 1;
-export default {
-  name: "YnPopup",
+export default defineComponent({
+  name: "Popup",
   mixins: [slotsMixins],
   components: {
     YnIconfont
@@ -203,4 +203,4 @@ export default {
       ]
     );
   }
-};
+});

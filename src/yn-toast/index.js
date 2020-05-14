@@ -2,15 +2,14 @@
  * @Author: Just be free
  * @Date:   2020-01-17 15:28:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 19:06:22
+ * @Last Modified time: 2020-05-14 18:51:37
  * @E-mail: justbefree@126.com
  */
+import { install } from "../modules/component";
 import { extend } from "../mixins/rendered";
 import { isString } from "../modules/utils";
 import YnToast from "./yn-toast";
-YnToast.install = Vue => {
-  Vue.component(YnToast.name, YnToast);
-}
+install(YnToast);
 const YnToastConstructor = extend(YnToast);
 const toastPool = [];
 const removeDom = event => {

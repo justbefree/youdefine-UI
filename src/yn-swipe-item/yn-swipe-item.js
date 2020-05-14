@@ -2,15 +2,16 @@
  * @Author: Just be free
  * @Date:   2020-04-09 09:25:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 17:23:29
+ * @Last Modified time: 2020-05-14 18:49:14
  * @E-mail: justbefree@126.com
  */
+import { defineComponent } from "../modules/component";
 import { slotsMixins } from "../mixins/slots";
 import { injectMixins } from "../mixins/inject";
 import { loadImageAsync } from "../modules/utils/lazyLoad";
 
-export default {
-  name: "YnSwipeItem",
+export default defineComponent({
+  name: "SwipeItem",
   mixins: [slotsMixins, injectMixins("parent", { indexKey: "indexKey" })],
   data() {
     return {
@@ -61,4 +62,4 @@ export default {
       this.loaded ? this.slots() : []
     );
   }
-};
+});

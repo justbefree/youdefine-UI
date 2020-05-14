@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-04-09 09:20:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:41:38
+ * @Last Modified time: 2020-05-14 18:48:40
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import { slotsMixins } from "../mixins/slots";
 import { renderedMixins } from "../mixins/rendered";
 import { provideMixins } from "../mixins/provide";
@@ -15,8 +15,8 @@ import { Remainder } from "../modules/number/remainder";
 import { touchMixins } from "../mixins/touch";
 import { move } from "../modules/dom/animate/move";
 import YnPopup from "../yn-popup";
-export default {
-  name: "YnSwipe",
+export default defineComponent({
+  name: "Swipe",
   components: { YnPopup },
   mixins: [slotsMixins, provideMixins(), touchMixins, renderedMixins],
   props: {
@@ -342,4 +342,4 @@ export default {
       this.getSwipper(h, slots)
     );
   }
-};
+});

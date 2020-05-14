@@ -2,17 +2,17 @@
  * @Author: Just be free
  * @Date:   2020-03-12 18:44:56
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 09:57:56
+ * @Last Modified time: 2020-05-14 18:08:24
  * @E-mail: justbefree@126.com
  */
-
+import { defineComponent } from "../modules/component";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
 import { getScrollTop } from "../modules/dom";
 import { on, off } from "../modules/event";
 import { slotsMixins } from "../mixins/slots";
-export default {
-  name: "YnLayout",
+export default defineComponent({
+  name: "Layout",
   mixins: [slotsMixins],
   components: { YnFlex, YnFlexItem },
   props: {
@@ -154,4 +154,4 @@ export default {
       )
     ]);
   }
-};
+});
