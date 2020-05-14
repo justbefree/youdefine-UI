@@ -1,5 +1,28 @@
 @import "../../theme/variable.less";
 .yn-picker {
+  .yn-picker-header {
+    user-select: none;
+    height: 44px;
+    .yn-picker-header-back,
+    .yn-picker-header-close {
+      cursor: pointer;
+      height: 100%;
+      min-width: 30px;
+      line-height: 44px;
+    }
+    .yn-picker-header-title {
+      line-height: 44px;
+      text-align: center;
+      color: @text-color;
+      font-size: 15px;
+      &.ml30 {
+        margin-left: 30px;
+      }
+      &.mr30 {
+        margin-right: 30px;
+      }
+    }
+  }
   .yn-picker-cancel,
   .yn-picker-confirm {
     display: inline-block;

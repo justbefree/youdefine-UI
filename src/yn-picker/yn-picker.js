@@ -2,18 +2,20 @@
  * @Author: Just be free
  * @Date:   2020-03-27 11:10:13
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-14 18:09:23
+ * @Last Modified time: 2020-05-14 19:26:21
  * @E-mail: justbefree@126.com
  */
 import { defineComponent } from "../modules/component";
+import YnIconfont from "../yn-iconfont";
 import YnPopup from "../yn-popup";
-import YnBlockHeader from "../block/header";
+import { slotsMixins } from "../mixins/slots";
 import YnFlex from "../yn-flex";
 import YnFlexItem from "../yn-flex-item";
 import YnPickerColumn from "./pickerColumn";
 export default defineComponent({
   name: "Picker",
-  components: { YnPopup, YnBlockHeader, YnFlex, YnFlexItem, YnPickerColumn },
+  mixins: [slotsMixins],
+  components: { YnPopup, YnFlex, YnFlexItem, YnPickerColumn, YnIconfont },
   props: {
     value: Boolean,
     itemHeight: {
@@ -37,6 +39,14 @@ export default defineComponent({
     title: {
       type: String,
       default: "请选择日期"
+    },
+    showBack: {
+      type: Boolean,
+      default: true
+    },
+    showClose: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -59,21 +69,48 @@ export default defineComponent({
     change(...args) {
       this.$emit("change", ...args);
     },
+    getContent(h, type) {
+      if (type === "back") {
+        return [h("span", { class: ["yn-picker-cancel"] }, this.cancelText)];
+      } else if (type === "close") {
+        return [h("span", { class: ["yn-picker-confirm"] }, this.confirmText)];
+      }
+    },
     createHeaderArea(h) {
-      return h(
-        "yn-block-header",
-        {
-          on: { close: this.confirm, back: this.close },
-          props: { showBack: true, title: this.title },
-          scopedSlots: {
-            close: props =>
-              h("span", { class: ["yn-picker-confirm"], props: { ...props } }, this.confirmText),
-            back: props =>
-              h("span", { class: ["yn-picker-cancel"], props: { ...props } }, this.cancelText)
-          }
-        },
-        []
-      );
+      return h("div", { class: ["yn-picker-header"] }, [
+        h("yn-flex", { props: { justifyContent: "spaceBetween" } }, [
+          h(
+            "yn-flex-item",
+            {
+              on: { click: this.close },
+              class: ["yn-picker-header-back"],
+              directives: [{ name: "show", value: this.showBack }]
+            },
+            this.getContent(h, "back")
+          ),
+          h(
+            "yn-flex-item",
+            {
+              class: [
+                "yn-picker-header-title",
+                this.showBack ? "" : "ml30",
+                this.showClose ? "" : "mr30"
+              ],
+              props: { flex: 1 }
+            },
+            this.title
+          ),
+          h(
+            "yn-flex-item",
+            {
+              on: { click: this.confirm },
+              class: ["yn-picker-header-close"],
+              directives: [{ name: "show", value: this.showClose }]
+            },
+            this.getContent(h, "close")
+          )
+        ])
+      ]);
     },
     getData() {
       const { columns } = this;
@@ -159,7 +196,8 @@ export default defineComponent({
         "yn-popup",
         {
           props: { position: "bottom" },
-          directives: [{ name: "show", value: this.value }]
+          directives: [{ name: "show", value: this.value }],
+          on: { input: this.close }
         },
         [this.createHeaderArea(h), this.createScrollArea(h)]
       )
