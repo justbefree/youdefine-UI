@@ -2,42 +2,42 @@
  * @Author: Just be free
  * @Date:   2020-01-03 16:34:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 17:47:29
+ * @Last Modified time: 2020-05-15 10:10:02
  */
 import "./index.less";
-import YnButton from "./yn-button";
-import YnFlex from "./yn-flex";
-import YnFlexItem from "./yn-flex-item";
-import YnHeader from "./yn-header";
-import YnIconfont from "./yn-iconfont";
-import YnToast from "./yn-toast";
-import YnSpin from "./yn-spin";
-import YnIndicator from "./yn-indicator";
-import YnCheckbox from "./yn-checkbox";
-import YnRadiobox from "./yn-radiobox";
-import YnCalendar from "./yn-calendar";
-import YnPopup from "./yn-popup";
-import YnActionSheet from "./yn-action-sheet";
-import YnField from "./yn-field";
-import YnFieldGroup from "./yn-field-group";
-import YnLayout from "./yn-layout";
-import YnCityPicker from "./yn-city-picker";
-import YnSticky from "./yn-sticky";
-import YnDialog from "./yn-dialog";
-import YnPickyStepper from "./yn-picky-stepper";
-import YnDropdownMenu from "./yn-dropdown-menu";
-import YnDropdownMenuItem from "./yn-dropdown-menu-item";
-import YnPicker from "./yn-picker";
-import YnSwipe from "./yn-swipe";
-import YnSwipeItem from "./yn-swipe-item";
-import YnTabs from "./yn-tabs";
-import YnTabItem from "./yn-tab-item";
-import YnSlider from "./yn-slider";
-import YnPullRefresh from "./yn-pull-refresh";
-import YnDatePicker from "./yn-date-picker";
-import YnSubmitAction from "./yn-submit-action";
-import YnSubmitActionPopupContent from "./yn-submit-action-popup-content";
-import YnSubmitActionValue from "./yn-submit-action-value";
+import YnButton from "./button";
+import YnFlex from "./flex";
+import YnFlexItem from "./flex-item";
+import YnHeader from "./header";
+import YnIconfont from "./iconfont";
+import YnToast from "./toast";
+import YnSpin from "./spin";
+import YnIndicator from "./indicator";
+import YnCheckbox from "./checkbox";
+import YnRadiobox from "./radiobox";
+import YnCalendar from "./calendar";
+import YnPopup from "./popup";
+import YnActionSheet from "./action-sheet";
+import YnField from "./field";
+import YnFieldGroup from "./field-group";
+import YnLayout from "./layout";
+import YnCityPicker from "./city-picker";
+import YnSticky from "./sticky";
+import YnDialog from "./dialog";
+import YnPickyStepper from "./picky-stepper";
+import YnDropdownMenu from "./dropdown-menu";
+import YnDropdownMenuItem from "./dropdown-menu-item";
+import YnPicker from "./picker";
+import YnSwipe from "./swipe";
+import YnSwipeItem from "./swipe-item";
+import YnTabs from "./tabs";
+import YnTabItem from "./tab-item";
+import YnSlider from "./slider";
+import YnPullRefresh from "./pull-refresh";
+import YnDatePicker from "./date-picker";
+import YnSubmitAction from "./submit-action";
+import YnSubmitActionPopupContent from "./submit-action-popup-content";
+import YnSubmitActionValue from "./submit-action-value";
 const components = [
   YnButton,
   YnFlex,

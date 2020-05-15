@@ -2,17 +2,32 @@
  * @Author: Just be free
  * @Date:   2020-01-20 17:15:01
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-12 18:57:44
+ * @Last Modified time: 2020-05-15 14:14:52
  * @E-mail: justbefree@126.com
  */
 
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-import "./less/style.less";
+// import "./less/style.less";
 
 import YnComponent from "@";
 Vue.use(YnComponent);
+// import Layout from "@/layout";
+// import "@/layout/style";
+// import Button from "@/button";
+// import "@/button/style";
+// import Calendar from "@/calendar";
+// import "@/calendar/style";
+// import Toast from "@/toast";
+// import "@/toast/style";
+// import Radiobox from "@/radiobox";
+// import "@/radiobox/style";
+// Vue.use(Layout);
+// Vue.use(Button);
+// Vue.use(Calendar);
+// Vue.use(Radiobox);
+// Vue.prototype.Toast = Toast;
 
 // import {
 //   YnToast,
