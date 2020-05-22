@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:15:58
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 14:44:46
+ * @Last Modified time: 2020-05-19 16:40:16
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import Spin from "../spin";

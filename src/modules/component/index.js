@@ -2,10 +2,12 @@
 * @Author: Just be free
 * @Date:   2020-05-13 18:08:08
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-05-15 14:36:21
+* @Last Modified time: 2020-05-20 11:21:51
 * @E-mail: justbefree@126.com
 */
-const prefix = "Yn";
+import { getConfig } from "./config";
+const prefix = getConfig("VUE_APP_PREFIX");
+console.log("组件库前缀是", prefix);
 import { capitalize } from "../utils";
 export const defineComponent = (options = {}) => {
   options.name = genComponentName(options.name);

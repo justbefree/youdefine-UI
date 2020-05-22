@@ -2,9 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-05-06 14:45:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-05-07 15:47:03
+* @Last Modified time: 2020-05-19 18:13:11
 * @E-mail: justbefree@126.com
 */
+process.env.VUE_APP_VERSION = require('./package.json').version;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   configureWebpack: {
@@ -13,15 +14,13 @@ module.exports = {
       new MiniCssExtractPlugin({
         filename: `css/[name].css`
       })
-    ]
-  },
-  css: {
-    extract: false
-  },
-  configureWebpack: {
+    ],
     performance: {
       hints: false
     }
+  },
+  css: {
+    extract: false
   },
   // chainWebpack: config => {
   //   config.module
