@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-20 12:05:51
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-05-22 18:41:51
+# @Last Modified time: 2020-05-25 12:01:07
 
 # 字符串首字母转换成大写
 toFirstLetterUpper() {
@@ -56,6 +56,10 @@ function combine {
 function build {
   npm run lib
 }
+function callback {
+  rm -rf ./a.js
+  rm -rf ../src/index.js
+}
 function init {
   echo "" > a.js
   dirArr=`ls $1`
@@ -72,6 +76,7 @@ function init {
   done
   combine
   build
+  callback
   echo "======================================"
   echo ""
   echo "DONE !!!"
