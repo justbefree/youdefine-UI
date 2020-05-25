@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-20 12:05:51
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-05-25 12:01:07
+# @Last Modified time: 2020-05-25 17:12:10
 
 # 字符串首字母转换成大写
 toFirstLetterUpper() {
@@ -58,7 +58,7 @@ function build {
 }
 function callback {
   rm -rf ./a.js
-  rm -rf ../src/index.js
+  # rm -rf ../src/index.js
 }
 function init {
   echo "" > a.js
