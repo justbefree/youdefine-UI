@@ -2,37 +2,37 @@
  * @Author: Just be free
  * @Date:   2020-02-07 13:50:45
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-04-29 11:11:02
+ * @Last Modified time: 2020-05-26 10:51:33
  */
 import Router from "vue-router";
 import Vue from "vue";
 Vue.use(Router);
 import Content from "./Content.vue";
-import YnToast from "./yn-toast/toast.vue";
-import YnIndicator from "./yn-indicator/indicator.vue";
-import YnSpin from "./yn-spin/spin.vue";
-import YnIconfont from "./yn-iconfont/iconfont.vue";
-import YnCheckbox from "./yn-checkbox/checkbox.vue";
-import YnRadiobox from "./yn-radiobox/radiobox.vue";
-import YnCalendar from "./yn-calendar/calendar.vue";
-import YnPopup from "./yn-popup/popup.vue";
-import YnButton from "./yn-button/button.vue";
-import YnFlex from "./yn-flex/flex.vue";
-import YnActionSheet from "./yn-action-sheet/actionSheet.vue";
-import YnField from "./yn-field/field.vue";
-import YnLayout from "./yn-layout/layout.vue";
-import YnCityPicker from "./yn-city-picker/cityPicker.vue";
-import YnSticky from "./yn-sticky/sticky.vue";
-import YnDialog from "./yn-dialog/dialog.vue";
-import YnPickyStepper from "./yn-picky-stepper/pickyStepper.vue";
-import YnDropdownMenu from "./yn-dropdown-menu/dropdownMenu.vue";
-import YnPicker from "./yn-picker/picker.vue";
-import YnSwipe from "./yn-swipe/swipe.vue";
-import YnTabs from "./yn-tabs/tabs.vue";
-import YnSlider from "./yn-slider/slider.vue";
-import YnSubmitAction from "./yn-submit-action/submitAction.vue";
-import YnPullRefresh from "./yn-pull-refresh/pullRefresh.vue";
-import YnDatePicker from "./yn-date-picker/datePicker.vue";
+import Toast from "./toast/toast.vue";
+import Indicator from "./indicator/indicator.vue";
+import Spin from "./spin/spin.vue";
+import Iconfont from "./iconfont/iconfont.vue";
+import Checkbox from "./checkbox/checkbox.vue";
+import Radiobox from "./radiobox/radiobox.vue";
+import Calendar from "./calendar/calendar.vue";
+import Popup from "./popup/popup.vue";
+import Button from "./button/button.vue";
+import Flex from "./flex/flex.vue";
+import ActionSheet from "./action-sheet/actionSheet.vue";
+import Field from "./field/field.vue";
+import Layout from "./layout/layout.vue";
+import CityPicker from "./city-picker/cityPicker.vue";
+import Sticky from "./sticky/sticky.vue";
+import Dialog from "./dialog/dialog.vue";
+import PickyStepper from "./picky-stepper/pickyStepper.vue";
+import DropdownMenu from "./dropdown-menu/dropdownMenu.vue";
+import Picker from "./picker/picker.vue";
+import Swipe from "./swipe/swipe.vue";
+import Tabs from "./tabs/tabs.vue";
+import Slider from "./slider/slider.vue";
+import SubmitAction from "./submit-action/submitAction.vue";
+import PullRefresh from "./pull-refresh/pullRefresh.vue";
+import DatePicker from "./date-picker/datePicker.vue";
 const router = new Router({
   routes: [
     {
@@ -43,127 +43,127 @@ const router = new Router({
     {
       path: "/toast",
       name: "toast",
-      component: YnToast
+      component: Toast
     },
     {
       path: "/indicator",
       name: "indicator",
-      component: YnIndicator
+      component: Indicator
     },
     {
       path: "/spin",
       name: "spin",
-      component: YnSpin
+      component: Spin
     },
     {
       path: "/iconfont",
       name: "iconfont",
-      component: YnIconfont
+      component: Iconfont
     },
     {
       path: "/checkbox",
       name: "checkbox",
-      component: YnCheckbox
+      component: Checkbox
     },
     {
       path: "/radiobox",
       name: "radiobox",
-      component: YnRadiobox
+      component: Radiobox
     },
     {
       path: "/calendar",
       name: "calendar",
-      component: YnCalendar
+      component: Calendar
     },
     {
       path: "/popup",
       name: "popup",
-      component: YnPopup
+      component: Popup
     },
     {
       path: "/button",
       name: "button",
-      component: YnButton
+      component: Button
     },
     {
       path: "/flex",
       name: "flex",
-      component: YnFlex
+      component: Flex
     },
     {
       path: "/actionSheet",
       name: "actionSheet",
-      component: YnActionSheet
+      component: ActionSheet
     },
     {
       path: "/field",
       name: "field",
-      component: YnField
+      component: Field
     },
     {
       path: "/layout",
       name: "layout",
-      component: YnLayout
+      component: Layout
     },
     {
       path: "/cityPicker",
       name: "cityPicker",
-      component: YnCityPicker
+      component: CityPicker
     },
     {
       path: "/sticky",
       name: "sticky",
-      component: YnSticky
+      component: Sticky
     },
     {
       path: "/dialog",
       name: "dialog",
-      component: YnDialog
+      component: Dialog
     },
     {
       path: "/pickyStepper",
       name: "pickyStepper",
-      component: YnPickyStepper
+      component: PickyStepper
     },
     {
       path: "/dropdownMenu",
       name: "dropdownMenu",
-      component: YnDropdownMenu
+      component: DropdownMenu
     },
     {
       path: "/picker",
       name: "picker",
-      component: YnPicker
+      component: Picker
     },
     {
       path: "/swipe",
       name: "swipe",
-      component: YnSwipe
+      component: Swipe
     },
     {
       path: "/tabs",
       name: "tabs",
-      component: YnTabs
+      component: Tabs
     },
     {
       path: "/slider",
       name: "slider",
-      component: YnSlider
+      component: Slider
     },
     {
       path: "/submitAction",
       name: "submitAction",
-      component: YnSubmitAction
+      component: SubmitAction
     },
     {
       path: "/pullRefresh",
       name: "pullRefresh",
-      component: YnPullRefresh
+      component: PullRefresh
     },
     {
       path: "/datePicker",
       name: "datePicker",
-      component: YnDatePicker
+      component: DatePicker
     }
   ]
 });
