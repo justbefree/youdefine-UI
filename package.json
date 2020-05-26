@@ -1,7 +1,7 @@
 {
   "name": "yn-components",
   "0.1.x-version": "0.1.14",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "private": false,
   "keywords": [
     "vue component",
