@@ -2,13 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:11:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 14:52:24
+ * @Last Modified time: 2020-05-26 18:01:51
  * @E-mail: justbefree@126.com
  */
 
 import { defineComponent, genComponentName } from "../modules/component";
 import { provideMixins } from "../mixins/provide";
-const VALID_CHILD_COMPONENT = "yn-dropdown-menu-item";
+const VALID_CHILD_COMPONENT = "dropdown-menu-item";
 import Flex from "../flex";
 import FlexItem from "../flex-item";
 import { slotsMixins } from "../mixins/slots";
@@ -32,6 +32,11 @@ export default defineComponent({
   },
   methods: {
     validChildComponent() {
+      const prefix = this.VUE_APP_PREFIX;
+      let validChildComponent = VALID_CHILD_COMPONENT;
+      if (prefix !== "") {
+        validChildComponent = `${prefix}-${VALID_CHILD_COMPONENT}`;
+      }
       const children = this.slots();
       const validComponent = [];
       let key = 0;
@@ -39,7 +44,7 @@ export default defineComponent({
         children.forEach(child => {
           if (
             child.componentOptions &&
-            VALID_CHILD_COMPONENT === child.componentOptions.tag
+            validChildComponent === child.componentOptions.tag
           ) {
             child.key = key;
             validComponent.push(child);

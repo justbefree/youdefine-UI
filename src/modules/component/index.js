@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-05-13 18:08:08
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-05-20 11:21:51
+* @Last Modified time: 2020-05-26 17:16:32
 * @E-mail: justbefree@126.com
 */
 import { getConfig } from "./config";
@@ -11,8 +11,12 @@ console.log("组件库前缀是", prefix);
 import { capitalize } from "../utils";
 export const defineComponent = (options = {}) => {
   options.name = genComponentName(options.name);
+  let data = typeof options.data === "function" && options.data() || {};
   if (options.components) {
     options.components = dependanceComponent(options.components);
+  }
+  options.data = function () {
+    return { ...data, VUE_APP_PREFIX: prefix };
   }
   return options;
 };

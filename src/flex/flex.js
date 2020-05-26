@@ -2,13 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-01-02 11:01:34
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 18:42:01
+ * @Last Modified time: 2020-05-26 18:06:23
  * @E-mail: justbefree@126.com
  */
 import { defineComponent } from "../modules/component";
 import { capitalize, camelize, isString } from "../modules/utils";
 import { slotsMixins } from "../mixins/slots";
-const VALID_CHILD_COMPONENT = "yn-flex-item";
+const VALID_CHILD_COMPONENT = "flex-item";
 export default defineComponent({
   name: "Flex",
   mixins: [slotsMixins],
@@ -88,7 +88,12 @@ export default defineComponent({
     }
   },
   render(h) {
-    const slots = this.slots("default", {}, VALID_CHILD_COMPONENT);
+    const prefix = this.VUE_APP_PREFIX;
+    let validChildComponent = VALID_CHILD_COMPONENT;
+    if (prefix !== "") {
+      validChildComponent = `${prefix}-${VALID_CHILD_COMPONENT}`;
+    }
+    const slots = this.slots("default", {}, validChildComponent);
     const className = this.translateAttrsToClassName();
     const fix = this.fixBottomLine ? "yn-flex-fix-bottom-line" : "";
     return h(

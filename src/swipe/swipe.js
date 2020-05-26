@@ -2,14 +2,14 @@
  * @Author: Just be free
  * @Date:   2020-04-09 09:20:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:12:23
+ * @Last Modified time: 2020-05-26 18:05:18
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { slotsMixins } from "../mixins/slots";
 import { renderedMixins } from "../mixins/rendered";
 import { provideMixins } from "../mixins/provide";
-const VALID_CHILD_COMPONENT = "yn-swipe-item";
+const VALID_CHILD_COMPONENT = "swipe-item";
 import { on } from "../modules/event";
 import { Remainder } from "../modules/number/remainder";
 import { touchMixins } from "../mixins/touch";
@@ -334,7 +334,12 @@ export default defineComponent({
     this.visibilityChange();
   },
   render(h) {
-    const slots = this.slots("default", {}, VALID_CHILD_COMPONENT);
+    const prefix = this.VUE_APP_PREFIX;
+    let validChildComponent = VALID_CHILD_COMPONENT;
+    if (prefix !== "") {
+      validChildComponent = `${prefix}-${VALID_CHILD_COMPONENT}`;
+    }
+    const slots = this.slots("default", {}, validChildComponent);
     this.count = slots.length;
     return h(
       "div",

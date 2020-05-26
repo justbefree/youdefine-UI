@@ -1,8 +1,8 @@
 #!/bin/bash
 # @Author: Just be free
-# @Date:   2020-05-20 12:05:51
+# @Date:   2020-05-26 16:15:41
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-05-26 19:37:12
+# @Last Modified time: 2020-05-26 16:37:59
 
 # 字符串首字母转换成大写
 toFirstLetterUpper() {
@@ -27,7 +27,7 @@ function camelize {
 # camelize $name
 # get prefix of the component lib name
 function getPrefix {
-  config_file="../.env.production"
+  config_file="./.env.production"
   prefix=`sed -n 2p $config_file`
   echo ${prefix#*=}
 }
@@ -51,17 +51,10 @@ function excludeArray {
   echo $result
 }
 function combine {
-  cat ../src/template.js ./tmp.js > ../src/index.js
-}
-function build {
-  npm run lib
-}
-function callback {
-  rm -rf ./tmp.js
-  # rm -rf ../src/index.js
+  cat src/template.js build/tmp.js > src/index.js
 }
 function init {
-  echo "" > tmp.js
+  echo "" > build/tmp.js
   dirArr=`ls $1`
   prefix=$2
   for i in $dirArr
@@ -71,19 +64,17 @@ function init {
     if [[ -d "$sub_dir" && $exclude == false ]];then
       name=$(camelize $i)
       echo "$name component was compeleted!"
-      echo "export { $name as $prefix$name };" >> tmp.js
+      echo "export { $name as $prefix$name };" >> build/tmp.js
     fi
   done
   combine
-  build
-  callback
   echo "======================================"
   echo ""
   echo "DONE !!!"
   echo ""
   echo "======================================"
 }
-dir="../src/"
+dir="src/"
 init $dir $prefix
 
 

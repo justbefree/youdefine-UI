@@ -11,7 +11,7 @@
   "author": "just be free <justbefree@126.com>",
   "scripts": {
     "lib": "vue-cli-service build --mode production --target lib --name yn-components --dest lib src/index.js",
-    "serve": "vue-cli-service serve --mode development",
+    "serve": "node bin/serve && vue-cli-service serve --mode development",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
