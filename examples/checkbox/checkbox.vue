@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2>yn-checkbox</h2>
-    <yn-checkbox v-model="checked" @change="handleClick"></yn-checkbox>
+    <h2>yui-checkbox</h2>
+    <yui-checkbox v-model="checked" @change="handleClick"></yui-checkbox>
     <span>当前状态{{ checked }}</span>
     <hr />
-    <yn-checkbox :checked="value"></yn-checkbox>
+    <yui-checkbox :checked="value"></yui-checkbox>
     <span>此状态不可修改{{ value }}</span>
   </div>
 </template>

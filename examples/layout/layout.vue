@@ -1,5 +1,5 @@
 <template>
-  <yn-layout
+  <yui-layout
     monitor
     @scroll="handleScroll"
     :showHeader="showHeader"
@@ -12,15 +12,15 @@
     <div slot="body">
       body区域，可以滑动
       <div>
-        <h2>yn-layout</h2>
+        <h2>yui-layout</h2>
       </div>
       <template v-for="item in dataList">
         <div>{{ item }}</div>
       </template>
-      <yn-spin type="triple-bounce"></yn-spin>
+      <yui-spin type="triple-bounce"></yui-spin>
     </div>
     <div slot="footer">footer</div>
-  </yn-layout>
+  </yui-layout>
 </template>
 <script>
 export default {

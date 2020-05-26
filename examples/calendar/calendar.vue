@@ -1,126 +1,126 @@
 <template>
   <div>
-    <h2>yn-calendar</h2>
+    <h2>yui-calendar</h2>
     <ul>
       <li>
         <div>
-          <yn-button @click="handleOpenCalendar('calendar1')">
+          <yui-button @click="handleOpenCalendar('calendar1')">
             单选日历默认，无指定默认日期
-          </yn-button>
+          </yui-button>
         </div>
         <span>已选择时间：{{ calendar1Date }}</span>
         <hr />
       </li>
       <li>
         <div>
-          <yn-button @click="handleOpenCalendar('calendar2')">
+          <yui-button @click="handleOpenCalendar('calendar2')">
             多选日历默认，无指定默认日期
-          </yn-button>
+          </yui-button>
         </div>
         <span>已选择时间：{{ calendar2Date }}</span>
         <hr />
       </li>
       <li>
         <div>
-          <yn-button @click="handleOpenCalendar('calendar3')">
+          <yui-button @click="handleOpenCalendar('calendar3')">
             单选日历，指定默认选择为明天({{ defaultDate }})
-          </yn-button>
+          </yui-button>
         </div>
         <span>已选择时间：{{ calendar3Date }}</span>
         <hr />
       </li>
       <li>
         <div>
-          <yn-button @click="handleOpenCalendar('calendar4')">
+          <yui-button @click="handleOpenCalendar('calendar4')">
             多选日历，指定默认时间，当前时间前四天后五天({{
               defaultStartDate
             }}
             ~ {{ defaultEndDate }})
-          </yn-button>
+          </yui-button>
         </div>
         <span>已选择时间：{{ calendar4Date }}</span>
         <hr />
       </li>
       <li>
         <div>
-          <yn-button @click="handleOpenCalendar('calendar5')">
+          <yui-button @click="handleOpenCalendar('calendar5')">
             多选日历，带底部确认按钮
-          </yn-button>
+          </yui-button>
         </div>
         <span>已选择时间：{{ calendar5Date }}</span>
         <hr />
       </li>
       <li>
         <div>
-          <yn-button @click="handleOpenCalendar('calendar6')">
+          <yui-button @click="handleOpenCalendar('calendar6')">
             多选日历，允许选择同一天
-          </yn-button>
+          </yui-button>
         </div>
         <span>已选择时间：{{ calendar6Date }}</span>
         <hr />
       </li>
       <li>
         <div>
-          <yn-button @click="handleOpenCalendar('calendar7')">
+          <yui-button @click="handleOpenCalendar('calendar7')">
             多选日历，自定义title
-          </yn-button>
+          </yui-button>
         </div>
         <span>已选择时间：{{ calendar7Date }}</span>
         <hr />
       </li>
       <li>
         <div>
-          <yn-button @click="handleOpenCalendar('calendar8')">
+          <yui-button @click="handleOpenCalendar('calendar8')">
             单选多选切换
-          </yn-button>
+          </yui-button>
         </div>
-        <yn-radiobox
+        <yui-radiobox
           v-model="single"
           @change="e => handleChange(e, 'single')"
-        ></yn-radiobox
+        ></yui-radiobox
         ><span>单选</span>
-        <yn-radiobox
+        <yui-radiobox
           v-model="double"
           @change="e => handleChange(e, 'double')"
-        ></yn-radiobox
+        ></yui-radiobox
         ><span>多选</span>
         <span>已选择时间：{{ calendar8Date }}</span>
         <hr />
       </li>
       <li>
         <div>
-          <yn-button @click="handleOpenCalendar('calendar9')"
-            >一年前日期到一年后日期</yn-button
+          <yui-button @click="handleOpenCalendar('calendar9')"
+            >一年前日期到一年后日期</yui-button
           >
         </div>
         <span>已选择时间：{{ calendar9Date }}</span>
         <hr />
       </li>
     </ul>
-    <yn-calendar
+    <yui-calendar
       mode="single"
       :before="10"
       :after="10"
       v-model="calendar1"
       v-on:getDate="handleOnGetDate1"
       @afterLeave="handleAfterLeave"
-    ></yn-calendar>
-    <yn-calendar
+    ></yui-calendar>
+    <yui-calendar
       mode="double"
       :before="10"
       :after="10"
       v-model="calendar2"
       v-on:getDate="handleOnGetDate2"
-    ></yn-calendar>
-    <yn-calendar
+    ></yui-calendar>
+    <yui-calendar
       mode="single"
       :before="10"
       :after="10"
       v-model="calendar3"
       :defaultDate="defaultDate"
       v-on:getDate="handleOnGetDate3"
-    ></yn-calendar>
-    <yn-calendar
+    ></yui-calendar>
+    <yui-calendar
       mode="double"
       :before="10"
       :after="10"
@@ -128,45 +128,45 @@
       :defaultStartDate="defaultStartDate"
       :defaultEndDate="defaultEndDate"
       v-on:getDate="handleOnGetDate4"
-    ></yn-calendar>
-    <yn-calendar
+    ></yui-calendar>
+    <yui-calendar
       mode="double"
       :before="10"
       :after="10"
       v-model="calendar5"
       v-on:getDate="handleOnGetDate5"
       :showConfirmButton="true"
-    ></yn-calendar>
-    <yn-calendar
+    ></yui-calendar>
+    <yui-calendar
       mode="double"
       :before="10"
       :after="10"
       v-model="calendar6"
       v-on:getDate="handleOnGetDate6"
       :doubleModeAllowSameDate="true"
-    ></yn-calendar>
-    <yn-calendar
+    ></yui-calendar>
+    <yui-calendar
       mode="double"
       :before="10"
       :after="10"
       v-model="calendar7"
       v-on:getDate="handleOnGetDate7"
       :title="['日历', '请选择入住时间', '请选择离店时间']"
-    ></yn-calendar>
-    <yn-calendar
+    ></yui-calendar>
+    <yui-calendar
       :mode="getModel"
       :before="10"
       :after="10"
       v-model="calendar8"
       v-on:getDate="handleOnGetDate8"
       :title="['日历', '请选择入住时间', '请选择离店时间']"
-    ></yn-calendar>
-    <yn-calendar
+    ></yui-calendar>
+    <yui-calendar
       before="1"
       after="1"
       v-model="calendar9"
       unit="year"
-    ></yn-calendar>
+    ></yui-calendar>
   </div>
 </template>
 

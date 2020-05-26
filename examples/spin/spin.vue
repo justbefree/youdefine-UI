@@ -2,19 +2,19 @@
   <div class="spin">
     <div>
       <h4>trip-bounce</h4>
-      <yn-spin type="triple-bounce"></yn-spin>
+      <yui-spin type="triple-bounce"></yui-spin>
     </div>
     <div>
       <h4>snake</h4>
-      <yn-spin type="snake"></yn-spin>
+      <yui-spin type="snake"></yui-spin>
     </div>
     <div>
       <h4>fading-circle</h4>
-      <yn-spin type="fading-circle"></yn-spin>
+      <yui-spin type="fading-circle"></yui-spin>
     </div>
     <div>
       <h4>double-bounce</h4>
-      <yn-spin type="double-bounce"></yn-spin>
+      <yui-spin type="double-bounce"></yui-spin>
     </div>
   </div>
 </template>

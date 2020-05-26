@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>yn-dialog</h2>
+    <h2>yui-dialog</h2>
     <ul>
       <li @click="alert">Async alert</li>
       <li @click="syncAlert">Sync alert</li>
@@ -9,25 +9,25 @@
       <li @click="confirm3">html</li>
       <li>
         <span @click="advanced">advanced</span>
-        <yn-dialog v-model="show" closeModelOnClick>
+        <yui-dialog v-model="show" closeModelOnClick>
           <img src="https://img.yzcdn.cn/vant/apple-3.jpg" />
-        </yn-dialog>
+        </yui-dialog>
       </li>
       <li>
         <span @click="advanced2">advanced modal click callback</span>
-        <yn-dialog
+        <yui-dialog
           :value="this.show2"
           @buttonClick="this.handleInput"
           @modalClick="this.handleClick"
         >
           <img src="https://img.yzcdn.cn/vant/apple-3.jpg" />
-        </yn-dialog>
+        </yui-dialog>
       </li>
       <li>
         <span @click="advanced3">异步加载数据渲染问题-{{ text.value }}</span>
-        <yn-dialog :value="this.show3" closeModelOnClick>
+        <yui-dialog :value="this.show3" closeModelOnClick>
           <span>我是固定内容，我后面的是动态内容{{ text.value }}</span>
-        </yn-dialog>
+        </yui-dialog>
       </li>
     </ul>
   </div>
@@ -74,6 +74,7 @@ export default {
       }
       console.log("这个是会告诉你点击了哪个按钮", e);
       return new Promise((resolve, reject) => {
+        console.log(reject);
         setTimeout(() => {
           resolve("请求结束");
         }, 2000);
@@ -84,6 +85,7 @@ export default {
     handleBeforeClose2(e) {
       console.log("这个是会告诉你点击了哪个按钮", e);
       return new Promise((resolve, reject) => {
+        console.log(reject);
         setTimeout(() => {
           resolve("请求结束");
         }, 3000);
@@ -136,7 +138,7 @@ ul li {
   line-height: 44px;
   border-bottom: 1px solid #eeeeee;
 }
-.yn-dialog-content img {
+.yui-dialog-content img {
   width: 100%;
 }
 </style>

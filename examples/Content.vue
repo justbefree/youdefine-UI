@@ -1,5 +1,5 @@
 <template>
-  <yn-layout :showFooter="false">
+  <yui-layout :showFooter="false">
     <div class="example-content" slot="body">
       <ul class="example-container">
         <li @click="jump('toast')">toast</li>
@@ -29,7 +29,7 @@
         <li @click="jump('datePicker')">datePicker</li>
       </ul>
     </div>
-  </yn-layout>
+  </yui-layout>
 </template>
 <script type="text/javascript">
 export default {

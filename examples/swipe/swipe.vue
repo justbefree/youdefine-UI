@@ -1,50 +1,50 @@
 <template>
   <div>
-    <h2>yn-swipe</h2>
+    <h2>yui-swipe</h2>
     <div class="box">
       <h3>左右滑动轮播图</h3>
-      <yn-swipe ref="swipe1" indicatorType="number">
-        <yn-swipe-item>
+      <yui-swipe ref="swipe1" indicatorType="number">
+        <yui-swipe-item>
           <div>
             <img src="./images/apple-1.jpg" />
           </div>
-        </yn-swipe-item>
-        <yn-swipe-item>
+        </yui-swipe-item>
+        <yui-swipe-item>
           <img src="./images/apple-2.jpg" />
-        </yn-swipe-item>
-        <yn-swipe-item>
+        </yui-swipe-item>
+        <yui-swipe-item>
           <img src="./images/apple-3.jpg" />
-        </yn-swipe-item>
-        <yn-swipe-item>
+        </yui-swipe-item>
+        <yui-swipe-item>
           <img src="./images/apple-4.jpg" />
-        </yn-swipe-item>
-      </yn-swipe>
+        </yui-swipe-item>
+      </yui-swipe>
       <div class="api">
         <span>对外暴露的接口</span>
-        <yn-button @click="prev('swipe1')">prev</yn-button>
-        <yn-button @click="next('swipe1')">next</yn-button>
+        <yui-button @click="prev('swipe1')">prev</yui-button>
+        <yui-button @click="next('swipe1')">next</yui-button>
       </div>
     </div>
     <div class="box">
       <h3>上下滑动轮播图</h3>
-      <yn-swipe vertical ref="swipe2">
-        <yn-swipe-item>
+      <yui-swipe vertical ref="swipe2">
+        <yui-swipe-item>
           <img src="./images/apple-1.jpg" />
-        </yn-swipe-item>
-        <yn-swipe-item>
+        </yui-swipe-item>
+        <yui-swipe-item>
           <img src="./images/apple-2.jpg" />
-        </yn-swipe-item>
-        <yn-swipe-item>
+        </yui-swipe-item>
+        <yui-swipe-item>
           <img src="./images/apple-3.jpg" />
-        </yn-swipe-item>
-        <yn-swipe-item>
+        </yui-swipe-item>
+        <yui-swipe-item>
           <img src="./images/apple-4.jpg" />
-        </yn-swipe-item>
-      </yn-swipe>
+        </yui-swipe-item>
+      </yui-swipe>
       <div class="api">
         <span>对外暴露的接口</span>
-        <yn-button @click="prev('swipe2')">prev</yn-button>
-        <yn-button @click="next('swipe2')">next</yn-button>
+        <yui-button @click="prev('swipe2')">prev</yui-button>
+        <yui-button @click="next('swipe2')">next</yui-button>
       </div>
     </div>
   </div>

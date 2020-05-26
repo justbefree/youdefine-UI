@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>yn-city-picker</h2>
+    <h2>yui-city-picker</h2>
     <ul>
       <li @click="handlePicker(1)">国内城市</li>
       <li @click="handlePicker(2)">国际城市</li>
@@ -11,7 +11,7 @@
       <li @click="handlePicker(7)">可搜索</li>
       <li @click="handlePicker(8)">可搜索(三列布局)</li>
     </ul>
-    <yn-city-picker
+    <yui-city-picker
       :searchable="false"
       @pick="handlePick"
       v-model="picker1"
@@ -20,8 +20,8 @@
       :history="getHistory()"
       :hotCity="getHotCity()"
       showHistory
-    ></yn-city-picker>
-    <yn-city-picker
+    ></yui-city-picker>
+    <yui-city-picker
       :alphaBeta="getAlphaBeta()"
       :history="getHistory()"
       :hotCity="getHotCity()"
@@ -30,38 +30,38 @@
       @pick="handlePick"
       v-model="picker2"
       :tabs="tabs2"
-    ></yn-city-picker>
-    <yn-city-picker
+    ></yui-city-picker>
+    <yui-city-picker
       :alphaBeta="getAlphaBeta()"
       :history="getHistory()"
       :hotCity="getHotCity()"
       :searchable="false"
       @pick="handlePick"
       v-model="picker3"
-    ></yn-city-picker>
-    <yn-city-picker
+    ></yui-city-picker>
+    <yui-city-picker
       @pick="handlePick"
       v-model="picker4"
       :limitedData="data.cnCitiesList"
       limited
-    ></yn-city-picker>
-    <yn-city-picker
+    ></yui-city-picker>
+    <yui-city-picker
       @pick="handlePick"
       v-model="picker5"
       :hotCity="getHotCity()"
       showHistory
       :history="getHistory()"
       :alphaBeta="getAlphaBeta()"
-    ></yn-city-picker>
-    <yn-city-picker
+    ></yui-city-picker>
+    <yui-city-picker
       :alphaBeta="getAlphaBeta()"
       :searchable="false"
       @pick="handlePick"
       v-model="picker6"
       :tabs="tabs2"
       :showHotCity="false"
-    ></yn-city-picker>
-    <yn-city-picker
+    ></yui-city-picker>
+    <yui-city-picker
       :search="getSearch()"
       :alphaBeta="getAlphaBeta()"
       :history="getHistory()"
@@ -69,8 +69,8 @@
       showHistory
       @pick="handlePick"
       v-model="picker7"
-    ></yn-city-picker>
-    <yn-city-picker
+    ></yui-city-picker>
+    <yui-city-picker
       :search="getSearch()"
       :alphaBeta="getAlphaBeta()"
       :history="getHistory()"
@@ -79,7 +79,7 @@
       @pick="handlePick"
       v-model="picker8"
       column="3"
-    ></yn-city-picker>
+    ></yui-city-picker>
   </div>
 </template>
 
