@@ -1,7 +1,6 @@
 {
-  "name": "yn-components",
-  "0.1.x-version": "0.1.14",
-  "version": "0.2.10",
+  "name": "youdefine-ui",
+  "version": "0.0.1",
   "private": false,
   "keywords": [
     "vue component",
