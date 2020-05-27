@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>yui-toast</h2>
+    <h2>yn-toast</h2>
     <ul>
       <li @click="toast('middle')">toast middle</li>
       <li @click="toast('bottom')">toast bottom</li>

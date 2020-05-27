@@ -1,52 +1,52 @@
 <template>
   <div>
-    <h2>yui-popup</h2>
+    <h2>yn-popup</h2>
     <hr />
     <ul>
       <li>
-        <yui-button @click="handleClick(1)">底部出现遮罩</yui-button>
+        <yn-button @click="handleClick(1)">底部出现遮罩</yn-button>
       </li>
       <li>
-        <yui-button @click="handleClick(2)">右侧出现遮罩</yui-button>
+        <yn-button @click="handleClick(2)">右侧出现遮罩</yn-button>
       </li>
       <li>
-        <yui-button @click="handleClick(3)">上面出现遮罩</yui-button>
+        <yn-button @click="handleClick(3)">上面出现遮罩</yn-button>
       </li>
       <li>
-        <yui-button @click="handleClick(4)">双层嵌套</yui-button>
+        <yn-button @click="handleClick(4)">双层嵌套</yn-button>
       </li>
       <li>
-        <yui-button @click="handleClick(6)">中间fade</yui-button>
+        <yn-button @click="handleClick(6)">中间fade</yn-button>
       </li>
     </ul>
-    <yui-popup v-model="popup1" position="bottom">
+    <yn-popup v-model="popup1" position="bottom">
       <div class="popup-content">
         底部出现遮罩
         <template v-for="item in 10">
           <h3 :key="item">我是{{ item }}</h3>
         </template>
       </div>
-    </yui-popup>
-    <yui-popup v-model="popup2" position="right" :showCloseIcon="true">
+    </yn-popup>
+    <yn-popup v-model="popup2" position="right" :showCloseIcon="true">
       <div class="popup-content">右侧出现遮罩</div>
-    </yui-popup>
-    <yui-popup v-model="popup3" position="top" :showCloseIcon="true">
+    </yn-popup>
+    <yn-popup v-model="popup3" position="top" :showCloseIcon="true">
       <div class="popup-content">上面出现遮罩</div>
-    </yui-popup>
-    <yui-popup v-model="popup4" position="bottom" :showCloseIcon="true">
+    </yn-popup>
+    <yn-popup v-model="popup4" position="bottom" :showCloseIcon="true">
       <div class="popup-content">
-        <yui-button @click="handleClick(5)">打开内层</yui-button>
+        <yn-button @click="handleClick(5)">打开内层</yn-button>
         上面出现遮罩
-        <yui-popup v-model="popup5" position="bottom">
+        <yn-popup v-model="popup5" position="bottom">
           <div class="popup-content">
             内层嵌套
           </div>
-        </yui-popup>
+        </yn-popup>
       </div>
-    </yui-popup>
-    <yui-popup v-model="popup6" position="middle" :showCloseIcon="true" fixed>
+    </yn-popup>
+    <yn-popup v-model="popup6" position="middle" :showCloseIcon="true" fixed>
       <div class="popup-content">中间fade</div>
-    </yui-popup>
+    </yn-popup>
   </div>
 </template>
 <script>

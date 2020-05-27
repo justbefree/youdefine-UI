@@ -1,12 +1,12 @@
 <template>
   <div>
     <h2>iconfont</h2>
-    <yui-flex justifyContent="spaceAround" flexWrap="wrap" class="flex">
-      <yui-flex-item class="flex-item" v-for="(icon, key) in this.iconfontCollections" :key="key">
-        <yui-iconfont :name="icon" @click="handleClick"></yui-iconfont>
+    <yn-flex justifyContent="spaceAround" flexWrap="wrap" class="flex">
+      <yn-flex-item class="flex-item" v-for="(icon, key) in this.iconfontCollections" :key="key">
+        <yn-iconfont :name="icon" @click="handleClick"></yn-iconfont>
         <span class="icon-name">{{icon}}</span>
-      </yui-flex-item>
-    </yui-flex>
+      </yn-flex-item>
+    </yn-flex>
   </div>
 </template>
 
@@ -30,12 +30,12 @@ export default {
       const validIcons = [];
       const svg = document.querySelector("svg");
       if (!svg) {
-        console.log(1, "Make sure the yui-iconfont component was installed.");
+        console.log(1, "Make sure the yn-iconfont component was installed.");
         return false;
       }
       const symbol = svg.getElementsByTagName("symbol");
       if (!symbol) {
-        console.log(2, "Make sure the yui-iconfont component was installed.");
+        console.log(2, "Make sure the yn-iconfont component was installed.");
         return false;
       }
       for (let key in symbol) {

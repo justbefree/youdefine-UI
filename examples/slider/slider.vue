@@ -1,65 +1,65 @@
 <template>
   <div>
-    <h2>yui-slider</h2>
+    <h2>yn-slider</h2>
     <div class="box">
       <h3>基础用法</h3>
       <span class="display">当前值是 {{ value }}</span>
-      <yui-slider v-model="value"></yui-slider>
+      <yn-slider v-model="value"></yn-slider>
     </div>
     <div class="box">
       <h3>设置步长为10</h3>
       <span class="display">当前值是 {{ value2 }}</span>
-      <yui-slider v-model="value2" step="10"></yui-slider>
+      <yn-slider v-model="value2" step="10"></yn-slider>
     </div>
     <div class="box">
       <h3>自定义拖拽icon</h3>
       <span class="display"></span>
-      <yui-slider
+      <yn-slider
         v-model="value3"
         :dragIcon="dragIcon"
         :parse="parse"
         tip
-      ></yui-slider>
+      ></yn-slider>
     </div>
     <div class="box">
       <h3>显示tip {{ value4 }}</h3>
       <span @click="update" class="update">更新</span>
       <span @click="set" class="update">自定义</span>
       <span class="display"></span>
-      <yui-slider ref="slider4" v-model="value4" :parse="doubleValue" tip></yui-slider>
+      <yn-slider ref="slider4" v-model="value4" :parse="doubleValue" tip></yn-slider>
     </div>
     <div class="box">
-      <yui-dropdown-menu>
-        <yui-dropdown-menu-item
+      <yn-dropdown-menu>
+        <yn-dropdown-menu-item
           v-model="value6"
           :options="setOtions()"
           defaultSelectedIndex="2"
-        ></yui-dropdown-menu-item>
-        <yui-dropdown-menu-item
+        ></yn-dropdown-menu-item>
+        <yn-dropdown-menu-item
           v-model="value7"
           :mapStatus="mapStatus"
           :titleChangealbe="true"
           :fixed="true"
           ref="mapStatus"
-        ></yui-dropdown-menu-item>
-        <yui-dropdown-menu-item
+        ></yn-dropdown-menu-item>
+        <yn-dropdown-menu-item
           v-model="value8"
           ref="closeAble"
           @afterEnter="handleBeforeEnter"
         >
           <div style="height: 100px;width: 90%;margin: 0 auto;">
-            <yui-slider class="dropdown-slider" v-if="visiable1" v-model="value5" :parse="doubleValue" tip></yui-slider>
+            <yn-slider class="dropdown-slider" v-if="visiable1" v-model="value5" :parse="doubleValue" tip></yn-slider>
           </div>
-        </yui-dropdown-menu-item>
-      </yui-dropdown-menu>
+        </yn-dropdown-menu-item>
+      </yn-dropdown-menu>
     </div>
     <span @click="handlePopup">弹框案例</span>
-    <yui-popup v-model="visiable">
+    <yn-popup v-model="visiable">
       <div class="box">
         <span>自定义内容</span>
-        <yui-slider v-if="visiable" v-model="value5" :parse="doubleValue" tip></yui-slider>
+        <yn-slider v-if="visiable" v-model="value5" :parse="doubleValue" tip></yn-slider>
       </div>
-    </yui-popup>
+    </yn-popup>
   </div>
 </template>
 <script type="text/javascript">

@@ -1,30 +1,30 @@
 <template>
   <div>
-    <h2>yui-action-sheet</h2>
+    <h2>yn-action-sheet</h2>
     <ul>
       <li @click="handleBasicUsage">基础用法</li>
       <li @click="handleCancelUsage">带取消 & 禁止某些选线</li>
       <li @click="handleAsyncUsage">异步加载</li>
     </ul>
-    <yui-action-sheet
+    <yn-action-sheet
       v-model="basic"
       :actions="basicActions"
       v-on:getSelected="getSelect"
-    ></yui-action-sheet>
-    <yui-action-sheet
+    ></yn-action-sheet>
+    <yn-action-sheet
       v-model="cancel"
       :actions="cancelActions"
       v-on:getSelected="getSelect"
       showCancel
-    ></yui-action-sheet>
-    <yui-action-sheet
+    ></yn-action-sheet>
+    <yn-action-sheet
       v-model="async"
       :loading="loading"
       @beforeEnter="handleBeforeEnter"
       :actions="asyncActions"
       v-on:getSelected="getSelect"
       showCancel
-    ></yui-action-sheet>
+    ></yn-action-sheet>
   </div>
 </template>
 <script>

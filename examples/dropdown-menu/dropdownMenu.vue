@@ -1,60 +1,60 @@
 <template>
   <div>
-    <h2>yui-dropdown-menu</h2>
+    <h2>yn-dropdown-menu</h2>
     <div class="box">
-      <yui-dropdown-menu>
-        <yui-dropdown-menu-item
+      <yn-dropdown-menu>
+        <yn-dropdown-menu-item
           v-model="value1"
           :options="option1"
           @change="handleChange"
-        ></yui-dropdown-menu-item>
-        <yui-dropdown-menu-item
+        ></yn-dropdown-menu-item>
+        <yn-dropdown-menu-item
           v-model="value2"
           defaultSelectedIndex="2"
           :options="option2"
           :titleChangealbe="true"
-        ></yui-dropdown-menu-item>
-        <yui-dropdown-menu-item
+        ></yn-dropdown-menu-item>
+        <yn-dropdown-menu-item
           v-model="value3"
           ref="menuItem"
           @beforeEnter="handleBeforeEnter"
         >
           <div>
             <span>这里面是自定义内容</span>
-            <yui-button type="primary" @click="close1">关闭</yui-button>
+            <yn-button type="primary" @click="close1">关闭</yn-button>
           </div>
-        </yui-dropdown-menu-item>
-      </yui-dropdown-menu>
+        </yn-dropdown-menu-item>
+      </yn-dropdown-menu>
     </div>
     <div class="box">
-      <yui-dropdown-menu direction="up">
-        <yui-dropdown-menu-item
+      <yn-dropdown-menu direction="up">
+        <yn-dropdown-menu-item
           v-model="value6"
           :options="setOtions()"
           defaultSelectedIndex="2"
-        ></yui-dropdown-menu-item>
-        <yui-dropdown-menu-item
+        ></yn-dropdown-menu-item>
+        <yn-dropdown-menu-item
           v-model="value5"
           :mapStatus="mapStatus"
           :titleChangealbe="true"
           @change="handleChange"
           :fixed="true"
           ref="mapStatus"
-        ></yui-dropdown-menu-item>
-        <yui-dropdown-menu-item
+        ></yn-dropdown-menu-item>
+        <yn-dropdown-menu-item
           v-model="value4"
           ref="closeAble"
           :hideDirectionIcon="true"
         >
           <div>
             <span>这里面是自定义内容</span>
-            <yui-button type="primary" @click="close">关闭</yui-button>
+            <yn-button type="primary" @click="close">关闭</yn-button>
           </div>
-        </yui-dropdown-menu-item>
-      </yui-dropdown-menu>
+        </yn-dropdown-menu-item>
+      </yn-dropdown-menu>
       <hr />
-      <yui-button type="primary" @click="changeData(true)">直接选中</yui-button>
-      <yui-button type="primary" @click="changeData(false)">取消选中</yui-button>
+      <yn-button type="primary" @click="changeData(true)">直接选中</yn-button>
+      <yn-button type="primary" @click="changeData(false)">取消选中</yn-button>
     </div>
   </div>
 </template>
@@ -101,6 +101,7 @@ export default {
   methods: {
     getOptions() {
       return new Promise((resolve, reject) => {
+        console.log(reject);
         setTimeout(() => {
           const options = [
             { text: "Option1", value: 0 },
