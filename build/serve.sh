@@ -2,7 +2,13 @@
 # @Author: Just be free
 # @Date:   2020-05-26 16:15:41
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-05-26 16:37:59
+# @Last Modified time: 2020-05-27 15:18:58
+
+#获取系统类型
+function getSystem {
+  system=`uname`
+  echo ${system}
+}
 
 # 字符串首字母转换成大写
 toFirstLetterUpper() {
@@ -74,7 +80,42 @@ function init {
   echo ""
   echo "======================================"
 }
-dir="src/"
-init $dir $prefix
+
+function replacePrefix {
+  # $1 代表之前的prefix
+  # $2 代表当前的prefix
+  # $3 要查找的目录
+  if [ $1 == $2 ]; then
+    echo "前缀无变化无需替换"
+    exit 0
+  fi
+  if [[ `getSystem` == "Darwin" ]]; then
+    sed -i "" "s/$1/$2/g" `grep -rl "$1" $3`
+  else
+    sed -i "s/$1/$2/g" `grep -rl "$1" $3`
+  fi
+}
+
+previousPrefix=""
+
+while getopts "P:" arg
+do
+  case $arg in
+    P)
+      previousPrefix=$OPTARG
+      ;;
+    ?)
+      echo "unknown arguments"
+      exit 1
+      ;;
+    esac
+done
+exampleDir="examples/"
+lowerCasePrefix=`getPrefix`
+echo "之前的前缀是$previousPrefix 当前前缀是$lowerCasePrefix"
+replacePrefix "$previousPrefix-" "$lowerCasePrefix-" $exampleDir
+
+# dir="src/"
+# init $dir $prefix
 
 
