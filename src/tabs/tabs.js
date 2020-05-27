@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-21 14:19:49
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-26 18:10:48
+ * @Last Modified time: 2020-05-27 19:44:18
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -18,10 +18,8 @@ export default defineComponent({
   props: {
     value: [Number, String]
   },
-  data() {
-    return {
-      currentTab: this.value
-    };
+  initPropsToData() {
+    return [{ key: "currentTab", value: "value" }];
   },
   methods: {
     getTitles(slots = []) {

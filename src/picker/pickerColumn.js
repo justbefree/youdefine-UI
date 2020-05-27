@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-31 18:40:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:18:44
+ * @Last Modified time: 2020-05-27 19:48:42
  * @E-mail: justbefree@126.com
  */
 import { defineComponent } from "../modules/component";
@@ -43,12 +43,16 @@ export default defineComponent({
       default: 1000
     }
   },
+  initPropsToData() {
+    return [
+      { key: "options", value: "columns", parse: deepClone },
+      { key: "currentIndex", value: "defaultIndex" }
+    ];
+  },
   data() {
     return {
       duration: 0,
-      offset: 0,
-      options: deepClone(this.columns),
-      currentIndex: this.defaultIndex
+      offset: 0
     };
   },
   computed: {
