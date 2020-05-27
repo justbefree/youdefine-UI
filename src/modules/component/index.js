@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-05-13 18:08:08
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-05-26 17:16:32
+* @Last Modified time: 2020-05-27 19:47:20
 * @E-mail: justbefree@126.com
 */
 import { getConfig } from "./config";
@@ -16,7 +16,19 @@ export const defineComponent = (options = {}) => {
     options.components = dependanceComponent(options.components);
   }
   options.data = function () {
-    return { ...data, VUE_APP_PREFIX: prefix };
+    const propsToData = options.initPropsToData && typeof options.initPropsToData === "function" && options.initPropsToData();
+    const result = { ...data, VUE_APP_PREFIX: prefix };
+    if (Array.isArray(propsToData)) {
+      propsToData.forEach(prop => {
+        const { key, value, parse } = prop;
+        if (parse && typeof parse === "function") {
+          result[key] = parse(this[value]);
+        } else {
+          result[key] = this[value];
+        }
+      });
+    }
+    return result;
   }
   return options;
 };
