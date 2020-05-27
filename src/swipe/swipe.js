@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-09 09:20:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-26 18:05:18
+ * @Last Modified time: 2020-05-27 18:44:24
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -113,10 +113,12 @@ export default defineComponent({
       let moving = false;
       const that = this;
       let r = null;
+      let startTime = 0;
       this.bindEvent(el, {
         start() {
           that.stop();
           that.dragging = true;
+          startTime = Date.now();
         },
         dragging() {
           if (moving) {
@@ -152,9 +154,9 @@ export default defineComponent({
           that.dragging = false;
           that.delayActivedIndex = that.activedIndex;
           const disXY = that.vertical ? that.deltaY : that.deltaX;
-          if (disXY === 0) {
-            that.stop();
-            that.openPopup();
+          const timeDiff = Date.now() - startTime;
+          if (timeDiff < 200 && disXY === 0) {
+            that.openImageViewer();
             return;
           }
           if (moving || disXY === 0 || !prevEle || !curEle || !nextEle) {
@@ -274,7 +276,7 @@ export default defineComponent({
         );
       }
     },
-    openPopup() {
+    openImageViewer() {
       this.stop();
       this.fullScreen = true;
       this.unbindAllEvent();
@@ -284,7 +286,7 @@ export default defineComponent({
         this.drag();
       });
     },
-    closePopup() {
+    closeImageViewer() {
       this.unbindAllEvent();
       this.showPopup = false;
     },
@@ -313,7 +315,7 @@ export default defineComponent({
           h(
             genComponentName("popup"),
             {
-              on: { input: this.closePopup, afterLeave: this.handleAfterLeave },
+              on: { input: this.closeImageViewer, afterLeave: this.handleAfterLeave },
               class: ["yn-swipe-popup"],
               props: { position: "middle", showCloseIcon: this.showCloseIcon },
               directives: [{ name: "show", value: this.showPopup }]
