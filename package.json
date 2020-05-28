@@ -52,5 +52,21 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "bin": {
+    "youdefine-ui": "serve.js"
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justbefree/youdefine-UI.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justbefree/youdefine-UI/issues"
+  },
+  "homepage": "https://github.com/justbefree/youdefine-UI#readme"
 }
