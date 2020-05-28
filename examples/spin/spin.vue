@@ -16,6 +16,10 @@
       <h4>double-bounce</h4>
       <yn-spin type="double-bounce"></yn-spin>
     </div>
+    <div>
+      <h4>rotate</h4>
+      <yn-spin type="rotate" size="40"></yn-spin>
+    </div>
   </div>
 </template>
 
