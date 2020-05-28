@@ -4,7 +4,7 @@
   "private": false,
   "keywords": [
     "vue component",
-    "yn-components"
+    "yui-components"
   ],
   "description": "A vue components lib spically for business-travel",
   "main": "lib/yn-components.umd.min.js",
