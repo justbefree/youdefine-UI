@@ -1,34 +1,34 @@
 <template>
   <!-- <div>
-    <h2>yn-layout</h2>
+    <h2>yui-layout</h2>
   </div> -->
-  <yn-layout monitor @scroll="handleScroll" :showHeader="showHeader">
+  <yui-layout monitor @scroll="handleScroll" :showHeader="showHeader">
     <div slot="header" class="header">header</div>
     <div slot="body">
       body区域，可以滑动
       <template v-for="item in 200">
         <div v-if="item === 20" :key="item">
-          <yn-sticky offsetTop="100" @scroll="handleStickyScroll">
+          <yui-sticky offsetTop="100" @scroll="handleStickyScroll">
             <span>我固定在某个位置{{ item }}</span>
-          </yn-sticky>
+          </yui-sticky>
         </div>
         <div v-else-if="item === 100" :key="item">
-          <yn-sticky offsetTop="0">
+          <yui-sticky offsetTop="0">
             <span>我固定在某个位置{{ item }}</span>
-          </yn-sticky>
+          </yui-sticky>
         </div>
         <div v-else-if="item === 120" :key="item">
           <div class="box111" ref="container">
-            <yn-sticky :container="container" class="has-container">
+            <yui-sticky :container="container" class="has-container">
               <span>我固定在某个位置{{ item }}</span>
-            </yn-sticky>
+            </yui-sticky>
           </div>
         </div>
         <div v-else :key="item">{{ item }}</div>
       </template>
     </div>
     <div slot="footer">footer</div>
-  </yn-layout>
+  </yui-layout>
 </template>
 <script>
 export default {

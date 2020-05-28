@@ -1,31 +1,31 @@
 <template>
   <div>
-    <h2>yn-tabs</h2>
+    <h2>yui-tabs</h2>
     <div class="box">
-      <yn-tabs v-model="active" @change="change">
-        <yn-tab-item :key="index" :title="'Tab' + index" v-for="index in 4">
+      <yui-tabs v-model="active" @change="change">
+        <yui-tab-item :key="index" :title="'Tab' + index" v-for="index in 4">
           content of tab {{ index }}
-        </yn-tab-item>
-      </yn-tabs>
+        </yui-tab-item>
+      </yui-tabs>
     </div>
     <div class="box">
-      <yn-tabs v-model="active2" @click="handleClick">
-        <yn-tab-item
+      <yui-tabs v-model="active2" @click="handleClick">
+        <yui-tab-item
           :key="index"
           :title="'Tab' + index"
           v-for="index in 8"
           :disabled="index === 4"
         >
           content of tab {{ index }}
-        </yn-tab-item>
-      </yn-tabs>
+        </yui-tab-item>
+      </yui-tabs>
     </div>
     <div class="box">
-      <yn-tabs v-model="active2">
-        <yn-tab-item :key="index" :title="'Tab' + index" v-for="index in 2">
+      <yui-tabs v-model="active2">
+        <yui-tab-item :key="index" :title="'Tab' + index" v-for="index in 2">
           content of tab {{ index }}
-        </yn-tab-item>
-      </yn-tabs>
+        </yui-tab-item>
+      </yui-tabs>
     </div>
   </div>
 </template>

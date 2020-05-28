@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>yn-indicator</h2>
+    <h2>yui-indicator</h2>
     <ul>
       <li @click="indicator('doubleBounce')">doubleBounce</li>
       <li @click="indicator('fadingCircle')">fadingCircle</li>

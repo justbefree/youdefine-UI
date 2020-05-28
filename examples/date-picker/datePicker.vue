@@ -1,17 +1,17 @@
 <template>
   <div>
-    <h2>yn-date-picker</h2>
+    <h2>yui-date-picker</h2>
     <ul>
       <li @click="handleClick(1)">默认</li>
       <li @click="handleClick(2)">指定起止日期</li>
     </ul>
-    <yn-date-picker v-model="show1" @confirm="handleConfirm"></yn-date-picker>
-    <yn-date-picker
+    <yui-date-picker v-model="show1" @confirm="handleConfirm"></yui-date-picker>
+    <yui-date-picker
       v-model="show2"
       start="1995-03-08"
       end="2022-03-22"
       @confirm="handleConfirm"
-    ></yn-date-picker>
+    ></yui-date-picker>
   </div>
 </template>
 <script type="text/javascript">

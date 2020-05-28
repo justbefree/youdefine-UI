@@ -1,82 +1,82 @@
 <template>
   <div>
-    <h2>yn-flex 在学不会flex说不过去啊</h2>
+    <h2>yui-flex 在学不会flex说不过去啊</h2>
     <a target="_blank" href="https://wow.techbrood.com/fiddle/8177"
       >查看原案例</a
     >
-    <yn-flex justifyContent="center" alignItems="center" class="face">
+    <yui-flex justifyContent="center" alignItems="center" class="face">
       <transition>
         <!-- 加一层<transition>也是可以的，其他元素就不行了哦，暂时不支持<transition-group> -->
-        <yn-flex-item class="dot"></yn-flex-item>
+        <yui-flex-item class="dot"></yui-flex-item>
       </transition>
-    </yn-flex>
+    </yui-flex>
     <hr />
-    <yn-flex justifyContent="spaceBetween" class="face">
-      <yn-flex-item class="dot"></yn-flex-item>
-      <yn-flex-item class="dot" align-self="flex-end"></yn-flex-item>
-    </yn-flex>
+    <yui-flex justifyContent="spaceBetween" class="face">
+      <yui-flex-item class="dot"></yui-flex-item>
+      <yui-flex-item class="dot" align-self="flex-end"></yui-flex-item>
+    </yui-flex>
     <hr />
-    <yn-flex justifyContent="spaceBetween" class="face">
-      <yn-flex-item class="dot"></yn-flex-item>
-      <yn-flex-item class="dot" align-self="center"></yn-flex-item>
-      <yn-flex-item class="dot" align-self="flex-end"></yn-flex-item>
-    </yn-flex>
+    <yui-flex justifyContent="spaceBetween" class="face">
+      <yui-flex-item class="dot"></yui-flex-item>
+      <yui-flex-item class="dot" align-self="center"></yui-flex-item>
+      <yui-flex-item class="dot" align-self="flex-end"></yui-flex-item>
+    </yui-flex>
     <hr />
-    <yn-flex justifyContent="spaceBetween" flexDirection="column" class="face">
-      <yn-flex-item>
-        <yn-flex justifyContent="spaceBetween">
-          <yn-flex-item class="dot"></yn-flex-item>
-          <yn-flex-item class="dot"></yn-flex-item>
-        </yn-flex>
-      </yn-flex-item>
-      <yn-flex-item>
-        <yn-flex justifyContent="spaceBetween">
-          <yn-flex-item class="dot"></yn-flex-item>
-          <yn-flex-item class="dot"></yn-flex-item>
-        </yn-flex>
-      </yn-flex-item>
-    </yn-flex>
+    <yui-flex justifyContent="spaceBetween" flexDirection="column" class="face">
+      <yui-flex-item>
+        <yui-flex justifyContent="spaceBetween">
+          <yui-flex-item class="dot"></yui-flex-item>
+          <yui-flex-item class="dot"></yui-flex-item>
+        </yui-flex>
+      </yui-flex-item>
+      <yui-flex-item>
+        <yui-flex justifyContent="spaceBetween">
+          <yui-flex-item class="dot"></yui-flex-item>
+          <yui-flex-item class="dot"></yui-flex-item>
+        </yui-flex>
+      </yui-flex-item>
+    </yui-flex>
     <hr />
-    <yn-flex justifyContent="spaceBetween" flexDirection="column" class="face">
-      <yn-flex-item>
-        <yn-flex justifyContent="spaceBetween">
-          <yn-flex-item class="dot"></yn-flex-item>
-          <yn-flex-item class="dot"></yn-flex-item>
-        </yn-flex>
-      </yn-flex-item>
-      <yn-flex-item>
-        <yn-flex justify-content="center">
-          <yn-flex-item class="dot"></yn-flex-item>
-        </yn-flex>
-      </yn-flex-item>
-      <yn-flex-item>
-        <yn-flex justifyContent="spaceBetween">
-          <yn-flex-item class="dot"></yn-flex-item>
-          <yn-flex-item class="dot"></yn-flex-item>
-        </yn-flex>
-      </yn-flex-item>
-    </yn-flex>
+    <yui-flex justifyContent="spaceBetween" flexDirection="column" class="face">
+      <yui-flex-item>
+        <yui-flex justifyContent="spaceBetween">
+          <yui-flex-item class="dot"></yui-flex-item>
+          <yui-flex-item class="dot"></yui-flex-item>
+        </yui-flex>
+      </yui-flex-item>
+      <yui-flex-item>
+        <yui-flex justify-content="center">
+          <yui-flex-item class="dot"></yui-flex-item>
+        </yui-flex>
+      </yui-flex-item>
+      <yui-flex-item>
+        <yui-flex justifyContent="spaceBetween">
+          <yui-flex-item class="dot"></yui-flex-item>
+          <yui-flex-item class="dot"></yui-flex-item>
+        </yui-flex>
+      </yui-flex-item>
+    </yui-flex>
     <hr />
-    <yn-flex justifyContent="spaceBetween" flexDirection="column" class="face">
-      <yn-flex-item>
-        <yn-flex justifyContent="spaceBetween">
-          <yn-flex-item class="dot"></yn-flex-item>
-          <yn-flex-item class="dot"></yn-flex-item>
-        </yn-flex>
-      </yn-flex-item>
-      <yn-flex-item>
-        <yn-flex justify-content="spaceBetween">
-          <yn-flex-item class="dot"></yn-flex-item>
-          <yn-flex-item class="dot"></yn-flex-item>
-        </yn-flex>
-      </yn-flex-item>
-      <yn-flex-item>
-        <yn-flex justifyContent="spaceBetween">
-          <yn-flex-item class="dot"></yn-flex-item>
-          <yn-flex-item class="dot"></yn-flex-item>
-        </yn-flex>
-      </yn-flex-item>
-    </yn-flex>
+    <yui-flex justifyContent="spaceBetween" flexDirection="column" class="face">
+      <yui-flex-item>
+        <yui-flex justifyContent="spaceBetween">
+          <yui-flex-item class="dot"></yui-flex-item>
+          <yui-flex-item class="dot"></yui-flex-item>
+        </yui-flex>
+      </yui-flex-item>
+      <yui-flex-item>
+        <yui-flex justify-content="spaceBetween">
+          <yui-flex-item class="dot"></yui-flex-item>
+          <yui-flex-item class="dot"></yui-flex-item>
+        </yui-flex>
+      </yui-flex-item>
+      <yui-flex-item>
+        <yui-flex justifyContent="spaceBetween">
+          <yui-flex-item class="dot"></yui-flex-item>
+          <yui-flex-item class="dot"></yui-flex-item>
+        </yui-flex>
+      </yui-flex-item>
+    </yui-flex>
   </div>
 </template>
 <script>

@@ -1,18 +1,18 @@
 <template>
   <div>
-    <h2>yn-field</h2>
+    <h2>yui-field</h2>
     <div class="box">
       <ul>
         <li>
           <span class="label">基础用法</span>
-          <yn-field-group>
-            <yn-field v-model="basicUsage" placeholder="请输入内容"></yn-field>
-          </yn-field-group>
+          <yui-field-group>
+            <yui-field v-model="basicUsage" placeholder="请输入内容"></yui-field>
+          </yui-field-group>
         </li>
         <li>
           <span class="label">数字类型</span>
-          <yn-field-group>
-            <yn-field
+          <yui-field-group>
+            <yui-field
               v-model="phoneNumber"
               label="手机号码"
               type="number"
@@ -20,78 +20,78 @@
               max="10"
               placeholder="phone number"
               pattern="[0-9]*"
-            ></yn-field>
-          </yn-field-group>
+            ></yui-field>
+          </yui-field-group>
         </li>
         <li>
           <span class="label">密码类型</span>
-          <yn-field
+          <yui-field
             v-model="userPassword"
             label="用户密码"
             type="password"
             placeholder="password"
-          ></yn-field>
+          ></yui-field>
         </li>
         <li>
           <span class="label">只读</span>
-          <yn-field
+          <yui-field
             v-model="readonly"
             label="证件信息"
             type="text"
             readonly
-          ></yn-field>
+          ></yui-field>
         </li>
         <li>
           <span class="label">disabled</span>
-          <yn-field
+          <yui-field
             v-model="disabled"
             label="关键信息"
             type="text"
             disabled
-          ></yn-field>
+          ></yui-field>
         </li>
         <li>
           <span class="label">清除icon</span>
-          <yn-field
+          <yui-field
             v-model="clear"
             label="清除icon"
             type="text"
             clearable
-          ></yn-field>
+          ></yui-field>
         </li>
         <li>
           <span class="label">自定义icon</span>
-          <yn-field
+          <yui-field
             v-model="customIcon"
             label="自定义icon"
             iconName="iconarrow_right_gray"
             type="text"
-          ></yn-field>
+          ></yui-field>
         </li>
         <li>
           <span class="label">textarea</span>
-          <yn-field
+          <yui-field
             v-model="textarea"
             label="textarea"
             type="textarea"
             maxlength="50"
             showTextareaCounter
             clearable
-          ></yn-field>
+          ></yui-field>
         </li>
         <li>
-          <yn-field-group>
-            <yn-field v-model="ynName" label="中文姓名"></yn-field>
-            <yn-field v-model="ynPhone" label="手机号码"></yn-field>
-            <yn-field v-model="ynIdType" label="证件类型"></yn-field>
-            <yn-field v-model="ynIdNo" label="证件号码"></yn-field>
-            <yn-field
+          <yui-field-group>
+            <yui-field v-model="ynName" label="中文姓名"></yui-field>
+            <yui-field v-model="ynPhone" label="手机号码"></yui-field>
+            <yui-field v-model="ynIdType" label="证件类型"></yui-field>
+            <yui-field v-model="ynIdNo" label="证件号码"></yui-field>
+            <yui-field
               v-model="ynIdNoEncrpt"
               label="加密证件"
               encrypted
-            ></yn-field>
-            <yn-field v-model="ynBirthday" label="出生日期"></yn-field>
-          </yn-field-group>
+            ></yui-field>
+            <yui-field v-model="ynBirthday" label="出生日期"></yui-field>
+          </yui-field-group>
         </li>
       </ul>
     </div>
