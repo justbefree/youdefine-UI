@@ -1,7 +1,6 @@
 <template>
-  <yui-layout :showFooter="false">
-    <div class="example-content" slot="body">
-      <ul class="example-container">
+  <div class="example-container">
+    <ul>
         <li @click="jump('toast')">toast</li>
         <li @click="jump('indicator')">indicator</li>
         <li @click="jump('spin')">spin</li>
@@ -28,8 +27,7 @@
         <li @click="jump('pullRefresh')">pullRefresh</li>
         <li @click="jump('datePicker')">datePicker</li>
       </ul>
-    </div>
-  </yui-layout>
+  </div>
 </template>
 <script type="text/javascript">
 export default {
