@@ -162,10 +162,10 @@
       :title="['日历', '请选择入住时间', '请选择离店时间']"
     ></yn-calendar>
     <yn-calendar
-      before="1"
-      after="1"
+      before="-1"
+      after="4"
       v-model="calendar9"
-      unit="year"
+      unit="days"
     ></yn-calendar>
   </div>
 </template>
