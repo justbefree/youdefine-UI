@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-07 13:50:45
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-04-29 11:11:02
+ * @Last Modified time: 2020-05-30 21:53:38
  */
 import Router from "vue-router";
 import Vue from "vue";
@@ -15,6 +15,7 @@ import YnIconfont from "./yn-iconfont/iconfont.vue";
 import YnCheckbox from "./yn-checkbox/checkbox.vue";
 import YnRadiobox from "./yn-radiobox/radiobox.vue";
 import YnCalendar from "./yn-calendar/calendar.vue";
+import YnCalendarBug from "./yn-calendar/calendarBug.vue";
 import YnPopup from "./yn-popup/popup.vue";
 import YnButton from "./yn-button/button.vue";
 import YnFlex from "./yn-flex/flex.vue";
@@ -74,6 +75,11 @@ const router = new Router({
       path: "/calendar",
       name: "calendar",
       component: YnCalendar
+    },
+    {
+      path: "/calendar-bug",
+      name: "calendarBug",
+      component: YnCalendarBug
     },
     {
       path: "/popup",
