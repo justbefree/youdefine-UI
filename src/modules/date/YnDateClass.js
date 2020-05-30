@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-19 21:12:21
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-04-29 12:55:45
+ * @Last Modified time: 2020-05-30 21:54:58
  */
 import { error } from "../error";
 const now = new Date();
@@ -39,19 +39,15 @@ YnDate.prototype = YnDate.fn = {
     if (["days", "day", "d"].indexOf(unit) > -1) {
       this.JSDate.setDate(this.JSDate.getDate() + count);
     } else if (["months", "month", "m"].indexOf(unit) > -1) {
-      if (this.JSDate.getMonth() + count === 1) {
-        // JS处理日期有bug，假如说某年2月份只有28天，而一月份在28天以后的日期加一个月会自动跳过二月份，直接生成三月。操蛋
-        const days = YnDate(
-          this.year,
-          this.JSDate.getMonth() + 1 + count,
-          "01"
-        ).getDaysCountOfMonth();
-        if (this.JSDate.getDate() > days) {
-          this.JSDate.setDate(days);
-          this.JSDate.setMonth(this.JSDate.getMonth() + count);
-        } else {
-          this.JSDate.setMonth(this.JSDate.getMonth() + count);
-        }
+      // JS处理日期有bug，假如说某年2月份只有28天，而一月份在28天以后的日期加一个月会自动跳过二月份，直接生成三月。操蛋
+      const days = YnDate(
+        this.year,
+        this.JSDate.getMonth() + 1 + count,
+        "01"
+      ).getDaysCountOfMonth();
+      if (this.JSDate.getDate() > days) {
+        this.JSDate.setDate(days);
+        this.JSDate.setMonth(this.JSDate.getMonth() + count);
       } else {
         this.JSDate.setMonth(this.JSDate.getMonth() + count);
       }
