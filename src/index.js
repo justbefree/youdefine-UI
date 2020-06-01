@@ -2,11 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-01-03 16:34:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-29 17:48:34
+ * @Last Modified time: 2020-05-22 18:43:45
  */
 import { getConfig } from "./modules/component/config";
 const version = getConfig("VUE_APP_VERSION");
-const prefix = getConfig("VUE_APP_PREFIX");
 import "./index.less";
 import Button from "./button";
 import Flex from "./flex";
@@ -86,11 +85,10 @@ const install = (Vue) => {
 if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
-export { install, version, prefix };
+export { install, version };
 export default {
   install,
-  version,
-  prefix
+  version
 };
 
 export { ActionSheet as YuiActionSheet };
