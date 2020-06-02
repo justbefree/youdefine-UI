@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:47:54
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 14:53:53
+ * @Last Modified time: 2020-06-02 14:45:46
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -56,16 +56,22 @@ export default defineComponent({
     },
     fixed: Boolean
   },
+  initPropsToData() {
+    const clone = (data) => {
+      try {
+        return deepClone(data);
+      } catch(err) {
+        return [];
+      }
+    };
+    return [{ key: "selections", value: "options", parse: clone }];
+  },
   data() {
-    const selections = Array.isArray(this.options)
-      ? deepClone(this.options)
-      : [];
     return {
       show: false,
       menuStatus: false,
       bodyOverflow: null,
       closingWithoutAnimation: false,
-      selections,
       currentSelected: -1,
       checked: false
     };
