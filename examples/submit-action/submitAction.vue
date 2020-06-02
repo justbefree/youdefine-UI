@@ -40,6 +40,26 @@
         </yn-submit-action-popup-content>
       </yn-submit-action>
     </div>
+    <div class="box">
+      <yn-button @click="handlePopup">弹出</yn-button>
+      <yn-popup v-model="popup">
+        <div class="full-content">
+          <yn-submit-action
+            fixed
+            submitText="确认退票"
+            @submit="handleSubmit3"
+            label="应退金额参考:"
+          >
+            <yn-submit-action-popup-content>
+              <ul>
+                <li>这里是自定义内容</li>
+                <li>这里是自定义内容</li>
+              </ul>
+            </yn-submit-action-popup-content>
+          </yn-submit-action>
+        </div>
+      </yn-popup>
+    </div>
   </div>
 </template>
 
@@ -48,7 +68,8 @@ export default {
   name: "YnSubmitActionPage",
   data() {
     return {
-      disabled: false
+      disabled: false,
+      popup: false
     };
   },
   methods: {
@@ -59,7 +80,14 @@ export default {
         this.disabled = false;
       }, 2000);
     },
+    handlePopup() {
+      this.popup = !this.popup;
+    },
     handleSubmit2() {
+      this.Toast("提交成功");
+    },
+    handleSubmit3() {
+      this.handlePopup();
       this.Toast("提交成功");
     }
   }
@@ -76,5 +104,9 @@ ul {
 }
 .rewrite {
   font-size: 12px;
+}
+.full-content{
+  width: 100%;
+  height: 200px;
 }
 </style>
