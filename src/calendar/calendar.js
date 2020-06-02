@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 14:42:06
+ * @Last Modified time: 2020-06-02 15:45:50
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -326,10 +326,20 @@ export default defineComponent({
       this.rendered(() => {
         const el = this.$refs.scrollPosition.$el;
         const parent = this.$refs.popup.$el;
-        this.$refs.scroller.$el.scrollTop =
+        // this.$refs.scroller.$el.scrollTop =
+        //   getOffset(el).top -
+        //   this.$refs.header.$el.offsetHeight -
+        //   getOffset(parent).top;
+        // 解决iOS 13.4.1 日历显示选择区域异常。
+        // 原因是因为在iOS 13.4.1中 获取popup 的translateY的时候有值（按理说这里应该是0）
+        // 猜测：可能是iOS 13.4.1的渲染机制跟其他版本浏览器渲染不一致，测试发现跟Vue transition有关系，具体还得查一下
+        // 解决方法：延迟30ms，再进行设置scrollTop值
+        setTimeout(() => {
+          this.$refs.scroller.$el.scrollTop =
           getOffset(el).top -
           this.$refs.header.$el.offsetHeight -
           getOffset(parent).top;
+        }, 30);
       });
     },
     handleBeforeEnter() {
