@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:47:54
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-02 14:45:46
+ * @Last Modified time: 2020-06-03 15:18:53
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -143,9 +143,16 @@ export default defineComponent({
       }
     },
     check(selected = false) {
-      if ((selected && !this.checked) || (!selected && this.checked)) {
-        this.toggle();
-        this.$parent.switchTo(this.index);
+      if (this.hasOptions()) {
+        if ((selected && !this.show) || (!selected && this.show)) {
+          this.toggle();
+          this.$parent.switchTo(this.index);
+        }
+      } else {
+        if ((selected && !this.checked) || (!selected && this.checked)) {
+          this.toggle();
+          this.$parent.switchTo(this.index);
+        }
       }
     },
     toggle() {

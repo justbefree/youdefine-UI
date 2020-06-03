@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:11:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-26 18:01:51
+ * @Last Modified time: 2020-06-03 15:17:39
  * @E-mail: justbefree@126.com
  */
 
@@ -61,6 +61,13 @@ export default defineComponent({
           ...this.tabs,
           [key]: slots[key].componentInstance.getStatus()
         };
+      }
+    },
+    switchTab(key, status) {
+      this.currentTab = key;
+      this.tabs = {
+        ...this.tabs,
+        [key]: status
       }
     },
     slideUp() {
