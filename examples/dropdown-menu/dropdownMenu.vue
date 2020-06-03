@@ -27,11 +27,12 @@
       </yn-dropdown-menu>
     </div>
     <div class="box">
-      <yn-dropdown-menu direction="up">
+      <yn-dropdown-menu direction="up" ref="switchTo">
         <yn-dropdown-menu-item
           v-model="value6"
           :options="setOtions()"
           defaultSelectedIndex="2"
+          ref="slide"
         ></yn-dropdown-menu-item>
         <yn-dropdown-menu-item
           v-model="value5"
@@ -55,6 +56,14 @@
       <hr />
       <yn-button type="primary" @click="changeData(true)">直接选中</yn-button>
       <yn-button type="primary" @click="changeData(false)">取消选中</yn-button>
+      <div></div>
+      <yn-button type="primary" @click="changeData2(true)">直接选中【有下拉】</yn-button>
+      <yn-button type="primary" @click="changeData2(false)">取消选中【有下拉】</yn-button>
+      <div></div>
+      <yn-button type="primary" @click="changeData3(true)">直接选中【自定义内容】</yn-button>
+      <yn-button type="primary" @click="changeData3(false)">取消选中【自定义内容】</yn-button>
+      <div></div>
+      <yn-button type="primary" @click="switchTo(1)">切换</yn-button>
     </div>
   </div>
 </template>
@@ -137,6 +146,15 @@ export default {
     },
     changeData(e) {
       this.$refs.mapStatus.check(e);
+    },
+    changeData2(e) {
+      this.$refs.slide.check(e);
+    },
+    changeData3(e) {
+      this.$refs.closeAble.check(e);
+    },
+    switchTo(i) {
+      this.$refs.switchTo.switchTab(i, true);
     }
   }
 };
