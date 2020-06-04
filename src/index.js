@@ -2,12 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-01-03 16:34:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-29 17:48:34
+ * @Last Modified time: 2020-06-04 17:51:35
  */
 import { getConfig } from "./modules/component/config";
 const version = getConfig("VUE_APP_VERSION");
 const prefix = getConfig("VUE_APP_PREFIX");
-import "./index.less";
+import "./sass.js";
+// import "./index.less";
 import Button from "./button";
 import Flex from "./flex";
 import FlexItem from "./flex-item";
@@ -72,11 +73,11 @@ const components = [
   SubmitActionPopupContent,
   SubmitActionValue,
   PullRefresh,
-  DatePicker
+  DatePicker,
 ];
 const install = (Vue) => {
   if (install.installed) return;
-  components.map(component => {
+  components.map((component) => {
     Vue.component(component.name, component);
   });
   Vue.prototype.Toast = Toast;
@@ -90,7 +91,7 @@ export { install, version, prefix };
 export default {
   install,
   version,
-  prefix
+  prefix,
 };
 
 export { ActionSheet as YuiActionSheet };
