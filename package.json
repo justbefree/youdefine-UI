@@ -7,7 +7,7 @@
   "scripts": {
     "serve": "node bin/serve && vue-cli-service serve --mode development",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit -u",
+    "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "lib": "vue-cli-service build --mode production --target lib --name yn-components --dest lib src/index.js"
   },
@@ -50,6 +50,24 @@
     },
     "rules": {},
     "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      },
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      },
       {
         "files": [
           "**/__tests__/*.{j,t}s?(x)",
