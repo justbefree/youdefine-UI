@@ -2,9 +2,9 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:15:58
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-19 16:40:16
+ * @Last Modified time: 2020-06-08 10:35:33
  */
-import { defineComponent, genComponentName } from "../modules/component";
+import { defineComponent, genComponentName, bem } from "../modules/component";
 import Spin from "../spin";
 import Iconfont from "../iconfont";
 import { slotsMixins } from "../mixins/slots";
@@ -15,42 +15,42 @@ export default defineComponent({
   props: {
     type: {
       type: String,
-      default: "default"
+      default: "default",
     },
     size: {
       type: String,
-      default: "normal"
+      default: "normal",
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     plain: {
       type: Boolean,
-      default: false
+      default: false,
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     loadingText: String,
     loadingType: {
       type: String,
-      default: "snake"
+      default: "snake",
     },
     loadingSize: {
       type: Number,
-      default: 14
+      default: 14,
     },
     loadingColor: {
       type: String,
-      default: "#007aff"
+      default: "#007aff",
     },
     iconName: String,
     iconSize: {
       type: String,
-      default: "16"
-    }
+      default: "16",
+    },
   },
   methods: {
     isValidType() {
@@ -63,18 +63,18 @@ export default defineComponent({
       const loading = [];
       if (this.loading) {
         loading.push(
-          h("div", { class: ["yn-button-loading-icon"] }, [
+          h("div", { class: [bem("yui-button", "loading-icon")] }, [
             h(
               genComponentName("spin"),
               {
                 props: {
                   type: this.loadingType,
                   size: this.loadingSize,
-                  color: this.loadingColor
-                }
+                  color: this.loadingColor,
+                },
               },
               []
-            )
+            ),
           ])
         );
       }
@@ -97,43 +97,44 @@ export default defineComponent({
       if (!this.loading && !this.disabled) {
         this.$emit("click");
       }
-    }
+    },
   },
   render(h) {
     const className = [];
     if (this.isValidType()) {
-      className.push(`yn-button-${this.type}`);
+      if (this.plain) {
+        className.push(bem({ "yui-button": { [this.type]: "is-plain" } }));
+      } else {
+        className.push(bem({ "yui-button": this.type }));
+      }
     } else {
-      className.push("yn-button-default");
+      className.push(bem({ "yui-button": "default" }));
     }
     if (this.isValidSize()) {
-      className.push(`yn-button-${this.size}`);
+      className.push(bem({ "yui-button": this.size }));
     } else {
-      className.push("yn-button-normal");
+      className.push(bem({ "yui-button": "normal" }));
     }
     if (this.disabled) {
-      className.push("yn-button-disable");
+      className.push(bem({ "yui-button": "disabled" }));
     }
     if (this.loading) {
-      className.push("yn-button-loading");
-    }
-    if (this.plain) {
-      className.push("is-plain");
+      className.push(bem({ "yui-button": "loading" }));
     }
     const text =
       this.loading && this.loadingText ? this.loadingText : this.slots();
     return h(
       "button",
       {
-        class: ["yn-button", ...className],
+        class: [bem("yui-button"), ...className],
         attrs: { type: "button" },
-        on: { click: this.handleClick }
+        on: { click: this.handleClick },
       },
       [
         ...this.createLoading(h),
         ...this.createIcon(h),
-        h("span", { class: ["yn-button-text"] }, text)
+        h("span", { class: [bem("yui-button", "text")] }, text),
       ]
     );
-  }
+  },
 });
