@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-20 12:05:51
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-06-09 11:55:48
+# @Last Modified time: 2020-06-09 11:58:06
 
 # 字符串首字母转换成大写
 toFirstLetterUpper() {
@@ -83,7 +83,7 @@ function init {
   echo "DONE !!!"
   echo ""
   echo "======================================"
-  read -p "Press Any key to exit...:" cu
+  read -p "Press Enter to exit...:" cu
   echo "$cu Bye"
   exit 0
 }
