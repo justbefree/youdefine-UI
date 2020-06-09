@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-01 17:52:13
+ * @Last Modified time: 2020-06-09 17:02:12
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -32,6 +32,10 @@ export default defineComponent({
       default: "single"
     },
     doubleModeAllowSameDate: {
+      type: Boolean,
+      default: true
+    },
+    crossed: {
       type: Boolean,
       default: true
     },
@@ -149,20 +153,30 @@ export default defineComponent({
               this.fromDate = null;
             }
           } else {
-            this.confirmButtonClassName = "active";
             if (this.fromDate.ynDate.isAfter(date.ynDate)) {
-              drop(this.changedNode[this.fromDate.key].className, "start");
-              push(this.changedNode[this.fromDate.key].className, "end");
-              this.setDateValue(
-                this.changedNode[this.fromDate.key],
-                "mark",
-                this.toDateMark
-              );
-              this.toDate = this.fromDate;
-              this.fromDate = date;
-              push(date.className, "start");
-              this.setDateValue(date, "mark", this.fromDateMark);
+              if (this.crossed) {
+                this.confirmButtonClassName = "active";
+                drop(this.changedNode[this.fromDate.key].className, "start");
+                push(this.changedNode[this.fromDate.key].className, "end");
+                this.setDateValue(
+                  this.changedNode[this.fromDate.key],
+                  "mark",
+                  this.toDateMark
+                );
+                this.toDate = this.fromDate;
+                this.fromDate = date;
+                push(date.className, "start");
+                this.setDateValue(date, "mark", this.fromDateMark);
+              } else {
+                drop(this.changedNode[this.fromDate.key].className, ["start", "active"]);
+                this.changedNode = { [date.key]: date };
+                this.setDateValue(date, "mark", this.fromDateMark);
+                push(date.className, ["start", "active"]);
+                this.fromDate = date;
+                return;
+              }
             } else {
+              this.confirmButtonClassName = "active";
               push(date.className, "end");
               this.setDateValue(date, "mark", this.toDateMark);
               this.toDate = date;
