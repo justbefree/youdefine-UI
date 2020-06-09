@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-20 12:05:51
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-05-26 19:37:12
+# @Last Modified time: 2020-06-09 11:48:56
 
 # 字符串首字母转换成大写
 toFirstLetterUpper() {
@@ -67,6 +67,7 @@ function init {
   for i in $dirArr
   do
     sub_dir="$1$i"
+    i=${i%/} # Fixed in git environment , ls command will list the folder name as "name/"
     exclude=$(excludeArray $i)
     if [[ -d "$sub_dir" && $exclude == false ]];then
       name=$(camelize $i)
