@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-05-26 16:09:34
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-06-08 18:29:22
+* @Last Modified time: 2020-06-09 09:44:55
 * @E-mail: justbefree@126.com
 */
 const path = require("path");
@@ -11,7 +11,7 @@ const fs = require("fs");
 const serve = require("../build/serve/index.js");
 const previousPrefix = serve.getPreviousPrefix(path.join(__dirname, "../examples/layout/layout.vue"));
 const servejs = require("../build/serve.js")();
-console.log("之前的前缀是什么", previousPrefix);
+console.log("The previous prefix was ", previousPrefix);
 if (os.platform() === "darwin") {
   const { execFile } = require('child_process');
   fs.chmod('build/serve.sh', 0o775, (err) => {

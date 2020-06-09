@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-26 16:15:41
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-05-27 15:18:58
+# @Last Modified time: 2020-06-09 09:51:32
 
 #获取系统类型
 function getSystem {
@@ -33,7 +33,7 @@ function camelize {
 # camelize $name
 # get prefix of the component lib name
 function getPrefix {
-  config_file="./.env.production"
+  config_file="./.env.development"
   prefix=`sed -n 2p $config_file`
   echo ${prefix#*=}
 }
@@ -86,7 +86,7 @@ function replacePrefix {
   # $2 代表当前的prefix
   # $3 要查找的目录
   if [ $1 == $2 ]; then
-    echo "前缀无变化无需替换"
+    echo "The prefix didn't change! No need replace."
     exit 0
   fi
   if [[ `getSystem` == "Darwin" ]]; then
@@ -112,7 +112,7 @@ do
 done
 exampleDir="examples/"
 lowerCasePrefix=`getPrefix`
-echo "之前的前缀是$previousPrefix 当前前缀是$lowerCasePrefix"
+echo "The previous prefix was $previousPrefix and the current prefix is $lowerCasePrefix"
 replacePrefix "$previousPrefix-" "$lowerCasePrefix-" $exampleDir
 
 # dir="src/"

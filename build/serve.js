@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-06-08 16:34:45
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-06-08 18:21:32
+* @Last Modified time: 2020-06-09 09:52:35
 * @E-mail: justbefree@126.com
 */
 const path = require("path");
@@ -26,7 +26,7 @@ async function readLine() {
 }
 function replaceContent(pathName, reg, str) {
   if (reg === str) {
-    console.log("替换完毕");
+    console.log("The prefix didn't change! No need replace.");
     return;
   }
   fs.readdir(pathName, (err, files) => {
@@ -69,7 +69,7 @@ module.exports = function () {
       const prefix = await readLine();
       const examplesDir = path.join(__dirname, "../examples");
       replaceContent(examplesDir, `${previousPrefix}-`, `${prefix}-`);
-      console.log("启动", previousPrefix, prefix);
+      console.log("The application is about to start ", previousPrefix, prefix);
     }
   };
 };
