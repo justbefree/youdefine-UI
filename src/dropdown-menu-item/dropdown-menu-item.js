@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:47:54
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-04 19:30:12
+ * @Last Modified time: 2020-06-11 18:15:27
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -152,6 +152,9 @@ export default defineComponent({
         if ((selected && !this.checked) || (!selected && this.checked)) {
           this.toggle(options);
           this.$parent.switchTo(this.index);
+        } else {
+          const status = this.checked ? "checked" : "unchecked";
+          this.$emit("unchange", this.mapStatus[status]);
         }
       }
     },
