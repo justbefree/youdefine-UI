@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-03 16:34:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-22 18:43:45
+ * @Last Modified time: 2020-06-15 10:12:41
  */
 import { getConfig } from "./modules/component/config";
 const version = getConfig("VUE_APP_VERSION");
@@ -40,6 +40,7 @@ import DatePicker from "./date-picker";
 import SubmitAction from "./submit-action";
 import SubmitActionPopupContent from "./submit-action-popup-content";
 import SubmitActionValue from "./submit-action-value";
+import Counter from "./counter";
 const components = [
   Button,
   Flex,
@@ -71,7 +72,8 @@ const components = [
   SubmitActionPopupContent,
   SubmitActionValue,
   PullRefresh,
-  DatePicker
+  DatePicker,
+  Counter
 ];
 const install = (Vue) => {
   if (install.installed) return;
