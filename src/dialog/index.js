@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:34:48
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 10:10:13
+ * @Last Modified time: 2020-06-15 10:04:38
  * @E-mail: justbefree@126.com
  */
- import { install } from "../modules/component";
+import { install } from "../modules/component";
 import { extend } from "../mixins/rendered";
 import YnDialog from "./dialog";
 install(YnDialog);
