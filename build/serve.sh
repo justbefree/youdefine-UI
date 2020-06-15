@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-26 16:15:41
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-06-15 10:19:31
+# @Last Modified time: 2020-06-15 14:05:24
 
 #获取系统类型
 function getSystem {
@@ -59,6 +59,10 @@ function excludeArray {
 function combine {
   cat src/template.js build/tmp.js > src/index.js
 }
+function callback {
+  rm -rf ./tmp.js
+  # rm -rf ../src/index.js
+}
 function init {
   echo "" > build/tmp.js
   dirArr=`ls $1`
@@ -74,6 +78,7 @@ function init {
     fi
   done
   combine
+  callback
   echo "======================================"
   echo ""
   echo "DONE !!!"
