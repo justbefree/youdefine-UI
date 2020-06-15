@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-26 16:15:41
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-06-09 09:51:32
+# @Last Modified time: 2020-06-15 10:19:31
 
 #获取系统类型
 function getSystem {
@@ -112,10 +112,10 @@ do
 done
 exampleDir="examples/"
 lowerCasePrefix=`getPrefix`
+dir="src/"
+init $dir $prefix
 echo "The previous prefix was $previousPrefix and the current prefix is $lowerCasePrefix"
 replacePrefix "$previousPrefix-" "$lowerCasePrefix-" $exampleDir
 
-# dir="src/"
-# init $dir $prefix
 
 
