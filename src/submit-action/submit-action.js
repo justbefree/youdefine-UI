@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:10:50
+ * @Last Modified time: 2020-06-15 17:50:14
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -63,6 +63,7 @@ export default defineComponent({
     },
     toggle() {
       this.showPopup = !this.showPopup;
+      this.$emit("trigger", this.showPopup);
     },
     view() {
       this.showPopup = true;
