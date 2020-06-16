@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 14:49:32
+ * @Last Modified time: 2020-06-16 11:56:59
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -459,7 +459,7 @@ export default defineComponent({
                 []
               )
             ]),
-            h(genComponentName("flex-item"), { class: ["input-box"], props: { flex: 1 } }, [
+            h(genComponentName("flex-item"), { class: ["input-box", this.isSearching ? "searching" : ""], props: { flex: 1 } }, [
               h(
                 "input",
                 {
