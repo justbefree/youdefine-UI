@@ -2,11 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-04-28 15:42:16
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:06:19
+ * @Last Modified time: 2020-06-28 15:49:06
  * @E-mail: justbefree@126.com
  */
 
 import { defineComponent, genComponentName } from "../modules/component";
+import { getScrollTop } from "../modules/dom";
+import { getScroller } from "../modules/dom/scroll";
 import { slotsMixins } from "../mixins/slots";
 import { touchMixins } from "../mixins/touch";
 import Spin from "../spin";
@@ -25,26 +27,39 @@ export default defineComponent({
   data() {
     return {
       className: "",
-      dragging: false
+      dragging: false,
+      scrollElement: null,
+      scrollTop: 0
     };
   },
   mounted() {
     this.pull();
   },
+  beforeDestroy() {
+    this.scrollElement.removeEventListener("scroll", this.handleScroll, false);
+  },
   methods: {
+    handleScroll(e) {
+      this.scrollTop = getScrollTop(e.target);
+    },
+    scroll() {
+      this.scrollElement = getScroller(this.$el);
+      this.scrollElement.addEventListener("scroll", this.handleScroll, false);
+    },
     pull() {
+      this.scroll();
       const that = this;
       this.bindEvent(this.$el, {
         dragging(event) {
           const { target } = event;
-          if (!that.loading && that.deltaY > 0) {
+          if (!that.loading && that.deltaY > 0 && that.scrollTop <= 10) {
             that.dragging = true;
             that.className = "none";
             target.style.transform = `translate3D(0, ${that.bounceDeltaY}px, 0)`;
           }
         },
         stop(event) {
-          if (!that.loading && that.deltaY > 0) {
+          if (!that.loading && that.deltaY > 0 && that.scrollTop <= 10) {
             that.$emit("pullRefresh", true);
             const { target } = event;
             that.className = "";
