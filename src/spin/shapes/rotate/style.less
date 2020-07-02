@@ -1,6 +1,64 @@
-.yn-spin-rotate{
-  img{
+.yn-spin-rotate {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  overflow: hidden;
+  // background: rgba(NaN, NaN, NaN, 0);
+  .rotate-leaf-wapper {
     width: 100%;
     height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+    .rotate-leaf{
+      box-sizing: content-box;
+      position: absolute;
+      width: 20%;
+      height: 20%;
+      border-radius: 50%;
+      transform: translate(40%, 40%) scale(1);
+      background: #007aff;
+      animation: rotate-leaf-wapper 1.1363636363636362s infinite cubic-bezier(0,0.5,0.5,1);
+    }
+    .rotate-leaf-1 {
+      background: #58a8ff;
+      animation: rotate2 0.28409090909090906s infinite cubic-bezier(0,0.5,0.5,1), rotate3 1.1363636363636362s infinite step-start;
+    }
+    .rotate-leaf-2 {
+      animation-delay: -0.28409090909090906s;
+      background: #007aff;
+    }
+    .rotate-leaf-3 {
+      animation-delay: -0.5681818181818181s;
+      background: #58a8ff;
+    }
+    .rotate-leaf-4 {
+      animation-delay: -0.8522727272727272s;
+      background: #cde5ff;
+    }
+    .rotate-leaf-5 {
+      animation-delay: -1.1363636363636362s;
+      background: #58a8ff;
+    }
   }
+}
+
+@keyframes rotate-leaf-wapper {
+   0% { transform: translate(3px, 20px) scale(0); }
+  25% { transform: translate(3px, 20px) scale(0); }
+  50% { transform: translate(3px, 20px) scale(1); }
+  75% { transform: translate(20px, 20px) scale(1); }
+ 100% { transform: translate(37px, 20px) scale(1); }
+}
+@keyframes rotate2 {
+   0% { transform: translate(37px, 20px) scale(1); }
+  100% { transform: translate(37px, 20px) scale(0); }
+}
+@keyframes rotate3 {
+   0% { background: #007aff }
+  25% { background: #58a8ff }
+  50% { background: #cde5ff }
+  75% { background: #58a8ff }
+ 100% { background: #007aff }
 }
