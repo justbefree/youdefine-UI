@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:04:32
+ * @Last Modified time: 2020-07-09 17:03:41
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -229,6 +229,7 @@ export default defineComponent({
     handleCustomeInput(args, event) {
       const { item, e } = args;
       item.value = event.target.value;
+      item.count = item.value.length;
       this.updateNode(e);
     },
     getDisabledStatus() {
@@ -236,7 +237,7 @@ export default defineComponent({
       let actived;
       if (currentStep && currentStep.list && currentStep.list.length > 0) {
         actived = currentStep.list.find(item => {
-          if (item.type === "input") {
+          if (["input", "textarea"].indexOf(item.type) > -1) {
             return item.checked && item.value !== "";
           } else {
             return item.checked;
@@ -264,9 +265,8 @@ export default defineComponent({
         )
       ]);
     },
-    createCustomeElement(h, e) {
-      const { item, step, stepIndex, key } = e;
-      if (item.type && item.type === "input") {
+    createCustomeElement(h, { item, step, stepIndex, key, display }) {
+      if (item.type && item.type === "input" && display === "inline") {
         return h(genComponentName("flex-item"), { props: { flex: 1 } }, [
           h(
             "input",
@@ -283,10 +283,26 @@ export default defineComponent({
                 })
               },
               class: ["input"],
-              attrs: { placeholder: item.placeholder }
+              attrs: { placeholder: item.placeholder, maxlength: item.maxlength }
             },
             []
           )
+        ]);
+      } else if (item.type && item.type === "textarea" && display === "column") {
+        const { count = 0 } = item;
+        return h("div", { class: "textarea-wapper" }, [
+          h("textarea", { class: ["textarea"], on: {
+                          input: this.handleCustomeInput.bind(this, {
+                            item,
+                            e: {
+                              step,
+                              stepIndex,
+                              listItem: item,
+                              listIndex: key
+                            }
+                          })
+                        }, attrs: { placeholder: item.placeholder, maxlength: item.maxlength } }, []),
+          h("div", { class: "textarea-counter", directives: [{ name: "show", value: item.counter && item.maxlength > 0 }] }, [`${count}/${item.maxlength}`])
         ]);
       }
     },
@@ -335,8 +351,9 @@ export default defineComponent({
                     h(genComponentName("flex-item"), {}, [
                       h("span", { class: ["text"] }, item.label)
                     ]),
-                    this.createCustomeElement(h, { item, step, stepIndex, key })
-                  ])
+                    this.createCustomeElement(h, { item, step, stepIndex, key, display: "inline" })
+                  ]),
+                  this.createCustomeElement(h, { item, step, stepIndex, key, display: "column" })
                 ]
               );
             })
