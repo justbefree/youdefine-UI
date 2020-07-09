@@ -170,6 +170,14 @@ export default {
               type: "input",
               placeholder: "请输入原因",
               value: ""
+            },
+            {
+              label: "还有其他呢",
+              type: "textarea",
+              placeholder: "请输入原因",
+              value: "",
+              counter: true,
+              maxlength: 100
             }
           ],
           multiple: false
