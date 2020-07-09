@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 17:15:01
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-01 15:14:47
+ * @Last Modified time: 2020-07-09 15:50:25
  * @E-mail: justbefree@126.com
  */
 
@@ -13,8 +13,8 @@ import "./less/style.less";
 import YuiComponent from "@";
 Vue.use(YuiComponent);
 if (process.env.NODE_ENV === "development") {
-  const VConsole = require("vconsole");
-  new VConsole();
+  // const VConsole = require("vconsole");
+  // new VConsole();
 }
 
 // import {
