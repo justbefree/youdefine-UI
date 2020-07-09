@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-15 17:50:14
+ * @Last Modified time: 2020-07-09 15:52:00
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -12,8 +12,8 @@ import FlexItem from "../flex-item";
 import Button from "../button";
 import Popup from "../popup";
 import Iconfont from "../iconfont";
-const VALIDE_POPUP_CONTENT_COMPONENT = "yn-submit-action-popup-content";
-const VALIDE_VALUE_COMPONENT = "yn-submit-action-value";
+const VALIDE_POPUP_CONTENT_COMPONENT = "submit-action-popup-content";
+const VALIDE_VALUE_COMPONENT = "submit-action-value";
 export default defineComponent({
   name: "SubmitAction",
   mixins: [slotsMixins],
@@ -87,12 +87,13 @@ export default defineComponent({
       }
     },
     getValideContent(type, slots = []) {
+      const prefix = this.VUE_APP_PREFIX;
       const validComponent = [];
       let valideName;
       if (type === "value") {
-        valideName = VALIDE_VALUE_COMPONENT;
+        valideName = `${prefix}-${VALIDE_VALUE_COMPONENT}`;
       } else if (type === "content") {
-        valideName = VALIDE_POPUP_CONTENT_COMPONENT;
+        valideName = `${prefix}-${VALIDE_POPUP_CONTENT_COMPONENT}`;
       }
       slots &&
         slots.forEach(child => {
