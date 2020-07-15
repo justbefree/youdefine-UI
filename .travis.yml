@@ -16,7 +16,7 @@ script:
   - cd docs
   - git add -A
   - git commit -m 'deploy'
-  - git push -f https://${GITHUB_TOKEN}@github.com/justbefree/youdefine-UI.git master
+  - git push -f https://${GITHUB_TOKEN}@github.com/justbefree/youdefine-UI.git master:gh-pages
 
 deploy:
 provider: pages

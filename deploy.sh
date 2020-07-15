@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-29 13:40:04
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-05-29 16:46:39
+# @Last Modified time: 2020-07-15 10:55:13
 
 #!/usr/bin/env sh
 
@@ -23,7 +23,7 @@ git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
-git push -f git@github.com:justbefree/justbefree.github.io.git master
+git push -f git@github.com:justbefree/youdefine-UI.git master:gh-pages
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
