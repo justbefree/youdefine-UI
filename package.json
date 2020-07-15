@@ -5,13 +5,13 @@
   "description": "A vue components lib spically for business-travel",
   "author": "just be free <justbefree@126.com>",
   "scripts": {
+    "lib": "vue-cli-service build --mode production --target lib --name youdefine-ui --dest lib src/index.js",
     "serve": "node bin/serve && vue-cli-service serve --mode development",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --mode production --target lib --name yn-components --dest lib src/index.js"
+    "lint": "vue-cli-service lint"
   },
-  "main": "lib/yn-components.umd.min.js",
+  "main": "lib/youdefine-ui.umd.min.js",
   "dependencies": {
     "core-js": "^3.6.4",
     "moment": "^2.25.3",
