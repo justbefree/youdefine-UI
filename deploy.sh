@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-29 13:40:04
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-07-15 10:55:13
+# @Last Modified time: 2020-07-15 11:04:12
 
 #!/usr/bin/env sh
 
@@ -17,7 +17,7 @@ cd docs
 
 # 部署到自定义域域名
 # echo 'www.example.com' > CNAME
-
+git init
 git add -A
 git commit -m 'deploy'
 
