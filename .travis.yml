@@ -13,6 +13,10 @@ branches:
 script:
   - npm install
   - npm run build
+  - cd docs
+  - git add -A
+  - git commit -m 'deploy'
+  - git push -f https://${GITHUB_TOKEN}@github.com/justbefree/youdefine-UI.git master
 
 deploy:
 provider: pages
