@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-06-15 10:01:18
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-06-15 13:37:39
+* @Last Modified time: 2020-07-20 18:22:00
 * @E-mail: justbefree@126.com
 */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -23,8 +23,8 @@ export default defineComponent({
       default: 1,
       type: [Number, String]
     },
-    defaultValue: {
-      default: 1,
+    value: {
+      default: -1,
       type: [Number, String]
     },
     parse: {
@@ -33,7 +33,7 @@ export default defineComponent({
     }
   },
   initPropsToData() {
-    return [{ key: "count", value: "defaultValue", parse: Number }];
+    return [{ key: "count", value: "value", parse: Number }];
   },
   methods: {
     subtract() {
@@ -41,6 +41,9 @@ export default defineComponent({
     },
     add() {
       this.caculate("add");
+    },
+    isEqual(val1, val2) {
+      return Number(val2) === Number(val1);
     },
     caculate(type = "add") {
       const steps = Number(this.steps);
@@ -51,18 +54,21 @@ export default defineComponent({
       } else {
         return;
       }
+      this.$emit("input", this.count);
       this.$emit("change", { parsedValue: this.parse(this.count), value: this.count, type });
     }
   },
   render(h) {
-    if (Number(this.defaultValue) <= Number(this.max) && Number(this.defaultValue >= Number(this.min))) {
+    if (Number(this.value) <= Number(this.max) && Number(this.value >= Number(this.min))) {
+      const leftButtonClass = this.isEqual(this.value, this.min) ? "disabled" : "";
+      const rightButtonClass = this.isEqual(this.value, this.max) ? "disabled" : "";
       return h("div", { class: ["yn-counter"] }, [
-        h(genComponentName("iconfont"), { on: { click: this.subtract }, class: ["yn-counter-subtract"], props: { name: "iconinsurance-minus", size: 15 } }, []),
+        h(genComponentName("iconfont"), { on: { click: this.subtract }, class: ["yn-counter-subtract", leftButtonClass], props: { name: "iconinsurance-minus", size: 15 } }, []),
         h("span", { class: ["yn-counter-screen"] }, [this.count]),
-        h(genComponentName("iconfont"), { on: { click: this.add }, class: ["yn-counter-plus"], props: { name: "iconinsurance-add", size: 15 } }, [])
+        h(genComponentName("iconfont"), { on: { click: this.add }, class: ["yn-counter-plus", rightButtonClass], props: { name: "iconinsurance-add", size: 15 } }, [])
       ]);
     } else {
-      throw new Error("defaultValue is out of range");
+      throw new Error("value is out of range");
     }
   }
 });
