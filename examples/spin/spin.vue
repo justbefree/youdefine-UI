@@ -1,7 +1,7 @@
 <template>
   <div class="spin">
     <div>
-      <h4>trip-bounce</h4>
+      <h4>triple-bounce</h4>
       <yn-spin type="triple-bounce"></yn-spin>
     </div>
     <div>
