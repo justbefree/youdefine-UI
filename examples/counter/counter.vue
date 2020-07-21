@@ -3,8 +3,8 @@
     <h2>yn-counter</h2>
     <span>total {{ total }}</span>
     <ul>
-      <li v-for="(count, i) in counts">
-        <yn-counter :key="i" v-model="count.value" :min="count.min" :max="count.max" steps="1" @change="handleChange"></yn-counter>
+      <li v-for="(count, i) in counts" :key="i">
+        <yn-counter :name="count.name" :key="i" v-model="count.value" :min="count.min" :max="count.max" steps="1" @change="handleChange"></yn-counter>
       </li>
     </ul>
   </div>
@@ -14,7 +14,7 @@
     name: "YnCounterPage",
     data() {
       return {
-        counts: [{ value: 0, min: -5, max: 10 }, { value: 1, min: -2, max: 6 }, { value: 2, min: 1, max: 4 }]
+        counts: [{ value: 0, min: -5, max: 10, name: "haha" }, { value: 1, min: -2, max: 6, name: "hehe" }, { value: 2, min: 1, max: 4, name: "heihei" }]
       };
     },
     computed: {
@@ -29,6 +29,7 @@
     methods: {
       handleChange(e) {
         console.log(e);
+        this.Toast(`${e.name} - ${e.type}`);
       }
     }
   };
