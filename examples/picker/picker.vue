@@ -10,26 +10,26 @@
     <yn-picker
       v-model="show1"
       :columns="columns1"
-      @pick="handlePick"
       @change="handleChange"
+      @confirm="handleConfirm"
     ></yn-picker>
     <yn-picker
       v-model="show2"
       :columns="columns2"
-      @pick="handlePick"
       @change="handleChange"
+      @confirm="handleConfirm"
     ></yn-picker>
     <yn-picker
       v-model="show3"
       :columns="columns3"
-      @pick="handlePick"
       @change="handleChange"
+      @confirm="handleConfirm"
     ></yn-picker>
     <yn-picker
       v-model="show4"
       :columns="columns4"
-      @pick="handlePick"
       @change="handleChange"
+      @confirm="handleConfirm"
     ></yn-picker>
   </div>
 </template>
@@ -68,12 +68,12 @@ export default {
       console.log(`选择第${index}个，值为${pick}`);
       this.Toast(`选择第${index}个，值为${pick}`);
     },
-    handlePick(e) {
-      console.log(e);
-      // this.Toast(`选择的是${e}`);
-    },
     handleClick(i) {
       this[`show${i}`] = !this[`show${i}`];
+    },
+    handleConfirm(e) {
+      this.Toast(JSON.stringify(e));
+      console.log("confirm", e);
     }
   }
 };
