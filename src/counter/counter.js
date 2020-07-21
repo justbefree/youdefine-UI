@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-06-15 10:01:18
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-07-20 18:22:00
+* @Last Modified time: 2020-07-21 10:55:05
 * @E-mail: justbefree@126.com
 */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -30,7 +30,8 @@ export default defineComponent({
     parse: {
       type: Function,
       default: (e) => { return e; }
-    }
+    },
+    name: String
   },
   initPropsToData() {
     return [{ key: "count", value: "value", parse: Number }];
@@ -55,7 +56,7 @@ export default defineComponent({
         return;
       }
       this.$emit("input", this.count);
-      this.$emit("change", { parsedValue: this.parse(this.count), value: this.count, type });
+      this.$emit("change", { parsedValue: this.parse(this.count), value: this.count, type, name: this.name });
     }
   },
   render(h) {
