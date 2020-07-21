@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-27 11:10:13
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:19:31
+ * @Last Modified time: 2020-07-21 18:17:38
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -11,6 +11,7 @@ import { slotsMixins } from "../mixins/slots";
 import Flex from "../flex";
 import FlexItem from "../flex-item";
 import PickerColumn from "./pickerColumn";
+import { deepClone } from "../modules/utils/deepClone";
 export default defineComponent({
   name: "Picker",
   mixins: [slotsMixins],
@@ -50,15 +51,17 @@ export default defineComponent({
   },
   data() {
     return {
+      computedColumn: [],
       pickColumns: {}
     };
   },
   methods: {
     confirm() {
-      for (const [key] of Object.entries(this.pickColumns)) {
-        this.pickColumns[key] = this.$refs[key].getSelectedItem();
-      }
-      this.$emit("confirm", this.pickColumns);
+      this.pickColumns = {};
+      this.computedColumn.forEach((column, key) => {
+        this.pickColumns[`picker_${key}`] = this.$refs[`picker_${key}`].getSelectedItem();
+      });
+      this.$emit("confirm", deepClone(this.pickColumns));
       this.$emit("input", false);
     },
     close() {
@@ -116,19 +119,36 @@ export default defineComponent({
       if (columns.length > 0) {
         const item = columns[0];
         if (item.value && item.value.length > 0) {
-          return columns;
+          this.computedColumn = columns;
         } else {
-          return [{ value: columns, defaultIndex: 0 }];
+          this.computedColumn = [{ value: columns, defaultIndex: 0 }];
         }
       } else {
-        return [];
+        this.computedColumn = [];
       }
     },
+    handleBeforeEnter() {
+      this.getData();
+      this.$emit("beforeEnter");
+    },
+    handleEnter() {
+      this.$emit("enter");
+    },
+    handleAfterEneter() {
+      this.$emit("afterEnter");
+    },
+    handleBeforeLeave() {
+      this.$emit("beforeLeave");
+    },
+    handleLeave() {
+      this.$emit("leave");
+    },
+    handleAfterLeave() {
+      this.$emit("afterLeave");
+    },
     getColumns(h) {
-      const data = this.getData();
       const columns = [];
-      data.forEach((column, key) => {
-        this.pickColumns[`picker_${key}`] = key;
+      this.computedColumn.forEach((column, key) => {
         columns.push(
           h(
             genComponentName("flex-item"),
@@ -196,7 +216,7 @@ export default defineComponent({
         {
           props: { position: "bottom" },
           directives: [{ name: "show", value: this.value }],
-          on: { input: this.close }
+          on: { input: this.close, beforeEnter: this.handleBeforeEnter, enter: this.handleEnter, afterEnter: this.handleAfterEneter, beforeLeave: this.handleBeforeLeave, leave: this.handleLeave, afterLeave: this.handleAfterLeave }
         },
         [this.createHeaderArea(h), this.createScrollArea(h)]
       )
