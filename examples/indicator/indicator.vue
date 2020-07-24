@@ -6,6 +6,8 @@
       <li @click="indicator('fadingCircle')">fadingCircle</li>
       <li @click="indicator('snake')">snake</li>
       <li @click="indicator('tripleBounce')">tripleBounce</li>
+      <li @click="indicator('rotate', false)">rotate lockScreen</li>
+      <li @click="indicator('rotate', true)">rotate lockScreen transparent</li>
     </ul>
   </div>
 </template>
@@ -16,8 +18,15 @@ export default {
     return {};
   },
   methods: {
-    indicator(spinType) {
-      this.Indicator.open({ text: "1111111111", spinType });
+    indicator(spinType, transparent) {
+      if (spinType === "rotate") {
+        this.Indicator.open({ spinType, background: "#fff", lockScreen: true, transparent });
+        setTimeout(() => {
+          this.Indicator.close();
+        }, 3000);
+      } else {
+        this.Indicator.open({ text: spinType, spinType });
+      }
     }
   }
 };

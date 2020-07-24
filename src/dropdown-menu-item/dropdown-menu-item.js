@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:47:54
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-02 15:35:32
+ * @Last Modified time: 2020-07-24 15:00:42
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -23,38 +23,38 @@ export default defineComponent({
     index: [String, Number],
     value: {
       type: [String, Number],
-      default: ""
+      default: "",
     },
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     options: {
       type: [Array, Object],
       default: () => {
         return [];
-      }
+      },
     },
     mapStatus: {
       type: Object,
       default: () => {
         return {};
-      }
+      },
     },
     direction: String,
     hideDirectionIcon: {
       type: Boolean,
-      default: false
+      default: false,
     },
     titleChangealbe: {
       type: Boolean,
-      default: false
+      default: false,
     },
     defaultSelectedIndex: {
       type: [Number, String],
-      default: -1
+      default: -1,
     },
-    fixed: Boolean
+    fixed: Boolean,
   },
   initPropsToData() {
     const clone = (data) => {
@@ -73,16 +73,16 @@ export default defineComponent({
       bodyOverflow: null,
       closingWithoutAnimation: false,
       currentSelected: -1,
-      checked: false
+      checked: false,
     };
   },
   watch: {
-    options: "setSelections"
+    options: "setSelections",
   },
   computed: {
     position() {
       return this.direction === "up" ? "bottom" : "top";
-    }
+    },
   },
   methods: {
     setSelections(n) {
@@ -109,7 +109,7 @@ export default defineComponent({
         this.currentSelected = index;
         selections.splice(index, 1, {
           ...option,
-          selected: true
+          selected: true,
         });
         this.$emit("input", option.value);
       }
@@ -119,7 +119,7 @@ export default defineComponent({
         "transition",
         {
           directives: [{ name: "show", value: this.show }],
-          props: { name: "dropdown-fade" }
+          props: { name: "dropdown-fade" },
         },
         [
           h(
@@ -127,11 +127,11 @@ export default defineComponent({
             {
               class: [
                 "v-yn-dropdown-menu-item-mask",
-                this.direction === "up" ? "v-up" : "v-bottom"
-              ]
+                this.direction === "up" ? "v-up" : "v-bottom",
+              ],
             },
             []
-          )
+          ),
         ]
       );
     },
@@ -142,13 +142,27 @@ export default defineComponent({
         return this.checked;
       }
     },
-    check(selected = false) {
-      if ((selected && !this.checked) || (!selected && this.checked)) {
-        this.toggle();
-        this.$parent.switchTo(this.index);
+    check(selected = false, options = {}) {
+      if (this.hasOptions()) {
+        if ((selected && !this.show) || (!selected && this.show)) {
+          this.toggle(options);
+          this.$parent.switchTo(this.index);
+        }
+      } else {
+        if ((selected && !this.checked) || (!selected && this.checked)) {
+          this.toggle(options);
+          this.$parent.switchTo(this.index);
+        } else {
+          const status = this.checked ? "checked" : "unchecked";
+          const { disableEmit = false } = options;
+          if (!disableEmit) {
+            this.$emit("unchange", this.mapStatus[status]);
+          }
+        }
       }
     },
-    toggle() {
+    toggle(options = {}) {
+      const { disableEmit = false } = options;
       if (this.hasOptions()) {
         this.show = !this.show;
       } else {
@@ -157,7 +171,9 @@ export default defineComponent({
         if (this.titleChangealbe) {
           this.$emit("input", this.mapStatus[status].label);
         }
-        this.$emit("change", this.mapStatus[status]);
+        if (!disableEmit) {
+          this.$emit("change", this.mapStatus[status]);
+        }
       }
     },
     close(e = false) {
@@ -211,7 +227,7 @@ export default defineComponent({
         const currnetItem = selections[currentSelected];
         selections.splice(currentSelected, 1, {
           ...currnetItem,
-          selected: false
+          selected: false,
         });
       }
       this.currentSelected = key;
@@ -240,38 +256,44 @@ export default defineComponent({
                     on: {
                       click: this.handleItemClick.bind(this, {
                         option,
-                        key
-                      })
+                        key,
+                      }),
                     },
-                    key
+                    key,
                   },
                   [
-                    h(genComponentName("flex"), { justifyContent: "spaceAround" }, [
-                      h(genComponentName("flex-item"), { props: { flex: 1 } }, [
-                        h("span", { class: ["text"] }, option.text)
-                      ]),
-                      h(genComponentName("flex-item"), {}, [
+                    h(
+                      genComponentName("flex"),
+                      { justifyContent: "spaceAround" },
+                      [
                         h(
-                          genComponentName("iconfont"),
-                          {
-                            class: ["confirm-mark"],
-                            directives: [
-                              { name: "show", value: option.selected }
-                            ],
-                            props: { name: "iconCheckmark", size: 12 }
-                          },
-                          []
-                        )
-                      ])
-                    ])
+                          genComponentName("flex-item"),
+                          { props: { flex: 1 } },
+                          [h("span", { class: ["text"] }, option.text)]
+                        ),
+                        h(genComponentName("flex-item"), {}, [
+                          h(
+                            genComponentName("iconfont"),
+                            {
+                              class: ["confirm-mark"],
+                              directives: [
+                                { name: "show", value: option.selected },
+                              ],
+                              props: { name: "iconCheckmark", size: 12 },
+                            },
+                            []
+                          ),
+                        ]),
+                      ]
+                    ),
                   ]
                 );
               })
-            )
+            ),
           ];
         }
       }
-    }
+    },
   },
   mounted() {
     if (isObject(this.options) && typeof this.options.action === "function") {
@@ -280,7 +302,7 @@ export default defineComponent({
         // 异步处理
         const callback = action(params);
         if (isPromise(callback)) {
-          callback.then(res => {
+          callback.then((res) => {
             this.selections = parse(res);
             this.setDefault();
           });
@@ -302,8 +324,8 @@ export default defineComponent({
           class: [
             "yn-dropdown-menu-item",
             this.direction === "up" ? "v-up" : "v-bottom",
-            this.menuStatus ? "zIndex" : ""
-          ]
+            this.menuStatus ? "zIndex" : "",
+          ],
         },
         [
           h(
@@ -314,27 +336,27 @@ export default defineComponent({
                 afterEnter: this.handleAfterEnter,
                 beforeLeave: this.handleBeforeLeave,
                 afterLeave: this.handleAfterLeave,
-                input: this.closeTab
+                input: this.closeTab,
               },
               style: { position: "absolute" },
               props: {
                 position: this.position,
                 value: this.show,
-                singleton: true
-              }
+                singleton: true,
+              },
             },
             [
               h(
                 "div",
                 {
-                  class: ["yn-dropdown-menu-item-content"]
+                  class: ["yn-dropdown-menu-item-content"],
                 },
                 this.getContent(h)
-              )
+              ),
             ]
-          )
+          ),
         ]
       );
     }
-  }
+  },
 });

@@ -26,6 +26,7 @@
         <li @click="jump('submitAction')">submitAction</li>
         <li @click="jump('pullRefresh')">pullRefresh</li>
         <li @click="jump('datePicker')">datePicker</li>
+        <li @click="jump('counter')">counter</li>
       </ul>
   </div>
 </template>

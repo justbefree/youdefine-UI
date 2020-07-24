@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-02 15:45:50
+ * @Last Modified time: 2020-07-24 15:00:13
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -21,72 +21,74 @@ export default defineComponent({
   props: {
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     title: {
       type: [String, Array],
-      default: "日历"
+      default: "日历",
     },
     mode: {
       type: String,
-      default: "single"
+      default: "single",
     },
     doubleModeAllowSameDate: {
       type: Boolean,
-      default: true
+      default: true,
+    },
+    crossed: {
+      type: Boolean,
+      default: true,
     },
     before: {
       type: [Number, String],
-      default: 1
+      default: 1,
     },
     after: {
       type: [Number, String],
-      default: 1
+      default: 1,
     },
     unit: {
       type: String,
-      default: "days"
+      default: "days",
     },
     weekText: {
       type: Array,
       default: () => {
         return ["日", "一", "二", "三", "四", "五", "六"];
-      }
+      },
     },
     defaultDate: {
       type: String,
-      default: YnDate().format()
+      default: YnDate().format(),
     },
     defaultStartDate: {
       type: String,
-      default: YnDate().format()
+      default: YnDate().format(),
     },
     defaultEndDate: {
       type: String,
-      default: YnDate()
-        .add(1, "day")
-        .format()
+      default: YnDate().add(1, "day").format(),
     },
     showConfirmButton: {
       type: Boolean,
-      default: false
+      default: false,
     },
     confirmText: {
       type: String,
-      default: "确认"
+      default: "确认",
     },
     fromDateMark: {
       type: String,
-      default: "入住"
+      default: "入住",
     },
     toDateMark: {
       type: String,
-      default: "离店"
+      default: "离店",
     },
     todayMark: {
       type: String,
-      default: "今天"
-    }
+      default: "今天",
+    },
   },
   data() {
     return {
@@ -96,11 +98,12 @@ export default defineComponent({
       date: null,
       beginDate: null,
       endDate: null,
-      confirmButtonClassName: "active"
+      confirmButtonClassName: "active",
+      opened: false,
     };
   },
   watch: {
-    mode: "highLightDefault"
+    mode: "highLightDefault",
   },
   methods: {
     handleClick(date) {
@@ -148,20 +151,33 @@ export default defineComponent({
               this.fromDate = null;
             }
           } else {
-            this.confirmButtonClassName = "active";
             if (this.fromDate.ynDate.isAfter(date.ynDate)) {
-              drop(this.changedNode[this.fromDate.key].className, "start");
-              push(this.changedNode[this.fromDate.key].className, "end");
-              this.setDateValue(
-                this.changedNode[this.fromDate.key],
-                "mark",
-                this.toDateMark
-              );
-              this.toDate = this.fromDate;
-              this.fromDate = date;
-              push(date.className, "start");
-              this.setDateValue(date, "mark", this.fromDateMark);
+              if (this.crossed) {
+                this.confirmButtonClassName = "active";
+                drop(this.changedNode[this.fromDate.key].className, "start");
+                push(this.changedNode[this.fromDate.key].className, "end");
+                this.setDateValue(
+                  this.changedNode[this.fromDate.key],
+                  "mark",
+                  this.toDateMark
+                );
+                this.toDate = this.fromDate;
+                this.fromDate = date;
+                push(date.className, "start");
+                this.setDateValue(date, "mark", this.fromDateMark);
+              } else {
+                drop(this.changedNode[this.fromDate.key].className, [
+                  "start",
+                  "active",
+                ]);
+                this.changedNode = { [date.key]: date };
+                this.setDateValue(date, "mark", this.fromDateMark);
+                push(date.className, ["start", "active"]);
+                this.fromDate = date;
+                return;
+              }
             } else {
+              this.confirmButtonClassName = "active";
               push(date.className, "end");
               this.setDateValue(date, "mark", this.toDateMark);
               this.toDate = date;
@@ -204,9 +220,9 @@ export default defineComponent({
     generateDate() {
       const caculatedMonth = this.getTimePeriod();
       const caculatedDates = [];
-      caculatedMonth.forEach(item => {
+      caculatedMonth.forEach((item) => {
         const monthObject = {
-          dates: []
+          dates: [],
         };
         const [year, month] = item.split("-");
         const daysOfMonth = YnDate(year, month).getDaysCountOfMonth();
@@ -216,7 +232,7 @@ export default defineComponent({
             for (let k = 0; k < YnDate(year, month, j).getDay(); k++) {
               monthObject["dates"].push({
                 className: [],
-                key: `year_month_date_${k}`
+                key: `year_month_date_${k}`,
               });
             }
           }
@@ -271,7 +287,7 @@ export default defineComponent({
               className,
               ynDate,
               mark: "",
-              festival
+              festival,
             });
           }
         }
@@ -294,7 +310,7 @@ export default defineComponent({
         week: ynDate.getDay(),
         className: ["active", "clickable", ...className],
         mark: "",
-        festival
+        festival,
       };
     },
     setDateValue(date, attr, value) {
@@ -303,21 +319,21 @@ export default defineComponent({
     highLightDefault() {
       if (this.mode === "double") {
         const startNode = this.getDefaultNodeFromProps("defaultStartDate", [
-          "start"
+          "start",
         ]);
         this.setDateValue(startNode, "mark", this.fromDateMark);
         const endNode = this.getDefaultNodeFromProps("defaultEndDate", ["end"]);
         this.setDateValue(endNode, "mark", this.toDateMark);
         this.changedNode = {
           [startNode.key]: startNode,
-          [endNode.key]: endNode
+          [endNode.key]: endNode,
         };
         this.fromDate = startNode;
         this.toDate = endNode;
       } else {
         const node = this.getDefaultNodeFromProps("defaultDate", [
           "single-mode",
-          "open-days"
+          "open-days",
         ]);
         this.changedNode = { [node.key]: node };
       }
@@ -336,9 +352,9 @@ export default defineComponent({
         // 解决方法：延迟30ms，再进行设置scrollTop值
         setTimeout(() => {
           this.$refs.scroller.$el.scrollTop =
-          getOffset(el).top -
-          this.$refs.header.$el.offsetHeight -
-          getOffset(parent).top;
+            getOffset(el).top -
+            this.$refs.header.$el.offsetHeight -
+            getOffset(parent).top;
         }, 30);
       });
     },
@@ -347,7 +363,10 @@ export default defineComponent({
     },
     handleAfterEnter() {
       this.$emit("afterEnter");
-      this.setPosition();
+      if (!this.opened) {
+        this.opened = true;
+        this.setPosition();
+      }
     },
     handleBeforeLeave() {
       this.$emit("beforeLeave");
@@ -358,13 +377,13 @@ export default defineComponent({
     createDate(h) {
       const dates = this.generateDate();
       const caculateDOM = [];
-      dates.forEach(monthItem => {
+      dates.forEach((monthItem) => {
         caculateDOM.push(
           h(
             "div",
             {
               class: ["yn-calendar-month", monthItem.month],
-              key: monthItem.key
+              key: monthItem.key,
             },
             [
               h(
@@ -372,8 +391,8 @@ export default defineComponent({
                 {
                   class: ["yn-calendar-month-title"],
                   domProps: {
-                    innerHTML: `${monthItem.year}-${monthItem.month}`
-                  }
+                    innerHTML: `${monthItem.year}-${monthItem.month}`,
+                  },
                 },
                 []
               ),
@@ -385,14 +404,13 @@ export default defineComponent({
                   props: {
                     flexWrap: "wrap",
                     justifyContent: "spaceAround",
-                    fixBottomLine: true
-                  }
+                    fixBottomLine: true,
+                  },
                 },
                 [
                   (() => {
                     const dateDom = [];
-                    monthItem.dates.forEach(date => {
-                      // console.log(date.className);
+                    monthItem.dates.forEach((date) => {
                       let ref = null;
                       if (
                         date.className.indexOf("single-mode") > -1 ||
@@ -409,8 +427,8 @@ export default defineComponent({
                             // domProps: { innerHTML: date.day },
                             ref,
                             nativeOn: {
-                              click: this.handleClick.bind(this, date)
-                            }
+                              click: this.handleClick.bind(this, date),
+                            },
                           },
                           [
                             h(
@@ -418,8 +436,8 @@ export default defineComponent({
                               {
                                 props: {
                                   flexDirection: "column",
-                                  justifyContent: "spaceBetween"
-                                }
+                                  justifyContent: "spaceBetween",
+                                },
                               },
                               [
                                 h(
@@ -436,17 +454,17 @@ export default defineComponent({
                                   genComponentName("flex-item"),
                                   { class: ["yn-calendar-date-mark"] },
                                   date.mark
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         )
                       );
                     });
                     return dateDom;
-                  })()
+                  })(),
                 ]
-              )
+              ),
             ]
           )
         );
@@ -457,7 +475,7 @@ export default defineComponent({
       return h("div", {}, [
         this.createCloseIcon(h),
         this.createTitle(h),
-        this.createWeekBar(h)
+        this.createWeekBar(h),
       ]);
     },
     createFooterArea(h) {
@@ -465,17 +483,17 @@ export default defineComponent({
         return h(
           genComponentName("flex-item"),
           {
-            class: ["yn-calendar-footer"]
+            class: ["yn-calendar-footer"],
           },
           [
             h("div", {
               class: [
                 "yn-calendar-confirm-button",
-                this.confirmButtonClassName
+                this.confirmButtonClassName,
               ],
               on: { click: this.handleOnConfirm },
-              domProps: { innerHTML: this.confirmText }
-            })
+              domProps: { innerHTML: this.confirmText },
+            }),
           ]
         );
       } else {
@@ -488,7 +506,7 @@ export default defineComponent({
         {
           class: ["yn-calendar-close"],
           props: { name: "iconcancle_circle", size: 24 },
-          nativeOn: { click: this.close }
+          nativeOn: { click: this.close },
         },
         []
       );
@@ -516,7 +534,7 @@ export default defineComponent({
         "div",
         {
           class: ["yn-calendar-header-title"],
-          domProps: { innerHTML: this.getTitle() }
+          domProps: { innerHTML: this.getTitle() },
         },
         []
       );
@@ -526,7 +544,7 @@ export default defineComponent({
       for (let i = 0; i < 7; i++) {
         bar.push(
           h(genComponentName("flex-item"), { key: i }, [
-            h("span", { domProps: { innerHTML: this.weekText[i] } }, [])
+            h("span", { domProps: { innerHTML: this.weekText[i] } }, []),
           ])
         );
       }
@@ -535,12 +553,12 @@ export default defineComponent({
           genComponentName("flex"),
           { key: "yn_flex_week_bar", props: { justifyContent: "spaceAround" } },
           bar
-        )
+        ),
       ]);
     },
     handleChange(e) {
       this.$emit("input", e);
-    }
+    },
   },
   created() {
     this.highLightDefault();
@@ -555,19 +573,19 @@ export default defineComponent({
             beforeEnter: this.handleBeforeEnter,
             afterEnter: this.handleAfterEnter,
             beforeLeave: this.handleBeforeLeave,
-            afterLeave: this.handleAfterLeave
+            afterLeave: this.handleAfterLeave,
           },
           directives: [{ name: "show", value: this.value }],
           props: { position: "bottom" },
           style: { height: "90%" },
-          ref: "popup"
+          ref: "popup",
         },
         [
           h(
             genComponentName("flex"),
             {
               class: ["yn-calendar-content"],
-              props: { flexDirection: "column" }
+              props: { flexDirection: "column" },
             },
             [
               h(
@@ -580,15 +598,15 @@ export default defineComponent({
                 {
                   ref: "scroller",
                   class: ["yn-calendar-body"],
-                  props: { flex: 1 }
+                  props: { flex: 1 },
                 },
                 [h("div", {}, [this.createDate(h)])]
               ),
-              this.createFooterArea(h)
+              this.createFooterArea(h),
             ]
-          )
+          ),
         ]
-      )
+      ),
     ]);
-  }
+  },
 });

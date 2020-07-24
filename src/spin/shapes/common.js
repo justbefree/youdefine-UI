@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-14 17:47:57
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-02-17 09:55:14
+ * @Last Modified time: 2020-07-02 17:18:10
  */
 
 export default {
@@ -12,10 +12,10 @@ export default {
     },
     spinSize() {
       return (this.size || this.$parent.size || 28) + "px";
-    }
+    },
   },
   props: {
-    size: Number,
-    color: String
-  }
+    size: [String, Number],
+    color: String,
+  },
 };

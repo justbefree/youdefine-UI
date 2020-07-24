@@ -2,7 +2,8 @@
  * @Author: Just be free
  * @Date:   2020-02-19 21:12:21
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-01 09:51:42
+ * @Last Modified time: 2020-07-24 15:01:20
+ * @E-mail: justbefree@126.com
  */
 import { error } from "../error";
 const now = new Date();
@@ -11,11 +12,11 @@ const YnDate = (...args) => {
 };
 YnDate.prototype = YnDate.fn = {
   constructor: YnDate,
-  Init: function(...args) {
+  Init: function (...args) {
     const [
       year = now.getFullYear(),
       month = now.getMonth() + 1,
-      date = now.getDate()
+      date = now.getDate(),
     ] = args;
     if (year instanceof YnDate) {
       return year;
@@ -29,19 +30,23 @@ YnDate.prototype = YnDate.fn = {
       return this;
     }
   },
-  setMonth: function(month) {
+  setMonth: function (month) {
     this.month = parseInt(month) < 10 ? `0${month}` : month;
   },
-  setDate: function(date) {
+  setDate: function (date) {
     this.date = parseInt(date) < 10 ? `0${date}` : date;
   },
-  add: function(count = 1, unit = "days") {
+  add: function (count = 1, unit = "days") {
     if (["days", "day", "d"].indexOf(unit) > -1) {
       this.JSDate.setDate(this.JSDate.getDate() + count);
     } else if (["months", "month", "m"].indexOf(unit) > -1) {
       // 解决思路：在某一个日期加一个月或N个月的时候需要判断当前日期是当月的第X天，
       // 需要确保在加了一个月或N个月的那月也有同样的X天，如果没有，则取那月的最后一天
-      const otherMonthDaysCount = YnDate(this.year, this.JSDate.getMonth() + 1 + count, "01").getDaysCountOfMonth();
+      const otherMonthDaysCount = YnDate(
+        this.year,
+        this.JSDate.getMonth() + 1 + count,
+        "01"
+      ).getDaysCountOfMonth();
       const currentDay = this.JSDate.getDate();
       if (currentDay > otherMonthDaysCount) {
         this.JSDate.setDate(otherMonthDaysCount);
@@ -73,10 +78,10 @@ YnDate.prototype = YnDate.fn = {
     this.setDate(this.JSDate.getDate());
     return this;
   },
-  substract: function(count = 1, unit = "days") {
+  substract: function (count = 1, unit = "days") {
     return this.add(-1 * count, unit);
   },
-  getMonthPeriod: function(begin, end) {
+  getMonthPeriod: function (begin, end) {
     const period = [begin.format()];
     if (begin instanceof YnDate && end instanceof YnDate) {
       while (begin.isBefore(end)) {
@@ -86,30 +91,30 @@ YnDate.prototype = YnDate.fn = {
     }
     return period;
   },
-  getToday: function() {
+  getToday: function () {
     // 获取指定时间（默认当天）
     return this.JSDate;
   },
-  format: function() {
+  format: function () {
     return `${this.year}-${this.month}-${this.date}`;
   },
-  getDay: function() {
+  getDay: function () {
     // 获取具体每一天是周几
     return new Date(
       Date.parse(`${this.year}/${this.month}/${this.date}`)
     ).getDay();
   },
-  getTime: function() {
+  getTime: function () {
     // 获取指定时间毫秒数
     return new Date(
       Date.parse(`${this.year}/${this.month}/${this.date}`)
     ).getTime();
   },
-  getDaysCountOfMonth: function() {
+  getDaysCountOfMonth: function () {
     // 获取指定年月总归有多少天
     return new Date(this.year, parseInt(this.month, 10), 0).getDate();
   },
-  diff: function(...args) {
+  diff: function (...args) {
     const [year, month, date] = args;
     if (args.length >= 2) {
       // console.log(year, month, date);
@@ -131,33 +136,33 @@ YnDate.prototype = YnDate.fn = {
       }
     }
   },
-  isDateFormat: function(arg) {
+  isDateFormat: function (arg) {
     return /^(\d{4})(-)(\d{2})(-)(\d{2})$/.test(String(arg));
   },
-  isBefore: function(...args) {
+  isBefore: function (...args) {
     // 是不是早于某个（默认当天）时间
     return this.diff(...args) > 0;
   },
-  isAfter: function(...args) {
+  isAfter: function (...args) {
     // 是不是晚于某个（默认当天）时间
     return this.diff(...args) < 0;
   },
-  isSame: function(...args) {
+  isSame: function (...args) {
     // 是不是和某个时间相同（默认当天）
     return this.diff(...args) === 0;
   },
-  isBetweenIncludeLeft: function(start, end) {
+  isBetweenIncludeLeft: function (start, end) {
     return this.isBetween(start, end) || this.isSame(start);
   },
-  isBetweenIncludeRight: function(start, end) {
+  isBetweenIncludeRight: function (start, end) {
     return this.isBetween(start, end) || this.isSame(end);
   },
-  isBetweenIncludeBoth: function(start, end) {
+  isBetweenIncludeBoth: function (start, end) {
     return this.isBetween(start, end) || this.isSame(start) || this.isSame(end);
   },
-  isBetween: function(start, end) {
+  isBetween: function (start, end) {
     return this.isAfter(start) && this.isBefore(end);
-  }
+  },
 };
 YnDate.fn.Init.prototype = YnDate.fn;
 export default YnDate;

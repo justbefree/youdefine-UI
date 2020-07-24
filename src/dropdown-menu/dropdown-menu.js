@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:11:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-26 18:01:51
+ * @Last Modified time: 2020-06-03 15:17:39
  * @E-mail: justbefree@126.com
  */
 
@@ -20,14 +20,14 @@ export default defineComponent({
   props: {
     direction: {
       type: String,
-      default: "down"
-    }
+      default: "down",
+    },
   },
   data() {
     return {
       currentTab: "",
       currentTabStauts: true,
-      tabs: {}
+      tabs: {},
     };
   },
   methods: {
@@ -41,7 +41,7 @@ export default defineComponent({
       const validComponent = [];
       let key = 0;
       children &&
-        children.forEach(child => {
+        children.forEach((child) => {
           if (
             child.componentOptions &&
             validChildComponent === child.componentOptions.tag
@@ -59,15 +59,22 @@ export default defineComponent({
         this.currentTab = key;
         this.tabs = {
           ...this.tabs,
-          [key]: slots[key].componentInstance.getStatus()
+          [key]: slots[key].componentInstance.getStatus(),
         };
       }
+    },
+    switchTab(key, status) {
+      this.currentTab = key;
+      this.tabs = {
+        ...this.tabs,
+        [key]: status,
+      };
     },
     slideUp() {
       this.currentTabStauts = false;
       this.tabs = {
         ...this.tabs,
-        [this.currentTab]: false
+        [this.currentTab]: false,
       };
     },
     handleTabSwitch(args) {
@@ -84,7 +91,7 @@ export default defineComponent({
       this.tabs = {
         ...this.tabs,
         ...currentTabStauts,
-        [key]: instance.getStatus()
+        [key]: instance.getStatus(),
       };
       this.currentTabStauts = instance.getStatus();
       if (currentTab !== key && currentTab !== "") {
@@ -145,10 +152,10 @@ export default defineComponent({
               {
                 class: ["menu-bar-item", active ? "active" : ""],
                 on: {
-                  click: this.handleTabSwitch.bind(this, { item, key, slots })
+                  click: this.handleTabSwitch.bind(this, { item, key, slots }),
                 },
                 props: { flex: 1 },
-                key
+                key,
               },
               [
                 h("span", {}, text),
@@ -157,25 +164,28 @@ export default defineComponent({
                   {
                     directives: [{ name: "show", value: showDirectionIcon }],
                     class: ["dropdown-icon"],
-                    props: { size: 6, name: this.getProperlyIcon(down, active) }
+                    props: {
+                      size: 6,
+                      name: this.getProperlyIcon(down, active),
+                    },
                   },
                   []
-                )
+                ),
               ]
             );
           })
-        )
+        ),
       ]);
     },
     closeTab() {
       this.tabs = { ...this.tabs, [this.currentTab]: false };
-    }
+    },
   },
   render(h) {
     const slots = this.validChildComponent();
     return h("div", { class: ["yn-dropdown-menu"] }, [
       this.createMenu(h, slots),
-      slots
+      slots,
     ]);
-  }
+  },
 });

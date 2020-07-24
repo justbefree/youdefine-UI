@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-27 11:10:13
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:19:31
+ * @Last Modified time: 2020-07-21 18:17:38
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -11,6 +11,7 @@ import { slotsMixins } from "../mixins/slots";
 import Flex from "../flex";
 import FlexItem from "../flex-item";
 import PickerColumn from "./pickerColumn";
+import { deepClone } from "../modules/utils/deepClone";
 export default defineComponent({
   name: "Picker",
   mixins: [slotsMixins],
@@ -19,46 +20,50 @@ export default defineComponent({
     value: Boolean,
     itemHeight: {
       type: [String, Number],
-      default: 44
+      default: 44,
     },
     columns: {
       type: Array,
       default: () => {
         return [];
-      }
+      },
     },
     confirmText: {
       type: String,
-      default: "确认"
+      default: "确认",
     },
     cancelText: {
       type: String,
-      default: "取消"
+      default: "取消",
     },
     title: {
       type: String,
-      default: "请选择日期"
+      default: "请选择日期",
     },
     showBack: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showClose: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
-      pickColumns: {}
+      computedColumn: [],
+      pickColumns: {},
     };
   },
   methods: {
     confirm() {
-      for (const [key] of Object.entries(this.pickColumns)) {
-        this.pickColumns[key] = this.$refs[key].getSelectedItem();
-      }
-      this.$emit("confirm", this.pickColumns);
+      this.pickColumns = {};
+      this.computedColumn.forEach((column, key) => {
+        this.pickColumns[`picker_${key}`] = this.$refs[
+          `picker_${key}`
+        ].getSelectedItem();
+      });
+      this.$emit("confirm", deepClone(this.pickColumns));
       this.$emit("input", false);
     },
     close() {
@@ -77,38 +82,42 @@ export default defineComponent({
     },
     createHeaderArea(h) {
       return h("div", { class: ["yn-picker-header"] }, [
-        h(genComponentName("flex"), { props: { justifyContent: "spaceBetween" } }, [
-          h(
-            genComponentName("flex-item"),
-            {
-              on: { click: this.close },
-              class: ["yn-picker-header-back"],
-              directives: [{ name: "show", value: this.showBack }]
-            },
-            this.getContent(h, "back")
-          ),
-          h(
-            genComponentName("flex-item"),
-            {
-              class: [
-                "yn-picker-header-title",
-                this.showBack ? "" : "ml30",
-                this.showClose ? "" : "mr30"
-              ],
-              props: { flex: 1 }
-            },
-            this.title
-          ),
-          h(
-            genComponentName("flex-item"),
-            {
-              on: { click: this.confirm },
-              class: ["yn-picker-header-close"],
-              directives: [{ name: "show", value: this.showClose }]
-            },
-            this.getContent(h, "close")
-          )
-        ])
+        h(
+          genComponentName("flex"),
+          { props: { justifyContent: "spaceBetween" } },
+          [
+            h(
+              genComponentName("flex-item"),
+              {
+                on: { click: this.close },
+                class: ["yn-picker-header-back"],
+                directives: [{ name: "show", value: this.showBack }],
+              },
+              this.getContent(h, "back")
+            ),
+            h(
+              genComponentName("flex-item"),
+              {
+                class: [
+                  "yn-picker-header-title",
+                  this.showBack ? "" : "ml30",
+                  this.showClose ? "" : "mr30",
+                ],
+                props: { flex: 1 },
+              },
+              this.title
+            ),
+            h(
+              genComponentName("flex-item"),
+              {
+                on: { click: this.confirm },
+                class: ["yn-picker-header-close"],
+                directives: [{ name: "show", value: this.showClose }],
+              },
+              this.getContent(h, "close")
+            ),
+          ]
+        ),
       ]);
     },
     getData() {
@@ -116,19 +125,36 @@ export default defineComponent({
       if (columns.length > 0) {
         const item = columns[0];
         if (item.value && item.value.length > 0) {
-          return columns;
+          this.computedColumn = columns;
         } else {
-          return [{ value: columns, defaultIndex: 0 }];
+          this.computedColumn = [{ value: columns, defaultIndex: 0 }];
         }
       } else {
-        return [];
+        this.computedColumn = [];
       }
     },
+    handleBeforeEnter() {
+      this.getData();
+      this.$emit("beforeEnter");
+    },
+    handleEnter() {
+      this.$emit("enter");
+    },
+    handleAfterEneter() {
+      this.$emit("afterEnter");
+    },
+    handleBeforeLeave() {
+      this.$emit("beforeLeave");
+    },
+    handleLeave() {
+      this.$emit("leave");
+    },
+    handleAfterLeave() {
+      this.$emit("afterLeave");
+    },
     getColumns(h) {
-      const data = this.getData();
       const columns = [];
-      data.forEach((column, key) => {
-        this.pickColumns[`picker_${key}`] = key;
+      this.computedColumn.forEach((column, key) => {
         columns.push(
           h(
             genComponentName("flex-item"),
@@ -136,7 +162,7 @@ export default defineComponent({
               ref: `scrollColumn_${key}`,
               class: ["yn-picker-column-wapper"],
               key,
-              props: { flex: 1 }
+              props: { flex: 1 },
             },
             [
               h(
@@ -146,16 +172,16 @@ export default defineComponent({
                   on: {
                     change: (...args) => {
                       this.change(...args, key);
-                    }
+                    },
                   },
                   props: {
                     defaultIndex: column.defaultIndex || 0,
                     columns: column.value,
-                    itemHeight: this.itemHeight
-                  }
+                    itemHeight: this.itemHeight,
+                  },
                 },
                 []
-              )
+              ),
             ]
           )
         );
@@ -171,8 +197,8 @@ export default defineComponent({
             props: {
               justifyContent: "spaceBetween",
               alignContent: "center",
-              alignItems: "center"
-            }
+              alignItems: "center",
+            },
           },
           this.getColumns(h)
         ),
@@ -181,13 +207,14 @@ export default defineComponent({
           { class: ["yn-picker-mask"], style: {}, ref: "pickerMask" },
           []
         ),
-        h("div", { class: ["scroll-viewer-window"] }, [])
+        h("div", { class: ["scroll-viewer-window"] }, []),
       ]);
-    }
+    },
   },
   mounted() {
-    this.$refs.pickerMask.style = `background-size: 100% ${this.itemHeight *
-      2}px`;
+    this.$refs.pickerMask.style = `background-size: 100% ${
+      this.itemHeight * 2
+    }px`;
   },
   render(h) {
     return h("div", { class: ["yn-picker"] }, [
@@ -196,10 +223,18 @@ export default defineComponent({
         {
           props: { position: "bottom" },
           directives: [{ name: "show", value: this.value }],
-          on: { input: this.close }
+          on: {
+            input: this.close,
+            beforeEnter: this.handleBeforeEnter,
+            enter: this.handleEnter,
+            afterEnter: this.handleAfterEneter,
+            beforeLeave: this.handleBeforeLeave,
+            leave: this.handleLeave,
+            afterLeave: this.handleAfterLeave,
+          },
         },
         [this.createHeaderArea(h), this.createScrollArea(h)]
-      )
+      ),
     ]);
-  }
+  },
 });

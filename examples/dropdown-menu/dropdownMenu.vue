@@ -55,6 +55,14 @@
       <hr />
       <yui-button type="primary" @click="changeData(true)">直接选中</yui-button>
       <yui-button type="primary" @click="changeData(false)">取消选中</yui-button>
+      <div></div>
+      <yui-button type="primary" @click="changeData2(true)">直接选中【有下拉】</yui-button>
+      <yui-button type="primary" @click="changeData2(false)">取消选中【有下拉】</yui-button>
+      <div></div>
+      <yui-button type="primary" @click="changeData3(true)">直接选中【自定义内容】</yui-button>
+      <yui-button type="primary" @click="changeData3(false)">取消选中【自定义内容】</yui-button>
+      <div></div>
+      <yui-button type="primary" @click="switchTo(1)">切换</yui-button>
     </div>
   </div>
 </template>
@@ -137,6 +145,15 @@ export default {
     },
     changeData(e) {
       this.$refs.mapStatus.check(e);
+    },
+    changeData2(e) {
+      this.$refs.slide.check(e);
+    },
+    changeData3(e) {
+      this.$refs.closeAble.check(e);
+    },
+    switchTo(i) {
+      this.$refs.switchTo.switchTab(i, true);
     }
   }
 };

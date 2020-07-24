@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:04:32
+ * @Last Modified time: 2020-07-09 17:03:41
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -23,34 +23,34 @@ export default defineComponent({
     FlexItem,
     Button,
     Radiobox,
-    Checkbox
+    Checkbox,
   },
   props: {
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     steps: {
       type: Array,
       default: () => {
         return [];
-      }
+      },
     },
     submit: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     confirmText: {
       type: String,
-      default: "确认"
-    }
+      default: "确认",
+    },
   },
   data() {
     return {
       title: "",
       caculateSteps: [],
       currentStep: {},
-      submitLoading: false
+      submitLoading: false,
     };
   },
   methods: {
@@ -107,7 +107,7 @@ export default defineComponent({
         {
           class: ["yn-picky-stepper-close"],
           props: { name: "iconcancle_circle", size: 24 },
-          on: { click: this.close }
+          on: { click: this.close },
         },
         []
       );
@@ -115,7 +115,7 @@ export default defineComponent({
     stepBack() {
       const { previousNode } = this.currentStep;
       const { caculateSteps } = this;
-      this.currentStep = caculateSteps.find(step => {
+      this.currentStep = caculateSteps.find((step) => {
         return step.key === previousNode;
       });
     },
@@ -131,7 +131,7 @@ export default defineComponent({
           {
             class: ["yn-picky-stepper-back"],
             props: { name: "iconpop_back", size: 20 },
-            on: { click: this.stepBack }
+            on: { click: this.stepBack },
           },
           []
         );
@@ -148,7 +148,7 @@ export default defineComponent({
       return h("div", { class: ["yn-picky-stepper-header"] }, [
         this.createBack(h),
         this.createTitle(h),
-        this.createClose(h)
+        this.createClose(h),
       ]);
     },
     replace(arr = [], index, node) {
@@ -157,10 +157,10 @@ export default defineComponent({
     },
     updateNode(e) {
       const { step, stepIndex, listItem, listIndex } = e;
-      const stepNode = this.caculateSteps.find(item => {
+      const stepNode = this.caculateSteps.find((item) => {
         return item.key === step.key;
       });
-      const listNode = stepNode.list.find(item => {
+      const listNode = stepNode.list.find((item) => {
         return listItem.key === item.key;
       });
       this.replace(stepNode.list, listIndex, listNode);
@@ -169,9 +169,9 @@ export default defineComponent({
     getSelectedData() {
       const { caculateSteps } = this;
       const results = [];
-      caculateSteps.forEach(step => {
+      caculateSteps.forEach((step) => {
         const list = [];
-        step.list.forEach(item => {
+        step.list.forEach((item) => {
           if (item.checked) {
             list.push(item);
           }
@@ -183,7 +183,7 @@ export default defineComponent({
     handleStepConfirm() {
       const { currentStep, caculateSteps } = this;
       if (currentStep.nextNode) {
-        this.currentStep = caculateSteps.find(step => {
+        this.currentStep = caculateSteps.find((step) => {
           return step.key === currentStep.nextNode;
         });
       } else {
@@ -193,7 +193,7 @@ export default defineComponent({
         if (submit && typeof submit === "function") {
           const promise = submit(result);
           if (isPromise(promise)) {
-            promise.then(res => {
+            promise.then((res) => {
               this.close();
               this.$emit("success", result, res);
               this.submitLoading = false;
@@ -216,7 +216,7 @@ export default defineComponent({
       if (step.multiple) {
         listItem.checked = !listItem.checked;
       } else {
-        step.list.forEach(list => {
+        step.list.forEach((list) => {
           if (list.key === listItem.key) {
             list.checked = true;
           } else {
@@ -229,14 +229,15 @@ export default defineComponent({
     handleCustomeInput(args, event) {
       const { item, e } = args;
       item.value = event.target.value;
+      item.count = item.value.length;
       this.updateNode(e);
     },
     getDisabledStatus() {
       const { currentStep } = this;
       let actived;
       if (currentStep && currentStep.list && currentStep.list.length > 0) {
-        actived = currentStep.list.find(item => {
-          if (item.type === "input") {
+        actived = currentStep.list.find((item) => {
+          if (["input", "textarea"].indexOf(item.type) > -1) {
             return item.checked && item.value !== "";
           } else {
             return item.checked;
@@ -257,16 +258,15 @@ export default defineComponent({
               type: "primary",
               loading: this.submitLoading,
               disabled: this.getDisabledStatus(),
-              loadingColor: "#fff"
-            }
+              loadingColor: "#fff",
+            },
           },
           this.confirmText
-        )
+        ),
       ]);
     },
-    createCustomeElement(h, e) {
-      const { item, step, stepIndex, key } = e;
-      if (item.type && item.type === "input") {
+    createCustomeElement(h, { item, step, stepIndex, key, display }) {
+      if (item.type && item.type === "input" && display === "inline") {
         return h(genComponentName("flex-item"), { props: { flex: 1 } }, [
           h(
             "input",
@@ -278,15 +278,58 @@ export default defineComponent({
                     step,
                     stepIndex,
                     listItem: item,
-                    listIndex: key
-                  }
-                })
+                    listIndex: key,
+                  },
+                }),
               },
               class: ["input"],
-              attrs: { placeholder: item.placeholder }
+              attrs: {
+                placeholder: item.placeholder,
+                maxlength: item.maxlength,
+              },
             },
             []
-          )
+          ),
+        ]);
+      } else if (
+        item.type &&
+        item.type === "textarea" &&
+        display === "column"
+      ) {
+        const { count = 0 } = item;
+        return h("div", { class: "textarea-wapper" }, [
+          h(
+            "textarea",
+            {
+              class: ["textarea"],
+              on: {
+                input: this.handleCustomeInput.bind(this, {
+                  item,
+                  e: {
+                    step,
+                    stepIndex,
+                    listItem: item,
+                    listIndex: key,
+                  },
+                }),
+              },
+              attrs: {
+                placeholder: item.placeholder,
+                maxlength: item.maxlength,
+              },
+            },
+            []
+          ),
+          h(
+            "div",
+            {
+              class: "textarea-counter",
+              directives: [
+                { name: "show", value: item.counter && item.maxlength > 0 },
+              ],
+            },
+            [`${count}/${item.maxlength}`]
+          ),
         ]);
       }
     },
@@ -296,8 +339,8 @@ export default defineComponent({
         {
           class: ["yn-picky-stepper-content"],
           directives: [
-            { name: "show", value: step.key === this.currentStep.key }
-          ]
+            { name: "show", value: step.key === this.currentStep.key },
+          ],
         },
         [
           h(
@@ -312,10 +355,10 @@ export default defineComponent({
                       step,
                       stepIndex,
                       listItem: item,
-                      listIndex: key
-                    })
+                      listIndex: key,
+                    }),
                   },
-                  key
+                  key,
                 },
                 [
                   h(genComponentName("flex"), {}, [
@@ -330,17 +373,30 @@ export default defineComponent({
                             genComponentName("radiobox"),
                             { props: { checked: item.checked, size: 20 } },
                             []
-                          )
+                          ),
                     ]),
                     h(genComponentName("flex-item"), {}, [
-                      h("span", { class: ["text"] }, item.label)
+                      h("span", { class: ["text"] }, item.label),
                     ]),
-                    this.createCustomeElement(h, { item, step, stepIndex, key })
-                  ])
+                    this.createCustomeElement(h, {
+                      item,
+                      step,
+                      stepIndex,
+                      key,
+                      display: "inline",
+                    }),
+                  ]),
+                  this.createCustomeElement(h, {
+                    item,
+                    step,
+                    stepIndex,
+                    key,
+                    display: "column",
+                  }),
                 ]
               );
             })
-          )
+          ),
         ]
       );
     },
@@ -348,7 +404,7 @@ export default defineComponent({
       return Array.apply(null, this.caculateSteps).map((step, index) => {
         return this.createPickerList(h, step, index);
       });
-    }
+    },
   },
   render(h) {
     return h("div", { class: ["yn-picky-stepper"] }, [
@@ -360,14 +416,14 @@ export default defineComponent({
             beforeEnter: this.handleBeforeEnter,
             afterEnter: this.handleAfterEnter,
             beforeLeave: this.handleBeforeLeave,
-            afterLeave: this.handleAfterLeave
+            afterLeave: this.handleAfterLeave,
           },
           directives: [{ name: "show", value: this.value }],
           props: { position: "bottom" },
-          style: { "max-height": "80%" }
+          style: { "max-height": "80%" },
         },
         [this.createHeader(h), ...this.createSteps(h), this.createFooter(h)]
-      )
+      ),
     ]);
-  }
+  },
 });

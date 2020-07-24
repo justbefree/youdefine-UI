@@ -1,7 +1,7 @@
 <template>
   <div class="spin">
     <div>
-      <h4>trip-bounce</h4>
+      <h4>triple-bounce</h4>
       <yui-spin type="triple-bounce"></yui-spin>
     </div>
     <div>
@@ -15,6 +15,10 @@
     <div>
       <h4>double-bounce</h4>
       <yui-spin type="double-bounce"></yui-spin>
+    </div>
+    <div>
+      <h4>rotate</h4>
+      <yui-spin type="rotate" :size="50"></yui-spin>
     </div>
   </div>
 </template>

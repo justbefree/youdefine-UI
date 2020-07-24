@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:10:50
+ * @Last Modified time: 2020-07-09 15:52:00
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -12,8 +12,8 @@ import FlexItem from "../flex-item";
 import Button from "../button";
 import Popup from "../popup";
 import Iconfont from "../iconfont";
-const VALIDE_POPUP_CONTENT_COMPONENT = "yn-submit-action-popup-content";
-const VALIDE_VALUE_COMPONENT = "yn-submit-action-value";
+const VALIDE_POPUP_CONTENT_COMPONENT = "submit-action-popup-content";
+const VALIDE_VALUE_COMPONENT = "submit-action-value";
 export default defineComponent({
   name: "SubmitAction",
   mixins: [slotsMixins],
@@ -21,35 +21,35 @@ export default defineComponent({
   props: {
     submitText: {
       type: String,
-      default: "提交"
+      default: "提交",
     },
     label: {
       type: String,
-      default: "总计:"
+      default: "总计:",
     },
     value: {
       type: String,
-      default: "0"
+      default: "0",
     },
     currencySymbol: {
       type: String,
-      default: "&yen;"
+      default: "&yen;",
     },
     showIcon: {
       type: Boolean,
-      default: true
+      default: true,
     },
     fixed: Boolean,
     disabled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       showPopup: false,
       popupStatus: false,
-      submitStatus: "resolved"
+      submitStatus: "resolved",
     };
   },
   methods: {
@@ -63,14 +63,16 @@ export default defineComponent({
     },
     toggle() {
       this.showPopup = !this.showPopup;
+      this.$emit("trigger", this.showPopup);
     },
     view() {
       this.showPopup = true;
     },
     setActionPopupStyle() {
       const rect = this.$el.getBoundingClientRect();
-      this.$refs.actionPopup.style.bottom = `${window.innerHeight -
-        rect.top}px`;
+      this.$refs.actionPopup.style.bottom = `${
+        window.innerHeight - rect.top
+      }px`;
     },
     handleBeforeEnter() {
       this.$emit("beforeEnter");
@@ -86,15 +88,16 @@ export default defineComponent({
       }
     },
     getValideContent(type, slots = []) {
+      const prefix = this.VUE_APP_PREFIX;
       const validComponent = [];
       let valideName;
       if (type === "value") {
-        valideName = VALIDE_VALUE_COMPONENT;
+        valideName = `${prefix}-${VALIDE_VALUE_COMPONENT}`;
       } else if (type === "content") {
-        valideName = VALIDE_POPUP_CONTENT_COMPONENT;
+        valideName = `${prefix}-${VALIDE_POPUP_CONTENT_COMPONENT}`;
       }
       slots &&
-        slots.forEach(child => {
+        slots.forEach((child) => {
           if (
             child.componentOptions &&
             valideName === child.componentOptions.tag
@@ -111,7 +114,7 @@ export default defineComponent({
       } else {
         return h("span", { class: ["yn-submit-action-currency"] }, [
           h("small", { domProps: { innerHTML: this.currencySymbol } }, []),
-          h("b", {}, [this.value])
+          h("b", {}, [this.value]),
         ]);
       }
     },
@@ -121,10 +124,14 @@ export default defineComponent({
           ? "iconl-arrow-down-line"
           : "iconl-arrow-up-line";
         return h("span", { class: ["yn-submit-action-icon"] }, [
-          h(genComponentName("iconfont"), { props: { name: iconName, size: 12 } }, [])
+          h(
+            genComponentName("iconfont"),
+            { props: { name: iconName, size: 12 } },
+            []
+          ),
         ]);
       }
-    }
+    },
   },
   render(h) {
     const slots = this.slots();
@@ -137,7 +144,7 @@ export default defineComponent({
           {
             class: ["yn-submit-action-popup"],
             ref: "actionPopup",
-            directives: [{ name: "show", value: this.popupStatus }]
+            directives: [{ name: "show", value: this.popupStatus }],
           },
           [
             h(
@@ -148,15 +155,15 @@ export default defineComponent({
                 on: {
                   beforeEnter: this.handleBeforeEnter,
                   afterLeave: this.handleAfterLeave,
-                  input: this.toggle
-                }
+                  input: this.toggle,
+                },
               },
               [
                 h("div", { class: ["yn-submit-action-content"] }, [
-                  this.getValideContent("content", slots)
-                ])
+                  this.getValideContent("content", slots),
+                ]),
               ]
-            )
+            ),
           ]
         ),
         h(genComponentName("flex"), { class: ["yn-submit-action-flex"] }, [
@@ -167,12 +174,12 @@ export default defineComponent({
               h(genComponentName("flex"), {}, [
                 h(genComponentName("flex-item"), {}, [
                   h("span", { class: ["yn-submit-action-total-text"] }, [
-                    this.label
-                  ])
+                    this.label,
+                  ]),
                 ]),
                 h(genComponentName("flex-item"), {}, [this.genValue(h, slots)]),
-                h(genComponentName("flex-item"), {}, [this.genIcon(h)])
-              ])
+                h(genComponentName("flex-item"), {}, [this.genIcon(h)]),
+              ]),
             ]
           ),
           h(genComponentName("flex-item"), { props: { flex: 1 } }, [
@@ -183,15 +190,15 @@ export default defineComponent({
                 props: {
                   type: "primary",
                   size: "large",
-                  disabled: this.disabled
+                  disabled: this.disabled,
                 },
-                on: { click: this.submit }
+                on: { click: this.submit },
               },
               [this.submitText]
-            )
-          ])
-        ])
+            ),
+          ]),
+        ]),
       ]
     );
-  }
+  },
 });

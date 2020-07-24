@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 14:49:32
+ * @Last Modified time: 2020-06-16 11:56:59
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -21,59 +21,59 @@ export default defineComponent({
   props: {
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     title: {
       type: String,
-      default: "标题"
+      default: "标题",
     },
     column: {
       type: [Number, String],
       default: 4,
-      validator: c => {
+      validator: (c) => {
         return String(c) === "4" || String(c) === "3";
-      }
+      },
     },
     parse: {
       type: Function,
-      default: city => {
+      default: (city) => {
         return city.CityName;
-      }
+      },
     },
     limited: {
       type: Boolean,
-      default: false
+      default: false,
     },
     limitedData: {
       type: Array,
       default: () => {
         return [];
-      }
+      },
     },
     tabs: {
       type: Array,
       default: () => {
         return [
           { label: "中国", key: "mainland-china" },
-          { label: "非中国大陆(国际/港澳台)", key: "overseas" }
+          { label: "非中国大陆(国际/港澳台)", key: "overseas" },
         ];
-      }
+      },
     },
     searchable: {
       type: Boolean,
-      default: true
+      default: true,
     },
     placeholder: {
       type: String,
-      default: "请输入城市名称"
+      default: "请输入城市名称",
     },
     showHistory: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showHotCity: {
       type: Boolean,
-      default: true
+      default: true,
     },
     search: {
       type: Object,
@@ -83,11 +83,11 @@ export default defineComponent({
           action: () => {
             return Promise.resolve();
           },
-          parse: e => {
+          parse: (e) => {
             return e;
-          }
+          },
         };
-      }
+      },
     },
     history: {
       type: Object,
@@ -97,12 +97,12 @@ export default defineComponent({
           action: () => {
             return Promise.resolve();
           },
-          parse: e => {
+          parse: (e) => {
             return e;
           },
-          title: "历史查询"
+          title: "历史查询",
         };
-      }
+      },
     },
     hotCity: {
       type: Object,
@@ -112,12 +112,12 @@ export default defineComponent({
           action: () => {
             return Promise.resolve();
           },
-          parse: e => {
+          parse: (e) => {
             return e;
           },
-          title: "热门城市"
+          title: "热门城市",
         };
-      }
+      },
     },
     alphaBeta: {
       type: Object,
@@ -127,13 +127,13 @@ export default defineComponent({
           action: () => {
             return Promise.resolve();
           },
-          parse: e => {
+          parse: (e) => {
             return e;
           },
-          title: "按字母查询"
+          title: "按字母查询",
         };
-      }
-    }
+      },
+    },
   },
   data() {
     return {
@@ -149,7 +149,7 @@ export default defineComponent({
       alphaBetaLoading: false,
       hotCityLoading: false,
       isSearching: false,
-      keywords: ""
+      keywords: "",
     };
   },
   watch: {
@@ -167,8 +167,8 @@ export default defineComponent({
           this.caculatedTabs.push({ ...tab, active });
         });
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     beforeEnter() {
@@ -232,13 +232,13 @@ export default defineComponent({
       const params = { ...this.search.params, tab: this.currentTab, value };
       const promise = this.search.action(params);
       promise
-        .then(res => {
+        .then((res) => {
           const data = this.search.parse(res, params);
           if (data && data.length) {
             this.searchList = data;
           }
         })
-        .catch(err => {
+        .catch((err) => {
           this.searchList = [];
           if (err.errmsg) {
             this.Toast(err.errmsg);
@@ -255,7 +255,7 @@ export default defineComponent({
       const promise = this.history.action(params);
       if (isPromise(promise)) {
         this.historyLoading = true;
-        promise.then(res => {
+        promise.then((res) => {
           const data = this.history.parse(res, params);
           if (data && data.length) {
             this.historyList = data;
@@ -271,7 +271,7 @@ export default defineComponent({
       const promise = this.hotCity.action(params);
       if (isPromise(promise)) {
         this.hotCityLoading = true;
-        promise.then(res => {
+        promise.then((res) => {
           const data = this.hotCity.parse(res, params);
           if (data && data.length) {
             this.hotCityList = data;
@@ -296,7 +296,7 @@ export default defineComponent({
         const params = { ...this.alphaBeta.params, alphaBeta: e };
         const promise = this.alphaBeta.action(params);
         if (isPromise(promise)) {
-          promise.then(res => {
+          promise.then((res) => {
             const data = this.alphaBeta.parse(res, params);
             if (data && data.length) {
               CACHED_ALPHA_BETA[e] = data;
@@ -326,7 +326,7 @@ export default defineComponent({
         return false;
       }
       this.clearSearchResult();
-      this.caculatedTabs.forEach(tab => {
+      this.caculatedTabs.forEach((tab) => {
         if (tab.key === ele.key) {
           tab.active = true;
           if (this.showHistory) {
@@ -354,7 +354,7 @@ export default defineComponent({
             genComponentName("flex"),
             {
               props: { justifyContent: "spaceAround" },
-              class: ["yn-city-picker-tab-bar"]
+              class: ["yn-city-picker-tab-bar"],
             },
             Array.apply(null, this.caculatedTabs).map((ele, key) => {
               return h(
@@ -363,7 +363,10 @@ export default defineComponent({
                   key,
                   on: { click: this.handleTabSwitch.bind(this, ele) },
                   props: { flex: 1 },
-                  class: ["yn-city-picker-tab-item", ele.active ? "active" : ""]
+                  class: [
+                    "yn-city-picker-tab-item",
+                    ele.active ? "active" : "",
+                  ],
                 },
                 [h("span", { class: ["yn-city-picker-tab-text"] }, ele.label)]
               );
@@ -382,8 +385,8 @@ export default defineComponent({
             : null,
           this.createBlock(h, {
             cities: this.historyList,
-            loading: this.historyLoading
-          })
+            loading: this.historyLoading,
+          }),
         ];
       } else {
         return [];
@@ -398,9 +401,11 @@ export default defineComponent({
             new RegExp(this.keywords, "ig"),
             `<i>${this.keywords}</i>`
           );
-          return h("li", { key, on: { click: this.handlePick.bind(this, list) } }, [
-            h("span", { domProps: { innerHTML } }, [])
-          ]);
+          return h(
+            "li",
+            { key, on: { click: this.handlePick.bind(this, list) } },
+            [h("span", { domProps: { innerHTML } }, [])]
+          );
         })
       );
     },
@@ -410,8 +415,8 @@ export default defineComponent({
           this.createBlockTitle(h, this.hotCity.title),
           this.createBlock(h, {
             cities: this.hotCityList,
-            loading: this.hotCityLoading
-          })
+            loading: this.hotCityLoading,
+          }),
         ];
       } else {
         return [];
@@ -424,7 +429,7 @@ export default defineComponent({
           genComponentName("flex"),
           {
             props: { flexWrap: "wrap", justifyContent: "spaceBetween" },
-            class: ["yn-city-picker-alpha-beta"]
+            class: ["yn-city-picker-alpha-beta"],
           },
           Array.apply(null, { length: 26 }).map((i, key) => {
             const char = String.fromCharCode(65 + key);
@@ -434,13 +439,13 @@ export default defineComponent({
                 on: { click: this.handleClickAlphaBeta.bind(this, char) },
                 class: [
                   "alpha-beta",
-                  this.selectedAlphaBeta === char ? "active" : ""
-                ]
+                  this.selectedAlphaBeta === char ? "active" : "",
+                ],
               },
               char
             );
           })
-        )
+        ),
       ];
     },
     creteInputSearchArea(h) {
@@ -449,7 +454,7 @@ export default defineComponent({
           genComponentName("flex"),
           {
             props: { justifyContent: "spaceBetween" },
-            class: ["yn-city-picker-input-search"]
+            class: ["yn-city-picker-input-search"],
           },
           [
             h(genComponentName("flex-item"), { class: ["icon-box"] }, [
@@ -457,38 +462,45 @@ export default defineComponent({
                 genComponentName("iconfont"),
                 { props: { name: "iconsearch", size: "16" } },
                 []
-              )
+              ),
             ]),
-            h(genComponentName("flex-item"), { class: ["input-box"], props: { flex: 1 } }, [
-              h(
-                "input",
-                {
-                  on: {
-                    input: this.handleOnSearch,
-                    compositionstart: this.onComposeStart,
-                    compositionend: this.onComposeEnd
+            h(
+              genComponentName("flex-item"),
+              {
+                class: ["input-box", this.isSearching ? "searching" : ""],
+                props: { flex: 1 },
+              },
+              [
+                h(
+                  "input",
+                  {
+                    on: {
+                      input: this.handleOnSearch,
+                      compositionstart: this.onComposeStart,
+                      compositionend: this.onComposeEnd,
+                    },
+                    attrs: { placeholder: this.placeholder },
+                    ref: "searchInput",
                   },
-                  attrs: { placeholder: this.placeholder },
-                  ref: "searchInput"
-                },
-                []
-              )
-            ]),
+                  []
+                ),
+              ]
+            ),
             h(
               genComponentName("flex-item"),
               {
                 on: { click: this.clearSearchKeywords },
                 class: ["delete-all"],
-                directives: [{ name: "show", value: this.isSearching }]
+                directives: [{ name: "show", value: this.isSearching }],
               },
               [
                 h(
                   genComponentName("iconfont"),
                   { props: { name: "iconclear-button", size: 16 } },
                   []
-                )
+                ),
               ]
-            )
+            ),
           ]
         );
       }
@@ -496,7 +508,7 @@ export default defineComponent({
     createSearchedArea(h) {
       return this.createBlock(h, {
         cities: this.alphaBetaCities,
-        loading: this.alphaBetaLoading
+        loading: this.alphaBetaLoading,
       });
     },
     createClose(h) {
@@ -505,14 +517,14 @@ export default defineComponent({
         {
           class: ["yn-city-picker-close"],
           props: { name: "iconcancle_circle", size: 24 },
-          on: { click: this.close }
+          on: { click: this.close },
         },
         []
       );
     },
     createBlockTitle(h, title = "") {
       return h("div", { class: ["yn-city-picker-block-title"] }, [
-        h("span", {}, title)
+        h("span", {}, title),
       ]);
     },
     textOverflow(text = "") {
@@ -534,14 +546,18 @@ export default defineComponent({
       const { cities, loading } = args;
       if (loading) {
         return h("div", { class: ["yn-city-picker-searched-area"] }, [
-          h(genComponentName("spin"), { props: { type: "tripleBounce", size: 30 } }, [])
+          h(
+            genComponentName("spin"),
+            { props: { type: "tripleBounce", size: 30 } },
+            []
+          ),
         ]);
       } else {
         return h(
           genComponentName("flex"),
           {
             props: { flexWrap: "wrap", justifyContent: "spaceBetween" },
-            class: "yn-city-picker-cities"
+            class: "yn-city-picker-cities",
           },
           [
             Array.apply(null, cities).map((city, key) => {
@@ -553,12 +569,12 @@ export default defineComponent({
                   class: [
                     "city-item",
                     `column-${this.column}`,
-                    ...this.textOverflow(this.parse(city))
-                  ]
+                    ...this.textOverflow(this.parse(city)),
+                  ],
                 },
                 [h("span", {}, this.parse(city))]
               );
-            })
+            }),
           ]
         );
       }
@@ -574,13 +590,14 @@ export default defineComponent({
     createDynamicContent(h) {
       if (this.limited) {
         return [
-          h(genComponentName("flex-item"), { class: ["yn-city-picker-header"] }, [
-            this.createTitle(h),
-            this.createClose(h)
-          ]),
+          h(
+            genComponentName("flex-item"),
+            { class: ["yn-city-picker-header"] },
+            [this.createTitle(h), this.createClose(h)]
+          ),
           h(genComponentName("flex-item"), { props: { flex: 1 } }, [
-            this.createBlock(h, { cities: this.limitedData })
-          ])
+            this.createBlock(h, { cities: this.limitedData }),
+          ]),
         ];
       } else {
         return [
@@ -596,12 +613,12 @@ export default defineComponent({
                 {
                   name: "show",
                   value:
-                    !this.isSearching && this.currentTab === "mainland-china"
-                }
+                    !this.isSearching && this.currentTab === "mainland-china",
+                },
               ],
               class: ["yn-city-picker-body"],
               props: { flex: 1 },
-              ref: "scrollElement-mainland-china"
+              ref: "scrollElement-mainland-china",
             },
             [this.createBodyArea(h)]
           ),
@@ -611,12 +628,12 @@ export default defineComponent({
               directives: [
                 {
                   name: "show",
-                  value: !this.isSearching && this.currentTab === "overseas"
-                }
+                  value: !this.isSearching && this.currentTab === "overseas",
+                },
               ],
               class: ["yn-city-picker-body"],
               props: { flex: 1 },
-              ref: "scrollElement-overseas"
+              ref: "scrollElement-overseas",
             },
             [this.createBodyArea(h)]
           ),
@@ -625,18 +642,22 @@ export default defineComponent({
             {
               class: [
                 "yn-city-picker-body",
-                "yn-city-picker-input-search-result"
+                "yn-city-picker-input-search-result",
               ],
               directives: [{ name: "show", value: this.isSearching }],
               props: { flex: 1 },
-              ref: "scrollElement-searching"
+              ref: "scrollElement-searching",
             },
             [this.createInputSearchList(h)]
           ),
-          h(genComponentName("flex-item"), { class: ["yn-city-picker-footer"] }, [])
+          h(
+            genComponentName("flex-item"),
+            { class: ["yn-city-picker-footer"] },
+            []
+          ),
         ];
       }
-    }
+    },
   },
   render(h) {
     return h("div", { class: ["yn-city-picker"] }, [
@@ -648,23 +669,23 @@ export default defineComponent({
             beforeEnter: this.beforeEnter,
             afterEnter: this.afterEnter,
             beforeLeave: this.beforeLeave,
-            afterLeave: this.afterLeave
+            afterLeave: this.afterLeave,
           },
           props: { position: "bottom" },
           style: { height: "90%" },
-          directives: [{ name: "show", value: this.value }]
+          directives: [{ name: "show", value: this.value }],
         },
         [
           h(
             genComponentName("flex"),
             {
               class: ["yn-city-picker-content", this.limited ? "limited" : ""],
-              props: { flexDirection: "column" }
+              props: { flexDirection: "column" },
             },
             this.createDynamicContent(h)
-          )
+          ),
         ]
-      )
+      ),
     ]);
-  }
+  },
 });

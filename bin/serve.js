@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-05-26 16:09:34
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-06-09 09:44:55
+* @Last Modified time: 2020-07-24 14:51:25
 * @E-mail: justbefree@126.com
 */
 const path = require("path");
@@ -27,4 +27,3 @@ if (os.platform() === "darwin") {
 } else {
   servejs.run({ previousPrefix });
 }
-
