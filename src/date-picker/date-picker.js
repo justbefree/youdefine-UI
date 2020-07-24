@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-29 10:58:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 14:50:18
+ * @Last Modified time: 2020-07-24 13:59:24
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -39,9 +39,12 @@ export default defineComponent({
       monthEnd: 12,
       dateStart: 1,
       dateEnd: 31,
-      isLastYear: false,
-      isFirstYear: false
+      computedColumns: [],
+      defaultDisplayDate: ""
     };
+  },
+  initPropsToData() {
+    return [];
   },
   methods: {
     close() {
@@ -57,117 +60,143 @@ export default defineComponent({
       });
       this.close();
     },
-    updateMonth() {
+    updateMonthDayCount() {
       this.dayCount = YnDate(this.year, this.month, "01").getDaysCountOfMonth();
     },
+    genDate(startDate, endDate) {
+      this.updateMonthDayCount();
+      const defaultIndex = this.computedColumns[2].defaultIndex;
+      const dates = [];
+      for (let i = startDate; i <= endDate; i++) {
+        dates.push(i);
+      }
+      if (defaultIndex < dates.length) {
+        this.date = dates[defaultIndex];
+      } else {
+        this.computedColumns[2].defaultIndex = 0;
+        this.date = dates[0];
+      }
+      this.computedColumns[2].value = dates;
+    },
+    genMonth(startMonth, endMonth, extendParams = {}) {
+      const defaultIndex = this.computedColumns[1].defaultIndex;
+      const months = [];
+      for (let i = startMonth; i <= endMonth; i++) {
+        months.push(i);
+      }
+      if (defaultIndex < months.length) {
+        this.month = months[defaultIndex];
+      } else {
+        this.computedColumns[1].defaultIndex = 0;
+        this.month = months[0];
+      }
+      this.computedColumns[1].value = months;
+      if (extendParams.trigger) {
+        if (extendParams.trigger === "start") {
+          if (this.month === startMonth) {
+            this.genDate(extendParams.startDate, this.dayCount);
+          } else {
+            this.genDate(1, this.dayCount);
+          }
+        } else if (extendParams.trigger === "end") {
+          if (this.month === endMonth) {
+            this.genDate(1, extendParams.endDate);
+          } else {
+            this.genDate(1, this.dayCount);
+          }
+        }
+      } else {
+        this.genDate(1, this.dayCount);
+      }
+    },
     handleChange(e, i, key) {
+      console.log(e, i, key);
       const [startYear, startMonth, startDate] = this.start.split("-");
       const [endYear, endMonth, endDate] = this.end.split("-");
-      if (key === 0) {
-        this.year = e;
-        this.updateMonth();
-        if (Number(e) === Number(startYear)) {
-          // 第一年
-          this.isFirstYear = true;
-          this.isLastYear = false;
-          this.monthStart = Number(startMonth);
-          this.monthEnd = 12;
-          if (Number(this.month) < Number(startMonth)) {
-            // 如果是第一个月，则需要
-            this.month = Number(startMonth);
-            this.startMonth = Number(startMonth);
-            this.updateMonth();
-          } else if (Number(this.month) === Number(startMonth)) {
-            if (Number(startDate) > Number(this.date)) {
-              this.date = startDate;
-              this.dateStart = Number(startDate);
-            }
-          }
-        } else if (Number(e) === Number(endYear)) {
-          // 最后一年
-          this.isLastYear = true;
-          this.isFirstYear = false;
-          this.monthStart = 1;
-          this.monthEnd = Number(endMonth);
-          if (Number(this.month) > Number(endMonth)) {
-            this.month = Number(endMonth);
-            this.updateMonth();
-          } else if (Number(this.month) === Number(endMonth)) {
-            if (endDate < this.date) {
-              this.date = endDate;
-            }
-          }
-        } else {
-          this.isFirstYear = false;
-          this.isLastYear = false;
-          this.monthStart = 1;
-          this.monthEnd = 12;
-        }
-      }
-      if (key === 1) {
+      // console.log(startYear, startMonth, startDate);
+      // console.log(endYear, endMonth, endDate);
+      if (key === 1) { // 月变化
         this.month = e;
-        this.updateMonth();
-        if (this.isFirstYear && Number(e) === Number(startMonth)) {
-          this.dateStart = Number(startDate);
+        if (Number(e) === Number(startMonth)) {
+          this.genDate(startDate, this.dayCount);
+        } else if (Number(e) === Number(endMonth)) {
+          this.genDate(1, endDate);
         } else {
-          this.dateStart = 1;
+          this.genDate(1, this.dayCount);
         }
-        if (this.isLastYear && Number(e) === Number(endMonth)) {
-          this.dateStart = 1;
-          this.dateEnd = Number(endDate);
+      } else if (key === 0) { // 年变化
+        this.year = e;
+        if (Number(startYear) === Number(endYear)) {
+          this.genMonth(startMonth, endMonth);
         } else {
-          this.dateStart = 1;
-          this.dateEnd = this.dayCount;
+          if (Number(e) === Number(startYear)) {
+            this.genMonth(Number(startMonth), 12, { trigger: "start", startDate });
+          } else if (Number(e) === Number(endYear)) {
+            this.genMonth(1, Number(endMonth), { trigger: "end", endDate });
+          } else {
+            this.genMonth(1, 12);
+          }
         }
-      }
-      if (key === 2) {
+      } else if (key === 2) { // 日变化
         this.date = e;
       }
     },
     getDefaultIndex(arr, type) {
       const index = arr.indexOf(Number(this[type]));
+      if (index < 0) {
+        this[type] = arr[0];
+      }
       return index > -1 ? index : 0;
     },
     genColumns() {
+      const columns = [];
       if (
         !validateFormatedDate(this.start) ||
         !validateFormatedDate(this.end)
       ) {
-        return;
-      }
-      if (validateFormatedDate(this.defaultDate)) {
-        const [y, m, d] = this.defaultDate.split("-");
-        this.year = y;
-        this.month = m;
-        this.date = d;
-      } else {
-        const [y, m, d] = this.end.split("-");
-        this.year = y;
-        this.month = m;
-        this.date = d;
+        return columns;
       }
       const year = [];
       const month = [];
       const date = [];
-      const [startY] = this.start.split("-");
-      const [endY] = this.end.split("-");
-      for (let i = startY; i <= endY; i++) {
+      const [startYear] = this.start.split("-");
+      const [endYear] = this.end.split("-");
+      for (let i = startYear; i <= endYear; i++) {
         // 创建年集合
         year.push(i);
       }
+      columns.push({ value: year, defaultIndex: this.getDefaultIndex(year, "year") });
       for (let i = this.monthStart; i <= this.monthEnd; i++) {
         month.push(i);
       }
-      // this.dateEnd = YnDate(this.year, this.month, "01").getDaysCountOfMonth();
+      columns.push({ value: month, defaultIndex: this.getDefaultIndex(month, "month") });
       for (let i = this.dateStart; i <= this.dateEnd; i++) {
         date.push(i);
       }
-      return [
-        { value: year, defaultIndex: this.getDefaultIndex(year, "year") },
-        { value: month, defaultIndex: this.getDefaultIndex(month, "month") },
-        { value: date, defaultIndex: this.getDefaultIndex(date, "date") }
-      ];
+      columns.push({ value: date, defaultIndex: this.getDefaultIndex(date, "date") });
+      return columns;
+    },
+    initData() {
+      if (validateFormatedDate(this.defaultDate)) {
+        this.defaultDisplayDate = this.defaultDate;
+      } else {
+        this.defaultDisplayDate = this.end;
+      }
+      const [y, m, d] = this.defaultDisplayDate.split("-");
+      this.year = Number(y);
+      this.month = Number(m);
+      this.date = Number(d);
+      // const [, startMonth, startDate] = this.start.split("-");
+      // this.monthStart = 1;
+      // this.dateStart = 1;
+      const [, endMonth, endDate] = this.end.split("-");
+      this.monthEnd = Number(endMonth);
+      this.dateEnd = Number(endDate);
     }
+  },
+  created() {
+    this.initData();
+    this.computedColumns = this.genColumns();
   },
   render(h) {
     return h("div", { class: ["yn-date-picker"] }, [
@@ -179,7 +208,7 @@ export default defineComponent({
             close: this.close,
             change: this.handleChange
           },
-          props: { columns: this.genColumns(), value: this.value }
+          props: { columns: this.computedColumns, value: this.value }
         },
         []
       )

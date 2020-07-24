@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-09 18:03:10
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-06 16:16:11
+ * @Last Modified time: 2020-07-23 14:15:47
  */
 export const hasOwnProperty = (obj, props) => {
   return Object.prototype.hasOwnProperty.call(obj, props);
@@ -80,4 +80,11 @@ export const isChineseCharacters = str => {
 };
 export const charLength = str => {
   return str.replace(/[\u0391-\uFFE5]/g, "aa").length;
+};
+// 生成唯一字符串
+export const guid = () => {
+  const S4 = () => {
+    return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+  }
+  return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 };
