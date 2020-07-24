@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-29 10:58:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-07-24 13:59:24
+ * @Last Modified time: 2020-07-24 14:16:29
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -110,11 +110,8 @@ export default defineComponent({
       }
     },
     handleChange(e, i, key) {
-      console.log(e, i, key);
       const [startYear, startMonth, startDate] = this.start.split("-");
       const [endYear, endMonth, endDate] = this.end.split("-");
-      // console.log(startYear, startMonth, startDate);
-      // console.log(endYear, endMonth, endDate);
       if (key === 1) { // 月变化
         this.month = e;
         if (Number(e) === Number(startMonth)) {
@@ -192,6 +189,24 @@ export default defineComponent({
       const [, endMonth, endDate] = this.end.split("-");
       this.monthEnd = Number(endMonth);
       this.dateEnd = Number(endDate);
+    },
+    handleBeforeEnter() {
+      this.$emit("beforeEnter");
+    },
+    handleEnter() {
+      this.$emit("enter");
+    },
+    handleAfterEnter() {
+      this.$emit("afterEnter");
+    },
+    handleBeforeLeave() {
+      this.$emit("beforeLeave");
+    },
+    handleLeave() {
+      this.$emit("leave");
+    },
+    handleAfterLeave() {
+      this.$emit("afterLeave");
     }
   },
   created() {
@@ -206,7 +221,13 @@ export default defineComponent({
           on: {
             confirm: this.handleOnConfirm,
             close: this.close,
-            change: this.handleChange
+            change: this.handleChange,
+            beforeEnter: this.handleBeforeEnter,
+            enter: this.handleEnter,
+            afterEnter: this.handleAfterEnter,
+            beforeLeave: this.handleBeforeLeave,
+            leave: this.handleLeave,
+            afterLeave: this.handleAfterLeave
           },
           props: { columns: this.computedColumns, value: this.value }
         },
