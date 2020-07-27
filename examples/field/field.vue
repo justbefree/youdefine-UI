@@ -1,13 +1,11 @@
 <template>
-  <div>
+  <div class="yn-field-container">
     <h2>yn-field</h2>
     <div class="box">
       <ul>
         <li>
           <span class="label">基础用法</span>
-          <yn-field-group>
-            <yn-field v-model="basicUsage" placeholder="请输入内容"></yn-field>
-          </yn-field-group>
+          <yn-field v-model="basicUsage" placeholder="请输入内容"></yn-field>
         </li>
         <li>
           <span class="label">数字类型</span>
@@ -80,6 +78,14 @@
           ></yn-field>
         </li>
         <li>
+          <span class="label">自定义label</span>
+          <yn-field
+            v-model="customLabel"
+          >
+            <div slot="label">自定义label</div>
+          </yn-field>
+        </li>
+        <li>
           <yn-field-group>
             <yn-field v-model="ynName" label="中文姓名"></yn-field>
             <yn-field v-model="ynPhone" label="手机号码"></yn-field>
@@ -115,14 +121,17 @@ export default {
       ynIdType: "",
       ynIdNo: "",
       ynBirthday: "",
-      ynIdNoEncrpt: "11222222222"
+      ynIdNoEncrpt: "11222222222",
+      customLabel: ""
     };
   }
 };
 </script>
 <style type="text/css" scoped="scoped">
-.box {
+.yn-field-container{
   background-color: #f7f8fa;
+}
+.box {
   height: 100%;
 }
 .box ul {
