@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-14 16:38:25
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:07:31
+ * @Last Modified time: 2020-08-10 11:33:44
  */
 import { defineComponent } from "../modules/component";
 import { camelize, capitalize } from "../modules/utils";
@@ -15,7 +15,7 @@ export default defineComponent({
       default: "snake"
     },
     size: {
-      type: Number,
+      type: [Number, String],
       default: 28
     },
     color: {
@@ -45,7 +45,7 @@ export default defineComponent({
       const componentName = this.loadSubComponent();
       return h(
         componentName,
-        { props: { size: this.size, color: this.color } },
+        { props: { size: Number(this.size), color: this.color } },
         []
       );
     }
