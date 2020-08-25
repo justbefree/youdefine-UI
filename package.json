@@ -1,6 +1,6 @@
 {
   "name": "yn-components",
-  "version": "0.4.9",
+  "version": "0.4.14",
   "private": false,
   "keywords": [
     "vue component",
@@ -15,6 +15,11 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "typings": "types/index.d.ts",
+  "files": [
+    "dist/*.js",
+    "types/*.d.ts"
+  ],
   "dependencies": {
     "core-js": "^3.6.4",
     "moment": "^2.25.3",
