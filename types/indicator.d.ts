@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-08-25 11:35:55
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-08-25 11:52:04
+* @Last Modified time: 2020-08-25 17:27:22
 * @E-mail: justbefree@126.com
 */
 
@@ -32,3 +32,4 @@ declare module 'vue/types/vue' {
     Indicator: Indicator;
   }
 }
+export const Indicator: Indicator;
