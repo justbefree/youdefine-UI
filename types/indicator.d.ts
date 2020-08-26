@@ -2,11 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-08-25 11:35:55
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-08-25 17:27:22
+* @Last Modified time: 2020-08-25 18:21:45
 * @E-mail: justbefree@126.com
 */
 
-import Vue from "vue";
 type IndicatorText = string;
 type IndicatorSpinType = "doubleBounce" | "fadingCircle" | "rotate" | "snake" | "rotateSvg" | "tripleBounce";
 type IndicatorSpinColor = string;
@@ -27,9 +26,5 @@ export interface Indicator {
   open(options: IndicatorOptions): void;
   close(): void;
 }
-declare module 'vue/types/vue' {
-  interface Vue {
-    Indicator: Indicator;
-  }
-}
+
 export const Indicator: Indicator;

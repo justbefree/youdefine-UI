@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-08-25 11:08:05
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-08-25 11:34:07
+* @Last Modified time: 2020-08-25 18:21:13
 * @E-mail: justbefree@126.com
 */
 
@@ -24,10 +24,5 @@ export interface YnToast extends Vue {
 export interface Toast {
   (message: ToastOptions | ToastMessage, options?: ToastOptions): YnToast;
   close(): void;
-}
-declare module 'vue/types/vue' {
-  interface Vue {
-    Toast: Toast;
-  }
 }
 export const Toast: Toast;
