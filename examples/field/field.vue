@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="yn-field-container">
     <h2>yui-field</h2>
     <div class="box">
       <ul>
