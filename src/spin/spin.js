@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-14 16:38:25
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:07:31
+ * @Last Modified time: 2020-08-10 11:33:44
  */
 import { defineComponent } from "../modules/component";
 import { camelize, capitalize } from "../modules/utils";
@@ -12,16 +12,16 @@ export default defineComponent({
   props: {
     type: {
       type: String,
-      default: "snake"
+      default: "snake",
     },
     size: {
-      type: Number,
-      default: 28
+      type: [Number, String],
+      default: 28,
     },
     color: {
       type: String,
-      default: "#007aff"
-    }
+      default: "#007aff",
+    },
   },
   methods: {
     loadSubComponent() {
@@ -45,12 +45,12 @@ export default defineComponent({
       const componentName = this.loadSubComponent();
       return h(
         componentName,
-        { props: { size: this.size, color: this.color } },
+        { props: { size: Number(this.size), color: this.color } },
         []
       );
-    }
+    },
   },
   render(h) {
     return h("span", {}, [this.createSpinner(h)]);
-  }
+  },
 });
