@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-16 15:50:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 14:55:46
+ * @Last Modified time: 2020-07-27 12:22:10
  */
 
 import { defineComponent, genComponentName } from "../modules/component";
@@ -11,62 +11,68 @@ import Flex from "../flex";
 import FlexItem from "../flex-item";
 import Iconfont from "../iconfont";
 const VALID_TYPE = ["number", "textarea", "password", "text", "email"];
+import { slotsMixins } from "../mixins/slots";
 export default defineComponent({
   name: "Field",
+  mixins: [slotsMixins],
   components: { Flex, FlexItem, Iconfont },
   props: {
     value: {
       type: [Number, String],
-      default: ""
+      default: "",
     },
     label: String,
     placeholder: String,
     maxlength: [Number, String],
     readonly: {
       type: Boolean,
-      default: false
+      default: false,
     },
     autofocus: {
       type: Boolean,
-      default: false
+      default: false,
     },
     required: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     clearable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     interactive: {
       type: String,
       default: "address",
-      require: false
+      require: false,
     },
     type: {
       type: String,
-      default: "text"
+      default: "text",
     },
     iconName: String,
     showTextareaCounter: {
       type: Boolean,
-      default: false
+      default: false,
     },
     encrypted: {
       type: Boolean,
-      default: false
+      default: false,
     },
-    pattern: String
+    display: {
+      type: String,
+      default: "row",
+    },
+    pattern: String,
   },
   data() {
     return {
       target: null,
       showIcon: false,
-      showEncryptInput: false
+      showEncryptInput: false,
     };
   },
   methods: {
@@ -109,7 +115,7 @@ export default defineComponent({
         required: this.required,
         disabled: this.disabled,
         maxlength,
-        pattern: this.pattern
+        pattern: this.pattern,
       };
       if (this.encrypted) {
         attrs["realValue"] = this.value;
@@ -118,7 +124,7 @@ export default defineComponent({
       const events = {
         focus: this.handleOnFocus,
         blur: this.handleOnBlur,
-        input: this.handleInput
+        input: this.handleInput,
       };
       const className = [];
       if (this.disabled) {
@@ -136,7 +142,7 @@ export default defineComponent({
                   {
                     class: ["textarea-ele", ...className],
                     on: { ...events },
-                    attrs: { ...attrs }
+                    attrs: { ...attrs },
                   },
                   []
                 ),
@@ -144,12 +150,12 @@ export default defineComponent({
                   "div",
                   {
                     directives: [
-                      { name: "show", value: this.showTextareaCounter }
+                      { name: "show", value: this.showTextareaCounter },
                     ],
-                    class: ["yn-field-textarea-counter"]
+                    class: ["yn-field-textarea-counter"],
                   },
                   [h("span", {}, `${this.value.length}/${this.maxlength}`)]
-                )
+                ),
               ]
             )
           );
@@ -165,12 +171,9 @@ export default defineComponent({
                     on: { ...events },
                     class: ["input-ele", ...className],
                     attrs: { ...attrs, type: this.type },
-                    domProps: {
-                      value: this.value
-                    }
                   },
                   []
-                )
+                ),
               ]
             )
           );
@@ -190,31 +193,43 @@ export default defineComponent({
             genComponentName("flex-item"),
             {
               directives,
-              on: { click: this.handleIconClick }
+              on: { click: this.handleIconClick },
             },
-            [h(genComponentName("iconfont"), { props: { name, size: "16" } }, [])]
+            [
+              h(
+                genComponentName("iconfont"),
+                { props: { name, size: "16" } },
+                []
+              ),
+            ]
           )
         );
       }
       return icon;
-    }
+    },
+    genLabel(h, label) {
+      return h(genComponentName("flex-item"), { class: ["yn-field-label"] }, [
+        h("span", {}, label),
+      ]);
+    },
   },
   render(h) {
-    // const slots = this.$scopedSlots;
+    const slots = this.slots("label");
     const label = [];
-    if (this.label) {
-      label.push(
-        h(genComponentName("flex-item"), { class: ["yn-field-label"] }, [
-          h("span", {}, this.label)
-        ])
-      );
+    if (slots && slots.length > 0) {
+      label.push(this.genLabel(h, slots));
+    } else if (this.label) {
+      label.push(this.genLabel(h, this.label));
     }
     return h("div", { class: ["yn-field-base", "border-top-bottom"] }, [
-      h(genComponentName("flex"), { class: ["yn-field-container"] }, [
-        ...label,
-        ...this.createInput(h),
-        ...this.createIcon(h)
-      ])
+      h(
+        genComponentName("flex"),
+        {
+          props: { flexDirection: this.display },
+          class: ["yn-field-container"],
+        },
+        [...label, ...this.createInput(h), ...this.createIcon(h)]
+      ),
     ]);
-  }
+  },
 });

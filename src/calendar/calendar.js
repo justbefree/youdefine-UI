@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-07-24 15:00:13
+ * @Last Modified time: 2020-09-01 11:26:14
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -99,7 +99,6 @@ export default defineComponent({
       beginDate: null,
       endDate: null,
       confirmButtonClassName: "active",
-      opened: false,
     };
   },
   watch: {
@@ -363,10 +362,7 @@ export default defineComponent({
     },
     handleAfterEnter() {
       this.$emit("afterEnter");
-      if (!this.opened) {
-        this.opened = true;
-        this.setPosition();
-      }
+      this.setPosition();
     },
     handleBeforeLeave() {
       this.$emit("beforeLeave");

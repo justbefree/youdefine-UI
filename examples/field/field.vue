@@ -115,14 +115,17 @@ export default {
       ynIdType: "",
       ynIdNo: "",
       ynBirthday: "",
-      ynIdNoEncrpt: "11222222222"
+      ynIdNoEncrpt: "11222222222",
+      customLabel: ""
     };
   }
 };
 </script>
 <style type="text/css" scoped="scoped">
-.box {
+.yn-field-container{
   background-color: #f7f8fa;
+}
+.box {
   height: 100%;
 }
 .box ul {
