@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-16 15:50:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-07-27 12:22:10
+ * @Last Modified time: 2020-09-10 10:22:11
  */
 
 import { defineComponent, genComponentName } from "../modules/component";
@@ -117,6 +117,9 @@ export default defineComponent({
         maxlength,
         pattern: this.pattern,
       };
+      const domProps = {
+        value: this.value,
+      };
       if (this.encrypted) {
         attrs["realValue"] = this.value;
         attrs["encryptedValue"] = encrypt(this.value);
@@ -143,6 +146,7 @@ export default defineComponent({
                     class: ["textarea-ele", ...className],
                     on: { ...events },
                     attrs: { ...attrs },
+                    domProps,
                   },
                   []
                 ),
@@ -171,6 +175,7 @@ export default defineComponent({
                     on: { ...events },
                     class: ["input-ele", ...className],
                     attrs: { ...attrs, type: this.type },
+                    domProps,
                   },
                   []
                 ),
