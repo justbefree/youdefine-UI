@@ -2,12 +2,12 @@
 * @Author: Just be free
 * @Date:   2020-05-13 18:08:08
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-05-27 19:47:20
+* @Last Modified time: 2020-09-10 13:41:58
 * @E-mail: justbefree@126.com
 */
 import { getConfig } from "./config";
 const prefix = getConfig("VUE_APP_PREFIX");
-console.log("组件库前缀是", prefix);
+console.log(`The current component lib's prefix is ${prefix}`);
 import { capitalize } from "../utils";
 export const defineComponent = (options = {}) => {
   options.name = genComponentName(options.name);
