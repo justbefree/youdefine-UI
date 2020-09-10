@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-01 11:34:57
+ * @Last Modified time: 2020-09-10 17:31:32
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -137,7 +137,12 @@ export default defineComponent({
             if (this.doubleModeAllowSameDate) {
               this.confirmButtonClassName = "active";
               push(this.changedNode[this.fromDate.key].className, "end");
-              this.setDateValue(date, "mark", this.toDateMark);
+              this.setDateValue(
+                date,
+                "mark",
+                `${this.fromDateMark}-${this.toDateMark}`
+              );
+              this.changedNode = { [date.key]: date };
               this.toDate = date;
               if (!this.showConfirmButton) {
                 this.handleOnConfirm();
@@ -327,6 +332,15 @@ export default defineComponent({
           [startNode.key]: startNode,
           [endNode.key]: endNode,
         };
+        // 当允许选择同一天，并且默认传的起止日期也是同一天则需要重置endNode
+        if (this.doubleModeAllowSameDate && startNode.key === endNode.key) {
+          endNode.className.push("start");
+          this.setDateValue(
+            endNode,
+            "mark",
+            `${this.fromDateMark}-${this.toDateMark}`
+          );
+        }
         this.fromDate = startNode;
         this.toDate = endNode;
       } else {
