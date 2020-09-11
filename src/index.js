@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-03 16:34:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-11 11:47:48
+ * @Last Modified time: 2020-09-11 15:46:10
  */
  const EVENTS = {};
  import { getConfig } from "./modules/component/config";
