@@ -2,10 +2,11 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:20:36
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-11 11:57:22
+ * @Last Modified time: 2020-09-11 14:47:51
  */
 import { defineComponent } from "../modules/component";
 import { warn, error } from "../modules/error";
+import svgs from "./svgs";
 export default defineComponent({
   name: "Iconfont",
   props: {
@@ -16,6 +17,12 @@ export default defineComponent({
       require: false
     }
   },
+  data() {
+    return {
+      svgPrefix: "",
+      svgs
+    };
+  },
   methods: {
     handleClick() {
       const { name } = this.$props;
@@ -23,11 +30,13 @@ export default defineComponent({
     },
     getSvg() {
       const { name } = this.$props;
+      const reg = new RegExp(`^${this.svgPrefix}`);
+      const iconName = name.replace(reg, "");
       if (this.svgs) {
-        if (this.svgs[name]) {
-          return this.svgs[name];
+        if (this.svgs[iconName]) {
+          return this.svgs[iconName];
         } else {
-          warn(`${name}.svg is missing`);
+          warn(`${iconName}.svg is missing`);
         }
       } else {
         error(`You need config svgs' lib before use ${this.$options.name} component`);
