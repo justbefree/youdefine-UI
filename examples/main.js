@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 17:15:01
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-11 11:56:20
+ * @Last Modified time: 2020-09-11 14:22:44
  * @E-mail: justbefree@126.com
  */
 
@@ -12,7 +12,7 @@ import router from "./router";
 import "./less/style.less";
 import YuiComponent from "@";
 import svgs from "./iconfont/svgs";
-YuiComponent.config({ YnIconfont: { svgs } });
+YuiComponent.config({ YnIconfont: { svgs, svgPrefix: "icon" } });
 Vue.use(YuiComponent);
 // YuiComponent.config({ iconfont: "../" });
 if (process.env.NODE_ENV === "development") {
