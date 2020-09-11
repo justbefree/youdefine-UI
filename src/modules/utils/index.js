@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-09 18:03:10
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-07-23 14:15:47
+ * @Last Modified time: 2020-09-11 10:39:18
  */
 export const hasOwnProperty = (obj, props) => {
   return Object.prototype.hasOwnProperty.call(obj, props);
@@ -10,8 +10,13 @@ export const hasOwnProperty = (obj, props) => {
 export const capitalize = (str = "") => {
   return str.replace(/\B([A-Z])/g, "-$1").toLowerCase();
 };
-export const camelize = (str = "") => {
-  return str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ""));
+export const camelize = (str = "", upperCaseFirstLetter = false) => {
+  let ca = str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ""));
+  if (upperCaseFirstLetter) {
+    return ca.replace(/\b\w/g, (f) => f.toUpperCase());
+  } else {
+    return ca;
+  }
 };
 export const isString = value => {
   return Object.prototype.toString.call(value) === "[object String]";
