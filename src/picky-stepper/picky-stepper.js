@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-07-09 17:03:41
+ * @Last Modified time: 2020-09-15 14:52:29
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -282,7 +282,7 @@ export default defineComponent({
                   }
                 })
               },
-              class: ["input"],
+              class: ["input", item.value !== "" ? "active" : ""],
               attrs: { placeholder: item.placeholder, maxlength: item.maxlength }
             },
             []
@@ -291,7 +291,7 @@ export default defineComponent({
       } else if (item.type && item.type === "textarea" && display === "column") {
         const { count = 0 } = item;
         return h("div", { class: "textarea-wapper" }, [
-          h("textarea", { class: ["textarea"], on: {
+          h("textarea", { class: ["textarea", item.value !== "" ? "active" : ""], on: {
                           input: this.handleCustomeInput.bind(this, {
                             item,
                             e: {
