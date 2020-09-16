@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:20:36
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-11 14:47:51
+ * @Last Modified time: 2020-09-16 15:24:16
  */
 import { defineComponent } from "../modules/component";
 import { warn, error } from "../modules/error";
@@ -54,7 +54,7 @@ export default defineComponent({
         on: { click: this.handleClick }
       },
       [
-        h("img", { attrs: { src: this.getSvg() }, class: ["yn-iconfont", `yn-iconfont-size-${this.size}`] }, [])
+        h("img", { attrs: { src: this.getSvg(), iconname: this.name }, class: ["yn-iconfont", `yn-iconfont-size-${this.size}`] }, [])
       ]
     );
   }
