@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-10 17:16:08
+ * @Last Modified time: 2020-09-18 11:38:38
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -90,6 +90,12 @@ export default defineComponent({
     todayMark: {
       type: String,
       default: "今天"
+    },
+    monthTtitleParser: {
+      type: Function,
+      default: (defaultText) => {
+        return defaultText;
+      }
     }
   },
   data() {
@@ -379,12 +385,13 @@ export default defineComponent({
       const dates = this.generateDate();
       const caculateDOM = [];
       dates.forEach(monthItem => {
+        const { month, year, key } = monthItem;
         caculateDOM.push(
           h(
             "div",
             {
-              class: ["yn-calendar-month", monthItem.month],
-              key: monthItem.key
+              class: ["yn-calendar-month", month],
+              key
             },
             [
               h(
@@ -392,7 +399,7 @@ export default defineComponent({
                 {
                   class: ["yn-calendar-month-title"],
                   domProps: {
-                    innerHTML: `${monthItem.year}-${monthItem.month}`
+                    innerHTML: this.monthTtitleParser(`${year}-${month}`, { year, month })
                   }
                 },
                 []
@@ -400,7 +407,7 @@ export default defineComponent({
               h(
                 genComponentName("flex"),
                 {
-                  key: `yn_flex_${monthItem.key}`,
+                  key: `yn_flex_${key}`,
                   class: ["yn-calendar-flex"],
                   props: {
                     flexWrap: "wrap",
