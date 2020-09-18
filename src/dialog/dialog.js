@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:35:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 14:51:15
+ * @Last Modified time: 2020-09-18 13:35:03
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -69,7 +69,7 @@ export default defineComponent({
     getDisableStatus(e) {
       return this.loading && this.action !== e;
     },
-    getButtons(h) {
+    genButtons(h) {
       const buttons = [];
       if (this.showCancelButton) {
         buttons.push(
@@ -137,7 +137,7 @@ export default defineComponent({
         this.show = false;
       }
     },
-    getTitle(h) {
+    genTitle(h) {
       return this.title
         ? h("div", { class: ["yn-dialog-title"] }, this.title)
         : null;
@@ -226,7 +226,7 @@ export default defineComponent({
             style: { zIndex: this.zIndex }
           },
           [
-            this.getTitle(h),
+            this.genTitle(h),
             h(
               "div",
               {
@@ -235,7 +235,7 @@ export default defineComponent({
               },
               this.slots()
             ),
-            this.getButtons(h)
+            this.genButtons(h)
           ]
         )
       ]
