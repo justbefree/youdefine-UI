@@ -114,38 +114,3 @@
    version,
    config
  };
-
-export { ActionSheet as YnActionSheet };
-export { Button as YnButton };
-export { Calendar as YnCalendar };
-export { Checkbox as YnCheckbox };
-export { CityPicker as YnCityPicker };
-export { Counter as YnCounter };
-export { DatePicker as YnDatePicker };
-export { Dialog as YnDialog };
-export { DropdownMenu as YnDropdownMenu };
-export { DropdownMenuItem as YnDropdownMenuItem };
-export { Field as YnField };
-export { FieldGroup as YnFieldGroup };
-export { Flex as YnFlex };
-export { FlexItem as YnFlexItem };
-export { Header as YnHeader };
-export { Iconfont as YnIconfont };
-export { Indicator as YnIndicator };
-export { Layout as YnLayout };
-export { Picker as YnPicker };
-export { PickyStepper as YnPickyStepper };
-export { Popup as YnPopup };
-export { PullRefresh as YnPullRefresh };
-export { Radiobox as YnRadiobox };
-export { Slider as YnSlider };
-export { Spin as YnSpin };
-export { Sticky as YnSticky };
-export { SubmitAction as YnSubmitAction };
-export { SubmitActionPopupContent as YnSubmitActionPopupContent };
-export { SubmitActionValue as YnSubmitActionValue };
-export { Swipe as YnSwipe };
-export { SwipeItem as YnSwipeItem };
-export { TabItem as YnTabItem };
-export { Tabs as YnTabs };
-export { Toast as YnToast };

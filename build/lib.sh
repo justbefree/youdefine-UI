@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-20 12:05:51
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-06-09 11:58:06
+# @Last Modified time: 2020-09-11 15:51:58
 
 # 字符串首字母转换成大写
 toFirstLetterUpper() {
@@ -50,8 +50,9 @@ function excludeArray {
   done
   echo $result
 }
+
 function combine {
-  cat ../src/template.js ./tmp.js > ../src/index.js
+  cat ./.template/.index.js ./tmp.js > ../src/index.js
 }
 function build {
   npm run lib
