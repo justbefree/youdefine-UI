@@ -14,7 +14,7 @@
       <li>
         <div>
           <yn-button @click="handleOpenCalendar('calendar2')">
-            多选日历默认，无指定默认日期
+            多选日历默认，无指定默认日期，自定义年月标题
           </yn-button>
         </div>
         <span>已选择时间：{{ calendar2Date }}</span>
@@ -111,6 +111,7 @@
       :after="10"
       v-model="calendar2"
       v-on:getDate="handleOnGetDate2"
+      :monthTtitleParser="monthTtitleParser"
     ></yn-calendar>
     <yn-calendar
       mode="single"
@@ -218,6 +219,11 @@ export default {
     }
   },
   methods: {
+    monthTtitleParser(defaultText, { year, month }) {
+      console.log("defaultText", defaultText);
+      console.log(year, month);
+      return `${month}/${year}`;
+    },
     handleAfterLeave() {
       this.Toast("关闭完成的回调事件触发");
     },
