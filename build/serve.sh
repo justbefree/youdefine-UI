@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-26 16:15:41
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-09-11 15:51:54
+# @Last Modified time: 2020-09-21 10:32:59
 
 #获取系统类型
 function getSystem {
@@ -65,21 +65,21 @@ function callback {
   # rm -rf ../src/index.js
 }
 function init {
-  echo "" > build/tmp.js
-  dirArr=`ls $1`
-  prefix=$2
-  for i in $dirArr
-  do
-    sub_dir="$1$i"
-    exclude=$(excludeArray $i)
-    if [[ -d "$sub_dir" && $exclude == false ]];then
-      name=$(camelize $i)
-      echo "$name component was compeleted!"
-      echo "export { $name as $prefix$name };" >> build/tmp.js
-    fi
-  done
-  combine
-  callback
+  # echo "" > build/tmp.js
+  # dirArr=`ls $1`
+  # prefix=$2
+  # for i in $dirArr
+  # do
+  #   sub_dir="$1$i"
+  #   exclude=$(excludeArray $i)
+  #   if [[ -d "$sub_dir" && $exclude == false ]];then
+  #     name=$(camelize $i)
+  #     echo "$name component was compeleted!"
+  #     echo "export { $name as $prefix$name };" >> build/tmp.js
+  #   fi
+  # done
+  # combine
+  # callback
   echo "======================================"
   echo ""
   echo "DONE !!!"
