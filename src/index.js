@@ -19,7 +19,6 @@ import Field from "./field";
 import FieldGroup from "./field-group";
 import Flex from "./flex";
 import FlexItem from "./flex-item";
-import Header from "./header";
 import Iconfont from "./iconfont";
 import Indicator from "./indicator";
 import Layout from "./layout";
@@ -40,7 +39,7 @@ import TabItem from "./tab-item";
 import Tabs from "./tabs";
 import Toast from "./toast";
 
-const components = [ActionSheet, Button, Calendar, Checkbox, CityPicker, Counter, DatePicker, Dialog, DropdownMenu, DropdownMenuItem, Field, FieldGroup, Flex, FlexItem, Header, Iconfont, Indicator, Layout, Picker, PickyStepper, Popup, PullRefresh, Radiobox, Slider, Spin, Sticky, SubmitAction, SubmitActionPopupContent, SubmitActionValue, Swipe, SwipeItem, TabItem, Tabs, Toast];
+const components = [ActionSheet, Button, Calendar, Checkbox, CityPicker, Counter, DatePicker, Dialog, DropdownMenu, DropdownMenuItem, Field, FieldGroup, Flex, FlexItem, Iconfont, Indicator, Layout, Picker, PickyStepper, Popup, PullRefresh, Radiobox, Slider, Spin, Sticky, SubmitAction, SubmitActionPopupContent, SubmitActionValue, Swipe, SwipeItem, TabItem, Tabs, Toast];
 const install = (Vue) => {
   if (install.installed) return;
   components.map(component => {
@@ -96,7 +95,6 @@ export { Field as YnField };
 export { FieldGroup as YnFieldGroup };
 export { Flex as YnFlex };
 export { FlexItem as YnFlexItem };
-export { Header as YnHeader };
 export { Iconfont as YnIconfont };
 export { Indicator as YnIndicator };
 export { Layout as YnLayout };
