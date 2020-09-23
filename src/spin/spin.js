@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-02-14 16:38:25
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-08-10 11:33:44
+ * @Last Modified time: 2020-09-23 14:38:21
  */
 import { defineComponent } from "../modules/component";
-import { camelize, capitalize } from "../modules/utils";
+import { camelize, hyphenate } from "../modules/utils";
 import { warn } from "../modules/error";
 export default defineComponent({
   name: "Spin",
@@ -25,7 +25,7 @@ export default defineComponent({
   },
   methods: {
     loadSubComponent() {
-      const capitalizeName = capitalize(this.type);
+      const capitalizeName = hyphenate(this.type);
       const camelizeName = camelize(this.type);
       if (this.$options.components[camelizeName]) {
         return camelizeName;

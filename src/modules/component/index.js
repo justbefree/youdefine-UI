@@ -2,13 +2,13 @@
 * @Author: Just be free
 * @Date:   2020-05-13 18:08:08
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-10 13:41:58
+* @Last Modified time: 2020-09-23 14:37:56
 * @E-mail: justbefree@126.com
 */
 import { getConfig } from "./config";
 const prefix = getConfig("VUE_APP_PREFIX");
 console.log(`The current component lib's prefix is ${prefix}`);
-import { capitalize } from "../utils";
+import { hyphenate } from "../utils";
 export const defineComponent = (options = {}) => {
   options.name = genComponentName(options.name);
   let data = typeof options.data === "function" && options.data() || {};
@@ -47,8 +47,8 @@ const dependanceComponent = (dependance = {}) => {
 };
 export const genComponentName = (name) => {
   if (prefix !== "") {
-    return `${prefix.toLocaleLowerCase()}-${capitalize(name)}`;
+    return `${prefix.toLocaleLowerCase()}-${hyphenate(name)}`;
   } else {
-    return capitalize(name);
+    return hyphenate(name);
   }
 };

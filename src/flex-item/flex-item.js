@@ -2,10 +2,10 @@
  * @Author: Just be free
  * @Date:   2020-01-02 11:01:42
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-13 18:42:50
+ * @Last Modified time: 2020-09-23 14:37:18
  */
  import { defineComponent } from "../modules/component";
-import { capitalize, camelize } from "../modules/utils";
+import { hyphenate, camelize } from "../modules/utils";
 import { slotsMixins } from "../mixins/slots";
 export default defineComponent({
   name: "FlexItem",
@@ -42,7 +42,7 @@ export default defineComponent({
   },
   render(h) {
     const className = this.isValidAlignSelfValue()
-      ? `align-self-${capitalize(this.alignSelf)}`
+      ? `align-self-${hyphenate(this.alignSelf)}`
       : "align-self-auto";
     return h(
       "div",
