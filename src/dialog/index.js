@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:34:48
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-15 10:04:38
+ * @Last Modified time: 2020-10-14 11:18:06
  * @E-mail: justbefree@126.com
  */
 import { install } from "../modules/component";
@@ -49,7 +49,7 @@ export default {
     instance.className = args.className;
     instance.beforeOpen = args.beforeOpen;
     instance.opened = args.opened;
-    instance.beforeOpen = args.beforeOpen;
+    instance.beforeClose = args.beforeClose;
     instance.afterClose = args.afterClose;
     document.body.appendChild(instance.$el);
     instance.rendered(() => {
