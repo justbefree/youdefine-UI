@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-23 10:50:35
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-04-23 13:52:31
+ * @Last Modified time: 2020-10-26 14:55:25
  * @E-mail: justbefree@126.com
  */
 /* eslint-disable */
@@ -118,7 +118,7 @@ const createTouchList = function(mouseEv) {
 
 const getActiveTouches = function(mouseEv) {
   if (mouseEv.type === "mouseup") {
-    return TouchList();
+    return new TouchList();
   }
   return createTouchList(mouseEv);
 };
