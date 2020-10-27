@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-23 10:50:35
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-26 14:55:25
+ * @Last Modified time: 2020-10-27 15:10:26
  * @E-mail: justbefree@126.com
  */
 /* eslint-disable */
@@ -11,7 +11,7 @@ let eventTarget;
 const supportTouch = "ontouchstart" in window;
 
 // polyfills
-if (document.createTouch) {
+if (!document.createTouch) {
   document.createTouch = function(
     view,
     target,
