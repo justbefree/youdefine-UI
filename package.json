@@ -11,7 +11,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
-  "main": "lib/youdefine-ui.umd.min.js",
+  "main": "lib/yn-components.umd.min.js",
   "typings": "types/index.d.ts",
   "files": [
     "lib/*.js",
