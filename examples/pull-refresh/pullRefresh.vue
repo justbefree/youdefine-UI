@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h2>yui-pull-refresh</h2>
-    <yui-pull-refresh @pullRefresh="handlePullRefresh" :loading="isLoading">
+    <h2>yn-pull-refresh</h2>
+    <yn-pull-refresh @pullRefresh="handlePullRefresh" :loading="isLoading">
       <ul>
         <li v-for="i in list" :key="i">{{ i }}</li>
       </ul>
-    </yui-pull-refresh>
+    </yn-pull-refresh>
   </div>
 </template>
 <script type="text/javascript">

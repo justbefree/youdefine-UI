@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2>yui-counter</h2>
+    <h2>yn-counter</h2>
     <span>total {{ total }}</span>
     <ul>
       <li v-for="(count, i) in counts" :key="i">
-        <yui-counter :name="count.name" :key="i" v-model="count.value" :min="count.min" :max="count.max" steps="1" @change="handleChange"></yui-counter>
+        <yn-counter :name="count.name" :key="i" v-model="count.value" :min="count.min" :max="count.max" steps="1" @change="handleChange"></yn-counter>
       </li>
     </ul>
   </div>

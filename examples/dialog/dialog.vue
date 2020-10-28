@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>yui-dialog</h2>
+    <h2>yn-dialog</h2>
     <ul>
       <li @click="alert">Async alert</li>
       <li @click="syncAlert">Sync alert</li>
@@ -9,25 +9,25 @@
       <li @click="confirm3">html</li>
       <li>
         <span @click="advanced">advanced</span>
-        <yui-dialog v-model="show" closeModelOnClick>
+        <yn-dialog v-model="show" closeModelOnClick>
           <img src="https://img.yzcdn.cn/vant/apple-3.jpg" />
-        </yui-dialog>
+        </yn-dialog>
       </li>
       <li>
         <span @click="advanced2">advanced modal click callback</span>
-        <yui-dialog
+        <yn-dialog
           :value="this.show2"
           @buttonClick="this.handleInput"
           @modalClick="this.handleClick"
         >
           <img src="https://img.yzcdn.cn/vant/apple-3.jpg" />
-        </yui-dialog>
+        </yn-dialog>
       </li>
       <li>
         <span @click="advanced3">异步加载数据渲染问题-{{ text.value }}</span>
-        <yui-dialog :value="this.show3" closeModelOnClick>
+        <yn-dialog :value="this.show3" closeModelOnClick>
           <span>我是固定内容，我后面的是动态内容{{ text.value }}</span>
-        </yui-dialog>
+        </yn-dialog>
       </li>
     </ul>
   </div>
@@ -138,7 +138,7 @@ ul li {
   line-height: 44px;
   border-bottom: 1px solid #eeeeee;
 }
-.yui-dialog-content img {
+.yn-dialog-content img {
   width: 100%;
 }
 </style>
