@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-07 13:50:45
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-15 10:00:34
+ * @Last Modified time: 2020-10-28 10:49:26
  */
 import Router from "vue-router";
 import Vue from "vue";
@@ -15,7 +15,6 @@ import Iconfont from "./iconfont/iconfont.vue";
 import Checkbox from "./checkbox/checkbox.vue";
 import Radiobox from "./radiobox/radiobox.vue";
 import Calendar from "./calendar/calendar.vue";
-import CalendarBug from "./calendar/calendarBug.vue";
 import Popup from "./popup/popup.vue";
 import Button from "./button/button.vue";
 import Flex from "./flex/flex.vue";
@@ -76,11 +75,6 @@ const router = new Router({
       path: "/calendar",
       name: "calendar",
       component: Calendar
-    },
-    {
-      path: "/calendar-bug",
-      name: "calendarBug",
-      component: CalendarBug
     },
     {
       path: "/popup",
