@@ -5,7 +5,6 @@
   "description": "A vue components lib spically for business-travel",
   "author": "just be free <justbefree@126.com>",
   "scripts": {
-    "lib": "vue-cli-service build --mode production --target lib --name youdefine-ui --dest lib src/index.js",
     "build:components": "node bin/serve && vue-cli-service build --mode production --target lib --name yn-components --dest lib src/index.js",
     "serve": "node bin/serve && vue-cli-service serve --mode development",
     "build": "vue-cli-service build",
