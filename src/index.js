@@ -1,7 +1,7 @@
 
 const EVENTS = {};
 import { getConfig } from "./modules/component/config";
-import { hyphenate } from "./modules/utils";
+import { capitalize } from "./modules/utils";
 const version = getConfig("VUE_APP_VERSION");
 import "./index.less";
 
@@ -44,7 +44,7 @@ const install = (Vue) => {
   if (install.installed) return;
   components.map(component => {
     if (component.name) {
-      const eventName = hyphenate(component.name);
+      const eventName = capitalize(component.name);
       if (EVENTS[eventName] && typeof EVENTS[eventName] === "function") {
          Vue.component(component.name, EVENTS[eventName]());
       } else {
@@ -63,7 +63,7 @@ if (typeof window !== "undefined" && window.Vue) {
 }
 const config = (options = {}) => {
   Object.keys(options).forEach(componentName => {
-   const ca = hyphenate(componentName);
+   const ca = capitalize(componentName);
    components.forEach((component) => {
      if (ca === component.name) {
        if (component.callback && (typeof component.callback === "function")) {
