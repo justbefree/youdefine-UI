@@ -2,27 +2,27 @@
   <div class="spin">
     <div>
       <h4>triple-bounce</h4>
-      <yui-spin type="triple-bounce"></yui-spin>
+      <yn-spin type="triple-bounce"></yn-spin>
     </div>
     <div>
       <h4>snake</h4>
-      <yui-spin type="snake"></yui-spin>
+      <yn-spin type="snake"></yn-spin>
     </div>
     <div>
       <h4>fading-circle</h4>
-      <yui-spin type="fading-circle"></yui-spin>
+      <yn-spin type="fading-circle"></yn-spin>
     </div>
     <div>
       <h4>double-bounce</h4>
-      <yui-spin type="double-bounce"></yui-spin>
+      <yn-spin type="double-bounce"></yn-spin>
     </div>
     <div>
       <h4>rotate</h4>
-      <yui-spin type="rotate" :size="50"></yui-spin>
+      <yn-spin type="rotate" :size="50"></yn-spin>
     </div>
     <div>
       <h4>rotate svg</h4>
-      <yn-spin type="rotate-svg" size="50"></yn-spin>
+      <yn-spin type="rotate-svg" size="40"></yn-spin>
     </div>
   </div>
 </template>

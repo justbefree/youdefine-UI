@@ -1,8 +1,8 @@
 <template>
   <div id="example">
-    <yui-layout :showFooter="false">
+    <yn-layout :showFooter="false">
       <router-view slot="body"></router-view>
-    </yui-layout>
+    </yn-layout>
   </div>
 </template>
 <script type="text/javascript">

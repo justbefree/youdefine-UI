@@ -2,11 +2,11 @@
  * @Author: Just be free
  * @Date:   2020-01-02 11:01:34
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-26 18:06:23
+ * @Last Modified time: 2020-09-23 14:37:30
  * @E-mail: justbefree@126.com
  */
 import { defineComponent } from "../modules/component";
-import { capitalize, camelize, isString } from "../modules/utils";
+import { hyphenate, camelize, isString } from "../modules/utils";
 import { slotsMixins } from "../mixins/slots";
 const VALID_CHILD_COMPONENT = "flex-item";
 export default defineComponent({
@@ -74,7 +74,7 @@ export default defineComponent({
           isString(value) &&
           this.isValidFlexAttributeAndValue(key, camelize(value))
         ) {
-          className.push(`${prefix}${capitalize(key)}-${capitalize(value)}`);
+          className.push(`${prefix}${hyphenate(key)}-${hyphenate(value)}`);
         }
         if (
           this.isValidColumnsAttribute(key) &&

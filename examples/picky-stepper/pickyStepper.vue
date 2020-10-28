@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>yui-picky-stepper</h2>
+    <h2>yn-picky-stepper</h2>
     <ul>
       <li @click="handleClick(1)">简单用法（单选）</li>
       <li @click="handleClick(2)">简单用法（多选）</li>
@@ -9,36 +9,36 @@
       <li @click="handleClick(5)">高级用法实际案例（多步骤）</li>
       <li @click="handleClick(6)">动态数据案例（多步骤）</li>
     </ul>
-    <yui-picky-stepper
+    <yn-picky-stepper
       v-model="picker1"
       :submit="submit"
       :steps="steps1"
-    ></yui-picky-stepper>
-    <yui-picky-stepper
+    ></yn-picky-stepper>
+    <yn-picky-stepper
       v-model="picker2"
       :submit="submit"
       :steps="steps2"
-    ></yui-picky-stepper>
-    <yui-picky-stepper
+    ></yn-picky-stepper>
+    <yn-picky-stepper
       v-model="picker3"
       :submit="submit"
       :steps="steps3"
-    ></yui-picky-stepper>
-    <yui-picky-stepper
+    ></yn-picky-stepper>
+    <yn-picky-stepper
       v-model="picker4"
       @success="handleSuccess"
       :steps="steps4"
-    ></yui-picky-stepper>
-    <yui-picky-stepper
+    ></yn-picky-stepper>
+    <yn-picky-stepper
       v-model="picker5"
       @success="handleSuccess"
       :steps="steps5"
-    ></yui-picky-stepper>
-    <yui-picky-stepper
+    ></yn-picky-stepper>
+    <yn-picky-stepper
       v-model="picker6"
       @success="handleSuccess"
       :steps="steps6"
-    ></yui-picky-stepper>
+    ></yn-picky-stepper>
   </div>
 </template>
 <script type="text/javascript">

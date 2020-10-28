@@ -23,13 +23,14 @@
   backface-visibility: hidden;
   transition: all 0.2s ease;
   .yn-dialog-title {
-    padding-top: 24px;
+    padding-top: 20px;
     font-weight: 500;
     line-height: 24px;
     text-align: center;
+    color: @text-color;
   }
   .yn-dialog-content {
-    padding: 24px;
+    padding: 20px;
     overflow-y: auto;
     font-size: 14px;
     line-height: 20px;
@@ -37,11 +38,15 @@
     text-align: center;
     word-wrap: break-word;
     -webkit-overflow-scrolling: touch;
+    color: @text-color;
   }
   .yn-dialog-buttons {
     display: flex;
+    height: 45px;
     .yn-dialog-cancel-button,
     .yn-dialog-confirm-button {
+      height: 45px;
+      line-height: 45px;
       flex: 1;
       background: #fff;
       border-radius: 0px;

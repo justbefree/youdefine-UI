@@ -1,11 +1,11 @@
 <template>
   <div>
     <h2>radiobox</h2>
-    <yui-radiobox v-model="checked" @change="handleChange"></yui-radiobox>
+    <yn-radiobox v-model="checked" @change="handleChange"></yn-radiobox>
     <span>这个可以点击</span>
     <span>当前状态{{ checked }}</span>
     <hr />
-    <yui-radiobox :checked="value"></yui-radiobox>
+    <yn-radiobox :checked="value"></yn-radiobox>
     <span>这个不支持点击</span>
   </div>
 </template>

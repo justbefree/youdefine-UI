@@ -2,7 +2,7 @@
 # @Author: Just be free
 # @Date:   2020-05-26 16:15:41
 # @Last Modified by:   Just be free
-# @Last Modified time: 2020-07-24 14:52:29
+# @Last Modified time: 2020-10-28 10:23:06
 
 #获取系统类型
 function getSystem {
@@ -56,29 +56,30 @@ function excludeArray {
   done
   echo $result
 }
+
 function combine {
-  cat src/template.js build/tmp.js > src/index.js
+  cat build/.template/.index.js build/tmp.js > src/index.js
 }
 function callback {
   rm -rf build/tmp.js
   # rm -rf ../src/index.js
 }
 function init {
-  echo "" > build/tmp.js
-  dirArr=`ls $1`
-  prefix=$2
-  for i in $dirArr
-  do
-    sub_dir="$1$i"
-    exclude=$(excludeArray $i)
-    if [[ -d "$sub_dir" && $exclude == false ]];then
-      name=$(camelize $i)
-      echo "$name component was compeleted!"
-      echo "export { $name as $prefix$name };" >> build/tmp.js
-    fi
-  done
-  combine
-  callback
+  # echo "" > build/tmp.js
+  # dirArr=`ls $1`
+  # prefix=$2
+  # for i in $dirArr
+  # do
+  #   sub_dir="$1$i"
+  #   exclude=$(excludeArray $i)
+  #   if [[ -d "$sub_dir" && $exclude == false ]];then
+  #     name=$(camelize $i)
+  #     echo "$name component was compeleted!"
+  #     echo "export { $name as $prefix$name };" >> build/tmp.js
+  #   fi
+  # done
+  # combine
+  # callback
   echo "======================================"
   echo ""
   echo "DONE !!!"

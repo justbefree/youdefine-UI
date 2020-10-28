@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-07-09 15:52:00
+ * @Last Modified time: 2020-10-28 10:30:16
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -42,8 +42,16 @@ export default defineComponent({
     fixed: Boolean,
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
+    leftFlex: {
+      type: [String, Number],
+      default: 2
+    },
+    rightFlex: {
+      type: [String, Number],
+      default: 1
+    }
   },
   data() {
     return {
@@ -169,7 +177,7 @@ export default defineComponent({
         h(genComponentName("flex"), { class: ["yn-submit-action-flex"] }, [
           h(
             genComponentName("flex-item"),
-            { props: { flex: 2 }, on: { click: this.toggle } },
+            { props: { flex: this.leftFlex }, on: { click: this.toggle } },
             [
               h(genComponentName("flex"), {}, [
                 h(genComponentName("flex-item"), {}, [
@@ -182,7 +190,7 @@ export default defineComponent({
               ]),
             ]
           ),
-          h(genComponentName("flex-item"), { props: { flex: 1 } }, [
+          h(genComponentName("flex-item"), { props: { flex: this.rightFlex } }, [
             h(
               genComponentName("button"),
               {

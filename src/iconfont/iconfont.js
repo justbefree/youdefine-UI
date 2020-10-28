@@ -2,10 +2,11 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:20:36
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 10:13:49
+ * @Last Modified time: 2020-09-16 15:24:16
  */
 import { defineComponent } from "../modules/component";
-import "./svg-iconfont";
+import { warn, error } from "../modules/error";
+import svgs from "./svgs";
 export default defineComponent({
   name: "Iconfont",
   props: {
@@ -16,36 +17,33 @@ export default defineComponent({
       require: false
     }
   },
+  data() {
+    return {
+      svgPrefix: "",
+      svgs
+    };
+  },
   methods: {
     handleClick() {
-      this.$emit("click", {});
+      const { name } = this.$props;
+      this.$emit("click", { name });
+    },
+    getSvg() {
+      const { name } = this.$props;
+      const reg = new RegExp(`^${this.svgPrefix}`);
+      const iconName = name.replace(reg, "");
+      if (this.svgs) {
+        if (this.svgs[iconName]) {
+          return this.svgs[iconName];
+        } else {
+          warn(`${iconName}.svg is missing`);
+        }
+      } else {
+        error(`You need config svgs' lib before use ${this.$options.name} component`);
+      }
     }
-    // checkIfIconValidate() {
-    //   window.addEventListener("DOMContentLoaded", () => {
-    //     const validIcons = [];
-    //     const svg = document.querySelector("svg");
-    //     if (!svg) {
-    //       warn("Make sure the yn-iconfont component was installed.");
-    //       return false;
-    //     }
-    //     const symbol = svg.getElementsByTagName("symbol");
-    //     if (!symbol) {
-    //       warn("Make sure the yn-iconfont component was installed.");
-    //       return false;
-    //     }
-    //     for (let key in symbol) {
-    //       if (symbol[key] && symbol[key].id) {
-    //         validIcons.push(symbol[key].id);
-    //       }
-    //     }
-    //     if (validIcons.indexOf(this.name) < 0) {
-    //       warn(`The icon of ${this.name} was not found.`);
-    //     }
-    //   });
-    // }
   },
   render(h) {
-    // this.checkIfIconValidate();
     return h(
       "i",
       {
@@ -56,14 +54,7 @@ export default defineComponent({
         on: { click: this.handleClick }
       },
       [
-        h(
-          "svg",
-          {
-            attrs: { "aria-hidden": "true" },
-            class: ["yn-iconfont", `yn-iconfont-size-${this.size}`]
-          },
-          [h("use", { attrs: { "xlink:href": `#${this.name}` } }, [])]
-        )
+        h("img", { attrs: { src: this.getSvg(), iconname: this.name }, class: ["yn-iconfont", `yn-iconfont-size-${this.size}`] }, [])
       ]
     );
   }
