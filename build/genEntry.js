@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-18 18:15:09
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-21 11:09:24
+* @Last Modified time: 2020-10-28 10:11:10
 * @E-mail: justbefree@126.com
 */
 const path = require("path");
@@ -17,7 +17,7 @@ const componentsWithoutPrefix = [];
 const prepend = `
 const EVENTS = {};
 import { getConfig } from "./modules/component/config";
-import { capitalize } from "./modules/utils";
+import { hyphenate } from "./modules/utils";
 const version = getConfig("VUE_APP_VERSION");
 import "./index.less";\n
 `;
@@ -27,7 +27,7 @@ const install = (Vue) => {
   if (install.installed) return;
   components.map(component => {
     if (component.name) {
-      const eventName = capitalize(component.name);
+      const eventName = hyphenate(component.name);
       if (EVENTS[eventName] && typeof EVENTS[eventName] === "function") {
          Vue.component(component.name, EVENTS[eventName]());
       } else {
@@ -46,7 +46,7 @@ if (typeof window !== "undefined" && window.Vue) {
 }
 const config = (options = {}) => {
   Object.keys(options).forEach(componentName => {
-   const ca = capitalize(componentName);
+   const ca = hyphenate(componentName);
    components.forEach((component) => {
      if (ca === component.name) {
        if (component.callback && (typeof component.callback === "function")) {
