@@ -1,3 +1,9 @@
+# Here comes youdefine-UI for Vue3
+
+(Vueggy) - [https://github.com/justbefree/vueggy]
+
+(Examples) - [https://lizhuang.xyz/vueggy/#/]
+
 # youdefine-UI
 
 # What is youdefine-UI?
@@ -18,7 +24,9 @@ It's quite simple, all you need to do is edit the .env.* config file in the root
 
 # How to build ?
 
-Just excute build/lib.sh file.
+```
+npm run build:components
+```
 
 ## Project setup
 ```
@@ -38,6 +46,14 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+### Usage
+
+```
+npm install yn-components --save
+import YnComponents from "yn-components"
+Vue.use(YnComponents);
 ```
 
 ### Customize configuration
