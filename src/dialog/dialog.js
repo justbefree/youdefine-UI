@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:35:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-29 15:02:05
+ * @Last Modified time: 2020-10-29 15:27:43
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -64,7 +64,7 @@ export default defineComponent({
       loading: false,
       action: "",
       show: false,
-      status: "pendding",
+      status: "pending",
     };
   },
   methods: {
@@ -163,6 +163,7 @@ export default defineComponent({
       parent.removeChild(el);
     },
     handleBeforeEnter(node) {
+      this.status = "pending";
       this.beforeOpen &&
         typeof this.beforeOpen === "function" &&
         this.beforeOpen();
