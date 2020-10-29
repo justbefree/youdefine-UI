@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:35:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-29 10:47:59
+ * @Last Modified time: 2020-10-29 13:54:36
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -127,12 +127,12 @@ export default defineComponent({
             this.$emit("buttonClick", e, res);
           });
         } else {
+          callback(e);
           this.show = false;
           this.$emit("input", false);
           this.$emit("buttonClick", e);
         }
       } else {
-        callback(e);
         this.$emit("input", false);
         this.$emit("buttonClick", e);
         this.show = false;
