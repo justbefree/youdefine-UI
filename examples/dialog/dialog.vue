@@ -98,7 +98,7 @@ export default {
         title: "这个是标题",
         message: "这个是内容",
         beforeClose: this.handleBeforeClose,
-        afterClose: this.handleAfterClose
+        // afterClose: this.handleAfterClose
       });
     },
     syncAlert() {
