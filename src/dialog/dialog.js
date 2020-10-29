@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:35:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-18 13:35:03
+ * @Last Modified time: 2020-10-29 10:47:59
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -22,35 +22,35 @@ export default defineComponent({
     message: String,
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showCancelButton: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showConfirmButton: {
       type: Boolean,
-      default: true
+      default: true,
     },
     cancelButtonText: {
       type: String,
-      default: "取消"
+      default: "取消",
     },
     cancelLoadingText: String,
     confirmButtonText: {
       type: String,
-      default: "确定"
+      default: "确定",
     },
     confirmLoadingText: String,
     loadingColor: String,
     closeModelOnClick: {
       type: Boolean,
-      default: false
+      default: false,
     },
     zIndex: {
       type: [String, Number],
-      default: 2
-    }
+      default: 2,
+    },
   },
   data() {
     return {
@@ -59,7 +59,7 @@ export default defineComponent({
       events: {},
       loading: false,
       action: "",
-      show: false
+      show: false,
     };
   },
   methods: {
@@ -81,10 +81,10 @@ export default defineComponent({
                 loadingText: this.cancelLoadingText,
                 size: "large",
                 disabled: this.getDisableStatus("cancel"),
-                loading: this.getLoadingStatus("cancel")
+                loading: this.getLoadingStatus("cancel"),
               },
               on: { click: this.handleButtonClick.bind(this, "cancel") },
-              class: ["yn-dialog-cancel-button"]
+              class: ["yn-dialog-cancel-button"],
             },
             [this.cancelButtonText]
           )
@@ -101,10 +101,10 @@ export default defineComponent({
                 loadingText: this.confirmLoadingText,
                 size: "large",
                 disabled: this.getDisableStatus("confirm"),
-                loading: this.getLoadingStatus("confirm")
+                loading: this.getLoadingStatus("confirm"),
               },
               on: { click: this.handleButtonClick.bind(this, "confirm") },
-              class: ["yn-dialog-confirm-button", className]
+              class: ["yn-dialog-confirm-button", className],
             },
             [this.confirmButtonText]
           )
@@ -118,10 +118,10 @@ export default defineComponent({
       this.action = e;
       const { callback } = this;
       if (callback && typeof callback === "function") {
-        const promise = callback(e);
+        const promise = callback("don't do anything");
         if (isPromise(promise)) {
           this.loading = true;
-          promise.then(res => {
+          promise.then((res) => {
             this.show = false;
             this.$emit("input", false);
             this.$emit("buttonClick", e, res);
@@ -132,6 +132,7 @@ export default defineComponent({
           this.$emit("buttonClick", e);
         }
       } else {
+        callback(e);
         this.$emit("input", false);
         this.$emit("buttonClick", e);
         this.show = false;
@@ -196,7 +197,7 @@ export default defineComponent({
       this.afterClose &&
         typeof this.afterClose === "function" &&
         this.afterClose(this.action);
-    }
+    },
   },
   render(h) {
     const domProps = {};
@@ -214,8 +215,8 @@ export default defineComponent({
           beforeEnter: this.handleBeforeEnter,
           afterEnter: this.handleAfterEnter,
           beforeLeave: this.handleBeforeLeave,
-          afterLeave: this.handleAfterLeave
-        }
+          afterLeave: this.handleAfterLeave,
+        },
       },
       [
         h(
@@ -223,7 +224,7 @@ export default defineComponent({
           {
             class: ["yn-dialog", ...className],
             directives: [{ name: "show", value: this.show || this.value }],
-            style: { zIndex: this.zIndex }
+            style: { zIndex: this.zIndex },
           },
           [
             this.genTitle(h),
@@ -231,14 +232,14 @@ export default defineComponent({
               "div",
               {
                 class: ["yn-dialog-content"],
-                domProps
+                domProps,
               },
               this.slots()
             ),
-            this.genButtons(h)
+            this.genButtons(h),
           ]
-        )
+        ),
       ]
     );
-  }
+  },
 });
