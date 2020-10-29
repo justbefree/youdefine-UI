@@ -108,9 +108,6 @@
     "last 2 versions",
     "not dead"
   ],
-  "bin": {
-    "youdefine-ui": "serve.js"
-  },
   "bugs": {
     "url": "https://github.com/justbefree/youdefine-UI/issues"
   },
