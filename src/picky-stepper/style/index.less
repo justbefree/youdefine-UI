@@ -74,6 +74,7 @@
           padding: 0 8px;
           margin-left: 8px;
           width: calc(100% - 18px - 8px);
+          line-height: 1px; // 修复部分iOS下placeholder文字没有垂直居中
         }
         .textarea {
           margin: 0;
@@ -82,7 +83,8 @@
           min-height: 65px;
           resize: none;
         }
-        .input:focus, .textarea:focus {
+        .input:focus,
+        .textarea:focus {
           color: @text-color;
           background: @background-color;
         }
