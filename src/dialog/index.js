@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:34:48
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-14 11:18:06
+ * @Last Modified time: 2020-10-29 14:45:18
  * @E-mail: justbefree@126.com
  */
 import { install } from "../modules/component";
@@ -36,7 +36,7 @@ export default {
     instance.$data.renderedAsComponent = false;
     instance.title = args.title;
     instance.message = args.message;
-    instance.callback = args.beforeClose;
+    // instance.callback = args.beforeClose;
     instance.showCancelButton = args.showCancelButton;
     instance.showConfirmButton = args.showConfirmButton;
     instance.cancelButtonText = args.cancelButtonText;
@@ -48,7 +48,7 @@ export default {
     instance.zIndex = args.zIndex;
     instance.className = args.className;
     instance.beforeOpen = args.beforeOpen;
-    instance.opened = args.opened;
+    instance.afterOpen = args.afterOpen;
     instance.beforeClose = args.beforeClose;
     instance.afterClose = args.afterClose;
     document.body.appendChild(instance.$el);

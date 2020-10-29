@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:35:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-29 13:54:36
+ * @Last Modified time: 2020-10-29 15:02:05
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -16,7 +16,11 @@ export default defineComponent({
   mixins: [renderedMixins, slotsMixins],
   components: { Button },
   props: {
-    callback: null,
+    // callback: null,
+    beforeOpen: null,
+    afterOpen: null,
+    beforeClose: null,
+    afterClose: null,
     className: [String, Array],
     title: String,
     message: String,
@@ -60,6 +64,7 @@ export default defineComponent({
       loading: false,
       action: "",
       show: false,
+      status: "pendding",
     };
   },
   methods: {
@@ -116,23 +121,25 @@ export default defineComponent({
     },
     handleButtonClick(e) {
       this.action = e;
-      const { callback } = this;
-      if (callback && typeof callback === "function") {
-        const promise = callback("don't do anything");
+      const { beforeClose } = this;
+      if (beforeClose && typeof beforeClose === "function") {
+        const promise = beforeClose(e, this.status);
         if (isPromise(promise)) {
           this.loading = true;
           promise.then((res) => {
+            this.status = "resolved";
             this.show = false;
             this.$emit("input", false);
             this.$emit("buttonClick", e, res);
           });
         } else {
-          callback(e);
+          this.status = "resolved";
           this.show = false;
           this.$emit("input", false);
           this.$emit("buttonClick", e);
         }
       } else {
+        this.status = "resolved";
         this.$emit("input", false);
         this.$emit("buttonClick", e);
         this.show = false;
@@ -181,13 +188,15 @@ export default defineComponent({
       };
     },
     handleAfterEnter() {
-      this.opened && typeof this.opened === "function" && this.opened();
+      this.afterOpen &&
+        typeof this.afterOpen === "function" &&
+        this.afterOpen();
       this.$emit("afterEnter");
     },
     handleBeforeLeave() {
       this.beforeClose &&
         typeof this.beforeClose === "function" &&
-        this.beforeClose(this.action);
+        this.beforeClose(this.action, this.status);
       this.$emit("beforeLeave", this.action);
     },
     handleAfterLeave() {
