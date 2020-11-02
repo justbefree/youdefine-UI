@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-06-15 10:01:18
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-07-21 10:55:05
+ * @Last Modified time: 2020-11-02 15:09:18
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -69,7 +69,7 @@ export default defineComponent({
   render(h) {
     if (
       Number(this.value) <= Number(this.max) &&
-      Number(this.value >= Number(this.min))
+      Number(this.value) >= Number(this.min)
     ) {
       const leftButtonClass = this.isEqual(this.value, this.min)
         ? "disabled"
