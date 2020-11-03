@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-18 18:15:09
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-28 10:11:10
+* @Last Modified time: 2020-11-03 11:45:10
 * @E-mail: justbefree@126.com
 */
 const path = require("path");
@@ -68,14 +68,19 @@ module.exports = {
   write: () => {
     const validComponents = genComponentLibs("src", exculde);
     const indexPath = path.posix.join("src", "/index.js");
+    const indexLess = path.posix.join("src", "/index.less");
     fs.writeFileSync(indexPath, prepend); // clear entry file 
+    fs.writeFileSync(indexLess, "");
     Array.apply(null, validComponents).map(component => {
+      // console.log("component = ", component);
       const exportedName = `${componentPrefix}-${component}`;
       const componentName = camelize(component, true);
       componentsWithoutPrefix.push(componentName);
       components.push({ [componentName]: camelize(exportedName, true) });
       const exportCode = `import ${componentName} from "./${component}";\n`;
       fs.appendFileSync(indexPath, exportCode);
+      const style = `@import "./${component}/style/index.less";\n`;
+      fs.appendFileSync(indexLess, style);
     });
     fs.appendFileSync(indexPath, renderInstall());
     // const exportCode = `export { ${components.join(", ")} };\n`;
