@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-07 13:50:45
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-28 10:49:26
+ * @Last Modified time: 2020-11-03 11:26:22
  */
 import Router from "vue-router";
 import Vue from "vue";
@@ -34,6 +34,7 @@ import SubmitAction from "./submit-action/submitAction.vue";
 import PullRefresh from "./pull-refresh/pullRefresh.vue";
 import DatePicker from "./date-picker/datePicker.vue";
 import Counter from "./counter/counter.vue";
+import Skeleton from "./skeleton/skeleton.vue";
 const router = new Router({
   routes: [
     {
@@ -170,6 +171,11 @@ const router = new Router({
       path: "/counter",
       name: "counter",
       component: Counter
+    },
+    {
+      path: "/skeleton",
+      name: "skeleton",
+      component: Skeleton
     }
   ]
 });
