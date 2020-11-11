@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:03:24
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-11 17:06:10
+ * @Last Modified time: 2020-11-11 17:36:02
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -14,7 +14,7 @@ export default defineComponent({
   name: "InfiniteList",
   props: {
     dataList: {
-      type: Array,
+      type: [Array, Object],
       default: () => {
         return [];
       },
