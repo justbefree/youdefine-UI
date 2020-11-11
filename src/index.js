@@ -20,6 +20,8 @@ import Flex from "./flex";
 import FlexItem from "./flex-item";
 import Iconfont from "./iconfont";
 import Indicator from "./indicator";
+import InfiniteList from "./infinite-list";
+import InfiniteListItem from "./infinite-list-item";
 import Layout from "./layout";
 import Picker from "./picker";
 import PickyStepper from "./picky-stepper";
@@ -56,6 +58,8 @@ const components = [
   FlexItem,
   Iconfont,
   Indicator,
+  InfiniteList,
+  InfiniteListItem,
   Layout,
   Picker,
   PickyStepper,
@@ -132,6 +136,8 @@ export { Flex as YnFlex };
 export { FlexItem as YnFlexItem };
 export { Iconfont as YnIconfont };
 export { Indicator as YnIndicator };
+export { InfiniteList as YnInfiniteList };
+export { InfiniteListItem as YnInfiniteListItem };
 export { Layout as YnLayout };
 export { Picker as YnPicker };
 export { PickyStepper as YnPickyStepper };
