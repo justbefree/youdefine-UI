@@ -28,6 +28,7 @@
         <li @click="jump('datePicker')">datePicker</li>
         <li @click="jump('counter')">counter</li>
         <li @click="jump('skeleton')">skeleton</li>
+        <li @click="jump('infiniteList')">infiniteList</li>
       </ul>
   </div>
 </template>
