@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:03:24
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-11 17:36:02
+ * @Last Modified time: 2020-11-12 10:50:34
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -34,9 +34,9 @@ export default defineComponent({
   },
   methods: {
     infinite(slots) {
-      const slot = slots.shift();
-      this.stackList.push(slot);
       if (slots.length > 0) {
+        const slot = slots.shift();
+        this.stackList.push(slot);
         const timer = setTimeout(() => {
           this.infinite(slots);
           clearTimeout(timer);
@@ -53,12 +53,12 @@ export default defineComponent({
       return slots;
     },
     init() {
+      this.stackList = [];
       const slots = this.getSlots();
       this.infinite(slots);
     },
   },
   mounted() {
-    this.stackList = [];
     this.init();
   },
   render(h) {
