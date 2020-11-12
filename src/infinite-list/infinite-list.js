@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:03:24
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-12 10:50:34
+ * @Last Modified time: 2020-11-12 14:53:35
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -23,8 +23,10 @@ export default defineComponent({
   components: { Flex, FlexItem },
   mixins: [slotsMixins],
   watch: {
-    dataList: function () {
-      this.init();
+    dataList: function (newValue) {
+      if (newValue && newValue.length > 0) {
+        this.init();
+      }
     },
   },
   data() {
