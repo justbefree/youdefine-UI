@@ -19,8 +19,8 @@
     </div>
     <div slot="footer">footer</div>
   </yn-layout> -->
-    <yn-infinite-list>
-      <yn-infinite-list-item style="borderBottom: 1px solid #eee;line-height: 40px" height="40" v-for="i in 20" :key="i">
+    <yn-infinite-list :dataList="asyncData">
+      <yn-infinite-list-item style="borderBottom: 1px solid #eee;line-height: 100px" height="100" v-for="i in asyncData" :key="i">
         <span>这是第{{i}}个元素</span>
       </yn-infinite-list-item>
     </yn-infinite-list>
@@ -35,10 +35,18 @@ export default {
     }
     return {
       showHeader: true,
-      dataList
+      dataList,
+      asyncData: []
     };
   },
   methods: {
+    getData() {
+      setTimeout(() => {
+        for (let i = 0; i < 200; i++) {
+          this.asyncData.push(i);
+        }  
+      }, 1000);
+    },
     loadMore() {
       const length = this.dataList.length;
       setTimeout(() => {
@@ -64,6 +72,9 @@ export default {
       }
       console.log(e, e.diff);
     }
+  },
+  mounted() {
+    this.getData();
   }
 };
 </script>
