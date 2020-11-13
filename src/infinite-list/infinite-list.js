@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:03:24
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-12 14:53:35
+ * @Last Modified time: 2020-11-13 14:51:49
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
