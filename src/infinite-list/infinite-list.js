@@ -17,8 +17,11 @@ export default defineComponent({
       type: [Array, Object],
       default: () => {
         return [];
-      },
+      }
     },
+    hasAnimation: {
+      default: true
+    }
   },
   components: { Flex, FlexItem },
   mixins: [slotsMixins],
@@ -37,12 +40,17 @@ export default defineComponent({
   methods: {
     infinite(slots) {
       if (slots.length > 0) {
-        const slot = slots.shift();
-        this.stackList.push(slot);
-        const timer = setTimeout(() => {
-          this.infinite(slots);
-          clearTimeout(timer);
-        }, 50);
+        if (this.hasAnimation) {
+          const slot = slots.shift();
+          this.stackList.push(slot);
+          const timer = setTimeout(() => {
+            this.infinite(slots);
+            clearTimeout(timer);
+          }, 50);
+        } else {
+          slots.shift(); // 用来区分过滤
+          this.stackList = slots;
+        }
       }
     },
     getSlots() {
