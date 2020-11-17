@@ -12,6 +12,10 @@ export default defineComponent({
   mixins: [slotsMixins],
   props: {
     height: [String, Number],
+    hasAnimation: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -23,6 +27,11 @@ export default defineComponent({
       this.show = true;
       clearTimeout(timer);
     }, 1);
+  },
+  created() {
+    if (!this.hasAnimation) {
+      this.show = true;
+    }
   },
   beforeDestroy() {
     this.show = false;
