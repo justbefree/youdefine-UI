@@ -2,16 +2,18 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:03:24
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-13 14:51:49
+ * @Last Modified time: 2020-11-18 13:34:59
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { slotsMixins } from "../mixins/slots";
+import { provideMixins } from "../mixins/provide";
 import Flex from "../flex";
 import FlexItem from "../flex-item";
 const VALID_CHILD_COMPONENT = "infinite-list-item";
 export default defineComponent({
   name: "InfiniteList",
+  mixins: [slotsMixins, provideMixins()],
   props: {
     dataList: {
       type: [Array, Object],
@@ -19,14 +21,18 @@ export default defineComponent({
         return [];
       },
     },
+    animation: {
+      type: Boolean,
+      default: true,
+    },
   },
   components: { Flex, FlexItem },
-  mixins: [slotsMixins],
   watch: {
-    dataList: function (newValue) {
-      if (newValue && newValue.length > 0) {
+    // dataList: function (newValue, oldValue) {
+    dataList: function () {
+      this.$nextTick(() => {
         this.init();
-      }
+      });
     },
   },
   data() {
@@ -55,9 +61,13 @@ export default defineComponent({
       return slots;
     },
     init() {
-      this.stackList = [];
+      // this.stackList = [];
       const slots = this.getSlots();
-      this.infinite(slots);
+      if (this.animation) {
+        this.infinite(slots);
+      } else {
+        this.stackList = slots;
+      }
     },
   },
   mounted() {

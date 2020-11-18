@@ -2,42 +2,52 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:27:56
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-11 17:03:53
+ * @Last Modified time: 2020-11-18 13:33:50
  * @E-mail: justbefree@126.com
  */
 import { defineComponent } from "../modules/component";
 import { slotsMixins } from "../mixins/slots";
+import { injectMixins } from "../mixins/inject";
 export default defineComponent({
   name: "InfiniteListItem",
-  mixins: [slotsMixins],
+  mixins: [slotsMixins, injectMixins("parent", { indexKey: "indexKey" })],
   props: {
     height: [String, Number],
   },
   data() {
     return {
       show: false,
+      animation: true,
     };
   },
   mounted() {
-    const timer = setTimeout(() => {
-      this.show = true;
-      clearTimeout(timer);
-    }, 1);
+    if (this.parent.animation) {
+      const timer = setTimeout(() => {
+        this.show = true;
+        clearTimeout(timer);
+      }, 1);
+    }
   },
   beforeDestroy() {
     this.show = false;
   },
   render(h) {
-    return h("transition", { props: { name: "yn-slide-in" } }, [
-      h(
-        "div",
-        {
-          directives: [{ name: "show", value: this.show }],
-          class: ["yn-infinite-list-item"],
-          style: { height: `${this.height}px` },
-        },
-        this.slots()
-      ),
-    ]);
+    return h(
+      "transition",
+      { props: { name: this.parent.animation ? "yn-slide-in" : "" } },
+      [
+        h(
+          "div",
+          {
+            directives: [
+              { name: "show", value: this.show || !this.parent.animation },
+            ],
+            class: ["yn-infinite-list-item"],
+            style: { height: `${this.height}px` },
+          },
+          this.slots()
+        ),
+      ]
+    );
   },
 });
