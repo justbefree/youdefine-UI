@@ -19,11 +19,14 @@
     </div>
     <div slot="footer">footer</div>
   </yn-layout> -->
-    <yn-infinite-list :dataList="asyncData">
-      <yn-infinite-list-item style="borderBottom: 1px solid #eee;line-height: 100px" height="100" v-for="i in asyncData" :key="i">
-        <span>这是第{{i}}个元素</span>
+  <div>
+    <yn-button @click="filter">数组反转</yn-button>
+    <yn-infinite-list :dataList="asyncData" :animation="animation">
+      <yn-infinite-list-item :animation="animation" style="borderBottom: 1px solid #eee;line-height: 100px" height="100" v-for="i in asyncData" :key="i.index">
+        <span>这是第{{i.index}}个元素</span>
       </yn-infinite-list-item>
     </yn-infinite-list>
+  </div>
 </template>
 <script>
 export default {
@@ -36,15 +39,27 @@ export default {
     return {
       showHeader: true,
       dataList,
-      asyncData: []
+      asyncData: [],
+      animation: true
     };
   },
   methods: {
+    filter() {
+      // this.asyncData.reverse();
+      this.animation = false;
+      const shuffle = this.shuffle(this.asyncData);
+      console.log("过滤", shuffle);
+      this.asyncData = JSON.parse(JSON.stringify([...shuffle]));
+      // this.asyncData = [];
+      // this.asyncData = [10, 9, 8];
+    },
     getData() {
-      setTimeout(() => {
-        for (let i = 0; i < 200; i++) {
-          this.asyncData.push(i);
-        }  
+      console.log("getData");
+      const timer = setTimeout(() => {
+        for (let i = 0; i < 20; i++) {
+          this.asyncData.push({ index: i });
+        }
+        clearTimeout(timer);
       }, 1000);
     },
     loadMore() {
@@ -71,6 +86,20 @@ export default {
         this.showHeader = true;
       }
       console.log(e, e.diff);
+    },
+    shuffle(aArr) {
+      let iLength = aArr.length
+        , i = iLength
+        , nTemp
+        , iRandom;
+      while ( i-- ) {
+        if (i !== (iRandom = Math.floor(Math.random()*iLength))) { // 不是同一个数组项的前提下进行互换
+          nTemp = aArr[i];
+          aArr[i] = aArr[iRandom];
+          aArr[iRandom] = nTemp;
+        }
+      }
+      return aArr;
     }
   },
   mounted() {
