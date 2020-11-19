@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-12 18:44:56
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-26 17:23:20
+ * @Last Modified time: 2020-11-19 13:38:06
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -10,6 +10,7 @@ import Flex from "../flex";
 import FlexItem from "../flex-item";
 import { getScrollTop } from "../modules/dom";
 import { on, off } from "../modules/event";
+import { EventBus } from "../modules/event/bus";
 import { slotsMixins } from "../mixins/slots";
 export default defineComponent({
   name: "Layout",
@@ -18,43 +19,45 @@ export default defineComponent({
   props: {
     showHeader: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showFooter: {
       type: Boolean,
-      default: true
+      default: true,
     },
     monitor: {
       // 是否监听scroll事件，默认为true监听
       type: Boolean,
-      default: true
+      default: true,
     },
     footerTransitionName: {
       type: String,
-      default: "slide-fade"
+      default: "slide-fade",
     },
     headerTransitionName: {
       type: String,
-      default: "slide-fade-top"
+      default: "slide-fade-top",
     },
     topDistance: {
       type: [Number, String],
-      default: 0
+      default: 0,
     },
     bottomDistance: {
       type: [Number, String],
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {
       scrollTop: 0,
       clientHeight: 0,
       topTriggered: false,
-      bottomTriggered: false
+      bottomTriggered: false,
+      hasPopupOpened: false,
     };
   },
   mounted() {
+    this.handleEventBus();
     if (this.monitor) {
       const ele = this.$refs.scrollElement.$el;
       if (!ele) {
@@ -73,6 +76,11 @@ export default defineComponent({
     }
   },
   methods: {
+    handleEventBus() {
+      EventBus.$on("popup:opening", (status) => {
+        this.hasPopupOpened = status;
+      });
+    },
     handleBodyScroll(e) {
       const scrollTop = getScrollTop(e.target);
       const clientHeight = e.target.clientHeight;
@@ -110,7 +118,7 @@ export default defineComponent({
         return false;
       }
       ele.scrollTop = pos;
-    }
+    },
   },
   render(h) {
     return h("div", { class: ["yn-layout"] }, [
@@ -118,7 +126,7 @@ export default defineComponent({
         genComponentName("flex"),
         {
           class: ["yn-layout-flex-container"],
-          props: { flexDirection: "column", justifyContent: "spaceBetween" }
+          props: { flexDirection: "column", justifyContent: "spaceBetween" },
         },
         [
           h("transition", { props: { name: this.headerTransitionName } }, [
@@ -126,17 +134,21 @@ export default defineComponent({
               genComponentName("flex-item"),
               {
                 directives: [{ name: "show", value: this.showHeader }],
-                class: ["yn-layout-header"]
+                class: ["yn-layout-header"],
               },
               [this.slots("header")]
-            )
+            ),
           ]),
           h(
             genComponentName("flex-item"),
             {
-              class: ["yn-layout-body", "yn-layout-body-scroll-ele"],
+              class: [
+                "yn-layout-body",
+                "yn-layout-body-scroll-ele",
+                this.hasPopupOpened ? "" : "ios-scrolling",
+              ],
               props: { flex: 1 },
-              ref: "scrollElement"
+              ref: "scrollElement",
             },
             [this.slots("body")]
           ),
@@ -145,13 +157,13 @@ export default defineComponent({
               genComponentName("flex-item"),
               {
                 directives: [{ name: "show", value: this.showFooter }],
-                class: ["yn-layout-footer"]
+                class: ["yn-layout-footer"],
               },
               [this.slots("footer")]
-            )
-          ])
+            ),
+          ]),
         ]
-      )
+      ),
     ]);
-  }
+  },
 });

@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 16:43:52
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-15 15:05:54
+ * @Last Modified time: 2020-11-19 13:38:47
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -12,54 +12,55 @@ const VALIDATE_POSITION_VALUE = ["left", "right", "top", "bottom", "middle"];
 import { warn } from "../modules/error";
 import Iconfont from "../iconfont";
 import { slotsMixins } from "../mixins/slots";
+import { EventBus } from "../modules/event/bus";
 let idSeed = 1;
 export default defineComponent({
   name: "Popup",
   mixins: [slotsMixins],
   components: {
-    Iconfont
+    Iconfont,
   },
   props: {
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     position: {
       type: String,
-      default: "bottom"
+      default: "bottom",
     },
     closeOnClickModal: {
       type: Boolean,
-      default: true
+      default: true,
     },
     borderRadius: {
       type: Number,
-      default: 10
+      default: 10,
     },
     lockScreen: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showCloseIcon: {
       type: Boolean,
-      default: false
+      default: false,
     },
     singleton: {
       type: Boolean,
-      default: false
+      default: false,
     },
-    fixed: Boolean
+    fixed: Boolean,
   },
   data() {
     return {
       time: 0,
       diff: 0,
       events: {},
-      zIndex: 2000
+      zIndex: 2000,
     };
   },
   watch: {
-    value: "hanleFastClick"
+    value: "hanleFastClick",
   },
   methods: {
     hanleFastClick(c, o) {
@@ -80,6 +81,7 @@ export default defineComponent({
       this.events = {};
     },
     handleBeforeEnter(node) {
+      EventBus.$emit("popup:opening", true);
       this.bodyOverflow = document.body.style.overflow;
       const parent = node.parentNode;
       const modal = document.createElement("div");
@@ -91,7 +93,7 @@ export default defineComponent({
         if (this.lockScreen) {
           document.body.style.overflow = "hidden";
         }
-        this.events["closeModal"] = function() {
+        this.events["closeModal"] = function () {
           parent.removeChild(modal);
         };
         modal.onclick = () => {
@@ -125,6 +127,7 @@ export default defineComponent({
       this.$emit("leave");
     },
     handleAfterLeave() {
+      EventBus.$emit("popup:opening", false);
       if (this.singleton) {
         this.removeModal();
       } else {
@@ -141,11 +144,11 @@ export default defineComponent({
     getStyle(position) {
       if (position === "bottom") {
         return {
-          borderRadius: `${this.borderRadius}px ${this.borderRadius}px 0 0`
+          borderRadius: `${this.borderRadius}px ${this.borderRadius}px 0 0`,
         };
       } else if (position === "top") {
         return {
-          borderRadius: `0 0 ${this.borderRadius}px ${this.borderRadius}px`
+          borderRadius: `0 0 ${this.borderRadius}px ${this.borderRadius}px`,
         };
       } else {
         return {};
@@ -154,21 +157,25 @@ export default defineComponent({
     createCloseIcon(h) {
       if (this.showCloseIcon) {
         return [
-          h("div", { class: ["yn-popup-closeicon", this.fixed ? "fixed" : ""] }, [
-            h(
-              genComponentName("iconfont"),
-              {
-                props: { name: "iconcancle_circle", size: "24" },
-                nativeOn: { click: this.close }
-              },
-              []
-            )
-          ])
+          h(
+            "div",
+            { class: ["yn-popup-closeicon", this.fixed ? "fixed" : ""] },
+            [
+              h(
+                genComponentName("iconfont"),
+                {
+                  props: { name: "iconcancle_circle", size: "24" },
+                  nativeOn: { click: this.close },
+                },
+                []
+              ),
+            ]
+          ),
         ];
       } else {
         return [];
       }
-    }
+    },
   },
   render(h) {
     let position = "bottom";
@@ -187,8 +194,8 @@ export default defineComponent({
           afterEnter: this.handleAfterEneter,
           beforeLeave: this.handleBeforeLeave,
           leave: this.handleLeave,
-          afterLeave: this.handleAfterLeave
-        }
+          afterLeave: this.handleAfterLeave,
+        },
       },
       [
         h(
@@ -196,11 +203,11 @@ export default defineComponent({
           {
             directives: [{ name: "show", value: this.value }],
             class: ["yn-popup", `yn-popup-${position}`],
-            style: { ...this.getStyle(position) }
+            style: { ...this.getStyle(position) },
           },
           [...this.createCloseIcon(h), this.slots()]
-        )
+        ),
       ]
     );
-  }
+  },
 });
