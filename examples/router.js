@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-07 13:50:45
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-11 10:10:12
+ * @Last Modified time: 2020-11-19 14:12:57
  */
 import Router from "vue-router";
 import Vue from "vue";
@@ -35,7 +35,7 @@ import PullRefresh from "./pull-refresh/pullRefresh.vue";
 import DatePicker from "./date-picker/datePicker.vue";
 import Counter from "./counter/counter.vue";
 import Skeleton from "./skeleton/skeleton.vue";
-import InfiniteList from "./infinite-list/list.vue";
+import AnimationList from "./animation-list/list.vue";
 const router = new Router({
   routes: [
     {
@@ -179,9 +179,9 @@ const router = new Router({
       component: Skeleton
     },
     {
-      path: "/infinite-list",
-      name: "infiniteList",
-      component: InfiniteList
+      path: "/animation-list",
+      name: "animationList",
+      component: AnimationList
     }
   ]
 });

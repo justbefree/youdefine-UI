@@ -5,6 +5,8 @@ const version = getConfig("VUE_APP_VERSION");
 import "./index.less";
 
 import ActionSheet from "./action-sheet";
+import AnimationList from "./animation-list";
+import AnimationListItem from "./animation-list-item";
 import Button from "./button";
 import Calendar from "./calendar";
 import Checkbox from "./checkbox";
@@ -20,8 +22,6 @@ import Flex from "./flex";
 import FlexItem from "./flex-item";
 import Iconfont from "./iconfont";
 import Indicator from "./indicator";
-import InfiniteList from "./infinite-list";
-import InfiniteListItem from "./infinite-list-item";
 import Layout from "./layout";
 import Picker from "./picker";
 import PickyStepper from "./picky-stepper";
@@ -43,6 +43,8 @@ import Toast from "./toast";
 
 const components = [
   ActionSheet,
+  AnimationList,
+  AnimationListItem,
   Button,
   Calendar,
   Checkbox,
@@ -58,8 +60,6 @@ const components = [
   FlexItem,
   Iconfont,
   Indicator,
-  InfiniteList,
-  InfiniteListItem,
   Layout,
   Picker,
   PickyStepper,
@@ -121,6 +121,8 @@ export default {
   config,
 };
 export { ActionSheet as YnActionSheet };
+export { AnimationList as YnAnimationList };
+export { AnimationListItem as YnAnimationListItem };
 export { Button as YnButton };
 export { Calendar as YnCalendar };
 export { Checkbox as YnCheckbox };
@@ -136,8 +138,6 @@ export { Flex as YnFlex };
 export { FlexItem as YnFlexItem };
 export { Iconfont as YnIconfont };
 export { Indicator as YnIndicator };
-export { InfiniteList as YnInfiniteList };
-export { InfiniteListItem as YnInfiniteListItem };
 export { Layout as YnLayout };
 export { Picker as YnPicker };
 export { PickyStepper as YnPickyStepper };

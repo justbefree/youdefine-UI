@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:03:24
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-18 13:34:59
+ * @Last Modified time: 2020-11-19 14:09:23
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -10,9 +10,9 @@ import { slotsMixins } from "../mixins/slots";
 import { provideMixins } from "../mixins/provide";
 import Flex from "../flex";
 import FlexItem from "../flex-item";
-const VALID_CHILD_COMPONENT = "infinite-list-item";
+const VALID_CHILD_COMPONENT = "animation-list-item";
 export default defineComponent({
-  name: "InfiniteList",
+  name: "AnimationList",
   mixins: [slotsMixins, provideMixins()],
   props: {
     dataList: {
@@ -61,7 +61,7 @@ export default defineComponent({
       return slots;
     },
     init() {
-      // this.stackList = [];
+      this.stackList = [];
       const slots = this.getSlots();
       if (this.animation) {
         this.infinite(slots);
@@ -74,7 +74,7 @@ export default defineComponent({
     this.init();
   },
   render(h) {
-    return h("div", { class: ["yn-infinite-list"] }, [
+    return h("div", { class: ["yn-animation-list"] }, [
       h(
         genComponentName("flex"),
         { props: { flexDirection: "column" } },

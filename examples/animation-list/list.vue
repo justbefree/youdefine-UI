@@ -10,27 +10,27 @@
   >
     <div slot="header" class="header">header</div>
     <div slot="body">
-      <yn-infinite-list :dataList="dataList">
-        <yn-infinite-list-item style="borderBottom: 1px solid #eee;line-height: 40px" height="40" v-for="i in dataList" :key="i">
+      <yn-animation-list :dataList="dataList">
+        <yn-animation-list-item style="borderBottom: 1px solid #eee;line-height: 40px" height="40" v-for="i in dataList" :key="i">
           <span>这是第{{i}}个元素</span>
-        </yn-infinite-list-item>
-      </yn-infinite-list>
+        </yn-animation-list-item>
+      </yn-animation-list>
       <yn-spin type="triple-bounce"></yn-spin>
     </div>
     <div slot="footer">footer</div>
   </yn-layout> -->
   <div>
     <yn-button @click="filter">数组反转</yn-button>
-    <yn-infinite-list :dataList="asyncData" :animation="animation">
-      <yn-infinite-list-item :animation="animation" style="borderBottom: 1px solid #eee;line-height: 100px" height="100" v-for="i in asyncData" :key="i.index">
+    <yn-animation-list :dataList="asyncData" :animation="animation">
+      <yn-animation-list-item :animation="animation" style="borderBottom: 1px solid #eee;line-height: 100px" height="100" v-for="i in asyncData" :key="i.index">
         <span>这是第{{i.index}}个元素</span>
-      </yn-infinite-list-item>
-    </yn-infinite-list>
+      </yn-animation-list-item>
+    </yn-animation-list>
   </div>
 </template>
 <script>
 export default {
-  name: "YnInfiniteListPage",
+  name: "YnAnimationListPage",
   data() {
     const dataList = [];
     for (let i = 0; i < 20; i++) {
