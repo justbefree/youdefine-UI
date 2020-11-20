@@ -22,8 +22,9 @@
   <div>
     <yn-button @click="filter">数组反转</yn-button>
     <yn-animation-list :dataList="asyncData" :animation="animation">
-      <yn-animation-list-item :animation="animation" v-for="i in asyncData" :key="i.index">
-        <div style="height: 100px;" :class="[i.index % 2 === 0 ? 'hide' : '']">这是第{{i.index}}个元素</div>
+      <yn-animation-list-item height="40" :animation="animation" v-for="i in asyncData" :key="i.index">
+        <!-- <div style="height: 100px;" :class="[i.index % 2 === 0 ? 'hide' : '']">这是第{{i.index}}个元素</div> -->
+        <div v-if="i.index %2 === 0">这是第{{i.index}}个元素</div>
       </yn-animation-list-item>
     </yn-animation-list>
   </div>
