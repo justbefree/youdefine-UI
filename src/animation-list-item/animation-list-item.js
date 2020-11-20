@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:27:56
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-19 14:11:35
+ * @Last Modified time: 2020-11-20 09:35:20
  * @E-mail: justbefree@126.com
  */
 import { defineComponent } from "../modules/component";
@@ -32,6 +32,10 @@ export default defineComponent({
     this.show = false;
   },
   render(h) {
+    const slots = this.slots();
+    const ele = slots && slots[0] && slots[0].elm;
+    const display =
+      ele && window.getComputedStyle(ele, null).getPropertyValue("display");
     return h(
       "transition",
       { props: { name: this.parent.animation ? "yn-slide-in" : "" } },
@@ -40,7 +44,11 @@ export default defineComponent({
           "div",
           {
             directives: [
-              { name: "show", value: this.show || !this.parent.animation },
+              {
+                name: "show",
+                value:
+                  (this.show || !this.parent.animation) && display !== "none",
+              },
             ],
             class: ["yn-animation-list-item"],
             style: { height: `${this.height}px` },
