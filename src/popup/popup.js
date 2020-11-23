@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 16:43:52
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-19 13:38:47
+ * @Last Modified time: 2020-11-23 11:17:13
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -12,6 +12,7 @@ const VALIDATE_POSITION_VALUE = ["left", "right", "top", "bottom", "middle"];
 import { warn } from "../modules/error";
 import Iconfont from "../iconfont";
 import { slotsMixins } from "../mixins/slots";
+import { isDef } from "../modules/utils";
 import { EventBus } from "../modules/event/bus";
 let idSeed = 1;
 export default defineComponent({
@@ -81,6 +82,13 @@ export default defineComponent({
       this.events = {};
     },
     handleBeforeEnter(node) {
+      let popupCount = EventBus.$data.globalProperties["$popup-count"];
+      popupCount = isDef(popupCount) ? ++popupCount : 1;
+      EventBus.$set(
+        EventBus.$data.globalProperties,
+        "$popup-count",
+        popupCount
+      );
       EventBus.$emit("popup:opening", true);
       this.bodyOverflow = document.body.style.overflow;
       const parent = node.parentNode;
@@ -127,7 +135,16 @@ export default defineComponent({
       this.$emit("leave");
     },
     handleAfterLeave() {
-      EventBus.$emit("popup:opening", false);
+      let popupCount = EventBus.$data.globalProperties["$popup-count"];
+      popupCount -= 1;
+      EventBus.$set(
+        EventBus.$data.globalProperties,
+        "$popup-count",
+        popupCount
+      );
+      if (popupCount === 0) {
+        EventBus.$emit("popup:opening", false);
+      }
       if (this.singleton) {
         this.removeModal();
       } else {
