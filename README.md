@@ -2,7 +2,7 @@
 
 (Vueggy) - [https://github.com/justbefree/vueggy]
 
-(Examples) - [https://lizhuang.xyz/vueggy/#/]
+(Examples) - [https://vueggy.com]
 
 # youdefine-UI
 
