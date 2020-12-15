@@ -21,10 +21,20 @@
   </yn-layout> -->
   <div>
     <yn-button @click="filter">数组反转</yn-button>
+    <!-- <yn-dialog v-model="showDialog">
+      外面的弹窗
+    </yn-dialog> -->
     <yn-animation-list :dataList="asyncData" :animation="animation">
-      <yn-animation-list-item height="40" :animation="animation" v-for="i in asyncData" :key="i.index">
+      <yn-animation-list-item height="100" v-for="i in asyncData" :key="i.index">
         <!-- <div style="height: 100px;" :class="[i.index % 2 === 0 ? 'hide' : '']">这是第{{i.index}}个元素</div> -->
-        <div v-if="i.index %2 === 0">这是第{{i.index}}个元素</div>
+        <!-- <div v-if="i.index %2 === 0">这是第{{i.index}}个元素</div> -->
+        <div v-if="i.index === 5">
+          这是第{{i.index}}个元素 <span @click="dialog">注意有弹窗{{showDialog}}</span>
+          <yn-dialog v-model="showDialog">
+            弹窗后页面还能滑动吗
+          </yn-dialog>
+        </div>
+        <div v-else>这是第{{i.index}}个元素</div>
       </yn-animation-list-item>
     </yn-animation-list>
   </div>
@@ -41,10 +51,15 @@ export default {
       showHeader: true,
       dataList,
       asyncData: [],
-      animation: true
+      animation: true,
+      showDialog: false
     };
   },
   methods: {
+    dialog() {
+      this.animation = false;
+      this.showDialog = true;
+    },
     filter() {
       // this.asyncData.reverse();
       this.animation = false;
