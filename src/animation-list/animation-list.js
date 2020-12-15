@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:03:24
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-19 14:09:23
+ * @Last Modified time: 2020-12-15 17:48:10
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -78,7 +78,10 @@ export default defineComponent({
       h(
         genComponentName("flex"),
         { props: { flexDirection: "column" } },
-        Array.apply(null, this.stackList).map((item, key) => {
+        Array.apply(
+          null,
+          !this.animation ? this.getSlots() : this.stackList
+        ).map((item, key) => {
           return h(genComponentName("flex-item"), { key }, [item]);
         })
       ),

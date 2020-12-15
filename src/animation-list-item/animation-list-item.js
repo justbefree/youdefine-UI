@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:27:56
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-20 10:24:51
+ * @Last Modified time: 2020-12-15 18:09:18
  * @E-mail: justbefree@126.com
  */
 import { defineComponent } from "../modules/component";
@@ -17,7 +17,7 @@ export default defineComponent({
   data() {
     return {
       show: false,
-      animation: true,
+      entered: false,
     };
   },
   mounted() {
@@ -31,6 +31,11 @@ export default defineComponent({
   beforeDestroy() {
     this.show = false;
   },
+  methods: {
+    afterEnter() {
+      this.entered = true;
+    },
+  },
   render(h) {
     const slots = this.slots();
     const ele = slots && slots[0] && slots[0].elm;
@@ -41,7 +46,10 @@ export default defineComponent({
       slots.length > 0 &&
       h(
         "transition",
-        { props: { name: this.parent.animation ? "yn-slide-in" : "" } },
+        {
+          props: { name: this.parent.animation ? "yn-slide-in" : "" },
+          on: { afterEnter: this.afterEnter },
+        },
         [
           h(
             "div",
@@ -53,7 +61,10 @@ export default defineComponent({
                     (this.show || !this.parent.animation) && display !== "none",
                 },
               ],
-              class: ["yn-animation-list-item"],
+              class: [
+                "yn-animation-list-item",
+                this.entered ? "no-animation" : "",
+              ],
               style: { height: `${this.height}px` },
             },
             this.slots()
