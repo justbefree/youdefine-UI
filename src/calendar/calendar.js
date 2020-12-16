@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-28 10:28:34
+ * @Last Modified time: 2020-12-16 13:42:24
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -87,14 +87,14 @@ export default defineComponent({
     },
     todayMark: {
       type: String,
-      default: "今天"
+      default: "今天",
     },
     monthTtitleParser: {
       type: Function,
       default: (defaultText) => {
         return defaultText;
-      }
-    }
+      },
+    },
   },
   data() {
     return {
@@ -393,14 +393,14 @@ export default defineComponent({
     createDate(h) {
       const dates = this.generateDate();
       const caculateDOM = [];
-      dates.forEach(monthItem => {
+      dates.forEach((monthItem) => {
         const { month, year, key } = monthItem;
         caculateDOM.push(
           h(
             "div",
             {
               class: ["yn-calendar-month", month],
-              key
+              key,
             },
             [
               h(
@@ -408,8 +408,11 @@ export default defineComponent({
                 {
                   class: ["yn-calendar-month-title"],
                   domProps: {
-                    innerHTML: this.monthTtitleParser(`${year}-${month}`, { year, month })
-                  }
+                    innerHTML: this.monthTtitleParser(`${year}-${month}`, {
+                      year,
+                      month,
+                    }),
+                  },
                 },
                 []
               ),
@@ -522,7 +525,7 @@ export default defineComponent({
         genComponentName("iconfont"),
         {
           class: ["yn-calendar-close"],
-          props: { name: "iconcancle_circle", size: 24 },
+          props: { name: "close", size: 24 },
           nativeOn: { click: this.close },
         },
         []

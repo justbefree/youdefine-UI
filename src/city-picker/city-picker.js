@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-16 11:56:59
+ * @Last Modified time: 2020-12-16 13:50:14
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -460,7 +460,7 @@ export default defineComponent({
             h(genComponentName("flex-item"), { class: ["icon-box"] }, [
               h(
                 genComponentName("iconfont"),
-                { props: { name: "iconsearch", size: "16" } },
+                { props: { name: "search", size: "16" } },
                 []
               ),
             ]),
@@ -496,7 +496,7 @@ export default defineComponent({
               [
                 h(
                   genComponentName("iconfont"),
-                  { props: { name: "iconclear-button", size: 16 } },
+                  { props: { name: "clear", size: 16 } },
                   []
                 ),
               ]
@@ -516,7 +516,7 @@ export default defineComponent({
         genComponentName("iconfont"),
         {
           class: ["yn-city-picker-close"],
-          props: { name: "iconcancle_circle", size: 24 },
+          props: { name: "close", size: 24 },
           on: { click: this.close },
         },
         []

@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-16 15:50:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-10 10:22:11
+ * @Last Modified time: 2020-12-16 13:49:40
  */
 
 import { defineComponent, genComponentName } from "../modules/component";
@@ -188,7 +188,7 @@ export default defineComponent({
     },
     createIcon(h) {
       const icon = [];
-      const name = this.clearable ? "iconclear-button" : this.iconName;
+      const name = this.clearable ? "clear" : this.iconName;
       const directives = this.clearable
         ? [{ name: "show", value: this.showIcon }]
         : [];

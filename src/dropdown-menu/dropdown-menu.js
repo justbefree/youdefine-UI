@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:11:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-06-03 15:17:39
+ * @Last Modified time: 2020-12-16 13:48:49
  * @E-mail: justbefree@126.com
  */
 
@@ -108,15 +108,15 @@ export default defineComponent({
     getProperlyIcon(slideDown = false, active = false) {
       if (slideDown) {
         if (active) {
-          return "iconcollapsed-selected";
+          return "collapsed-selected";
         } else {
-          return "iconcollapsed-default";
+          return "collapsed-default";
         }
       } else {
         if (active) {
-          return "iconexpanded-selected";
+          return "expanded-selected";
         } else {
-          return "iconexpanded-default";
+          return "expanded-default";
         }
       }
     },

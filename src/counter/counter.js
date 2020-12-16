@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-06-15 10:01:18
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-02 15:09:18
+ * @Last Modified time: 2020-12-16 13:44:40
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -83,7 +83,7 @@ export default defineComponent({
           {
             on: { click: this.subtract },
             class: ["yn-counter-subtract", leftButtonClass],
-            props: { name: "iconinsurance-minus", size: 15 },
+            props: { name: "minus", size: 15 },
           },
           []
         ),
@@ -93,7 +93,7 @@ export default defineComponent({
           {
             on: { click: this.add },
             class: ["yn-counter-plus", rightButtonClass],
-            props: { name: "iconinsurance-add", size: 15 },
+            props: { name: "add", size: 15 },
           },
           []
         ),

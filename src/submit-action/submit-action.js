@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-28 10:30:16
+ * @Last Modified time: 2020-12-16 13:45:44
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -42,16 +42,16 @@ export default defineComponent({
     fixed: Boolean,
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     leftFlex: {
       type: [String, Number],
-      default: 2
+      default: 2,
     },
     rightFlex: {
       type: [String, Number],
-      default: 1
-    }
+      default: 1,
+    },
   },
   data() {
     return {
@@ -128,9 +128,7 @@ export default defineComponent({
     },
     genIcon(h) {
       if (this.showIcon) {
-        const iconName = this.showPopup
-          ? "iconl-arrow-down-line"
-          : "iconl-arrow-up-line";
+        const iconName = this.showPopup ? "down-arrow" : "up-arrow";
         return h("span", { class: ["yn-submit-action-icon"] }, [
           h(
             genComponentName("iconfont"),
@@ -190,21 +188,25 @@ export default defineComponent({
               ]),
             ]
           ),
-          h(genComponentName("flex-item"), { props: { flex: this.rightFlex } }, [
-            h(
-              genComponentName("button"),
-              {
-                class: ["yn-submit-action-button"],
-                props: {
-                  type: "primary",
-                  size: "large",
-                  disabled: this.disabled,
+          h(
+            genComponentName("flex-item"),
+            { props: { flex: this.rightFlex } },
+            [
+              h(
+                genComponentName("button"),
+                {
+                  class: ["yn-submit-action-button"],
+                  props: {
+                    type: "primary",
+                    size: "large",
+                    disabled: this.disabled,
+                  },
+                  on: { click: this.submit },
                 },
-                on: { click: this.submit },
-              },
-              [this.submitText]
-            ),
-          ]),
+                [this.submitText]
+              ),
+            ]
+          ),
         ]),
       ]
     );

@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:20:36
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-16 15:24:16
+ * @Last Modified time: 2020-12-16 14:06:15
  */
 import { defineComponent } from "../modules/component";
 import { warn, error } from "../modules/error";
@@ -14,13 +14,13 @@ export default defineComponent({
     size: {
       type: [String, Number],
       default: 28,
-      require: false
-    }
+      require: false,
+    },
   },
   data() {
     return {
       svgPrefix: "",
-      svgs
+      svgs,
     };
   },
   methods: {
@@ -33,15 +33,19 @@ export default defineComponent({
       const reg = new RegExp(`^${this.svgPrefix}`);
       const iconName = name.replace(reg, "");
       if (this.svgs) {
-        if (this.svgs[iconName]) {
+        if (name.startsWith(this.svgPrefix) && this.svgs[iconName]) {
           return this.svgs[iconName];
-        } else {
-          warn(`${iconName}.svg is missing`);
         }
+        if (this.svgs[name]) {
+          return this.svgs[name];
+        }
+        warn(`${iconName}.svg is missing`);
       } else {
-        error(`You need config svgs' lib before use ${this.$options.name} component`);
+        error(
+          `You need config svgs' lib before use ${this.$options.name} component`
+        );
       }
-    }
+    },
   },
   render(h) {
     return h(
@@ -49,13 +53,20 @@ export default defineComponent({
       {
         class: [
           "yn-iconfont-wrap",
-          String(this.size) === "0" ? "yn-iconfont-size-0" : ""
+          String(this.size) === "0" ? "yn-iconfont-size-0" : "",
         ],
-        on: { click: this.handleClick }
+        on: { click: this.handleClick },
       },
       [
-        h("img", { attrs: { src: this.getSvg(), iconname: this.name }, class: ["yn-iconfont", `yn-iconfont-size-${this.size}`] }, [])
+        h(
+          "img",
+          {
+            attrs: { src: this.getSvg(), iconname: this.name },
+            class: ["yn-iconfont", `yn-iconfont-size-${this.size}`],
+          },
+          []
+        ),
       ]
     );
-  }
+  },
 });

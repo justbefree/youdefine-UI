@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-20 16:43:52
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-23 11:17:13
+ * @Last Modified time: 2020-12-16 13:43:22
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -181,7 +181,7 @@ export default defineComponent({
               h(
                 genComponentName("iconfont"),
                 {
-                  props: { name: "iconcancle_circle", size: "24" },
+                  props: { name: "close", size: "24" },
                   nativeOn: { click: this.close },
                 },
                 []

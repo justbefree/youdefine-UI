@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-28 10:29:33
+ * @Last Modified time: 2020-12-16 13:43:20
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -106,7 +106,7 @@ export default defineComponent({
         genComponentName("iconfont"),
         {
           class: ["yn-picky-stepper-close"],
-          props: { name: "iconcancle_circle", size: 24 },
+          props: { name: "close", size: 24 },
           on: { click: this.close },
         },
         []
@@ -283,7 +283,10 @@ export default defineComponent({
                 }),
               },
               class: ["input", item.value !== "" ? "active" : ""],
-              attrs: { placeholder: item.placeholder, maxlength: item.maxlength }
+              attrs: {
+                placeholder: item.placeholder,
+                maxlength: item.maxlength,
+              },
             },
             []
           ),
@@ -295,18 +298,38 @@ export default defineComponent({
       ) {
         const { count = 0 } = item;
         return h("div", { class: "textarea-wapper" }, [
-          h("textarea", { class: ["textarea", item.value !== "" ? "active" : ""], on: {
-                          input: this.handleCustomeInput.bind(this, {
-                            item,
-                            e: {
-                              step,
-                              stepIndex,
-                              listItem: item,
-                              listIndex: key
-                            }
-                          })
-                        }, attrs: { placeholder: item.placeholder, maxlength: item.maxlength } }, []),
-          h("div", { class: "textarea-counter", directives: [{ name: "show", value: item.counter && item.maxlength > 0 }] }, [`${count}/${item.maxlength}`])
+          h(
+            "textarea",
+            {
+              class: ["textarea", item.value !== "" ? "active" : ""],
+              on: {
+                input: this.handleCustomeInput.bind(this, {
+                  item,
+                  e: {
+                    step,
+                    stepIndex,
+                    listItem: item,
+                    listIndex: key,
+                  },
+                }),
+              },
+              attrs: {
+                placeholder: item.placeholder,
+                maxlength: item.maxlength,
+              },
+            },
+            []
+          ),
+          h(
+            "div",
+            {
+              class: "textarea-counter",
+              directives: [
+                { name: "show", value: item.counter && item.maxlength > 0 },
+              ],
+            },
+            [`${count}/${item.maxlength}`]
+          ),
         ]);
       }
     },
