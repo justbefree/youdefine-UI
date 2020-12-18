@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-16 15:50:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-12-16 13:49:40
+ * @Last Modified time: 2020-12-18 16:15:42
  */
 
 import { defineComponent, genComponentName } from "../modules/component";
@@ -10,7 +10,7 @@ import { encrypt } from "../modules/utils";
 import Flex from "../flex";
 import FlexItem from "../flex-item";
 import Iconfont from "../iconfont";
-const VALID_TYPE = ["number", "textarea", "password", "text", "email"];
+const VALID_TYPE = ["number", "textarea", "password", "text", "email", "tel"];
 import { slotsMixins } from "../mixins/slots";
 export default defineComponent({
   name: "Field",
@@ -67,13 +67,21 @@ export default defineComponent({
       default: "row",
     },
     pattern: String,
+    encrypt: {
+      type: Function,
+      default: encrypt,
+    },
   },
   data() {
     return {
       target: null,
       showIcon: false,
       showEncryptInput: false,
+      inputing: false,
     };
+  },
+  initPropsToData() {
+    return [{ key: "originalText", value: "value" }];
   },
   methods: {
     handleOnFocus(e) {
@@ -85,7 +93,23 @@ export default defineComponent({
         this.$emit("input", "");
       }
     },
+    // getValue() {
+    //   if (this.encrypted) {
+    //     return this.originalText;
+    //   }
+    //   return this.value;
+    // },
     handleOnBlur(e) {
+      this.inputing = false;
+      if (this.encrypted) {
+        if (this.value === "") {
+          // this.$emit("input", this.encrypt(this.originalText));
+          this.$emit("input", this.originalText);
+        } else {
+          this.originalText = e.target.value;
+          // this.$emit("input", this.encrypt(e.target.value));
+        }
+      }
       this.$emit("blur", e);
     },
     handleInput(e) {
@@ -94,6 +118,7 @@ export default defineComponent({
       } else {
         this.showIcon = false;
       }
+      this.inputing = true;
       this.$emit("input", e.target.value);
     },
     handleIconClick() {
@@ -111,19 +136,21 @@ export default defineComponent({
         readonly: this.readonly,
         placeholder: this.placeholder,
         autofocus: this.autofocus,
-        value: this.encrypted ? encrypt(this.value) : this.value,
+        value:
+          this.encrypted && !this.inputing
+            ? this.encrypt(this.value)
+            : this.value,
         required: this.required,
         disabled: this.disabled,
         maxlength,
         pattern: this.pattern,
       };
       const domProps = {
-        value: this.value,
+        value:
+          this.encrypted && !this.inputing
+            ? this.encrypt(this.value)
+            : this.value,
       };
-      if (this.encrypted) {
-        attrs["realValue"] = this.value;
-        attrs["encryptedValue"] = encrypt(this.value);
-      }
       const events = {
         focus: this.handleOnFocus,
         blur: this.handleOnBlur,
