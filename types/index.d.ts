@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-08-25 11:04:33
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-17 18:16:35
+* @Last Modified time: 2020-12-21 10:24:17
 * @E-mail: justbefree@126.com
 */
 import Vue from "vue";
@@ -17,6 +17,7 @@ import { YnCalendar } from "./calendar";
 import { YnCheckbox } from "./checkbox";
 import { YnCityPicker } from "./city-picker";
 import { YnDropdownMenuItem } from "./dropdown-menu-item";
+import { YnLayout } from "./layout";
 export {
   Toast,
   Indicator,
@@ -27,7 +28,8 @@ export {
   YnCalendar,
   YnCheckbox,
   YnCityPicker,
-  YnDropdownMenuItem
+  YnDropdownMenuItem,
+  YnLayout
 };
 export function install(vue: typeof Vue): void;
 export function config(options: any): void;
