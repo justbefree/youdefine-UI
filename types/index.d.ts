@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-08-25 11:04:33
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-21 11:22:52
+* @Last Modified time: 2020-12-21 17:22:17
 * @E-mail: justbefree@126.com
 */
 import Vue from "vue";
@@ -18,7 +18,7 @@ import { YnCheckbox } from "./checkbox";
 import { YnCityPicker } from "./city-picker";
 import { YnCounter } from "./counter";
 import { YnDatePicker } from "./date-picker";
-import { YnDropdownMenu } from "./dropdown-ment";
+import { YnDropdownMenu } from "./dropdown-menu";
 import { YnDropdownMenuItem } from "./dropdown-menu-item";
 import { YnField } from "./field";
 import { YnFieldGroup } from "./field-group";
