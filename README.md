@@ -1,4 +1,4 @@
-# Here comes youdefine-UI for Vue3
+# Here comes Vueggy for Vue3
 
 (Vueggy) - [https://github.com/justbefree/vueggy]
 
