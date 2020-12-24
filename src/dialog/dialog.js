@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-23 11:35:23
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-29 15:27:43
+ * @Last Modified time: 2020-12-24 15:37:45
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -16,11 +16,10 @@ export default defineComponent({
   mixins: [renderedMixins, slotsMixins],
   components: { Button },
   props: {
-    // callback: null,
-    beforeOpen: null,
-    afterOpen: null,
-    beforeClose: null,
-    afterClose: null,
+    beforeOpen: Function,
+    afterOpen: Function,
+    beforeClose: Function,
+    afterClose: Function,
     className: [String, Array],
     title: String,
     message: String,
@@ -46,7 +45,10 @@ export default defineComponent({
       default: "确定",
     },
     confirmLoadingText: String,
-    loadingColor: String,
+    loadingColor: {
+      type: String,
+      default: "#007aff",
+    },
     closeModelOnClick: {
       type: Boolean,
       default: false,
@@ -64,7 +66,6 @@ export default defineComponent({
       loading: false,
       action: "",
       show: false,
-      status: "pending",
     };
   },
   methods: {
@@ -120,26 +121,24 @@ export default defineComponent({
         : null;
     },
     handleButtonClick(e) {
+      // console.log(this.callback);
       this.action = e;
       const { beforeClose } = this;
-      if (beforeClose && typeof beforeClose === "function") {
-        const promise = beforeClose(e, this.status);
+      if (beforeClose) {
+        const promise = beforeClose(e);
         if (isPromise(promise)) {
           this.loading = true;
           promise.then((res) => {
-            this.status = "resolved";
             this.show = false;
             this.$emit("input", false);
             this.$emit("buttonClick", e, res);
           });
         } else {
-          this.status = "resolved";
           this.show = false;
           this.$emit("input", false);
           this.$emit("buttonClick", e);
         }
       } else {
-        this.status = "resolved";
         this.$emit("input", false);
         this.$emit("buttonClick", e);
         this.show = false;
@@ -163,7 +162,6 @@ export default defineComponent({
       parent.removeChild(el);
     },
     handleBeforeEnter(node) {
-      this.status = "pending";
       this.beforeOpen &&
         typeof this.beforeOpen === "function" &&
         this.beforeOpen();
@@ -195,9 +193,9 @@ export default defineComponent({
       this.$emit("afterEnter");
     },
     handleBeforeLeave() {
-      this.beforeClose &&
-        typeof this.beforeClose === "function" &&
-        this.beforeClose(this.action, this.status);
+      // this.beforeClose &&
+      //   typeof this.beforeClose === "function" &&
+      //   this.beforeClose(this.action, this.status);
       this.$emit("beforeLeave", this.action);
     },
     handleAfterLeave() {
