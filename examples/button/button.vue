@@ -5,7 +5,8 @@
     <hr />
     <yn-button disabled><span>禁止点击</span></yn-button>
     <hr />
-    <yn-button :loading="true" loadingColor="red"
+    <!-- 异步加载的时候text设置为空 -->
+    <yn-button :loading="true" loadingText="" loadingColor="red"
       ><span>这是文案</span></yn-button
     >
     <hr />
