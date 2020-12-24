@@ -25,7 +25,7 @@
       </li>
       <li>
         <span @click="advanced3">异步加载数据渲染问题-{{ text.value }}</span>
-        <yn-dialog :value="this.show3" closeModelOnClick>
+        <yn-dialog v-model="show3" closeModelOnClick :beforeClose="handleBeforeClose">
           <span>我是固定内容，我后面的是动态内容{{ text.value }}</span>
         </yn-dialog>
       </li>
@@ -68,22 +68,23 @@ export default {
     handleClick() {
       console.log("收到回调信息");
     },
-    handleBeforeClose(e, status) {
+    handleBeforeClose(e) {
+      console.log("handleBeforeClose", e);
       if (e === "cancel") {
         return false;
       }
-      console.log("这个是会告诉你点击了哪个按钮", e, status);
       return new Promise((resolve, reject) => {
         console.log(reject);
         setTimeout(() => {
+          console.log("请求结束");
           resolve("请求结束");
         }, 2000);
       }).catch(err => {
         console.log("错误信息在这里展示", err);
       });
     },
-    handleBeforeClose2(e, status) {
-      console.log("这个是会告诉你点击了哪个按钮", e, status);
+    handleBeforeClose2(e) {
+      console.log("这个是会告诉你点击了哪个按钮", e);
       return new Promise((resolve, reject) => {
         console.log(reject);
         setTimeout(() => {
@@ -97,9 +98,8 @@ export default {
       this.Dialog.alert({
         title: "这个是标题",
         message: "这个是内容",
-        // beforeClose: (e, status) => {
-        //   console.log("执行了多少次", e, status);
-        // }
+        confirmButtonText: "我知道了",
+        confirmLoadingText: "",
         beforeClose: this.handleBeforeClose,
         // afterClose: this.handleAfterClose
       });
