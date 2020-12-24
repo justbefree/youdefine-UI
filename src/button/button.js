@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:15:58
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-19 16:40:16
+ * @Last Modified time: 2020-12-24 15:45:53
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import Spin from "../spin";
@@ -15,42 +15,42 @@ export default defineComponent({
   props: {
     type: {
       type: String,
-      default: "default"
+      default: "default",
     },
     size: {
       type: String,
-      default: "normal"
+      default: "normal",
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     plain: {
       type: Boolean,
-      default: false
+      default: false,
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     loadingText: String,
     loadingType: {
       type: String,
-      default: "snake"
+      default: "snake",
     },
     loadingSize: {
       type: Number,
-      default: 14
+      default: 14,
     },
     loadingColor: {
       type: String,
-      default: "#007aff"
+      default: "#007aff",
     },
     iconName: String,
     iconSize: {
       type: String,
-      default: "16"
-    }
+      default: "16",
+    },
   },
   methods: {
     isValidType() {
@@ -70,11 +70,11 @@ export default defineComponent({
                 props: {
                   type: this.loadingType,
                   size: this.loadingSize,
-                  color: this.loadingColor
-                }
+                  color: this.loadingColor,
+                },
               },
               []
-            )
+            ),
           ])
         );
       }
@@ -97,7 +97,7 @@ export default defineComponent({
       if (!this.loading && !this.disabled) {
         this.$emit("click");
       }
-    }
+    },
   },
   render(h) {
     const className = [];
@@ -121,19 +121,21 @@ export default defineComponent({
       className.push("is-plain");
     }
     const text =
-      this.loading && this.loadingText ? this.loadingText : this.slots();
+      this.loading && (this.loadingText || this.loadingText === "")
+        ? this.loadingText
+        : this.slots();
     return h(
       "button",
       {
         class: ["yn-button", ...className],
         attrs: { type: "button" },
-        on: { click: this.handleClick }
+        on: { click: this.handleClick },
       },
       [
         ...this.createLoading(h),
         ...this.createIcon(h),
-        h("span", { class: ["yn-button-text"] }, text)
+        h("span", { class: ["yn-button-text"] }, text),
       ]
     );
-  }
+  },
 });
