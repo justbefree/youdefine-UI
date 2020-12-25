@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-14 16:38:25
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-23 14:38:21
+ * @Last Modified time: 2020-12-25 17:10:27
  */
 import { defineComponent } from "../modules/component";
 import { camelize, hyphenate } from "../modules/utils";
@@ -22,6 +22,7 @@ export default defineComponent({
       type: String,
       default: "#007aff",
     },
+    borderWidth: [String, Number],
   },
   methods: {
     loadSubComponent() {
