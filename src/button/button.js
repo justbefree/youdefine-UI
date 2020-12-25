@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:15:58
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-12-24 15:45:53
+ * @Last Modified time: 2020-12-25 17:12:44
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import Spin from "../spin";
@@ -71,6 +71,7 @@ export default defineComponent({
                   type: this.loadingType,
                   size: this.loadingSize,
                   color: this.loadingColor,
+                  borderWidth: 2,
                 },
               },
               []
