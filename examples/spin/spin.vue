@@ -5,8 +5,12 @@
       <yn-spin type="triple-bounce"></yn-spin>
     </div>
     <div>
-      <h4>snake</h4>
+      <h4>default snake</h4>
       <yn-spin type="snake"></yn-spin>
+    </div>
+    <div>
+      <h4>snake set borderWidth as 2</h4>
+      <yn-spin borderWidth="2" type="snake"></yn-spin>
     </div>
     <div>
       <h4>fading-circle</h4>
