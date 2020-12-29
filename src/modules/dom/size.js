@@ -2,16 +2,14 @@
  * @Author: Just be free
  * @Date:   2020-04-27 14:47:00
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-06 12:55:58
+ * @Last Modified time: 2020-12-29 14:41:50
  * @E-mail: justbefree@126.com
  */
 const noneNodes = [];
 const nodeStyle = [];
-const getStyle = element => {
-  return window.getComputedStyle(element);
-};
-const getNode = element => {
-  const display = getStyle(element).getPropertyValue("display");
+import { getPropertyValue } from "./style";
+const getNode = (element) => {
+  const display = getPropertyValue(element, "display");
   const tagName = element.nodeName.toLowerCase();
   if (display !== "none" && tagName !== "body") {
     getNode(element.parentNode);
@@ -35,7 +33,7 @@ const setNodeStyle = () => {
     );
     nodeStyle[index] = {
       visibility: visibility,
-      display: display
+      display: display,
     };
   });
 };
@@ -45,7 +43,7 @@ const restoreNodeStyle = () => {
     node.style.display = nodeStyle[index].display;
   });
 };
-const actualSize = element => {
+const actualSize = (element) => {
   getNode(element);
   setNodeStyle();
   const width = element.offsetWidth;
@@ -53,14 +51,14 @@ const actualSize = element => {
   restoreNodeStyle();
   return {
     width,
-    height
+    height,
   };
 };
 
-export const actualWidth = element => {
+export const actualWidth = (element) => {
   return actualSize(element).width;
 };
 
-export const actualHeight = element => {
+export const actualHeight = (element) => {
   return actualSize(element).height;
 };
