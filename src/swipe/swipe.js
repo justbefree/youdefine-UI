@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-09 09:20:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-27 18:44:24
+ * @Last Modified time: 2020-12-29 13:47:15
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -10,7 +10,7 @@ import { slotsMixins } from "../mixins/slots";
 import { renderedMixins } from "../mixins/rendered";
 import { provideMixins } from "../mixins/provide";
 const VALID_CHILD_COMPONENT = "swipe-item";
-import { on } from "../modules/event";
+import { on, off } from "../modules/event";
 import { Remainder } from "../modules/number/remainder";
 import { touchMixins } from "../mixins/touch";
 import { move } from "../modules/dom/animate/move";
@@ -23,28 +23,28 @@ export default defineComponent({
     vertical: Boolean,
     autoPlay: {
       type: [Number, String],
-      default: 3000
+      default: 3000,
     },
     autoPlayWhenPopup: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showIndicator: {
       type: Boolean,
-      default: true
+      default: true,
     },
     indicatorType: {
       type: String,
-      default: "dashed"
+      default: "dashed",
     },
     height: {
       type: [String, Number],
-      default: 240
+      default: 240,
     },
     showCloseIcon: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
@@ -58,7 +58,7 @@ export default defineComponent({
       dragging: false,
       showPopup: false,
       children: [],
-      fullScreen: false
+      fullScreen: false,
     };
   },
   computed: {
@@ -67,20 +67,21 @@ export default defineComponent({
     },
     swipeStyle() {
       return {
-        height: `${this.height}px`
+        height: `${this.height}px`,
       };
-    }
+    },
   },
   methods: {
+    visibilityChangeEvent() {
+      const status = document.visibilityState;
+      if (status === "visible") {
+        this.paly();
+      } else {
+        this.stop();
+      }
+    },
     visibilityChange() {
-      on(window, "visibilitychange", () => {
-        const status = document.visibilityState;
-        if (status === "visible") {
-          this.paly();
-        } else {
-          this.stop();
-        }
-      });
+      on(window, "visibilitychange", this.visibilityChangeEvent);
     },
     initRect() {
       this.rect = this.$el.getBoundingClientRect();
@@ -174,7 +175,7 @@ export default defineComponent({
             nextEle = null;
             r = null;
           });
-        }
+        },
       });
     },
     startMove(el, value = 0, fn) {
@@ -228,7 +229,7 @@ export default defineComponent({
       const attr = this.vertical ? "top" : "left";
       this.startMove(prevEle, -1 * num * this.size);
       curEle.style[attr] = `${num * this.size}px`;
-      this.startMove(curEle, 0, el => {
+      this.startMove(curEle, 0, (el) => {
         this.moving = false;
         callback && typeof callback === "function" && callback(el);
       });
@@ -247,7 +248,7 @@ export default defineComponent({
               "span",
               { class: ["index"] },
               `${delayActivedIndex + 1}/${length}`
-            )
+            ),
           ];
         } else {
           type = Array.apply(null, { length }).map((i, key) => {
@@ -256,8 +257,8 @@ export default defineComponent({
               {
                 class: [
                   "indicator-dot",
-                  Math.abs(delayActivedIndex) === key ? "active" : ""
-                ]
+                  Math.abs(delayActivedIndex) === key ? "active" : "",
+                ],
               },
               []
             );
@@ -269,8 +270,8 @@ export default defineComponent({
             class: [
               "yn-swipe-indicators",
               indicatorType,
-              this.vertical ? "vertical" : "horizontal"
-            ]
+              this.vertical ? "vertical" : "horizontal",
+            ],
           },
           type
         );
@@ -304,29 +305,32 @@ export default defineComponent({
           {
             style: { width: `${this.width}px`, height: `${this.height}px` },
             class: ["yn-swipe-list-container"],
-            ref: "swipeContainer"
+            ref: "swipeContainer",
           },
           slots
         ),
-        this.creteIndicator(h, slots.length)
+        this.creteIndicator(h, slots.length),
       ];
       if (this.fullScreen) {
         return [
           h(
             genComponentName("popup"),
             {
-              on: { input: this.closeImageViewer, afterLeave: this.handleAfterLeave },
+              on: {
+                input: this.closeImageViewer,
+                afterLeave: this.handleAfterLeave,
+              },
               class: ["yn-swipe-popup"],
               props: { position: "middle", showCloseIcon: this.showCloseIcon },
-              directives: [{ name: "show", value: this.showPopup }]
+              directives: [{ name: "show", value: this.showPopup }],
             },
             swiper
-          )
+          ),
         ];
       } else {
         return swiper;
       }
-    }
+    },
   },
   mounted() {
     this.R = new Remainder(this.count, "activedIndex", this);
@@ -334,6 +338,9 @@ export default defineComponent({
     this.initialize();
     this.drag();
     this.visibilityChange();
+  },
+  beforeDestroy() {
+    off(window, "visibilitychange", this.visibilityChangeEvent);
   },
   render(h) {
     const prefix = this.VUE_APP_PREFIX;
@@ -348,5 +355,5 @@ export default defineComponent({
       { class: ["yn-swipe"], style: this.swipeStyle },
       this.getSwipper(h, slots)
     );
-  }
+  },
 });
