@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-18 18:15:09
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-03 11:45:10
+* @Last Modified time: 2020-12-29 14:03:23
 * @E-mail: justbefree@126.com
 */
 const path = require("path");
@@ -19,7 +19,8 @@ const EVENTS = {};
 import { getConfig } from "./modules/component/config";
 import { hyphenate } from "./modules/utils";
 const version = getConfig("VUE_APP_VERSION");
-import "./index.less";\n
+import "./index.less";
+import "./window-events";\n
 `;
 const renderInstall = () => `
 const components = [${componentsWithoutPrefix.join(", ")}];
