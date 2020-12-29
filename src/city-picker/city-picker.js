@@ -2,12 +2,14 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-12-16 13:50:14
+ * @Last Modified time: 2020-12-29 16:28:30
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
 import { isPromise, throttle, isChineseCharacters } from "../modules/utils";
+import { EventBus } from "../modules/event/bus";
 import { error } from "../modules/error";
+import { getPropertyValue } from "../modules/dom/style";
 import Popup from "../popup";
 import Iconfont from "../iconfont";
 import Flex from "../flex";
@@ -150,6 +152,7 @@ export default defineComponent({
       hotCityLoading: false,
       isSearching: false,
       keywords: "",
+      textBoxWidth: 68,
     };
   },
   watch: {
@@ -527,21 +530,6 @@ export default defineComponent({
         h("span", {}, title),
       ]);
     },
-    textOverflow(text = "") {
-      if (!isChineseCharacters(text)) {
-        return [];
-      }
-      const length = text.length;
-      if (length > 4) {
-        if (length === 5) {
-          return ["text-small"];
-        } else {
-          return ["text-small", "normal-lineheight"];
-        }
-      } else {
-        return [];
-      }
-    },
     createBlock(h, args) {
       const { cities, loading } = args;
       if (loading) {
@@ -558,18 +546,34 @@ export default defineComponent({
           {
             props: { flexWrap: "wrap", justifyContent: "spaceBetween" },
             class: "yn-city-picker-cities",
+            ref: "cityBox",
           },
           [
             Array.apply(null, cities).map((city, key) => {
+              const text = this.parse(city);
+              const textLength = text.length;
+              let fontSize = this.textBoxWidth / textLength;
+              const textOverflow = [];
+              if (fontSize > 14) {
+                fontSize = "14px";
+              } else if (fontSize < 12) {
+                fontSize = "12px";
+                if (isChineseCharacters(text)) {
+                  textOverflow.push(...["text-small", "normal-lineheight"]);
+                }
+              } else {
+                fontSize = `${fontSize}px`;
+              }
               return h(
                 genComponentName("flex-item"),
                 {
                   key,
                   on: { click: this.handlePick.bind(this, city) },
+                  style: { fontSize },
                   class: [
                     "city-item",
                     `column-${this.column}`,
-                    ...this.textOverflow(this.parse(city)),
+                    ...textOverflow,
                   ],
                 },
                 [h("span", {}, this.parse(city))]
@@ -658,6 +662,28 @@ export default defineComponent({
         ];
       }
     },
+    resizeEventHandler(el, paddingLeft, paddingRight) {
+      const actualWidth =
+        el.getBoundingClientRect().width -
+        parseInt(paddingLeft) -
+        parseInt(paddingRight);
+      const textBoxWidth =
+        parseInt(this.column) === 3 ? actualWidth * 0.31 : actualWidth * 0.22;
+      this.textBoxWidth = textBoxWidth;
+    },
+    resize() {
+      const cityBox = this.$refs.cityBox.$el;
+      const paddingLeft = getPropertyValue(cityBox, "padding-left");
+      const paddingRight = getPropertyValue(cityBox, "padding-right");
+      const el = this.$el;
+      this.resizeEventHandler(el, paddingLeft, paddingRight);
+      EventBus.$on("window:resize", () => {
+        this.resizeEventHandler(el, paddingLeft, paddingRight);
+      });
+    },
+  },
+  mounted() {
+    this.resize();
   },
   render(h) {
     return h("div", { class: ["yn-city-picker"] }, [
