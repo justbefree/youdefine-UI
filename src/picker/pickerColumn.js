@@ -2,19 +2,19 @@
  * @Author: Just be free
  * @Date:   2020-03-31 18:40:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-27 19:48:42
+ * @Last Modified time: 2021-01-05 16:42:17
  * @E-mail: justbefree@126.com
  */
 import { defineComponent } from "../modules/component";
 import { touchMixins } from "../mixins/touch";
 import { getElementsTranslate } from "../modules/dom";
+import { isObject } from "../modules/utils";
 import { deepClone } from "../modules/utils/deepClone";
 const range = (num, min, max) => {
   return Math.min(Math.max(num, min), max);
 };
-function isOptionDisabled() {
-  // return isObject(option) && option.disabled;
-  return false;
+function isOptionDisabled(option) {
+  return isObject(option) && option.disabled;
 }
 const DEFAULT_DURATION = 200;
 const MOMENTUM_LIMIT_TIME = 300;
@@ -27,12 +27,12 @@ export default defineComponent({
       type: Array,
       default: () => {
         return [];
-      }
+      },
     },
     defaultIndex: Number,
     itemHeight: {
       type: [String, Number],
-      default: 44
+      default: 44,
     },
     // visibleItemCount: {
     //   type: [String, Number],
@@ -40,19 +40,19 @@ export default defineComponent({
     // },
     swipeDuration: {
       type: [String, Number],
-      default: 1000
-    }
+      default: 1000,
+    },
   },
   initPropsToData() {
     return [
       { key: "options", value: "columns", parse: deepClone },
-      { key: "currentIndex", value: "defaultIndex" }
+      { key: "currentIndex", value: "defaultIndex" },
     ];
   },
   data() {
     return {
       duration: 0,
-      offset: 0
+      offset: 0,
     };
   },
   computed: {
@@ -61,7 +61,7 @@ export default defineComponent({
     },
     count() {
       return this.columns.length;
-    }
+    },
   },
   methods: {
     setOptions(options) {
@@ -178,7 +178,7 @@ export default defineComponent({
           setTimeout(() => {
             that.moving = false;
           }, 0);
-        }
+        },
       });
     },
     onTransitionEnd() {
@@ -190,13 +190,13 @@ export default defineComponent({
       }
       this.duration = DEFAULT_DURATION;
       this.setIndex(index, true);
-    }
+    },
   },
   watch: {
     defaultIndex(val) {
       this.setIndex(val);
     },
-    columns: "setOptions"
+    columns: "setOptions",
   },
   created() {
     this.setIndex(this.currentIndex);
@@ -209,20 +209,26 @@ export default defineComponent({
       transform: `translate3d(0, ${this.offset + this.baseOffset}px, 0)`,
       transitionDuration: `${this.duration}ms`,
       transitionProperty: this.duration ? "all" : "none",
-      lineHeight: `${this.itemHeight}px`
+      lineHeight: `${this.itemHeight}px`,
     };
     return h("div", { class: "yn-picker-column", ref: "pickerColumn" }, [
       h(
         "ul",
         { style, ref: "wrapper", on: { transitionend: this.onTransitionEnd } },
         Array.apply(null, this.columns).map((column, key) => {
+          const isObj = isObject(column);
+          const text = isObj ? column.value : column;
           return h(
             "li",
-            { on: { click: this.handleItemClick.bind(this, key) }, key },
-            column
+            {
+              class: [isObj && column.disabled ? "disabled" : ""],
+              on: { click: this.handleItemClick.bind(this, key) },
+              key,
+            },
+            text
           );
         })
-      )
+      ),
     ]);
-  }
+  },
 });

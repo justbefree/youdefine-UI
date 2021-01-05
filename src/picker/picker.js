@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-27 11:10:13
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-07-21 18:17:38
+ * @Last Modified time: 2021-01-05 16:23:53
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -12,6 +12,7 @@ import Flex from "../flex";
 import FlexItem from "../flex-item";
 import PickerColumn from "./pickerColumn";
 import { deepClone } from "../modules/utils/deepClone";
+import { isString } from "../modules/utils";
 export default defineComponent({
   name: "Picker",
   mixins: [slotsMixins],
@@ -38,7 +39,7 @@ export default defineComponent({
     },
     title: {
       type: String,
-      default: "请选择日期",
+      default: "请选择",
     },
     showBack: {
       type: Boolean,
@@ -124,8 +125,12 @@ export default defineComponent({
       const { columns } = this;
       if (columns.length > 0) {
         const item = columns[0];
-        if (item.value && item.value.length > 0) {
-          this.computedColumn = columns;
+        if (item.value) {
+          if (Array.isArray(item.value)) {
+            this.computedColumn = columns;
+          } else if (isString(item.value)) {
+            this.computedColumn = [columns];
+          }
         } else {
           this.computedColumn = [{ value: columns, defaultIndex: 0 }];
         }
@@ -155,6 +160,7 @@ export default defineComponent({
     getColumns(h) {
       const columns = [];
       this.computedColumn.forEach((column, key) => {
+        const columnsProp = Array.isArray(column.value) ? column.value : column;
         columns.push(
           h(
             genComponentName("flex-item"),
@@ -176,7 +182,7 @@ export default defineComponent({
                   },
                   props: {
                     defaultIndex: column.defaultIndex || 0,
-                    columns: column.value,
+                    columns: columnsProp,
                     itemHeight: this.itemHeight,
                   },
                 },
