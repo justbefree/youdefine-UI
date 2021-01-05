@@ -6,6 +6,7 @@
       <li @click="handleClick(2)">multiple picker</li>
       <li @click="handleClick(3)">multiple picker2</li>
       <li @click="handleClick(4)">只有一个数据</li>
+      <li @click="handleClick(5)">禁止某项选中</li>
     </ul>
     <yn-picker
       v-model="show1"
@@ -28,6 +29,12 @@
       :columns="columns4"
       @change="handleChange"
     ></yn-picker>
+    <yn-picker
+      v-model="show5"
+      :columns="columns5"
+      @change="handleChange"
+      @confirm="handleConfirm"
+    ></yn-picker>
   </div>
 </template>
 <script type="text/javascript">
@@ -39,31 +46,32 @@ export default {
       show2: false,
       show3: false,
       show4: false,
-      // columns1: ["Delaware", "Florida"]
+      show5: false,
+      // columns1: ["Shanghai", "Toyko"]
       columns1: [
-        "Delaware",
-        "Florida",
-        "Georqia",
-        "Indiana",
-        "Maine",
-        "Amenda"
+        "Shanghai",
+        "Toyko",
+        "Beijing",
+        "NewYork",
+        "Shenzhen",
+        "Hongkong"
       ],
       columns2: [
-        { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] },
-        { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] }
+        { value: ["Shanghai", "Toyko", "Beijing", "NewYork", "Shenzhen"], defaultIndex: 2 },
+        { value: ["Shanghai", "Toyko", "Beijing", "NewYork", "Shenzhen"], defaultIndex: 1 }
       ],
       columns3: [
-        { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] },
-        { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] },
-        { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] }
+        { value: [{ value: "Shanghai", disabled: true }, "Toyko", "Beijing", "NewYork", "Shenzhen"] },
+        { value: ["Shanghai", "Toyko", "Beijing", "NewYork", "Shenzhen"] },
+        { value: ["Shanghai", "Toyko", "Beijing", "NewYork", "Shenzhen"] }
       ],
-      columns4: ["Delaware"]
+      columns4: ["Shanghai"],
+      columns5: [{ value: "北京", disabled: true }, { value: "上海" }, { value: "深圳" }, { value: "广州" }]
     };
   },
   methods: {
     handleChange(pick, index) {
-      console.log(`选择第${index}个，值为${pick}`);
-      this.Toast(`选择第${index}个，值为${pick}`);
+      this.Toast(`选择第${index}个，值为${pick.value || pick }`);
     },
     handleClick(i) {
       this[`show${i}`] = !this[`show${i}`];

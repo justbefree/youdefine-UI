@@ -3,6 +3,7 @@ import { getConfig } from "./modules/component/config";
 import { hyphenate } from "./modules/utils";
 const version = getConfig("VUE_APP_VERSION");
 import "./index.less";
+import "./window-events";
 
 import ActionSheet from "./action-sheet";
 import AnimationList from "./animation-list";
