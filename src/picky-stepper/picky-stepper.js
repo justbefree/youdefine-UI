@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-12-16 13:43:20
+ * @Last Modified time: 2021-01-06 18:04:56
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -130,7 +130,7 @@ export default defineComponent({
           genComponentName("iconfont"),
           {
             class: ["yn-picky-stepper-back"],
-            props: { name: "iconpop_back", size: 20 },
+            props: { name: "back", size: 20 },
             on: { click: this.stepBack },
           },
           []
