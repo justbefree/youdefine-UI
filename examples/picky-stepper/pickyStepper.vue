@@ -8,6 +8,11 @@
       <li @click="handleClick(3)">高级用法（多步骤）</li>
       <li @click="handleClick(5)">高级用法实际案例（多步骤）</li>
       <li @click="handleClick(6)">动态数据案例（多步骤）</li>
+      <li>
+        <span @click="handleClick(7)">动态更换数据源（多步骤）</span>
+        <yn-button @click="switchData(1)">切换数据源1</yn-button>
+        <yn-button @click="switchData(2)">切换数据源2</yn-button>
+      </li>
     </ul>
     <yn-picky-stepper
       v-model="picker1"
@@ -39,6 +44,11 @@
       @success="handleSuccess"
       :steps="steps6"
     ></yn-picky-stepper>
+    <yn-picky-stepper
+      v-model="picker7"
+      @success="handleSuccess"
+      :steps="steps7"
+    ></yn-picky-stepper>
   </div>
 </template>
 <script type="text/javascript">
@@ -66,6 +76,9 @@ export default {
     },
     handleSuccess(res) {
       console.log("选择的数据", res);
+    },
+    switchData(num) {
+      this.steps7 = this[`steps${num}`];
     }
   },
   data() {
@@ -76,6 +89,8 @@ export default {
       picker4: false,
       picker5: false,
       picker6: false,
+      picker7: false,
+      steps7: [],
       steps5: [
         {
           title: "请选择改签人员",

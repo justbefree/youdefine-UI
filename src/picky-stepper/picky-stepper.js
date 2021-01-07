@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-06 18:04:56
+ * @Last Modified time: 2021-01-07 15:32:20
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -53,29 +53,36 @@ export default defineComponent({
       submitLoading: false,
     };
   },
+  watch: {
+    steps: function () {
+      this.initData();
+    },
+  },
   methods: {
     handleChange(e) {
       this.$emit("input", e);
     },
     handleBeforeEnter() {
-      this.initData();
+      if (this.caculateSteps.length === 0) {
+        this.initData();
+      }
       this.$emit("beforeEnter");
     },
     initData() {
-      if (this.caculateSteps.length === 0) {
-        const steps = [];
-        this.steps.forEach((step, index) => {
-          if (!step.key) {
-            step.key = index;
+      const steps = [];
+      this.steps.forEach((step, index) => {
+        if (!step.key) {
+          step.key = index;
+        }
+        step.list.forEach((item, key) => {
+          if (!item.key) {
+            item.key = key;
           }
-          step.list.forEach((item, key) => {
-            if (!item.key) {
-              item.key = key;
-            }
-          });
-          steps.push(step);
         });
-        this.caculateSteps = this.bindChain(steps);
+        steps.push(step);
+      });
+      this.caculateSteps = this.bindChain(steps);
+      if (this.caculateSteps.length > 0) {
         this.currentStep = this.caculateSteps[0];
       }
     },
