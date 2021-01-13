@@ -2,7 +2,7 @@
   "name": "yn-components",
   "version": "1.2.1",
   "private": false,
-  "description": "A vue components lib spically for business-travel",
+  "description": "Advanced and highly reusable Mobile UI Components built on Vue2 & You can define your own UI library by yourself.",
   "author": "just be free <justbefree@126.com>",
   "scripts": {
     "build:components": "node bin/serve && vue-cli-service build --mode production --target lib --name yn-components --dest lib src/index.js",
