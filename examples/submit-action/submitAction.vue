@@ -31,13 +31,46 @@
         submitText="确认退票"
         @submit="handleSubmit2"
         label="应退金额参考:"
+        value="100"
       >
+        <!-- <yn-submit-action-popup-content>
+          <ul>
+            <li>这里是自定义内容</li>
+            <li>这里是自定义内容</li>
+          </ul>
+        </yn-submit-action-popup-content> -->
+      </yn-submit-action>
+    </div>
+    <div class="box">
+      <h4>自定义样式</h4>
+      <yn-submit-action
+        submitText="确认退票"
+        @submit="handleSubmit2"
+      >
+        <yn-submit-action-text>
+          <p class="text">暂时无法获取改签预估费用，您可以<a href="javascript:;">致电客服</a> 咨询改签费。</p>
+        </yn-submit-action-text>
+      </yn-submit-action>
+    </div>
+    <div class="box">
+      <h4>自定义样式</h4>
+      <yn-submit-action
+        submitText="确认退票"
+        @submit="handleSubmit2"
+        value="10"
+        label="预估："
+        valueDescription="Subject to airline"
+      >
+      <!-- 具体费用以航司核实为准 Subject to airline -->
         <yn-submit-action-popup-content>
           <ul>
             <li>这里是自定义内容</li>
             <li>这里是自定义内容</li>
           </ul>
         </yn-submit-action-popup-content>
+        <!-- <yn-submit-action-text>
+          <p class="text">暂时无法获取改签预估费用，您可以<a href="javascript:;">致电客服</a> 咨询改签费。</p>
+        </yn-submit-action-text> -->
       </yn-submit-action>
     </div>
     <div class="box">
@@ -49,6 +82,7 @@
             submitText="确认退票"
             @submit="handleSubmit3"
             label="应退金额参考:"
+            value="100"
           >
             <yn-submit-action-popup-content>
               <ul>
@@ -97,6 +131,12 @@ export default {
 <style type="text/css" scoped="scoped">
 .box {
   margin: 150px auto;
+  border: none;
+}
+.text {
+  font-size: 12px;
+  line-height: 14px;
+  color: #666;
 }
 ul {
   list-style: none;

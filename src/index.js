@@ -35,6 +35,7 @@ import Spin from "./spin";
 import Sticky from "./sticky";
 import SubmitAction from "./submit-action";
 import SubmitActionPopupContent from "./submit-action-popup-content";
+import SubmitActionText from "./submit-action-text";
 import SubmitActionValue from "./submit-action-value";
 import Swipe from "./swipe";
 import SwipeItem from "./swipe-item";
@@ -73,6 +74,7 @@ const components = [
   Sticky,
   SubmitAction,
   SubmitActionPopupContent,
+  SubmitActionText,
   SubmitActionValue,
   Swipe,
   SwipeItem,
@@ -151,6 +153,7 @@ export { Spin as YnSpin };
 export { Sticky as YnSticky };
 export { SubmitAction as YnSubmitAction };
 export { SubmitActionPopupContent as YnSubmitActionPopupContent };
+export { SubmitActionText as YnSubmitActionText };
 export { SubmitActionValue as YnSubmitActionValue };
 export { Swipe as YnSwipe };
 export { SwipeItem as YnSwipeItem };
