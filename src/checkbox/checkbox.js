@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-16 12:49:59
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-12-16 13:40:09
+ * @Last Modified time: 2021-01-13 17:27:38
  */
 import Iconfont from "../iconfont";
 import { defineComponent, genComponentName } from "../modules/component";
@@ -15,6 +15,10 @@ export default defineComponent({
       default: false,
     },
     size: [String, Number],
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   model: {
     prop: "checked",
@@ -22,10 +26,13 @@ export default defineComponent({
   },
   methods: {
     handleClick() {
-      this.$emit("change", !this.checked);
+      if (!this.disabled) {
+        this.$emit("change", !this.checked);
+      }
     },
   },
   render(h) {
+    const disabled = this.disabled ? "-disabled" : "";
     return h(
       "span",
       { class: ["yn-checkbox"], on: { click: this.handleClick } },
@@ -35,7 +42,9 @@ export default defineComponent({
           {
             props: {
               size: this.size,
-              name: this.checked ? "checkbox-checked" : "checkbox-uncheck",
+              name: this.checked
+                ? `checkbox-checked${disabled}`
+                : `checkbox-uncheck${disabled}`,
             },
           },
           []
