@@ -1,12 +1,24 @@
 <template>
   <div>
     <h2>radiobox</h2>
-    <yn-radiobox v-model="checked" @change="handleChange"></yn-radiobox>
-    <span>这个可以点击</span>
-    <span>当前状态{{ checked }}</span>
-    <hr />
-    <yn-radiobox :checked="value"></yn-radiobox>
-    <span>这个不支持点击</span>
+    <ul>
+      <li>
+        <yn-radiobox v-model="value"></yn-radiobox>
+        <span>激活可选状态{{ value }}</span>
+      </li>
+      <li>
+        <yn-radiobox v-model="value" disabled></yn-radiobox>
+        <span>激活不可选状态{{ value }}</span>
+      </li>
+      <li>
+        <yn-radiobox v-model="disabledValue"></yn-radiobox>
+        <span>非激活可选状态</span>
+      </li>
+      <li>
+        <yn-radiobox v-model="disabledValue" disabled></yn-radiobox>
+        <span>非激活不可选状态</span>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -15,7 +27,7 @@ export default {
   name: "YnRadioboxPage",
   data() {
     return {
-      checked: true,
+      disabledValue: false,
       value: true
     };
   },
@@ -26,3 +38,11 @@ export default {
   }
 };
 </script>
+<style type="text/css" scoped="scoped">
+  ul {
+    list-style: none;
+  }
+  ul li {
+    margin: 5px 0;
+  }
+</style>

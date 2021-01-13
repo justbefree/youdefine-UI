@@ -1,11 +1,24 @@
 <template>
   <div>
     <h2>yn-checkbox</h2>
-    <yn-checkbox v-model="checked" @change="handleClick"></yn-checkbox>
-    <span>当前状态{{ checked }}</span>
-    <hr />
-    <yn-checkbox :checked="value"></yn-checkbox>
-    <span>此状态不可修改{{ value }}</span>
+    <ul>
+      <li>
+        <yn-checkbox v-model="checked" @change="handleClick"></yn-checkbox>
+        <span>当前状态{{ checked }}</span>
+      </li>
+      <li>
+        <yn-checkbox v-model="checked" disabled @change="handleClick"></yn-checkbox>
+        <span>此状态不可修改{{ checked }}</span>
+      </li>
+      <li>
+        <yn-checkbox v-model="value"></yn-checkbox>
+        <span>当前状态{{ value }}</span>
+      </li>
+      <li>
+        <yn-checkbox v-model="value" disabled></yn-checkbox>
+        <span>此状态不可修改{{ value }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 <script type="text/javascript">
@@ -24,3 +37,11 @@ export default {
   }
 };
 </script>
+<style type="text/css" scoped="scoped">
+  ul {
+    list-style: none;
+  }
+  ul li {
+    margin: 5px 0;
+  }
+</style>
