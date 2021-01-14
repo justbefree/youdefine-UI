@@ -136,7 +136,7 @@ export default {
         {
           title: "请选择改签人员",
           list: [
-            { label: "lizhuang", value: "李壮" },
+            { label: "lizhuang", value: "李壮", disabled: true },
             { label: "keyanqin", value: "柯艳琴" },
             { label: "xionglonghui", value: "熊龙辉" },
             { label: "liyan", value: "李妍" },
@@ -147,7 +147,7 @@ export default {
         {
           title: "请选择原因",
           list: [
-            { label: "行程变化", value: "行程变化" },
+            { label: "行程变化", value: "行程变化", disabled: true },
             { label: "目的地有住宿", value: "目的地有住宿" },
             { label: "预算超支", value: "预算超支" },
             {
@@ -164,11 +164,11 @@ export default {
         {
           title: "请选择改签人员",
           list: [
-            { label: "lizhuang", value: "李壮" },
+            { label: "lizhuang", value: "李壮", disabled: true },
             { label: "keyanqin", value: "柯艳琴" },
             { label: "xionglonghui", value: "熊龙辉" },
             { label: "liyan", value: "李妍" },
-            { label: "wangshengzi", value: "王生资" }
+            { label: "wangshengzi", value: "王生资", disabled: true }
           ],
           multiple: true
         }
