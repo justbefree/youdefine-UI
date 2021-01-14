@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-13 18:15:47
+ * @Last Modified time: 2021-01-14 15:40:36
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -223,6 +223,7 @@ export default defineComponent({
       if (listItem.disabled) {
         return;
       }
+      this.$emit("picked", e);
       if (step.multiple) {
         listItem.checked = !listItem.checked;
       } else {
