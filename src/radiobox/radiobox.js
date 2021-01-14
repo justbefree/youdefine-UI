@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-16 12:51:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-13 17:34:29
+ * @Last Modified time: 2021-01-14 13:49:00
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import Iconfont from "../iconfont";
@@ -37,7 +37,10 @@ export default defineComponent({
     const disabled = this.disabled ? "-disabled" : "";
     return h(
       "span",
-      { class: ["yn-radiobox"], on: { click: this.handleClick } },
+      {
+        class: ["yn-radiobox", this.disabled ? "disabled" : ""],
+        on: { click: this.handleClick },
+      },
       [
         h(
           genComponentName("iconfont"),

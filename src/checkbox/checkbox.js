@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-16 12:49:59
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-13 17:27:38
+ * @Last Modified time: 2021-01-14 13:45:54
  */
 import Iconfont from "../iconfont";
 import { defineComponent, genComponentName } from "../modules/component";
@@ -35,7 +35,10 @@ export default defineComponent({
     const disabled = this.disabled ? "-disabled" : "";
     return h(
       "span",
-      { class: ["yn-checkbox"], on: { click: this.handleClick } },
+      {
+        class: ["yn-checkbox", this.disabled ? "disabled" : ""],
+        on: { click: this.handleClick },
+      },
       [
         h(
           genComponentName("iconfont"),
