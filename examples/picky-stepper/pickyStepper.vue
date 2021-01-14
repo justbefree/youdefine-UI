@@ -18,36 +18,43 @@
       v-model="picker1"
       :submit="submit"
       :steps="steps1"
+      @picked="handleOnPick"
     ></yn-picky-stepper>
     <yn-picky-stepper
       v-model="picker2"
       :submit="submit"
       :steps="steps2"
+      @picked="handleOnPick"
     ></yn-picky-stepper>
     <yn-picky-stepper
       v-model="picker3"
       :submit="submit"
       :steps="steps3"
+      @picked="handleOnPick"
     ></yn-picky-stepper>
     <yn-picky-stepper
       v-model="picker4"
       @success="handleSuccess"
       :steps="steps4"
+      @picked="handleOnPick"
     ></yn-picky-stepper>
     <yn-picky-stepper
       v-model="picker5"
       @success="handleSuccess"
       :steps="steps5"
+      @picked="handleOnPick"
     ></yn-picky-stepper>
     <yn-picky-stepper
       v-model="picker6"
       @success="handleSuccess"
       :steps="steps6"
+      @picked="handleOnPick"
     ></yn-picky-stepper>
     <yn-picky-stepper
       v-model="picker7"
       @success="handleSuccess"
       :steps="steps7"
+      @picked="handleOnPick"
     ></yn-picky-stepper>
   </div>
 </template>
@@ -79,6 +86,9 @@ export default {
     },
     switchData(num) {
       this.steps7 = this[`steps${num}`];
+    },
+    handleOnPick(e) {
+      console.log("选择的是", e);
     }
   },
   data() {
