@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-07 15:32:20
+ * @Last Modified time: 2021-01-13 18:15:47
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -220,6 +220,9 @@ export default defineComponent({
     },
     handlePickyClick(e) {
       const { listItem, step } = e;
+      if (listItem.disabled) {
+        return;
+      }
       if (step.multiple) {
         listItem.checked = !listItem.checked;
       } else {
@@ -373,12 +376,24 @@ export default defineComponent({
                       step.multiple
                         ? h(
                             genComponentName("checkbox"),
-                            { props: { checked: item.checked, size: 20 } },
+                            {
+                              props: {
+                                checked: item.checked,
+                                size: 20,
+                                disabled: item.disabled,
+                              },
+                            },
                             []
                           )
                         : h(
                             genComponentName("radiobox"),
-                            { props: { checked: item.checked, size: 20 } },
+                            {
+                              props: {
+                                checked: item.checked,
+                                size: 20,
+                                disabled: item.disabled,
+                              },
+                            },
                             []
                           ),
                     ]),
