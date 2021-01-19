@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-19 11:32:26
+ * @Last Modified time: 2021-01-19 11:54:45
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -218,53 +218,61 @@ export default defineComponent({
               ),
             ]
           ),
-        h(genComponentName("flex"), { class: ["yn-submit-action-flex"] }, [
-          this.label !== "" &&
+        h(
+          genComponentName("flex"),
+          { class: ["yn-submit-action-flex"], props: { alignItems: "center" } },
+          [
+            this.label !== "" &&
+              h(
+                genComponentName("flex-item"),
+                { props: { flex: this.leftFlex }, on: { click: this.toggle } },
+                [
+                  h(
+                    genComponentName("flex"),
+                    { props: { alignItems: "center" } },
+                    [
+                      h(genComponentName("flex-item"), {}, [
+                        h("span", { class: ["yn-submit-action-total-text"] }, [
+                          this.label,
+                        ]),
+                      ]),
+                      h(genComponentName("flex-item"), {}, [
+                        this.genValue(h, slots),
+                      ]),
+                      h(genComponentName("flex-item"), {}, [
+                        hasPopup && !hasDescription && this.genIcon(h),
+                      ]),
+                    ]
+                  ),
+                ]
+              ),
+            this.label === "" &&
+              h(
+                genComponentName("flex-item"),
+                { props: { flex: this.leftFlex } },
+                [this.getValideContent("text", slots)]
+              ),
             h(
               genComponentName("flex-item"),
-              { props: { flex: this.leftFlex }, on: { click: this.toggle } },
+              { props: { flex: this.rightFlex } },
               [
-                h(genComponentName("flex"), {}, [
-                  h(genComponentName("flex-item"), {}, [
-                    h("span", { class: ["yn-submit-action-total-text"] }, [
-                      this.label,
-                    ]),
-                  ]),
-                  h(genComponentName("flex-item"), {}, [
-                    this.genValue(h, slots),
-                  ]),
-                  h(genComponentName("flex-item"), {}, [
-                    hasPopup && !hasDescription && this.genIcon(h),
-                  ]),
-                ]),
+                h(
+                  genComponentName("button"),
+                  {
+                    class: ["yn-submit-action-button"],
+                    props: {
+                      type: "primary",
+                      size: "large",
+                      disabled: this.disabled,
+                    },
+                    on: { click: this.submit },
+                  },
+                  [this.submitText]
+                ),
               ]
             ),
-          this.label === "" &&
-            h(
-              genComponentName("flex-item"),
-              { props: { flex: this.leftFlex } },
-              [this.getValideContent("text", slots)]
-            ),
-          h(
-            genComponentName("flex-item"),
-            { props: { flex: this.rightFlex } },
-            [
-              h(
-                genComponentName("button"),
-                {
-                  class: ["yn-submit-action-button"],
-                  props: {
-                    type: "primary",
-                    size: "large",
-                    disabled: this.disabled,
-                  },
-                  on: { click: this.submit },
-                },
-                [this.submitText]
-              ),
-            ]
-          ),
-        ]),
+          ]
+        ),
       ]
     );
   },
