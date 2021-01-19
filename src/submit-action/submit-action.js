@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-12 17:59:12
+ * @Last Modified time: 2021-01-19 11:32:26
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -127,10 +127,6 @@ export default defineComponent({
       if (value.length > 0) {
         return value;
       } else {
-        // return h("span", { class: ["yn-submit-action-currency"] }, [
-        //   h("small", { domProps: { innerHTML: this.currencySymbol } }, []),
-        //   h("b", {}, [this.value]),
-        // ]);
         const hasDescription = this.valueDescription !== "";
         return h(
           genComponentName("flex"),
@@ -142,7 +138,7 @@ export default defineComponent({
             props: { flexDirection: "column", justifyContent: "spaceBetween" },
           },
           [
-            h(genComponentName("flex-item"), { flex: 1 }, [
+            h(genComponentName("flex-item"), { props: { flex: 2 } }, [
               h(
                 "span",
                 {
@@ -165,7 +161,7 @@ export default defineComponent({
             hasDescription &&
               h(
                 genComponentName("flex-item"),
-                { class: ["yn-submit-value-description"], flex: 1 },
+                { class: ["yn-submit-value-description"], props: { flex: 1 } },
                 [this.valueDescription]
               ),
           ]
