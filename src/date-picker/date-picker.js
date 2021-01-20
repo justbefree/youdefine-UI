@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-29 10:58:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-07-24 14:16:29
+ * @Last Modified time: 2021-01-20 15:34:01
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -10,7 +10,7 @@ import Picker from "../picker";
 import { YnDate, validateFormatedDate } from "../modules/date";
 const now = YnDate().getToday();
 const year = now.getFullYear();
-const m = now.getMonth();
+const m = now.getMonth() + 1;
 const month = m < 10 ? `0${m}` : m;
 const d = now.getDate();
 const date = d < 10 ? `0${d}` : d;
@@ -64,7 +64,7 @@ export default defineComponent({
       this.dayCount = YnDate(this.year, this.month, "01").getDaysCountOfMonth();
     },
     genDate(startDate, endDate) {
-      this.updateMonthDayCount();
+      // this.updateMonthDayCount();
       const defaultIndex = this.computedColumns[2].defaultIndex;
       const dates = [];
       for (let i = startDate; i <= endDate; i++) {
@@ -115,6 +115,7 @@ export default defineComponent({
       if (key === 1) {
         // 月变化
         this.month = e;
+        this.updateMonthDayCount();
         if (Number(e) === Number(startMonth)) {
           this.genDate(startDate, this.dayCount);
         } else if (Number(e) === Number(endMonth)) {
@@ -125,6 +126,7 @@ export default defineComponent({
       } else if (key === 0) {
         // 年变化
         this.year = e;
+        this.updateMonthDayCount();
         if (Number(startYear) === Number(endYear)) {
           this.genMonth(startMonth, endMonth);
         } else {

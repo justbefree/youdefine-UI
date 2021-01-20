@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-27 11:10:13
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-05 16:23:53
+ * @Last Modified time: 2021-01-20 15:00:32
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -160,7 +160,9 @@ export default defineComponent({
     getColumns(h) {
       const columns = [];
       this.computedColumn.forEach((column, key) => {
-        const columnsProp = Array.isArray(column.value) ? column.value : column;
+        const columnsProps = Array.isArray(column.value)
+          ? column.value
+          : column;
         columns.push(
           h(
             genComponentName("flex-item"),
@@ -182,7 +184,7 @@ export default defineComponent({
                   },
                   props: {
                     defaultIndex: column.defaultIndex || 0,
-                    columns: columnsProp,
+                    columns: columnsProps,
                     itemHeight: this.itemHeight,
                   },
                 },

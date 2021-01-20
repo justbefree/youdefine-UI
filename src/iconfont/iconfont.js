@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:20:36
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-12-16 14:06:15
+ * @Last Modified time: 2021-01-20 11:31:21
  */
 import { defineComponent } from "../modules/component";
 import { warn, error } from "../modules/error";
@@ -52,6 +52,7 @@ export default defineComponent({
       "i",
       {
         class: [
+          "disable-highlight-tap",
           "yn-iconfont-wrap",
           String(this.size) === "0" ? "yn-iconfont-size-0" : "",
         ],
