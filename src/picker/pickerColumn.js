@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-31 18:40:12
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-05 16:42:17
+ * @Last Modified time: 2021-01-20 14:51:17
  * @E-mail: justbefree@126.com
  */
 import { defineComponent } from "../modules/component";
@@ -16,6 +16,23 @@ const range = (num, min, max) => {
 function isOptionDisabled(option) {
   return isObject(option) && option.disabled;
 }
+/**
+当传的参数只有一个
+并且是Number类型
+并且Number的范围在0 到 2^32-1之间，
+则会声明一个长度为所传参数长度的数组，并且数组的每个元素为空。 
+当参入的参数大于一个或者参数为1个但是不是Number的合法范围内 则为数组
+Array(1,2,3) => [1, 2, 3]
+Array(1) => [empty]
+Array(10) => [empty * 10]
+**/
+
+const polyfill = (arr = []) => {
+  if (arr.length === 1 && typeof arr[0] === "number") {
+    return [String(arr[0])];
+  }
+  return arr;
+};
 const DEFAULT_DURATION = 200;
 const MOMENTUM_LIMIT_TIME = 300;
 const MOMENTUM_LIMIT_DISTANCE = 15;
@@ -215,7 +232,7 @@ export default defineComponent({
       h(
         "ul",
         { style, ref: "wrapper", on: { transitionend: this.onTransitionEnd } },
-        Array.apply(null, this.columns).map((column, key) => {
+        Array.apply(null, polyfill(this.columns)).map((column, key) => {
           const isObj = isObject(column);
           const text = isObj ? column.value : column;
           return h(
