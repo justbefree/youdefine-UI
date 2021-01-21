@@ -8,9 +8,12 @@
     <yn-date-picker v-model="show1" @confirm="handleConfirm"></yn-date-picker>
     <yn-date-picker
       v-model="show2"
-      start="1995-03-08"
-      end="2022-03-22"
-      defaultDate="2022-03-08"
+      start="2021-01-21"
+      end="2031-12-30"
+      defaultDate="2021-01-21"
+      confirmText="confirm"
+      cancelText="cancel"
+      title="Date"
       @confirm="handleConfirm"
     ></yn-date-picker>
   </div>
