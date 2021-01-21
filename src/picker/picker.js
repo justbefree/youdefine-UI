@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-27 11:10:13
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-20 15:00:32
+ * @Last Modified time: 2021-01-21 15:42:16
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -82,44 +82,48 @@ export default defineComponent({
       }
     },
     createHeaderArea(h) {
-      return h("div", { class: ["yn-picker-header"] }, [
-        h(
-          genComponentName("flex"),
-          { props: { justifyContent: "spaceBetween" } },
-          [
-            h(
-              genComponentName("flex-item"),
-              {
-                on: { click: this.close },
-                class: ["yn-picker-header-back"],
-                directives: [{ name: "show", value: this.showBack }],
-              },
-              this.getContent(h, "back")
-            ),
-            h(
-              genComponentName("flex-item"),
-              {
-                class: [
-                  "yn-picker-header-title",
-                  this.showBack ? "" : "ml30",
-                  this.showClose ? "" : "mr30",
-                ],
-                props: { flex: 1 },
-              },
-              this.title
-            ),
-            h(
-              genComponentName("flex-item"),
-              {
-                on: { click: this.confirm },
-                class: ["yn-picker-header-close"],
-                directives: [{ name: "show", value: this.showClose }],
-              },
-              this.getContent(h, "close")
-            ),
-          ]
-        ),
-      ]);
+      return h(
+        "div",
+        { class: ["yn-picker-header", "disable-highlight-tap"] },
+        [
+          h(
+            genComponentName("flex"),
+            { props: { justifyContent: "spaceBetween" } },
+            [
+              h(
+                genComponentName("flex-item"),
+                {
+                  on: { click: this.close },
+                  class: ["yn-picker-header-back"],
+                  directives: [{ name: "show", value: this.showBack }],
+                },
+                this.getContent(h, "back")
+              ),
+              h(
+                genComponentName("flex-item"),
+                {
+                  class: [
+                    "yn-picker-header-title",
+                    this.showBack ? "" : "ml30",
+                    this.showClose ? "" : "mr30",
+                  ],
+                  props: { flex: 1 },
+                },
+                this.title
+              ),
+              h(
+                genComponentName("flex-item"),
+                {
+                  on: { click: this.confirm },
+                  class: ["yn-picker-header-close"],
+                  directives: [{ name: "show", value: this.showClose }],
+                },
+                this.getContent(h, "close")
+              ),
+            ]
+          ),
+        ]
+      );
     },
     getData() {
       const { columns } = this;
