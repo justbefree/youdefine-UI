@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-29 10:58:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-21 11:36:07
+ * @Last Modified time: 2021-01-21 15:59:11
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -31,6 +31,18 @@ export default defineComponent({
       default: `${year}-${month}-${date}`,
     },
     defaultDate: String,
+    confirmText: {
+      type: String,
+      default: "确认",
+    },
+    cancelText: {
+      type: String,
+      default: "取消",
+    },
+    title: {
+      type: String,
+      default: "请选择",
+    },
   },
   data() {
     return {
@@ -220,10 +232,10 @@ export default defineComponent({
         this.dateStart = 1;
         this.dateEnd = this.dayCount;
       } else if (isSameDate(displayY, startYear)) {
-        this.monthStart = startMonth;
+        this.monthStart = Number(startMonth);
         this.monthEnd = 12;
         if (isSameDate(displayM, startMonth)) {
-          this.dateStart = startDate;
+          this.dateStart = Number(startDate);
           this.dateEnd = this.dayCount;
         } else {
           this.dateStart = 1;
@@ -231,10 +243,10 @@ export default defineComponent({
         }
       } else if (isSameDate(displayY, endYear)) {
         this.monthStart = 1;
-        this.monthEnd = endMonth;
+        this.monthEnd = Number(endMonth);
         if (isSameDate(displayM, endMonth)) {
           this.dateStart = 1;
-          this.dateEnd = endDate;
+          this.dateEnd = Number(endDate);
         } else {
           this.dateStart = 1;
           this.dateEnd = this.dayCount;
@@ -280,7 +292,13 @@ export default defineComponent({
             leave: this.handleLeave,
             afterLeave: this.handleAfterLeave,
           },
-          props: { columns: this.computedColumns, value: this.value },
+          props: {
+            columns: this.computedColumns,
+            value: this.value,
+            confirmText: this.confirmText,
+            cancelText: this.cancelText,
+            title: this.title,
+          },
         },
         []
       ),
