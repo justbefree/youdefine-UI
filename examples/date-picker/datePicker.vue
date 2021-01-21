@@ -10,6 +10,7 @@
       v-model="show2"
       start="1995-03-08"
       end="2022-03-22"
+      defaultDate="2022-03-08"
       @confirm="handleConfirm"
     ></yn-date-picker>
   </div>

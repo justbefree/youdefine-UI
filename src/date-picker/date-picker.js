@@ -2,12 +2,15 @@
  * @Author: Just be free
  * @Date:   2020-04-29 10:58:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-20 15:34:01
+ * @Last Modified time: 2021-01-21 11:36:07
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import Picker from "../picker";
 import { YnDate, validateFormatedDate } from "../modules/date";
+const isSameDate = (d1, d2) => {
+  return Number(d1) === Number(d2);
+};
 const now = YnDate().getToday();
 const year = now.getFullYear();
 const m = now.getMonth() + 1;
@@ -116,10 +119,18 @@ export default defineComponent({
         // 月变化
         this.month = e;
         this.updateMonthDayCount();
-        if (Number(e) === Number(startMonth)) {
-          this.genDate(startDate, this.dayCount);
-        } else if (Number(e) === Number(endMonth)) {
-          this.genDate(1, endDate);
+        if (isSameDate(this.year, startYear)) {
+          if (isSameDate(e, startMonth)) {
+            this.genDate(startDate, this.dayCount);
+          } else {
+            this.genDate(1, this.dayCount);
+          }
+        } else if (isSameDate(this.year, endYear)) {
+          if (isSameDate(e, endMonth)) {
+            this.genDate(1, endDate);
+          } else {
+            this.genDate(1, this.dayCount);
+          }
         } else {
           this.genDate(1, this.dayCount);
         }
@@ -127,15 +138,15 @@ export default defineComponent({
         // 年变化
         this.year = e;
         this.updateMonthDayCount();
-        if (Number(startYear) === Number(endYear)) {
+        if (isSameDate(startYear, endYear)) {
           this.genMonth(startMonth, endMonth);
         } else {
-          if (Number(e) === Number(startYear)) {
+          if (isSameDate(e, startYear)) {
             this.genMonth(Number(startMonth), 12, {
               trigger: "start",
               startDate,
             });
-          } else if (Number(e) === Number(endYear)) {
+          } else if (isSameDate(e, endYear)) {
             this.genMonth(1, Number(endMonth), { trigger: "end", endDate });
           } else {
             this.genMonth(1, 12);
@@ -196,16 +207,39 @@ export default defineComponent({
       } else {
         this.defaultDisplayDate = this.end;
       }
-      const [y, m, d] = this.defaultDisplayDate.split("-");
-      this.year = Number(y);
-      this.month = Number(m);
-      this.date = Number(d);
-      // const [, startMonth, startDate] = this.start.split("-");
-      // this.monthStart = 1;
-      // this.dateStart = 1;
-      const [, endMonth, endDate] = this.end.split("-");
-      this.monthEnd = Number(endMonth);
-      this.dateEnd = Number(endDate);
+      const [displayY, displayM, displayD] = this.defaultDisplayDate.split("-");
+      this.year = Number(displayY);
+      this.month = Number(displayM);
+      this.date = Number(displayD);
+      this.updateMonthDayCount();
+      const [startYear, startMonth, startDate] = this.start.split("-");
+      const [endYear, endMonth, endDate] = this.end.split("-");
+      if (!isSameDate(displayY, startYear) && !isSameDate(displayY, endYear)) {
+        this.monthStart = 1;
+        this.monthEnd = 12;
+        this.dateStart = 1;
+        this.dateEnd = this.dayCount;
+      } else if (isSameDate(displayY, startYear)) {
+        this.monthStart = startMonth;
+        this.monthEnd = 12;
+        if (isSameDate(displayM, startMonth)) {
+          this.dateStart = startDate;
+          this.dateEnd = this.dayCount;
+        } else {
+          this.dateStart = 1;
+          this.dateEnd = this.dayCount;
+        }
+      } else if (isSameDate(displayY, endYear)) {
+        this.monthStart = 1;
+        this.monthEnd = endMonth;
+        if (isSameDate(displayM, endMonth)) {
+          this.dateStart = 1;
+          this.dateEnd = endDate;
+        } else {
+          this.dateStart = 1;
+          this.dateEnd = this.dayCount;
+        }
+      }
     },
     handleBeforeEnter() {
       this.$emit("beforeEnter");
