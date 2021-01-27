@@ -1,6 +1,6 @@
 {
   "name": "yn-components",
-  "version": "1.3.9",
+  "version": "1.3.10",
   "private": false,
   "description": "Advanced and highly reusable Mobile UI Components built on Vue2 & You can define your own UI library by yourself.",
   "author": "just be free <justbefree@126.com>",
