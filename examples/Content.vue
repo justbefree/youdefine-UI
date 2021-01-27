@@ -18,6 +18,7 @@
         <li @click="jump('sticky')">sticky</li>
         <li @click="jump('dialog')">dialog</li>
         <li @click="jump('pickyStepper')">pickyStepper</li>
+        <li @click="jump('dropdown')">dropdown</li>
         <li @click="jump('dropdownMenu')">dropdownMenu</li>
         <li @click="jump('picker')">picker</li>
         <li @click="jump('swipe')">swipe</li>

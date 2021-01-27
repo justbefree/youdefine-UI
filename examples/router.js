@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-02-07 13:50:45
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-11-23 16:47:48
+ * @Last Modified time: 2021-01-27 10:05:51
  */
 import Router from "vue-router";
 import Vue from "vue";
@@ -25,6 +25,7 @@ import CityPicker from "./city-picker/cityPicker.vue";
 import Sticky from "./sticky/sticky.vue";
 import Dialog from "./dialog/dialog.vue";
 import PickyStepper from "./picky-stepper/pickyStepper.vue";
+import Dropdown from "./dropdown/dropdown.vue";
 import DropdownMenu from "./dropdown-menu/dropdownMenu.vue";
 import Picker from "./picker/picker.vue";
 import Swipe from "./swipe/swipe.vue";
@@ -129,6 +130,11 @@ const router = new Router({
       path: "/pickyStepper",
       name: "pickyStepper",
       component: PickyStepper
+    },
+    {
+      path: "/dropdown",
+      name: "dropdown",
+      component: Dropdown
     },
     {
       path: "/dropdownMenu",
