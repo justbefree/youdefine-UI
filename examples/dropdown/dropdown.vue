@@ -5,6 +5,11 @@
       <yn-button slot="target" @click="toggle">以下</yn-button>
       <div slot="content">里面是内容</div>
     </yn-dropdown>
+
+    <yn-dropdown ref="dropup" direction="up">
+      <yn-button slot="target" @click="toggle2">以上</yn-button>
+      <div slot="content">里面是内容</div>
+    </yn-dropdown>
   </div>
 </template>
 
@@ -18,6 +23,9 @@ export default {
   methods: {
     toggle() {
       this.$refs.dropdown.toggle();
+    },
+    toggle2() {
+      this.$refs.dropup.toggle();
     }
   }
 };
