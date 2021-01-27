@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-12-16 13:42:24
+ * @Last Modified time: 2021-01-27 14:15:25
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -109,6 +109,9 @@ export default defineComponent({
   },
   watch: {
     mode: "highLightDefault",
+    defaultDate: "highLightDefault",
+    defaultStartDate: "highLightDefault",
+    defaultEndDate: "highLightDefault",
   },
   methods: {
     handleClick(date) {
