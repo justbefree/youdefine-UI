@@ -33,12 +33,12 @@
         label="应退金额参考:"
         value="100"
       >
-        <!-- <yn-submit-action-popup-content>
+        <yn-submit-action-popup-content>
           <ul>
             <li>这里是自定义内容</li>
             <li>这里是自定义内容</li>
           </ul>
-        </yn-submit-action-popup-content> -->
+        </yn-submit-action-popup-content>
       </yn-submit-action>
     </div>
     <div class="box">
@@ -50,6 +50,12 @@
         <yn-submit-action-text>
           <p class="text">暂时无法获取改签预估费用，您可以<a href="javascript:;">致电客服</a> 咨询改签费。</p>
         </yn-submit-action-text>
+        <yn-submit-action-popup-content>
+          <ul>
+            <li>这里是自定义内容</li>
+            <li>这里是自定义内容</li>
+          </ul>
+        </yn-submit-action-popup-content>
       </yn-submit-action>
     </div>
     <div class="box">
@@ -61,16 +67,12 @@
         label="预估："
         valueDescription="Subject to airline"
       >
-      <!-- 具体费用以航司核实为准 Subject to airline -->
         <yn-submit-action-popup-content>
           <ul>
             <li>这里是自定义内容</li>
             <li>这里是自定义内容</li>
           </ul>
         </yn-submit-action-popup-content>
-        <!-- <yn-submit-action-text>
-          <p class="text">暂时无法获取改签预估费用，您可以<a href="javascript:;">致电客服</a> 咨询改签费。</p>
-        </yn-submit-action-text> -->
       </yn-submit-action>
     </div>
     <div class="box">
