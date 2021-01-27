@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-19 11:54:45
+ * @Last Modified time: 2021-01-27 13:51:07
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -249,7 +249,7 @@ export default defineComponent({
             this.label === "" &&
               h(
                 genComponentName("flex-item"),
-                { props: { flex: this.leftFlex } },
+                { props: { flex: this.leftFlex }, on: { click: this.toggle } },
                 [this.getValideContent("text", slots)]
               ),
             h(
