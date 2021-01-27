@@ -27,6 +27,7 @@
           </yn-button>
         </div>
         <span>已选择时间：{{ calendar3Date }}</span>
+        <span @click="changeDefaultDate">修改默认时间为后天</span>
         <hr />
       </li>
       <li>
@@ -218,6 +219,11 @@ export default {
     }
   },
   methods: {
+    changeDefaultDate() {
+      this.defaultDate = moment()
+        .add(2, "d")
+        .format("YYYY-MM-DD");
+    },
     monthTtitleParser(defaultText, { year, month }) {
       console.log("defaultText", defaultText);
       console.log(year, month);
