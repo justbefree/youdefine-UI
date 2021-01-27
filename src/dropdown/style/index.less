@@ -1,4 +1,24 @@
 @import "../../theme/variable.less";
 .yn-dropdown {
   position: relative;
+  .yn-dropdown-popup {
+    position: fixed;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    &.bottom {
+      bottom: 0;
+    }
+    &.top {
+      top: 0;
+    }
+    .v-ynpopup-modal {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
 }
