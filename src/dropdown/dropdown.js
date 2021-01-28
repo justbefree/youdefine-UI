@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2021-01-26 15:32:36
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-27 13:37:16
+ * @Last Modified time: 2021-01-28 12:14:59
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -13,22 +13,28 @@ export default defineComponent({
   mixins: [slotsMixins],
   components: { Popup },
   props: {
-    direction: String,
+    direction: {
+      type: String,
+      default: "down",
+      validator: function (dir) {
+        return ["down", "up", "right", "left"].indexOf(dir) > -1;
+      },
+    },
   },
   data() {
     return {
       show: false,
-      status: true,
+      status: false,
     };
   },
   computed: {
     position() {
-      return this.direction === "up" ? "bottom" : "top";
+      const map = { up: "bottom", down: "top", left: "right", right: "left" };
+      return map[this.direction] || "bottom";
     },
   },
   methods: {
     toggle() {
-      console.log("ddd");
       this.show = !this.show;
     },
     handleBeforeEnter() {
@@ -41,10 +47,15 @@ export default defineComponent({
         this.$refs.dropdownPopup.style.bottom = `${
           window.innerHeight - rect.top
         }px`;
-      } else {
+      } else if (this.direction === "down") {
         this.$refs.dropdownPopup.style.top = `${rect.bottom}px`;
+      } else if (this.direction === "left") {
+        this.$refs.dropdownPopup.style.right = `${
+          window.innerWidth - rect.left
+        }px`;
+      } else if (this.direction === "right") {
+        this.$refs.dropdownPopup.style.left = `${rect.right}px`;
       }
-      console.log("beforeEnter", target[0].elm);
     },
     handleAfterEnter() {
       this.$emit("afterEnter");
@@ -67,7 +78,8 @@ export default defineComponent({
           directives: [{ name: "show", value: this.status }],
           class: [
             "yn-dropdown-popup",
-            this.direction === "up" ? "top" : "bottom",
+            this.direction,
+            this.status ? "z-index" : "",
           ],
           ref: "dropdownPopup",
         },

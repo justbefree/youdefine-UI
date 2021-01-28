@@ -3,14 +3,31 @@
   position: relative;
   .yn-dropdown-popup {
     position: fixed;
-    left: 0;
-    right: 0;
     overflow: hidden;
-    &.bottom {
+    &.z-index {
+      z-index: 1;
+    }
+    &.down,
+    &.up {
+      left: 0;
+      right: 0;
+    }
+    &.down {
       bottom: 0;
     }
-    &.top {
+    &.up {
       top: 0;
+    }
+    &.left,
+    &.right {
+      top: 0;
+      bottom: 0;
+    }
+    &.left {
+      left: 0;
+    }
+    &.right {
+      right: 0;
     }
     .v-ynpopup-modal {
       position: absolute;
