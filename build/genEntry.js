@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-18 18:15:09
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-29 14:03:23
+* @Last Modified time: 2021-02-01 10:46:40
 * @E-mail: justbefree@126.com
 */
 const path = require("path");
@@ -27,7 +27,7 @@ const components = [${componentsWithoutPrefix.join(", ")}];
 const install = (Vue) => {
   if (install.installed) return;
   components.map(component => {
-    if (component.name) {
+    if (component.name && typeof component !== "function") {
       const eventName = hyphenate(component.name);
       if (EVENTS[eventName] && typeof EVENTS[eventName] === "function") {
          Vue.component(component.name, EVENTS[eventName]());
