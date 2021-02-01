@@ -85,7 +85,7 @@ const components = [
 const install = (Vue) => {
   if (install.installed) return;
   components.map((component) => {
-    if (component.name) {
+    if (component.name && typeof component !== "function") {
       const eventName = hyphenate(component.name);
       if (EVENTS[eventName] && typeof EVENTS[eventName] === "function") {
         Vue.component(component.name, EVENTS[eventName]());
