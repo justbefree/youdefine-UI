@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-02-03 11:47:20
+ * @Last Modified time: 2021-02-03 11:50:53
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -131,10 +131,7 @@ export default defineComponent({
         return h(
           genComponentName("flex"),
           {
-            class: [
-              "custom-value",
-              hasDescription ? "initial-line-height" : "",
-            ],
+            class: ["custom-value", hasDescription ? "normal-line-height" : ""],
             props: { flexDirection: "column", justifyContent: "spaceBetween" },
           },
           [
@@ -144,7 +141,7 @@ export default defineComponent({
                 {
                   class: [
                     "yn-submit-action-currency",
-                    hasDescription ? "line-height-26" : "normal-line-height",
+                    hasDescription ? "line-height-26" : "inherit-line-height",
                   ],
                 },
                 [
