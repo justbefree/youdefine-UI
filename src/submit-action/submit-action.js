@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-24 12:04:15
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-27 13:51:07
+ * @Last Modified time: 2021-02-03 11:32:31
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -138,7 +138,7 @@ export default defineComponent({
             props: { flexDirection: "column", justifyContent: "spaceBetween" },
           },
           [
-            h(genComponentName("flex-item"), { props: { flex: 2 } }, [
+            h(genComponentName("flex-item"), { props: { flex: "none" } }, [
               h(
                 "span",
                 {
@@ -161,7 +161,10 @@ export default defineComponent({
             hasDescription &&
               h(
                 genComponentName("flex-item"),
-                { class: ["yn-submit-value-description"], props: { flex: 1 } },
+                {
+                  class: ["yn-submit-value-description"],
+                  props: { flex: "none" },
+                },
                 [this.valueDescription]
               ),
           ]

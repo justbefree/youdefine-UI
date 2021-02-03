@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-02 11:01:42
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-02-03 11:31:24
+ * @Last Modified time: 2021-02-03 11:34:09
  */
 import { defineComponent } from "../modules/component";
 import { hyphenate, camelize } from "../modules/utils";
