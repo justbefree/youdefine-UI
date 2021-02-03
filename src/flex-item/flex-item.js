@@ -2,9 +2,9 @@
  * @Author: Just be free
  * @Date:   2020-01-02 11:01:42
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-09-23 14:37:18
+ * @Last Modified time: 2021-02-03 11:31:24
  */
- import { defineComponent } from "../modules/component";
+import { defineComponent } from "../modules/component";
 import { hyphenate, camelize } from "../modules/utils";
 import { slotsMixins } from "../mixins/slots";
 export default defineComponent({
@@ -13,16 +13,16 @@ export default defineComponent({
   props: {
     flex: {
       type: [String, Number],
-      default: "initial"
+      default: "initial",
     },
     order: {
-      type: Number,
-      default: 0
+      type: [Number, String],
+      default: 0,
     },
     alignSelf: {
       type: String,
-      default: "auto"
-    }
+      default: "auto",
+    },
   },
   methods: {
     isValidAlignSelfValue() {
@@ -32,13 +32,13 @@ export default defineComponent({
         "center",
         "flexEnd",
         "baseline",
-        "stretch"
+        "stretch",
       ];
       return VALIDE_ALIGN_SELF_VALUE.indexOf(camelize(this.alignSelf)) > -1;
     },
     handleClick() {
       this.$emit("click");
-    }
+    },
   },
   render(h) {
     const className = this.isValidAlignSelfValue()
@@ -48,10 +48,13 @@ export default defineComponent({
       "div",
       {
         class: ["yn-flex-item", className],
-        style: { flex: this.flex, order: this.order },
-        on: { click: this.handleClick }
+        style: {
+          flex: this.flex !== "none" && this.flex,
+          order: this.order !== "none" && this.order,
+        },
+        on: { click: this.handleClick },
       },
       this.slots()
     );
-  }
+  },
 });
