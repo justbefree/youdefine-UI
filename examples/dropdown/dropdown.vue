@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>yn-dropdown</h2>
-    <yn-dropdown ref="dropdown">
+    <yn-dropdown ref="dropdown" :borderRadius="0">
       <yn-button slot="target" @click="toggle">以下</yn-button>
       <div slot="content">里面是内容</div>
     </yn-dropdown>
