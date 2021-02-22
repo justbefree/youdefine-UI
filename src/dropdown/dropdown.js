@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2021-01-26 15:32:36
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-28 12:14:59
+ * @Last Modified time: 2021-02-22 16:11:53
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -13,6 +13,7 @@ export default defineComponent({
   mixins: [slotsMixins],
   components: { Popup },
   props: {
+    borderRadius: Number,
     direction: {
       type: String,
       default: "down",
@@ -98,6 +99,7 @@ export default defineComponent({
                 value: this.show,
                 singleton: true,
                 position: this.position,
+                borderRadius: this.borderRadius,
               },
             },
             [this.slots("content")]
