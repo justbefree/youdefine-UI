@@ -15,6 +15,7 @@ import CityPicker from "./city-picker";
 import Counter from "./counter";
 import DatePicker from "./date-picker";
 import Dialog from "./dialog";
+import Dropdown from "./dropdown";
 import DropdownMenu from "./dropdown-menu";
 import DropdownMenuItem from "./dropdown-menu-item";
 import Field from "./field";
@@ -54,6 +55,7 @@ const components = [
   Counter,
   DatePicker,
   Dialog,
+  Dropdown,
   DropdownMenu,
   DropdownMenuItem,
   Field,
@@ -133,6 +135,7 @@ export { CityPicker as YnCityPicker };
 export { Counter as YnCounter };
 export { DatePicker as YnDatePicker };
 export { Dialog as YnDialog };
+export { Dropdown as YnDropdown };
 export { DropdownMenu as YnDropdownMenu };
 export { DropdownMenuItem as YnDropdownMenuItem };
 export { Field as YnField };
