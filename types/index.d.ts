@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-08-25 11:04:33
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-21 17:22:17
+* @Last Modified time: 2021-02-23 15:02:32
 * @E-mail: justbefree@126.com
 */
 import Vue from "vue";
@@ -18,6 +18,7 @@ import { YnCheckbox } from "./checkbox";
 import { YnCityPicker } from "./city-picker";
 import { YnCounter } from "./counter";
 import { YnDatePicker } from "./date-picker";
+import { YnDropdown } from "./dropdown";
 import { YnDropdownMenu } from "./dropdown-menu";
 import { YnDropdownMenuItem } from "./dropdown-menu-item";
 import { YnField } from "./field";
@@ -54,6 +55,7 @@ export {
   YnCityPicker,
   YnCounter,
   YnDatePicker,
+  YnDropdown,
   YnDropdownMenu,
   YnDropdownMenuItem,
   YnField,
