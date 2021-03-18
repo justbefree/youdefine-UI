@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-26 10:25:04
+ * @Last Modified time: 2021-03-18 17:37:37
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -221,6 +221,9 @@ export default defineComponent({
     handleOnSearch(e) {
       if (this.isCompose) return;
       throttle(this.searchRequest)(e);
+    },
+    handleFocusout(e) {
+      this.$emit("focusout", e);
     },
     searchRequest(e) {
       const value = e.target.value.trim();
@@ -481,6 +484,7 @@ export default defineComponent({
                   {
                     on: {
                       input: this.handleOnSearch,
+                      focusout: this.handleFocusout,
                       compositionstart: this.onComposeStart,
                       compositionend: this.onComposeEnd,
                     },
