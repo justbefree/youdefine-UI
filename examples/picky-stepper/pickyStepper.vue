@@ -193,16 +193,18 @@ export default {
             {
               label: "其他",
               type: "input",
-              placeholder: "请输入原因",
-              value: ""
+              placeholder: "请输入原因，不是必填",
+              value: "",
+              required: false
             },
             {
               label: "还有其他呢",
               type: "textarea",
-              placeholder: "请输入原因",
+              placeholder: "请输入原因，默认必填",
               value: "",
               counter: true,
-              maxlength: 100
+              maxlength: 100,
+              // required: true
             }
           ],
           multiple: false
