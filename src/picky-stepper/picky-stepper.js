@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-03-25 16:50:20
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-14 15:40:36
+ * @Last Modified time: 2021-03-23 13:29:50
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -13,7 +13,7 @@ import Radiobox from "../radiobox";
 import Checkbox from "../checkbox";
 import Flex from "../flex";
 import FlexItem from "../flex-item";
-import { isPromise } from "../modules/utils";
+import { isPromise, hasOwnProperty } from "../modules/utils";
 export default defineComponent({
   name: "PickyStepper",
   components: {
@@ -249,7 +249,10 @@ export default defineComponent({
       if (currentStep && currentStep.list && currentStep.list.length > 0) {
         actived = currentStep.list.find((item) => {
           if (["input", "textarea"].indexOf(item.type) > -1) {
-            return item.checked && item.value !== "";
+            const required = hasOwnProperty(item, "required")
+              ? item.required
+              : true;
+            return item.checked && (required ? item.value !== "" : true);
           } else {
             return item.checked;
           }
