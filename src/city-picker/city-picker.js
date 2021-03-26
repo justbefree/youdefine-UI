@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-03-26 14:09:10
+ * @Last Modified time: 2021-03-26 17:36:26
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -208,6 +208,7 @@ export default defineComponent({
       this.isSearching = false;
       this.keywords = "";
       this.$refs.searchInput.value = "";
+      this.clearSearchResult();
     },
     clearSearchResult() {
       this.searchList = [];
@@ -233,6 +234,7 @@ export default defineComponent({
         this.isSearching = true;
       } else {
         this.isSearching = false;
+        this.clearSearchResult();
         // 内容为空， 不搜索
         return;
       }
