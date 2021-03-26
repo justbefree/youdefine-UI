@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-03-18 17:37:37
+ * @Last Modified time: 2021-03-26 14:09:10
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -197,8 +197,9 @@ export default defineComponent({
     },
     handlePick(e) {
       if (this.isSearching) {
-        // 搜索完结果后，点击结果需清空档次搜索记录
+        // 搜索完结果后，点击结果需清当前搜索记录，以及搜索结果
         this.clearSearchKeywords();
+        this.clearSearchResult();
       }
       this.handleChange(false);
       this.$emit("pick", e);
@@ -245,7 +246,7 @@ export default defineComponent({
           }
         })
         .catch((err) => {
-          this.searchList = [];
+          this.clearSearchResult();
           if (err.errmsg) {
             this.Toast(err.errmsg);
           } else {
