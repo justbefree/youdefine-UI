@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2021-01-26 15:32:36
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-02-22 16:11:53
+ * @Last Modified time: 2021-03-30 17:38:36
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -14,6 +14,7 @@ export default defineComponent({
   components: { Popup },
   props: {
     borderRadius: Number,
+    closeOnClickModal: Boolean,
     direction: {
       type: String,
       default: "down",
@@ -68,6 +69,11 @@ export default defineComponent({
       this.$emit("afterLeave");
       this.status = false;
     },
+    handleChange(e) {
+      if (this.closeOnClickModal) {
+        this.show = e;
+      }
+    },
   },
   render(h) {
     const target = this.slots("target");
@@ -89,6 +95,7 @@ export default defineComponent({
             genComponentName("popup"),
             {
               on: {
+                input: this.handleChange,
                 beforeEnter: this.handleBeforeEnter,
                 afterEnter: this.handleAfterEnter,
                 beforeLeave: this.handleBeforeLeave,
