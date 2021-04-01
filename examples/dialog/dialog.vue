@@ -29,6 +29,7 @@
           <span>我是固定内容，我后面的是动态内容{{ text.value }}</span>
         </yn-dialog>
       </li>
+      <li @click="infinity">无限弹框</li>
     </ul>
   </div>
 </template>
@@ -126,6 +127,17 @@ export default {
         title: "这个是标题",
         message: "<span>我是span标签</span><br/>我换行了",
         beforeClose: this.handleBeforeClose2
+      });
+    },
+    infinity(e, i = 1) {
+      this.Dialog.confirm({
+        title: "无限弹框",
+        message: `我是老${i}`,
+        afterClose: (e) => {
+          if (e === "confirm") {
+            this.infinity(e, i + 1);
+          }
+        }
       });
     }
   }
