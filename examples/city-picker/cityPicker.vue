@@ -69,6 +69,7 @@
       showHistory
       @pick="handlePick"
       v-model="picker7"
+      :parse="parse"
     ></yn-city-picker>
     <yn-city-picker
       :search="getSearch()"
@@ -103,6 +104,9 @@ export default {
     };
   },
   methods: {
+    parse(city, nameSpace) {
+      return `${nameSpace} ${city.CityName}`;
+    },
     getHistory() {
       return {
         title: "历史查询",
