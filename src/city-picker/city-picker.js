@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-03-26 17:36:26
+ * @Last Modified time: 2021-04-06 16:39:05
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -38,7 +38,8 @@ export default defineComponent({
     },
     parse: {
       type: Function,
-      default: (city) => {
+      default: (city, nameSpace) => {
+        if (!nameSpace) nameSpace = "";
         return city.CityName;
       },
     },
@@ -397,6 +398,7 @@ export default defineComponent({
           this.createBlock(h, {
             cities: this.historyList,
             loading: this.historyLoading,
+            nameSpace: "history",
           }),
         ];
       } else {
@@ -407,14 +409,14 @@ export default defineComponent({
       return h(
         "ul",
         {},
-        Array.apply(null, this.searchList).map((list, key) => {
-          const innerHTML = this.parse(list, "search-result").replace(
+        Array.apply(null, this.searchList).map((listItem, key) => {
+          const innerHTML = this.parse(listItem, "search-result").replace(
             new RegExp(this.keywords, "ig"),
             `<i>${this.keywords}</i>`
           );
           return h(
             "li",
-            { key, on: { click: this.handlePick.bind(this, list) } },
+            { key, on: { click: this.handlePick.bind(this, listItem) } },
             [h("span", { domProps: { innerHTML } }, [])]
           );
         })
@@ -427,6 +429,7 @@ export default defineComponent({
           this.createBlock(h, {
             cities: this.hotCityList,
             loading: this.hotCityLoading,
+            nameSpace: "hot-cities",
           }),
         ];
       } else {
@@ -521,6 +524,7 @@ export default defineComponent({
       return this.createBlock(h, {
         cities: this.alphaBetaCities,
         loading: this.alphaBetaLoading,
+        nameSpace: "alpha-beta",
       });
     },
     createClose(h) {
@@ -540,7 +544,7 @@ export default defineComponent({
       ]);
     },
     createBlock(h, args) {
-      const { cities, loading } = args;
+      const { cities, loading, nameSpace = "" } = args;
       if (loading) {
         return h("div", { class: ["yn-city-picker-searched-area"] }, [
           h(
@@ -559,7 +563,7 @@ export default defineComponent({
           },
           [
             Array.apply(null, cities).map((city, key) => {
-              const text = this.parse(city);
+              const text = this.parse(city, nameSpace);
               const textLength = text.length;
               let fontSize = this.textBoxWidth / textLength;
               const textOverflow = [];
@@ -585,7 +589,7 @@ export default defineComponent({
                     ...textOverflow,
                   ],
                 },
-                [h("span", {}, this.parse(city))]
+                [h("span", {}, text)]
               );
             }),
           ]
@@ -609,7 +613,10 @@ export default defineComponent({
             [this.createTitle(h), this.createClose(h)]
           ),
           h(genComponentName("flex-item"), { props: { flex: 1 } }, [
-            this.createBlock(h, { cities: this.limitedData }),
+            this.createBlock(h, {
+              cities: this.limitedData,
+              nameSpace: "limited",
+            }),
           ]),
         ];
       } else {
