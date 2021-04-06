@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-04-06 16:39:05
+ * @Last Modified time: 2021-04-06 16:52:58
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -15,7 +15,6 @@ import Iconfont from "../iconfont";
 import Flex from "../flex";
 import FlexItem from "../flex-item";
 import Spin from "../spin";
-const CACHED_ALPHA_BETA = {};
 export default defineComponent({
   name: "CityPicker",
   mixins: [renderedMixins],
@@ -154,6 +153,7 @@ export default defineComponent({
       isSearching: false,
       keywords: "",
       textBoxWidth: 68,
+      cachedAlphaBeta: {},
     };
   },
   watch: {
@@ -300,9 +300,9 @@ export default defineComponent({
       }
       this.selectedAlphaBeta = e;
       this.alphaBetaCities = [];
-      if (CACHED_ALPHA_BETA[e] && CACHED_ALPHA_BETA[e].length) {
+      if (this.cachedAlphaBeta[e] && this.cachedAlphaBeta[e].length) {
         this.alphaBetaLoading = false;
-        this.alphaBetaCities = CACHED_ALPHA_BETA[e];
+        this.alphaBetaCities = this.cachedAlphaBeta[e];
       } else {
         this.alphaBetaLoading = true;
         const params = { ...this.alphaBeta.params, alphaBeta: e };
@@ -311,7 +311,7 @@ export default defineComponent({
           promise.then((res) => {
             const data = this.alphaBeta.parse(res, params);
             if (data && data.length) {
-              CACHED_ALPHA_BETA[e] = data;
+              this.cachedAlphaBeta[e] = data;
               this.alphaBetaCities = data;
               this.setAlphaBetaScrollTop();
             }
