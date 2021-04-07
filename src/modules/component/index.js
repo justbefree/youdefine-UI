@@ -2,12 +2,13 @@
  * @Author: Just be free
  * @Date:   2020-05-13 18:08:08
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-10-28 10:26:55
+ * @Last Modified time: 2021-04-07 10:37:59
  * @E-mail: justbefree@126.com
  */
 import { getConfig } from "./config";
 const prefix = getConfig("VUE_APP_PREFIX");
-console.log(`The current component lib's prefix is ${prefix}`);
+const version = getConfig("VUE_APP_VERSION");
+console.log(`${prefix.toUpperCase()} v${version}`);
 import { hyphenate } from "../utils";
 export const defineComponent = (options = {}) => {
   options.name = genComponentName(options.name);
