@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-04-07 17:39:32
+ * @Last Modified time: 2021-04-07 18:30:10
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -311,8 +311,8 @@ export default defineComponent({
           promise.then((res) => {
             const data = this.alphaBeta.parse(res, params);
             if (data && data.length) {
-              this.cachedAlphaBeta[e] = data;
-              // this.alphaBetaCities = data;
+              // this.cachedAlphaBeta[e] = data;
+              this.alphaBetaCities = data;
               // deepClone, 防止城市组件缓存的数据共享
               this.cachedAlphaBeta = { ...this.cachedAlphaBeta, [e]: data };
               this.setAlphaBetaScrollTop();
