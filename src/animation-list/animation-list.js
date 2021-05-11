@@ -45,10 +45,14 @@ export default defineComponent({
       if (slots.length > 0) {
         const slot = slots.shift();
         this.stackList.push(slot);
-        const timer = setTimeout(() => {
+        if (this.animation) {
+          const timer = setTimeout(() => {
+            this.infinite(slots);
+            clearTimeout(timer);
+          }, 50);
+        } else {
           this.infinite(slots);
-          clearTimeout(timer);
-        }, 50);
+        }
       }
     },
     getSlots() {
@@ -63,11 +67,7 @@ export default defineComponent({
     init() {
       this.stackList = [];
       const slots = this.getSlots();
-      if (this.animation) {
-        this.infinite(slots);
-      } else {
-        this.stackList = slots;
-      }
+      this.infinite(slots);
     },
   },
   mounted() {
@@ -80,7 +80,7 @@ export default defineComponent({
         { props: { flexDirection: "column" } },
         Array.apply(
           null,
-          !this.animation ? this.getSlots() : this.stackList
+          this.stackList
         ).map((item, key) => {
           return h(genComponentName("flex-item"), { key }, [item]);
         })
