@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-06-15 10:01:18
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-12-16 13:44:40
+ * @Last Modified time: 2021-05-12 12:00:36
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -38,7 +38,15 @@ export default defineComponent({
   initPropsToData() {
     return [{ key: "count", value: "value", parse: Number }];
   },
+  watch: {
+    value: function (n) {
+      this.set(n);
+    },
+  },
   methods: {
+    set(val) {
+      this.count = val;
+    },
     subtract() {
       this.caculate("subtract");
     },
@@ -99,7 +107,9 @@ export default defineComponent({
         ),
       ]);
     } else {
-      throw new Error("value is out of range");
+      throw new Error(
+        `${this.value} is out of range, the valid value should be range ${this.min} to ${this.max}`
+      );
     }
   },
 });
