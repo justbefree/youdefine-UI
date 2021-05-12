@@ -7,6 +7,7 @@
         <yn-counter :name="count.name" :key="i" v-model="count.value" :min="count.min" :max="count.max" steps="1" @change="handleChange"></yn-counter>
       </li>
     </ul>
+    <yn-button @click="secondChange">修改第二个</yn-button>
   </div>
 </template>
 <script type="text/javascript">
@@ -14,7 +15,7 @@
     name: "YnCounterPage",
     data() {
       return {
-        counts: [{ value: 0, min: -5, max: 10, name: "haha" }, { value: 1, min: -2, max: 6, name: "hehe" }, { value: 2, min: 1, max: 4, name: "heihei" }]
+        counts: [{ value: 0, min: -5, max: 10, name: "haha" }, { value: 1, min: -2, max: 120, name: "hehe" }, { value: 2, min: 1, max: 4, name: "heihei" }]
       };
     },
     computed: {
@@ -27,6 +28,11 @@
       }
     },
     methods: {
+      secondChange() {
+        const count = this.counts[1];
+        count.value = 100;
+        this.counts.splice(1, 1, count);
+      },
       handleChange(e) {
         console.log(e);
         this.Toast(`${e.name} - ${e.type}`);
