@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-02 15:47:54
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-12-16 13:47:18
+ * @Last Modified time: 2021-05-24 14:26:02
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -279,7 +279,7 @@ export default defineComponent({
                               directives: [
                                 { name: "show", value: option.selected },
                               ],
-                              props: { name: "checkmark", size: 12 },
+                              props: { name: "check-mark", size: 12 },
                             },
                             []
                           ),
