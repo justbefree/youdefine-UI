@@ -105,6 +105,7 @@
       v-model="calendar1"
       v-on:getDate="handleOnGetDate1"
       @afterLeave="handleAfterLeave"
+      noticeText="这里是提示文案，这里是提示文案，这里是提示文案，这里是提示文案，这里是提示文案，"
     ></yn-calendar>
     <yn-calendar
       mode="double"
