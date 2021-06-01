@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:27
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-01-29 21:51:24
+ * @Last Modified time: 2021-06-01 12:18:25
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -95,6 +95,7 @@ export default defineComponent({
         return defaultText;
       },
     },
+    noticeText: String,
   },
   data() {
     return {
@@ -491,10 +492,18 @@ export default defineComponent({
       });
       return caculateDOM;
     },
+    createNoticeBar(h) {
+      if (this.noticeText && this.noticeText !== "") {
+        return h("div", { class: ["yn-calendar-notice"] }, [
+          h("p", { class: ["text"] }, this.noticeText),
+        ]);
+      }
+    },
     createHeaderArea(h) {
       return h("div", {}, [
         this.createCloseIcon(h),
         this.createTitle(h),
+        this.createNoticeBar(h),
         this.createWeekBar(h),
       ]);
     },
