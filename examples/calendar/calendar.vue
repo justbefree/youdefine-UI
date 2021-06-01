@@ -105,7 +105,7 @@
       v-model="calendar1"
       v-on:getDate="handleOnGetDate1"
       @afterLeave="handleAfterLeave"
-      noticeText="这里是提示文案，这里是提示文案，这里是提示文案，这里是提示文案，这里是提示文案，"
+      noticeText="温馨提示：为配合各地政府落实疫情防控常态化措施，避免重复退票带来的不便，铁路车票预售期调整为15天"
     ></yn-calendar>
     <yn-calendar
       mode="double"
