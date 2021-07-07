@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-11-11 10:03:24
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-07-07 10:42:57
+ * @Last Modified time: 2021-07-07 15:49:51
  * @E-mail: justbefree@126.com
  */
 import { defineComponent, genComponentName } from "../modules/component";
@@ -15,7 +15,7 @@ export default defineComponent({
   props: {
     duration: {
       type: [Number, String],
-      default: 500,
+      default: 600,
     },
     animationType: {
       type: String,
@@ -32,12 +32,17 @@ export default defineComponent({
       el.style.opacity = 0;
     },
     handleEnter(el, done) {
-      let delay = el.getAttribute("dataindex") * 100;
+      let delay = el.getAttribute("dataindex") * 5 + 100;
       setTimeout(() => {
-        el.style.transition = `opacity ${this.duration}ms`;
-        el.style.opacity = 1;
-        el.style.animation = `${this.animationType}-one-by-one ${this.duration}ms infinite`;
-        el.style["animation-iteration-count"] = 1;
+        el.setAttribute(
+          "style",
+          `
+          transition: opacity ${this.duration}ms;
+          opacity: 1;
+          animation: ${this.animationType}-one-by-one ${this.duration}ms infinite;
+          animation-iteration-count: 1;
+        `
+        );
         done();
       }, delay);
     },
