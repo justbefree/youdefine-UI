@@ -24,7 +24,7 @@
     <!-- <yn-dialog v-model="showDialog">
       外面的弹窗
     </yn-dialog> -->
-    <yn-animation-list :dataList="asyncData" :animation="animation">
+    <yn-animation-list ref="animation">
       <yn-animation-list-item height="100" v-for="i in asyncData" :key="i.index">
         <!-- <div style="height: 100px;" :class="[i.index % 2 === 0 ? 'hide' : '']">这是第{{i.index}}个元素</div> -->
         <!-- <div v-if="i.index %2 === 0">这是第{{i.index}}个元素</div> -->
@@ -35,13 +35,21 @@
           </yn-dialog>
         </div>
         <div v-else>这是第{{i.index}}个元素</div>
+        <!-- <div>
+          <item :num="i.index"></item>
+        </div> -->
+        <!-- <item class="test-class" name="item" :num="i.index" @click="handleItemClick"></item> -->
       </yn-animation-list-item>
     </yn-animation-list>
   </div>
 </template>
 <script>
+// const item = () => import("./item.vue");
 export default {
   name: "YnAnimationListPage",
+  components: {
+    // item
+  },
   data() {
     const dataList = [];
     for (let i = 0; i < 20; i++) {
@@ -56,6 +64,9 @@ export default {
     };
   },
   methods: {
+    handleItemClick(num) {
+      console.log("handleItemClick", num);
+    },
     dialog() {
       this.animation = false;
       this.showDialog = true;
@@ -120,6 +131,11 @@ export default {
   },
   mounted() {
     this.getData();
+  },
+  updated() {
+    // console.log("外层 updated");
+    // this.init();
+    // this.$refs.animation.init();
   }
 };
 </script>
