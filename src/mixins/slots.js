@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-04-09 09:49:28
  * @Last Modified by:   Just be free
- * @Last Modified time: 2020-05-26 17:59:35
+ * @Last Modified time: 2021-07-07 10:59:10
  * @E-mail: justbefree@126.com
  */
 
@@ -12,7 +12,7 @@ const verify = (slots = [], validateTag) => {
     return slots;
   }
   const result = [];
-  slots.forEach(slot => {
+  slots.forEach((slot) => {
     //  <transition> can only be used on a single element
     // 暂时不支持transition-group
     const condition =
@@ -38,6 +38,6 @@ export const slotsMixins = Vue.extend({
         return verify(scopedSlot(props), validateTag);
       }
       return verify($slots[name], validateTag);
-    }
-  }
+    },
+  },
 });
