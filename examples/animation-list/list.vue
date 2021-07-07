@@ -52,7 +52,7 @@ export default {
   },
   data() {
     const dataList = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 200; i++) {
       dataList.push(i);
     }
     return {
@@ -83,7 +83,7 @@ export default {
     getData() {
       console.log("getData");
       const timer = setTimeout(() => {
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 200; i++) {
           this.asyncData.push({ index: i });
         }
         clearTimeout(timer);
@@ -92,7 +92,7 @@ export default {
     loadMore() {
       const length = this.dataList.length;
       setTimeout(() => {
-        for (let i = length; i < 20 + length; i++) {
+        for (let i = length; i < 200 + length; i++) {
           this.dataList.push(i);
         }
       }, 1000);
@@ -131,11 +131,6 @@ export default {
   },
   mounted() {
     this.getData();
-  },
-  updated() {
-    // console.log("外层 updated");
-    // this.init();
-    // this.$refs.animation.init();
   }
 };
 </script>
