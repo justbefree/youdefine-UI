@@ -2,7 +2,7 @@
  * @Author: Just be free
  * @Date:   2020-01-15 17:16:53
  * @Last Modified by:   Just be free
- * @Last Modified time: 2021-04-07 18:30:10
+ * @Last Modified time: 2021-08-09 11:06:18
  */
 import { defineComponent, genComponentName } from "../modules/component";
 import { renderedMixins } from "../mixins/rendered";
@@ -74,6 +74,10 @@ export default defineComponent({
       default: false,
     },
     showHotCity: {
+      type: Boolean,
+      default: true,
+    },
+    showAlphaBeta: {
       type: Boolean,
       default: true,
     },
@@ -439,30 +443,34 @@ export default defineComponent({
       }
     },
     createAlphaBeta(h) {
-      return [
-        this.createBlockTitle(h, this.alphaBeta.title),
-        h(
-          genComponentName("flex"),
-          {
-            props: { flexWrap: "wrap", justifyContent: "spaceBetween" },
-            class: ["yn-city-picker-alpha-beta"],
-          },
-          Array.apply(null, { length: 26 }).map((i, key) => {
-            const char = String.fromCharCode(65 + key);
-            return h(
-              genComponentName("flex-item"),
-              {
-                on: { click: this.handleClickAlphaBeta.bind(this, char) },
-                class: [
-                  "alpha-beta",
-                  this.selectedAlphaBeta === char ? "active" : "",
-                ],
-              },
-              char
-            );
-          })
-        ),
-      ];
+      if (this.showAlphaBeta) {
+        return [
+          this.createBlockTitle(h, this.alphaBeta.title),
+          h(
+            genComponentName("flex"),
+            {
+              props: { flexWrap: "wrap", justifyContent: "spaceBetween" },
+              class: ["yn-city-picker-alpha-beta"],
+            },
+            Array.apply(null, { length: 26 }).map((i, key) => {
+              const char = String.fromCharCode(65 + key);
+              return h(
+                genComponentName("flex-item"),
+                {
+                  on: { click: this.handleClickAlphaBeta.bind(this, char) },
+                  class: [
+                    "alpha-beta",
+                    this.selectedAlphaBeta === char ? "active" : "",
+                  ],
+                },
+                char
+              );
+            })
+          ),
+        ];
+      } else {
+        return [];
+      }
     },
     creteInputSearchArea(h) {
       if (this.searchable) {
