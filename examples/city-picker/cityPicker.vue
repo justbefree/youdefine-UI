@@ -6,6 +6,7 @@
       <li @click="handlePicker(2)">国际城市</li>
       <li @click="handlePicker(3)">全部城市</li>
       <li @click="handlePicker(4)">受限城市</li>
+      <li @click="handlePicker(9)">受限城市搜索</li>
       <li @click="handlePicker(5)">显示历史记录</li>
       <li @click="handlePicker(6)">不显示热门城市</li>
       <li @click="handlePicker(7)">可搜索</li>
@@ -40,9 +41,17 @@
       v-model="picker3"
     ></yn-city-picker>
     <yn-city-picker
+      :searchable="false"
       @pick="handlePick"
       v-model="picker4"
       :limitedData="data.cnCitiesList"
+      limited
+    ></yn-city-picker>
+    <yn-city-picker
+      @pick="handlePick"
+      v-model="picker9"
+      :limitedData="data.cnCitiesList"
+      :search="getSearch()"
       limited
     ></yn-city-picker>
     <yn-city-picker
@@ -99,6 +108,7 @@ export default {
       picker6: false,
       picker7: false,
       picker8: false,
+      picker9: false,
       tabs1: [{ label: "中国", key: "mainland-china" }],
       tabs2: [{ label: "非中国大陆(国际/港澳台)", key: "overseas" }]
     };

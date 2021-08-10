@@ -620,14 +620,30 @@ export default defineComponent({
           h(
             genComponentName("flex-item"),
             { class: ["yn-city-picker-header"] },
-            [this.createTitle(h), this.createClose(h)]
+            [this.createTitle(h), this.createClose(h), this.creteInputSearchArea(h)]
           ),
-          h(genComponentName("flex-item"), { props: { flex: 1 } }, [
+          h(genComponentName("flex-item"), { 
+            directives: [{ name: "show", value: !this.isSearching }],
+            props: { flex: 1 }
+          }, [
             this.createBlock(h, {
               cities: this.limitedData,
               nameSpace: "limited",
             }),
           ]),
+          h(
+            genComponentName("flex-item"),
+            {
+              class: [
+                "yn-city-picker-body",
+                "yn-city-picker-input-search-result",
+              ],
+              directives: [{ name: "show", value: this.isSearching }],
+              props: { flex: 1 },
+              ref: "scrollElement-searching",
+            },
+            [this.createInputSearchList(h)]
+          )
         ];
       } else {
         return [
