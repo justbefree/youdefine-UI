@@ -209,6 +209,7 @@ export default defineComponent({
           this.changedNode = { [date.key]: date };
         }
       }
+      this.$emit("changeDate", { fromDate: this.fromDate, toDate: this.toDate });
     },
     handleOnConfirm() {
       if (this.confirmButtonClassName !== "active") {
@@ -350,6 +351,7 @@ export default defineComponent({
         }
         this.fromDate = startNode;
         this.toDate = endNode;
+        this.$emit("changeDate", { fromDate: this.fromDate, toDate: this.toDate });
       } else {
         const node = this.getDefaultNodeFromProps("defaultDate", [
           "single-mode",
