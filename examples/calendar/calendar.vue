@@ -138,6 +138,8 @@
       v-model="calendar5"
       v-on:getDate="handleOnGetDate5"
       :showConfirmButton="true"
+      :confirmText="confirmText"
+      @changeDate="changeDate"
     ></yn-calendar>
     <yn-calendar
       mode="double"
@@ -178,6 +180,7 @@ export default {
   name: "YnCalendarPage",
   data() {
     return {
+      duration: 0,
       calendar1: false,
       calendar1Date: "",
       calendar2: false,
@@ -210,6 +213,13 @@ export default {
     };
   },
   computed: {
+    confirmText() {
+      if (this.double) {
+        return `确定（${this.duration}晚）`;
+      } else {
+        return "";
+      }
+    },
     getModel() {
       if (this.single) {
         return "single";
@@ -220,6 +230,20 @@ export default {
     }
   },
   methods: {
+    diff(start, end) {
+      const startTime = new Date(start).getTime();
+      const endTime = new Date(end).getTime();
+      return (endTime - startTime)/ 1000 / 60 / 60 / 24;
+    },
+    changeDate(date) {
+      console.log(date);
+      const { fromDate, toDate } = date;
+      if (!fromDate || !toDate) {
+        this.duration = 0;
+      } else {
+        this.duration = this.diff(fromDate.date, toDate.date);
+      }
+    },
     changeDefaultDate() {
       this.defaultDate = moment()
         .add(2, "d")
