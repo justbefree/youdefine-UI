@@ -19,6 +19,13 @@
         <span>此状态不可修改{{ value }}</span>
       </li>
     </ul>
+    <h2>下面是动态循环的案例</h2>
+    <ul>
+      <li class="outer-box" @click="handleItemClick(item)" v-for="(item, key) in list" :key="key">
+        <yn-checkbox disableClick v-model="item.status"></yn-checkbox>
+        <span>支持整行点击</span>
+      </li>
+    </ul>
   </div>
 </template>
 <script type="text/javascript">
@@ -27,12 +34,27 @@ export default {
   data() {
     return {
       checked: false,
-      value: true
+      value: true,
+      list: [
+        { status: false },
+        { status: false },
+        { status: false },
+        { status: false },
+        { status: true },
+        { status: false },
+        { status: false },
+        { status: false },
+        { status: false },
+      ]
     };
   },
   methods: {
     handleClick(e) {
       console.log("改变状态了", e);
+    },
+    handleItemClick(item) {
+      console.log("item", item);
+      item.status = !item.status;
     }
   }
 };
@@ -43,5 +65,8 @@ export default {
   }
   ul li {
     margin: 5px 0;
+  }
+  .outer-box {
+    background: #eee;
   }
 </style>
