@@ -109,7 +109,7 @@ export default defineComponent({
     };
   },
   watch: {
-    mode: "highLightDefault",
+    value: "highLightDefault",
   },
   methods: {
     handleClick(date) {
@@ -203,6 +203,7 @@ export default defineComponent({
           this.confirmButtonClassName = "disable";
           this.toDate = null;
           drop(date.className, "during-active");
+          drop(date.className, ["active", "end"]);
           push(date.className, ["start", "active"]);
           this.setDateValue(date, "mark", this.fromDateMark);
           this.fromDate = date;
