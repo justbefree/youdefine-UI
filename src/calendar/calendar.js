@@ -109,7 +109,7 @@ export default defineComponent({
     };
   },
   watch: {
-    mode: "highLightDefault",
+    value: "highLightDefault",
   },
   methods: {
     handleClick(date) {
