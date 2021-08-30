@@ -2,7 +2,7 @@
   <div>
     <h2>yn-dropdown-menu</h2>
     <div class="box">
-      <yn-dropdown-menu>
+      <yn-dropdown-menu :highLightByFiltered="true">
         <yn-dropdown-menu-item
           v-model="value1"
           :options="option1"
@@ -15,12 +15,22 @@
           :titleChangealbe="true"
         ></yn-dropdown-menu-item>
         <yn-dropdown-menu-item
+          v-model="value5"
+          :mapStatus="mapStatus"
+          :titleChangealbe="true"
+          @change="handleChange"
+          :fixed="true"
+          ref="mapStatus"
+        ></yn-dropdown-menu-item>
+        <yn-dropdown-menu-item
           v-model="value3"
           ref="menuItem"
           @beforeEnter="handleBeforeEnter"
         >
           <div>
             <span>这里面是自定义内容</span>
+            <yn-button type="primary" @click="changeData4(true)">设置筛选</yn-button>
+            <yn-button type="primary" @click="changeData4(false)">取消筛选</yn-button>
             <yn-button type="primary" @click="close1">关闭</yn-button>
           </div>
         </yn-dropdown-menu-item>
@@ -151,6 +161,9 @@ export default {
     },
     changeData3(e) {
       this.$refs.closeAble.check(e);
+    },
+    changeData4(e) {
+      this.$refs.menuItem.setIsFiltered(e);
     },
     switchTo(i) {
       this.$refs.switchTo.switchTab(i, true);
