@@ -1,6 +1,6 @@
 # Very important
 
-This repository has moved (HERE)[https://github.com/dullarjs/dullar]
+This repository has moved [HERE](https://github.com/dullarjs/dullar)
 
 # Here comes Vueggy for Vue3
 
