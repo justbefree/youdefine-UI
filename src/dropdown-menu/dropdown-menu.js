@@ -18,6 +18,10 @@ export default defineComponent({
   mixins: [slotsMixins, provideMixins()],
   components: { Flex, FlexItem, Iconfont },
   props: {
+    highLightByFiltered: {
+      type: Boolean,
+      default: false
+    },
     direction: {
       type: String,
       default: "down",
@@ -139,12 +143,21 @@ export default defineComponent({
             // const active = this.currentTab === key;
             let active = false;
             if (showDirectionIcon) {
-              active = this.currentTab === key;
+              active = this.currentTab === key && this.currentTabStauts;
             } else {
               if (fixed) {
                 active = this.tabs[key];
               } else {
                 active = this.currentTab === key && this.currentTabStauts;
+              }
+            }
+            if (this.highLightByFiltered && item.componentInstance) {
+              active = active || item.componentInstance.getIsFiltered();
+            } else if (this.highLightByFiltered && !item.componentInstance) {
+              const { defaultSelectedIndex = -1, options = [] } = item.componentOptions.propsData;
+              if (defaultSelectedIndex > -1 && options.length > 0 ) {
+                // 带默认选中项的下拉筛选
+                active = true;
               }
             }
             return h(

@@ -68,6 +68,7 @@ export default defineComponent({
   },
   data() {
     return {
+      isFiltered: false,
       show: false,
       menuStatus: false,
       bodyOverflow: null,
@@ -142,6 +143,23 @@ export default defineComponent({
         return this.checked;
       }
     },
+    setIsFiltered(flag) {
+      this.isFiltered = flag;
+    },
+    getIsFiltered() {
+      if (this.hasOptions()) {
+        if (this.slots().length > 0) {
+          // 自定义内容
+          return this.isFiltered;
+        } else {
+          if (this.currentSelected > -1) {
+            return true;
+          }
+        }
+      } else {
+        return this.checked;
+      }
+    },
     check(selected = false, options = {}) {
       if (this.hasOptions()) {
         if ((selected && !this.show) || (!selected && this.show)) {
@@ -183,6 +201,8 @@ export default defineComponent({
       this.show = false;
     },
     closeTab() {
+      const { slideUp } = this.parent;
+      slideUp && typeof slideUp === "function" && slideUp();
       this.close();
       this.$parent.closeTab();
     },
